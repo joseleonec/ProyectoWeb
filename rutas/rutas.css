@@ -4,7 +4,11 @@
 html,
 body {
     /* background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg'); */
-    background-image: url('http://getwallpapers.com/wallpaper/full/5/7/d/545909.jpg#.Xsgx37z1v8U.link');
+    /* background-image: url('http://getwallpapers.com/wallpaper/full/5/7/d/545909.jpg#.Xsgx37z1v8U.link'); */
+    /* background-image: url('http://getwallpapers.com/wallpaper/full/0/d/1/1047150-free-ecuador-wallpaper-2000x1333-for-windows-10.jpg#.Xsg6Y8uafSE.link'); */
+    /* background-image: url('https://image.shutterstock.com/image-photo/road-cotopaxi-volcano-inside-national-260nw-1218543274.jpg'); */
+    /* background-image: url('https://www.geotoursbanios.com/archivos/tours/biking-cotopaxi-ecuador_1.jpg'); */
+    background-image: url('../images/login/4.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
@@ -34,7 +38,7 @@ body {
 
 .social_icon span:hover {
     color: white;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .card-header h3 {
