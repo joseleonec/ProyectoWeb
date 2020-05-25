@@ -12,7 +12,7 @@
 	<title>Administracion Cooperativa</title>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="../css/simple-sidebar.css">
+  <link rel="stylesheet" type="text/css" href="css/simple-sidebar.css">
 	<!--Boots-->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -22,11 +22,13 @@
 <body>
 	<!--Header -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-primary" id="menu-toggle">Menu</button>
+      </nav>
   		<a class="navbar-brand" href="#">Turismo Oriental</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		</button>
-
 	  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    	<ul class="navbar-nav mr-auto"></ul>
 	    	<a class="btn btn-outline-primary" href="#">Sign up</a>
@@ -49,15 +51,77 @@
     </div>
     <!-- /#sidebar-wrapper -->
     <div id="page-content-wrapper">
-
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
-      </nav>
-
-      <div class="container-fluid">
-        <h1 class="mt-4">Simple Sidebar</h1>
-        <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
+      <div class="container-fluid card-deck mb-3 text-center ">
+                <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Venta de boletos</h4>
+          </div>
+          <div class="card-body">
+          	<form class="needs-validation" novalidate>
+          		<!--Origen, destino y empresa-->
+                <div class="row etq">
+	              	<div class="col-md-4 mb-3">
+	                	<label for="ciudad">Ciudad Origen</label>
+	                	<select class="custom-select d-block w-100" id="origen" required>
+	                  		<option value="">Elegir...</option>
+	                  		<option>Cuenca</option>
+	                	</select>
+	                	<div class="invalid-feedback">
+	                  		Please select a valid country.
+	                	</div>
+              		</div>
+	              	<div class="col-md-4 mb-3">
+		                <label for="ciudad">Ciudad Destino</label>
+		                <select class="custom-select d-block w-100" id="destino" required>
+		                  <option value="">Elegir...</option>
+		                  <option>Ambato</option>
+		                  <option>Guayaquil</option>
+		                  <option>Quito</option>
+		                </select>
+		                <div class="invalid-feedback">
+		                  Please provide a valid state.
+		                </div>
+	              	</div>
+	              	<div class="col-md-4 mb-3">
+						<div class="form-group">
+					    <label for="exampleFormControlSelect1">Cantidad de Asientos</label>
+					    <select class="form-control" id="exampleFormControlSelect1">
+					      <option>1</option>
+					      <option>2</option>
+					      <option>3</option>
+					      <option>4</option>
+					      <option>5</option>
+					    </select>
+					  </div>
+	              	</div>
+	            </div>
+	            <!--fin Origen, destino y empresa-->
+                <div class="row etq">
+	              	<div class="col-md-4 mb-3">
+	                	<label for="ciudad">Fecha de Salida</label>
+												<div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                    		<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4"/>
+                    		<div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                        		<div class="input-group-text">
+                        			<svg class="bi bi-calendar" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+									  <path fill-rule="evenodd" d="M14 0H2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z" clip-rule="evenodd"/>
+									  <path fill-rule="evenodd" d="M6.5 7a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm-9 3a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm-9 3a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+									</svg>
+                        			<i class="fa fa-calendar"></i>
+                        		</div>
+                    		</div>
+                		</div>
+              		</div>
+					<div class="col-md-4 mb-3"></div>
+	              	
+	              	<div class="col-md-4 mb-3">
+		                <label for="empresa"></label>
+            			<button class="btn btn-primary btn-lg btn-block" type="submit">Buscar</button>
+	              	</div>
+	            </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
 
