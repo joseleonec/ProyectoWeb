@@ -13,73 +13,76 @@ header{
   background: orange;
 }
 */
-.text-center{
-  background-color: #3c82f4;
-  color: #fff;
-  width: 100vw;
+
+.text-center {
+    background-color: #3c82f4;
+    color: #fff;
+    width: 100vw;
 }
 
 .s-title a {
-  color: #fff;
-  font-weight: 800;
-  font-size: 30pt;
+    color: #fff;
+    font-weight: 800;
+    font-size: 30pt;
 }
 
 .s-title a:hover {
-  color: #191b30;
-  font-weight: 800;
-  text-decoration:none;
+    color: #191b30;
+    font-weight: 800;
+    text-decoration: none;
 }
 
 .s-description {
-  color: #fff;
+    color: #fff;
 }
 
 #foot {
-  font-size: 10pt;
-  background: #191b30;
-  color: #ccc;
-  width: 100vw;
-  text-align: justify;
-  /*position: absolute;*/
-  padding: 34pt;
+    font-size: 10pt;
+    background: #191b30;
+    color: #ccc;
+    width: 100vw;
+    text-align: justify;
+    /*position: absolute;*/
+    padding: 34pt;
 }
 
-.foot-title-column{
-  font-weight: bold;
-  color: #fff;
+.foot-title-column {
+    font-weight: bold;
+    color: #fff;
 }
 
-.col-sm-4{
-  padding-right: 25pt;
-  padding-left: 25pt;
+.col-sm-4 {
+    padding-right: 25pt;
+    padding-left: 25pt;
 }
+
 
 /* Boton */
+
 #boton-bonito {
-  text-decoration: none;
-  color: white;
-  padding: 10px 20px;
-  background-color: #FF9800;
-  display: inline-block
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    background-color: #FF9800;
+    display: inline-block
 }
 
 #boton-bonito:hover {
-  background-color: #333333;
+    background-color: #333333;
 }
+
 
 /* Menu: boton seleccionado*/
 
-.btn-seleccion{
-  background-color: #d4cfff;
+.btn-seleccion {
+    background-color: #d4cfff;
 }
 
-.barra{
-  width: 100%;
-  position: fixed;
-  top: 0;
+.barra {
+    width: 100%;
+    position: fixed;
+    top: 0;
 }
-
 
 
 /* Select idiomas*/
