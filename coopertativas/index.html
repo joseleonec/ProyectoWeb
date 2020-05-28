@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        Cooperativas
+    </title>
+    <!--
+    <link rel="stylesheet" href="../bootstrap-3.4.1/css/bootstrap.min.css">
+    <link rel=”stylesheet” href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    -->
+
+    <link rel="stylesheet" href="../bootstrap-4.5.0/css/bootstrap.min.css">
+    <!--link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"-->
+    <link rel="stylesheet" href="../Estilos.css">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <!--Barra de navegacion-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light barra" id="EjNav">
+        <a class="navbar-brand" href="../index.html">Transport</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../buscar-viaje/">Buscar Viaje
+                        <!--span class="sr-only">(current)</span--></a>
+                </li>
+                <li>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../rutas/">Rutas</a>
+                </li>
+                <li>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </li>
+                <li class="nav-item active btn-seleccion">
+                    <a class="nav-link" href="index.html">Cooperativas</a>
+                </li>
+                <li>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Idioma
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">English</a>
+                            <a class="dropdown-item" href="#">Spanish</a>
+                        </div>
+                    </li>
+                    <li>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="../usuario/"><img src="../icons/person.svg">&nbsp;&nbsp;Sign Up</a></li>
+                </ul>
+                <!--p class="navbar-text pull-right">
+                    Conectado como <a href="#" class="navbar-link">Mario Kart</a>
+                </p-->
+            </form>
+        </div>
+    </nav>
+
+    <!--Bienvenida-->
+    <div class="jumbotron text-center encabezado">
+        <h2 class="s-title"><a href="../index.html">Transport</a></h2>
+        <p class="s-description">Terminal terrestre de Cuenca</p>
+    </div>
+
+    <!--INICIO CONTENIDO-->
+    <div class="container">
+        <br>
+        <h3>Estas son las cooperativas</h3>
+        <p>¿Qué cooperativa buscas?</p>
+
+        <form class="form-inline" id="busqueda">
+            <input id="txt_buscar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button id="btn_buscar" class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+        <p id="demo"></p>
+        <div class="mt-3" id="alerta-campo">
+        </div>
+        <br>
+        <table class="table table-hover table-striped tabla-coop">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">&nbsp;&nbsp;Logo</th>
+                    <th scope="col">Opinion General</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <img class="align-right" src="img/oriental.png" width="120" height="70">
+                        <p class="align-right">&nbsp;&nbsp;&nbsp;Turismo Oriental</p>
+                    </td>
+                    <td>
+                        <div>
+                            <form class="align-right">
+                                <p class="clasificacion">
+                                    <input id="radio1" type="radio" name="estrellas" value="5">
+                                    <label for="radio1">★</label>
+                                    <input id="radio2" type="radio" name="estrellas" value="4">
+                                    <label for="radio2">★</label>
+                                    <input id="radio3" type="radio" name="estrellas" value="3">
+                                    <label for="radio3">★</label>
+                                    <input id="radio4" type="radio" name="estrellas" value="2">
+                                    <label for="radio4">★</label>
+                                    <input id="radio5" type="radio" name="estrellas" value="1">
+                                    <label for="radio5">★</label>
+                                </p>
+                            </form>
+                            <p class="align-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <a class="btn btn-large btn-primary align-right" href="com.html">
+                                Dejar opinion </a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img class="align-right" src="img/viajeros1.png" width="120" height="70">
+                        <p class="align-right"> &nbsp;&nbsp;&nbsp;Viajeros Internacional</p>
+                    </td>
+                    <td>
+                        <div>
+                            <form class="align-right">
+                                <p class="clasificacion">
+                                    <input id="radio6" type="radio" name="estrellas" value="5">
+                                    <label for="radio6">★</label>
+                                    <input id="radio7" type="radio" name="estrellas" value="4">
+                                    <label for="radio7">★</label>
+                                    <input id="radio8" type="radio" name="estrellas" value="3">
+                                    <label for="radio8">★</label>
+                                    <input id="radio9" type="radio" name="estrellas" value="2">
+                                    <label for="radio9">★</label>
+                                    <input id="radio10" type="radio" name="estrellas" value="1">
+                                    <label for="radio10">★</label>
+                                </p>
+                            </form>
+                            <p class="align-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <a class="btn btn-large btn-primary align-right" href="com.html">
+                                Dejar opinion </a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--Fin Cooperativas-->
+    <br><br><br>
+    <!--Pie de pagina-->
+    <!--div class="container" id="foot"-->
+    <div class="footer" id="foot">
+        <div class="row">
+            <br><br>
+            <div class="col-sm-4">
+                <h3 class="foot-title-column">Ayuda</h3>
+                <br>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Recusandae eveniet exercitationem consequuntur ipsum, architecto
+                    aut, nisi assumenda nihil culpa a laborum autem quas provident harum
+                    quis numquam. Dolorum, nulla rem?</p>
+            </div>
+            <div class="col-sm-4">
+                <h3 class="foot-title-column">Contacto</h3>
+                <br>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Recusandae eveniet exercitationem consequuntur ipsum, architecto
+                    aut, nisi assumenda nihil culpa a laborum autem quas provident harum
+                    quis numquam. Dolorum, nulla rem?</p>
+            </div>
+            <div class="col-sm-4">
+                <h3 class="foot-title-column">Siguenos en redes</h3>
+                <br>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Recusandae eveniet exercitationem consequuntur ipsum, architecto
+                    aut, nisi assumenda nihil culpa a laborum autem quas provident harum
+                    quis numquam. Dolorum, nulla rem?</p>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-to-top"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
+
+    <!--Fin Pie de pagina-->
+
+
+
+    <!--
+    <script src="../bootstrap-4.5.0/js/popper.min.js"></script>
+    <script src="../bootstrap-4.5.0/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="../bootstrap-4.5.0/js/jquery.min.js"></script>
+    <script src="../bootstrap-4.5.0/js/bootstrap.min.js"></script>
+    <script src="../bootstrap-3.4.1/js/bootstrap.min.js"></script>-->
+
+    <script src="java.js"></script>
+    <script src="../Java.js"></script>
+
+    <script src="../bootstrap-4.5.0/code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!--script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script-->
+    <!--script src="../bootstrap-4.5.0/cdn.jsdelivr.net/popper.min.js"></script-->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="../bootstrap-4.5.0/js/bootstrap.min.js"></script>
+    <!--script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script-->
+
+</body>
+
+</html>

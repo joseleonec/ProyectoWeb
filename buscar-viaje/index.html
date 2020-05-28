@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!--Responsive-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--Responsive-->
+
+    <title>
+        Buscar Viaje
+    </title>
+
+   <!--Estilos-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="../Estilos.css">
+
+    <!--Boots-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
+    <!--Moment-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.21/moment-timezone-with-data-2012-2022.min.js"></script>
+     <!--Date picker-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+</head>
+
+<body>
+    <!--Barra de navegacion-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light barra" id="EjNav">
+        <a class="navbar-brand" href="../index.html">Transport</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </li>
+                <li class="nav-item active btn-seleccion">
+                    <a class="nav-link" href="index.html">Buscar Viaje
+                        <!--span class="sr-only">(current)</span--></a>
+                </li>
+                <li>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../rutas/">Rutas</a>
+                </li>
+                <li>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../coopertativas/">Cooperativas</a>
+                </li>
+                <li>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Idioma
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">English</a>
+                            <a class="dropdown-item" href="#">Spanish</a>
+                        </div>
+                    </li>
+                    <li>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="../usuario/"><img src="../icons/person.svg">&nbsp;&nbsp;Sign Up</a></li>
+                </ul>
+                <!--p class="navbar-text pull-right">
+                    Conectado como <a href="#" class="navbar-link">Mario Kart</a>
+                </p-->
+            </form>
+        </div>
+    </nav>
+
+    <!--Bienvenida-->
+    <div class="jumbotron text-center encabezado">
+        <h2 class="s-title"><a href="../index.html">Transport</a></h2>
+        <p class="s-description">Terminal terrestre de Cuenca</p>
+    </div>
+
+    <!--INICIO CONTENIDO-->
+    <div class="container">
+        <div class="card-deck mb-3 ">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Buscar viaje</h4>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" novalidate>
+                        <!--Origen, destino y empresa-->
+                        <div class="row etq">
+                            <div class="col-md-4 mb-3">
+                                <label for="ciudad">Ciudad Origen</label>
+                                <select class="custom-select d-block w-100" id="origen" required>
+                                    <option value="">Elegir...</option>
+                                    <option>Cuenca</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a valid country.
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="ciudad">Ciudad Destino</label>
+                                <select class="custom-select d-block w-100" id="destino" required>
+                                  <option value="">Elegir...</option>
+                                  <option>Ambato</option>
+                                  <option>Guayaquil</option>
+                                  <option>Quito</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                  Please provide a valid state.
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="empresa">Empresa</label>
+                                <select class="custom-select d-block w-100" id="empresa" required>
+                                  <option value="">Elegir...</option>
+                                  <option>Azuay</option>
+                                  <option>Flota Imbabura</option>
+                                  <option>Turismo Oriental</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                  Please provide a valid state.
+                                </div>
+                            </div>
+                        </div>
+                        <!--fin Origen, destino y empresa-->
+                        <div class="row etq">
+                            <div class="col-md-4 mb-3">
+                                <label for="ciudad">Fecha de Salida</label>
+                                                        <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4"/>
+                                    <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                                        <div class="input-group-text">
+                                            <svg class="bi bi-calendar" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                              <path fill-rule="evenodd" d="M14 0H2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z" clip-rule="evenodd"/>
+                                              <path fill-rule="evenodd" d="M6.5 7a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm-9 3a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm-9 3a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+                                            </svg>
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <div class="form-group">
+                                <label for="exampleFormControlSelect1">Cantidad de Asientos</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                  <option>1</option>
+                                  <option>2</option>
+                                  <option>3</option>
+                                  <option>4</option>
+                                  <option>5</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="empresa"></label>
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">Buscar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card-deck mb-3">
+            <div class="card mb-4 shadow-sm">
+                <!--html se agrega dinamicamente con los resultados-->
+                <div class="card mb-4 ">
+                    <div class="card-body">
+                        <div class="row etq">
+                             <div class="col-md-4">
+                      <img src="img/rutas-orenses.jpg" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body text-right">
+                            <h5 class="card-title">Rutas Orenses</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                            <a href="#" class="btn btn-primary">Reservar</a>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4 ">
+                    <div class="card-body">
+                        <div class="row etq">
+                             <div class="col-md-4">
+                      <img src="img/rutas-orenses.jpg" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body text-right">
+                            <h5 class="card-title">Rutas Orenses</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                            <a href="#" class="btn btn-primary">Reservar</a>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!--fin html se agrega dinamicamente -->
+                
+            </div>
+        </div>
+
+    </div>
+    <!--Fin CONTENIDO-->
+    <br><br><br>
+    <!--Pie de pagina-->
+    <!--div class="container" id="foot"-->
+    <div class="footer" id="foot">
+        <div class="row">
+            <br><br>
+            <div class="col-sm-4">
+                <h3 class="foot-title-column">Ayuda</h3>
+                <br>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Recusandae eveniet exercitationem consequuntur ipsum, architecto
+                    aut, nisi assumenda nihil culpa a laborum autem quas provident harum
+                    quis numquam. Dolorum, nulla rem?</p>
+            </div>
+            <div class="col-sm-4">
+                <h3 class="foot-title-column">Contacto</h3>
+                <br>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Recusandae eveniet exercitationem consequuntur ipsum, architecto
+                    aut, nisi assumenda nihil culpa a laborum autem quas provident harum
+                    quis numquam. Dolorum, nulla rem?</p>
+            </div>
+            <div class="col-sm-4">
+                <h3 class="foot-title-column">Siguenos en redes</h3>
+                <br>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Recusandae eveniet exercitationem consequuntur ipsum, architecto
+                    aut, nisi assumenda nihil culpa a laborum autem quas provident harum
+                    quis numquam. Dolorum, nulla rem?</p>
+            </div>
+        </div>
+    </div>
+
+    <!--Fin Pie de pagina-->
+
+    <script type="text/javascript" src="scripts/datepicker.js"></script>
+
+
+</body>
+
+</html>

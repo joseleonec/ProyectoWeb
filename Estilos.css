@@ -1,0 +1,85 @@
+/* 
+    Tipo de etiqueta
+header{
+  background: #34ace0;
+  padding: 7px;
+}
+    id de las etiquetas
+#article2{
+  background: palegreen;
+}
+    clases de las etiquetas
+.orange{
+  background: orange;
+}
+*/
+.text-center{
+  background-color: #3c82f4;
+  color: #fff;
+  width: 100%;
+}
+
+.s-title a {
+  color: #fff;
+  font-weight: 800;
+  font-size: 30pt;
+}
+
+.s-title a:hover {
+  color: #191b30;
+  font-weight: 800;
+  text-decoration:none;
+}
+
+.s-description {
+  color: #fff;
+}
+
+#foot {
+  font-size: 10pt;
+  background: #191b30;
+  color: #ccc;
+  width: 100%;
+  text-align: justify;
+  /*position: absolute;*/
+  padding: 34pt;
+}
+
+.foot-title-column{
+  font-weight: bold;
+  color: #fff;
+}
+
+.col-sm-4{
+  padding-right: 25pt;
+  padding-left: 25pt;
+}
+
+/* Boton */
+#boton-bonito {
+  text-decoration: none;
+  color: white;
+  padding: 10px 20px;
+  background-color: #FF9800;
+  display: inline-block
+}
+
+#boton-bonito:hover {
+  background-color: #333333;
+}
+
+/* Menu: boton seleccionado*/
+
+.btn-seleccion{
+  background-color: #d4cfff;
+}
+
+.barra{
+  width: 100%;
+  position: fixed;
+  top: 0;
+}
+
+
+
+/* Select idiomas*/
