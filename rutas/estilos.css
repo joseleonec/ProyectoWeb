@@ -15,13 +15,11 @@
     color: white;
 }
 
-
 /* Tabla */
 
 .tabla-coop {
     border: 0.3px solid #007df4;
 }
-
 
 /* Estrellas*/
 
@@ -40,8 +38,7 @@ label {
     /*unicode-bidi: bidi-override;*/
 }
 
-label:hover,
-label:hover~label {
+label:hover, label:hover~label {
     color: orange;
 }
 
@@ -49,9 +46,7 @@ input[type="radio"]:checked~label {
     color: orange;
 }
 
-
 /*Elementos de la fila de la Tabla*/
-
-.align-right {
+.align-right{
     display: inline-block;
 }
