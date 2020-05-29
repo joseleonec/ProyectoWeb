@@ -14,10 +14,20 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   	<link rel="stylesheet" type="text/css" href="../css/simple-sidebar.css">
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
 	<!--Boots-->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+		<!--Moment-->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.21/moment-timezone-with-data-2012-2022.min.js"></script>
+
+	 <!--Date picker-->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
 
 </head>
 <body>
@@ -29,7 +39,17 @@
 		    <span class="navbar-toggler-icon"></span>
 		</button>
 	  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-	    	<ul class="navbar-nav mr-auto"></ul>
+			<ul class="navbar-nav mr-auto">
+		      	<li class="nav-item active">
+		      		<a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Frecuencias</a>
+		      	</li>
+		      	<li class="nav-item">
+		        	<a class="nav-link" href="buscar_freq.html" tabindex="-1" aria-disabled="true">Buscar frecuencia</a>
+		      	</li>
+		      	<li class="nav-item">
+		        	<a class="nav-link" href="rutas.html" tabindex="-1" aria-disabled="true">Rutas</a>
+		      	</li>
+			</ul>
 	    	<a class="btn btn-outline-primary" href="#">Sign up</a>
 	  	</div>
 	</nav>
@@ -37,26 +57,64 @@
 
 	<div class="d-flex" id="wrapper">
 	    <!-- Sidebar -->
-	    <div class="bg-light border-right " id="sidebar-wrapper">
+	    <div class="bg-light border-right " id="sidebar-wrapper">     
 	      <div class="list-group list-group-flush">
-	        <a href="admin_rutas.html" class="list-group-item list-group-item-action bg-light">Rutas</a>
-	        <a href="admin_autobus.html" class="list-group-item list-group-item-action bg-light">Autobuses</a>
-	        <a href="admin_conductor.html" class="list-group-item list-group-item-action bg-light">Conductores</a>
-	        <a href="admin_cliente.html" class="list-group-item list-group-item-action bg-light">Clientes</a>
-	        <a href="admin_ventas.html" class="list-group-item list-group-item-action bg-light">Ventas</a>
+	        <a href="admin_rutas.html" class="list-group-item list-group-item-action bg-dark active">Frecuencias y rutas</a>
 	        <a href="venta_boletos.html" class="list-group-item list-group-item-action bg-light">Boletos</a>
-	        <a href="admin_viajes.html" class="list-group-item list-group-item-action bg-light">Viajes</a>
+	        <a href="admin_ventas.html" class="list-group-item list-group-item-action bg-light">Ventas</a>
+	        <a href="admin_conductor.html" class="list-group-item list-group-item-action bg-light">Conductores</a>
+	        <a href="admin_autobus.html" class="list-group-item list-group-item-action bg-light">Autobuses</a>
 	      </div>
+	    
 	    </div>
 	    <!-- /#sidebar-wrapper -->
 	    <div id="page-content-wrapper">
-	      
+	      	<nav class="navbar navbar-expand-lg navbar-light ">
+		  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+		    		<span class="navbar-toggler-icon"></span>
+		  		</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent1">
+				    <ul class="navbar-nav mr-auto">
+				      <li class="nav-item ">
+				        	 <a class="dropdown-item active" href="">Administrar frecuencias</a>
+					          
+				      </li>
+				      <li class="nav-item">
+				      	<a class="dropdown-item" href="nueva_freq.html">Crear frecuencia</a>
+				      </li>
+				    </ul>
+					<div class="my-2 my-lg-0">
+						<div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+							    <div class="input-group-prepend">
+										<span class="input-group-text">Fecha</span>
+								</div>
+								<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4"/>
+								<div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+					    			<div class="input-group-text">
+					    				
+					    				<i class="fa fa-calendar"></i>
+					    			</div>
+								</div>
+							</div>
+					</div>
+				 </div>
+			</nav>
 	      <!--Contenedor -->
 	      <div class="container-fluid card-deck mb-3 ">
         	
         	<div class="card mb-4">
           		<div class="card-header">
-            		<h4 class="my-0 font-weight-normal">Todas las rutas</h4>
+          			<div class="row">
+          				<div class="col-sm-8">
+          					<h4 class="my-0 font-weight-normal">Administrar frecuencias</h4>
+          				</div>
+          				<div class="col-sm-4">
+          					<button class="btn btn-primary btn-block" type="submit">Guardar y publicar</button>
+          				</div>
+          			</div>
+            		
+            		
           		</div>
           		<div class="card-body">
           			<!--Tabla de rutas-->
@@ -64,71 +122,40 @@
 			            <table class="table table-striped table-sm">
 			              	<thead>
 				                <tr>
-				                  <th>Codigo ruta</th>
+				                  <th>Hora</th>
 				                  <th>Origen</th>
 				                  <th>Destino</th>
-				                  <th>Via</th>
-				                  <th data-checkbox="true"></th>
+				                  <th>Autobus</th>
+				                  <th>Disco</th>
+				                  <th>Conductor</th>
+				                  <th>Ruta</th>
+				                  
 				                </tr>
 			              	</thead>
 				            <tbody>
 				                <tr>
-				                  <td>RA123</td>
+				                  <td>11:45</td>
 				                  <td>Cuenca</td>
 				                  <td>Machala</td>
-				                  <td>Via San Juan</td>
-				                  <td>
-				                  	<input type="checkbox"  id="customCheck1" name="btnSelectItem" data-index="1">
-				                  </td>
+				                  <td>AAV - 1578</td>
+				                  <td>48</td>
+				                  <td>Juan Perez</td>
+				                  <td>CM365</td>
 				                </tr>
 				                <tr>
-				                  <td>RA123</td>
-				                  <td>Manta</td>
-				                  <td>Santo Domingo</td>
-				                  <td>Via Canar</td>
-				                  <td>
-				                  	<input type="checkbox"  id="customCheck3" name="btnSelectItem" data-index="2">
-				                  </td>
-				                </tr>
-				                <tr>
-				                  <td>RA123</td>
-				                  <td>Santo Domingo</td>
-				                  <td>Quito</td>
-				                  <td>Via Aloag</td>
-				                  <td>
-				                  	<input type="checkbox"  id="customCheck3" name="btnSelectItem" data-index="3">
-				                  </td>
-				                </tr>
-				               <tr>
-				                  <td>RA123</td>
-				                  <td>Zamora</td>
+				                  <td>12:25</td>
+				                  <td>Cuenca</td>
 				                  <td>Machala</td>
-				                  <td>Via Troncal</td>
-				                  <td>
-				                  	<input type="checkbox"  id="customCheck4" name="btnSelectItem" data-index="4">
-				                  </td>
+				                  <td>AAV - 0078</td>
+				                  <td>40</td>
+				                  <td>Luis Perez</td>
+				                  <td>CM355</td>
 				                </tr>
 			              	</tbody>
 			            </table>
 			        </div>
           			<!--Fin tabla de rutas-->
           		</div>
-          		<div class="card mb-4 ">
-		          	<div class="card-body">
-		          		<div class="row etq">
-							<div class="col-md-3 mb-3">
-	            				<button class="btn btn-primary btn-block" type="submit">Agregar</button>
-		              		</div>
-		              		<div class="col-md-3 mb-3">
-	            				<button class="btn btn-primary btn-block" type="submit">Guardar cambios</button>
-		              		</div>
-		              		<div class="col-md-3 mb-3"></div>
-		              		<div class="col-md-3 mb-3">
-	            				<button class="btn btn-primary btn-block" type="submit">Remover rutas marcadas</button>
-		              		</div>
-			            </div>
-		          	</div>
-        		</div>
 	      	</div>
 	      </div>
 	    </div>
@@ -139,5 +166,6 @@
   <!-- Menu Toggle Script -->
   
   <script type="text/javascript" src="../js/utils.js"></script>
+
 </body>
 </html>
