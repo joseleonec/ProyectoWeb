@@ -1,23 +1,101 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta charset="utf-8">
+    <!--Responsive-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--Responsive-->
+
     <title>Pasarela de pagos</title>
-    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
+    <!--Estilos-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!--Boots-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <!--Moment-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.21/moment-timezone-with-data-2012-2022.min.js"></script>
+    <!--Date picker-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+    <!-- <link rel="stylesheet" href="../Estilos.css"> -->
+
+    <!--  -->
     <link href='https://use.fontawesome.com/releases/v5.8.1/css/all.css' rel='stylesheet'>
     <link rel="stylesheet" href="css/pago.css">
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-    <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
-    <script type='text/javascript'>
-        $(function() {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
+    <!-- <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script> -->
+    <script type='text/javascript' src="js/pago.js"></script>
 </head>
 
 <body>
+    <!--Header -->
+    <!--Barra de navegacion-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light barra sticky-top" id="EjNav">
+        <a class="navbar-brand" href="../index.html">Transport</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../buscar-viaje/">Buscar Viaje
+                        <!--span class="sr-only">(current)</span--></a>
+                </li>
+                <li>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </li>
+                <li class="nav-item active btn-seleccion">
+                    <a class="nav-link" href="./index.html">Rutas</a>
+                </li>
+                <li>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../coopertativas/">Cooperativas</a>
+                </li>
+                <li>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Idioma
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">English</a>
+                            <a class="dropdown-item" href="#">Spanish</a>
+                        </div>
+                    </li>
+                    <li>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../usuario/"><img src="../icons/person.svg">&nbsp;&nbsp;Sign Up</a>
+                    </li>
+                </ul>
+                <!--p class="navbar-text pull-right">
+                    Conectado como <a href="#" class="navbar-link">Mario Kart</a>
+                </p-->
+            </form>
+        </div>
+    </nav>
+
+    <!-- end Header -->
+
+    <!--Contenido  -->
     <div class="container py-5">
         <!-- For demo purpose -->
         <div class="row mb-4">
@@ -180,6 +258,8 @@
             </div>
         </div>
     </div>
+    <!-- end Contenido-->
+    <script type="text/javascript" src="scripts/datepicker.js"></script>
 </body>
 
 </html>
