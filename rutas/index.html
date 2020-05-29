@@ -1,30 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>
-        Rutas
-    </title>
-    <!--
-    <link rel="stylesheet" href="../bootstrap-3.4.1/css/bootstrap.min.css">
-    <link rel=”stylesheet” href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    -->
+    <meta charset="utf-8">
+    <!--Responsive-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--Responsive-->
 
-    <link rel="stylesheet" href="../bootstrap-4.5.0/css/bootstrap.min.css">
-    <!--link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"-->
-    <link rel="stylesheet" href="../Estilos.css">
-    <link rel="stylesheet" href="estilos.css">
+    <title>Rutas</title>
+    <!--Estilos-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/rutas.css">
+    <!--Boots-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <!--Moment-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.21/moment-timezone-with-data-2012-2022.min.js"></script>
+    <!--Date picker-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="css/rutas.css">
+    <!-- <link rel="stylesheet" href="../Estilos.css"> -->
 </head>
 
 <body>
+    <!--Header -->
     <!--Barra de navegacion-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light barra" id="EjNav">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light barra sticky-top" id="EjNav">
         <a class="navbar-brand" href="../index.html">Transport</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -56,8 +67,7 @@
             <form class="form-inline my-2 my-lg-0">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Idioma
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -68,7 +78,9 @@
                     <li>
                         <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="../usuario/"><img src="../icons/person.svg">&nbsp;&nbsp;Sign Up</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../usuario/"><img src="../icons/person.svg">&nbsp;&nbsp;Sign Up</a>
+                    </li>
                 </ul>
                 <!--p class="navbar-text pull-right">
                     Conectado como <a href="#" class="navbar-link">Mario Kart</a>
@@ -82,76 +94,119 @@
         <h2 class="s-title"><a href="../index.html">Transport</a></h2>
         <p class="s-description">Terminal terrestre de Cuenca</p>
     </div>
+    <!-- end Header -->
 
-    <!--INICIO CONTENIDO-->
+    <!--Contenido  -->
     <div class="container">
-
-        <br>
-        <h3>Estas son las Rutas</h3>
-        <p>Todo tu contenido aqui</p>
-
-
+        <div class="card-deck mb-3 text-center ">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Buscar viaje</h4>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" novalidate>
+                        <!--Origen, destino y empresa-->
+                        <div class="row etq">
+                            <div class="col-md-4 mb-3">
+                                <label for="ciudad">Ciudad Origen</label>
+                                <select class="custom-select d-block w-100" id="origen" required>
+                                    <option value="">Elegir...</option>
+                                    <option>Cuenca</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a valid country.
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="ciudad">Ciudad Destino</label>
+                                <select class="custom-select d-block w-100" id="destino" required>
+                                    <option value="">Elegir...</option>
+                                    <option>Ambato</option>
+                                    <option>Guayaquil</option>
+                                    <option>Quito</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please provide a valid state.
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="empresa"></label>
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">Buscar</button>
+                            </div>
+                        </div>
+                        <!--fin Origen, destino y empresa-->
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card-deck mb-3 text-center">
+            <!--html se agrega dinamicamente con los resultados-->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">Rutas encontradas</h1>
+                    <div class="tabla">
+                        <table id="customers">
+                            <tr>
+                                <th>Origen</th>
+                                <th>Destino</th>
+                                <th>Ruta</th>
+                            </tr>
+                            <tr>
+                                <td>Alfreds Futterkiste</td>
+                                <td>Maria Anders</td>
+                                <td>Germany</td>
+                            </tr>
+                            <tr>
+                                <td>Berglunds snabbköp</td>
+                                <td>Christina Berglund</td>
+                                <td>Sweden</td>
+                            </tr>
+                            <tr>
+                                <td>Island Trading</td>
+                                <td>Helen Bennett</td>
+                                <td>UK</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--fin html se agrega dinamicamente -->
+        </div>
+        <div class="card-deck mb-3 text-center">
+            <!--html se agrega dinamicamente con los resultados-->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">Ver en el mapa</h1>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d3984.662881399957!2d-79.02883008588967!3d-2.913001240383721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m3!3m2!1d-2.9100460999999997!2d-79.0280831!4m5!1s0x91cd228387de9787%3A0x93e7a3021abf8071!2sYanuncay%2C%20Cuenca!3m2!1d-2.9158573!2d-79.02777739999999!5e0!3m2!1ses!2sec!4v1590541890205!5m2!1ses!2sec"
+                        width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div>
+            </div>
+            <!--fin html se agrega dinamicamente -->
+        </div>
     </div>
-    <!--Fin Cooperativas-->
-    <br><br><br>
-    <!--Pie de pagina-->
-    <!--div class="container" id="foot"-->
+    <!-- end Contenido-->
+    <script type="text/javascript" src="scripts/datepicker.js"></script>
+
     <div class="footer" id="foot">
         <div class="row">
             <br><br>
             <div class="col-sm-4">
                 <h3 class="foot-title-column">Ayuda</h3>
                 <br>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Recusandae eveniet exercitationem consequuntur ipsum, architecto
-                    aut, nisi assumenda nihil culpa a laborum autem quas provident harum
-                    quis numquam. Dolorum, nulla rem?</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet exercitationem consequuntur ipsum, architecto aut, nisi assumenda nihil culpa a laborum autem quas provident harum quis numquam. Dolorum, nulla rem?</p>
             </div>
             <div class="col-sm-4">
                 <h3 class="foot-title-column">Contacto</h3>
                 <br>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Recusandae eveniet exercitationem consequuntur ipsum, architecto
-                    aut, nisi assumenda nihil culpa a laborum autem quas provident harum
-                    quis numquam. Dolorum, nulla rem?</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet exercitationem consequuntur ipsum, architecto aut, nisi assumenda nihil culpa a laborum autem quas provident harum quis numquam. Dolorum, nulla rem?</p>
             </div>
             <div class="col-sm-4">
                 <h3 class="foot-title-column">Siguenos en redes</h3>
                 <br>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Recusandae eveniet exercitationem consequuntur ipsum, architecto
-                    aut, nisi assumenda nihil culpa a laborum autem quas provident harum
-                    quis numquam. Dolorum, nulla rem?</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae eveniet exercitationem consequuntur ipsum, architecto aut, nisi assumenda nihil culpa a laborum autem quas provident harum quis numquam. Dolorum, nulla rem?</p>
             </div>
         </div>
     </div>
-
-    <!--Fin Pie de pagina-->
-
-
-
-    <!--
-    <script src="../bootstrap-4.5.0/js/popper.min.js"></script>
-    <script src="../bootstrap-4.5.0/js/jquery-3.5.1.slim.min.js"></script>
-    <script src="../bootstrap-4.5.0/js/jquery.min.js"></script>
-    <script src="../bootstrap-4.5.0/js/bootstrap.min.js"></script>
-    <script src="../bootstrap-3.4.1/js/bootstrap.min.js"></script>-->
-
-    <script src="java.js"></script>
-    <script src="../Java.js"></script>
-
-    <script src="../bootstrap-4.5.0/code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <!--script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script-->
-    <!--script src="../bootstrap-4.5.0/cdn.jsdelivr.net/popper.min.js"></script-->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="../bootstrap-4.5.0/js/bootstrap.min.js"></script>
-    <!--script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-        crossorigin="anonymous"></script-->
 
 </body>
 
