@@ -1,0 +1,132 @@
+/* Configuracion de la barra */
+
+body {
+  overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+
+/* Cabezera*/
+
+.cabecera {
+  width: 100%;
+  background-color: tomato;
+  float: left;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.cabecera:hover {
+  text-decoration: none;
+}
+
+.cabecera-tittle {
+  color: black;
+  text-decoration: none;
+}
+
+.cabecera-tittle:hover {
+  color: black;
+  font-weight: bolder;
+  text-decoration: none;
+}
+
+/* Menu */
+
+.barra-menu {
+  color: white;
+}
+
+.barra-menu:hover {
+  color: orange;
+}
+
+/* Pie de pagina*/
+
+.pie {
+  color: whitesmoke;
+  padding: 10mm;
+}
+
+#img-fondo {
+  background-position: center;
+  /*background-image: url(../img/crop.jpg);*/
+  /*Sin efecto de imagen fija*/
+  background: url(../img/crop0.jpg) no-repeat center fixed;
+  /*Efecto de imagen fija*/
+  background-size: cover;
+}
+
+/* Tabla */
+
+.success, .error {
+  color: white;
+  padding: 5px;
+  margin: 5px 0 15px 0;
+}
+
+.success {
+  background: green;
+}
+
+.error {
+  background: red;
+}
+
+/*Scroll para el contenedor*/
+
+/*
+.miscroll{
+  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  flex-wrap: nowrap;
+}
+*/
+
+
+.miscroll { 
+  position: relative;
+  height: 350px; /*altura desde donde aparecera el scroll*/
+  overflow: auto;
+  display: block;
+}
+
+
