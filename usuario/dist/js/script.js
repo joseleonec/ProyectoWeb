@@ -19,7 +19,7 @@ class UI {
                 <td>${ruta.fechaUltimaSalida}</td>
                 <td>
                     <span class="table-remove">
-                        <button type="submit" class="btn btn-danger btn-rounded btn-sm my-0">
+                        <button name='delete' type="submit" class="btn btn-danger btn-rounded btn-sm my-0">
                             Eliminar
                         </button>
                     </span>
@@ -37,12 +37,14 @@ class UI {
     eliminarRuta(element) {
         if (element.name === 'delete') {
             element.parentElement.parentElement.parentElement.remove();
+            registrosRutas
             this.mostrarMensaje('Ruta eliminada ', 'info');
+            // $('#registrosRutas').trigger('update');
         }
     }
 
     mostrarMensaje(mensaje, cssClass) {
-        console.log("Mostrando mensaje");
+        // console.log("Mostrando mensaje");
         const div = document.createElement('div');
         div.className = `alert alert-${cssClass} mt-2`;
         div.appendChild(document.createTextNode(mensaje));
@@ -53,7 +55,7 @@ class UI {
         container.appendChild(div);
         setTimeout(function() {
             div.remove();
-        }, 3000);
+        }, 100);
     }
 }
 // -----------------------------------------------------------------
@@ -61,22 +63,23 @@ class UI {
 // ---------------------- CAPTURA DE EVENTOS -----------------------
 
 // EVENTO INGRESO DE RUTAS
-document.getElementById("dataTable").addEventListener("submit", function(e) {
-    // alert("Esta a punto de eliminar una ruta");
-    // alert(e.target);
-    // console.log(e.target);
-    const ui = new UI();
-    ui.eliminarRuta(e.target);
-});
 $(document).ready(function() {
     $("#btnguardar").click(function() {
-        // console.log("Evento capturado");
+        console.log("Evento capturado");
         const origen = document.getElementById("labelorigen").value;
         const destino = document.getElementById("labeldestino").value;
         const descripcion = document.getElementById("labeldescripcion").value;
         const fechaUltimaSalida = document.getElementById("labelfecha").value;
         const ruta = new Ruta(origen, destino, descripcion, fechaUltimaSalida);
         const ui = new UI();
+
+        // Eliminamos el registro que indica que la tabla esta vacia
+
+        // const ultimohijo = document.getElementById('registrosRutas')
+        // if (ultimohijo.className === 'odd') {
+        //     ultimohijo.removeChild(ultimohijo.lastElementChild);
+        // }
+
         // Input User Validation
         if (origen === '' || destino === '' || descripcion === '') {
             ui.mostrarMensaje('Please Insert data in all fields', 'danger');
@@ -85,16 +88,17 @@ $(document).ready(function() {
             $('#exampleModal').modal('hide');
             // e.preventDefault();
         }
+
     });
     $('#exampleModal').on('hidden.bs.modal', function() {
         $(this).find('form')[0].reset();
     });
 });
 
-document.getElementById("registrosRutas").addEventListener("click", function(e) {
-    // alert("Esta a punto de eliminar una ruta");
-    // alert(e.target);
-    console.log(e.target);
-    const ui = new UI();
-    ui.eliminarRuta(e.target);
-});
+// document.getElementById("registrosRutas").addEventListener("click", function(e) {
+//     // alert("Esta a punto de eliminar una ruta");
+//     // alert(e.target);
+//     console.log(e.target);
+//     const ui = new UI();
+//     ui.eliminarRuta(e.target);
+// });
