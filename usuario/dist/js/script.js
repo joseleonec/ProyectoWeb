@@ -12,22 +12,17 @@ class UI {
     addRuta(ruta) {
         const registrosRutas = document.getElementById('registrosRutas');
         const element = document.createElement('tr');
-        element.innerHTML = `
-                <td>${ruta.origen}</td>
-                <td>${ruta.destino}</td>
-                <td>${ruta.descripcion}</td>
-                <td>${ruta.fechaUltimaSalida}</td>
-                <td>
-                    <span class="table-remove">
-                        <button name='delete' type="submit" class="btn btn-danger btn-rounded btn-sm my-0">
-                            Eliminar
-                        </button>
-                    </span>
-                </td>
-        `;
-        registrosRutas.appendChild(element);
+        var table = $('#dataTable').DataTable();
+        const span = document.createElement('span');
+        span.className = 'table-remove';
+        span.innerHTML = `
+            <button name='delete' class="btn btn-danger btn-rounded btn-sm my-0">
+                Eliminar
+            </button>`;
+
+        table.row.add([ruta.origen, ruta.destino, ruta.descripcion, ruta.fechaUltimaSalida, span]).draw();
         this.mostrarMensaje('Ruta regisrada con exito', 'success');
-        // this.resetForm();
+
 
     }
 
@@ -39,19 +34,17 @@ class UI {
             element.parentElement.parentElement.parentElement.remove();
             registrosRutas
             this.mostrarMensaje('Ruta eliminada ', 'info');
-            // $('#registrosRutas').trigger('update');
         }
     }
 
     mostrarMensaje(mensaje, cssClass) {
-        // console.log("Mostrando mensaje");
         const div = document.createElement('div');
         div.className = `alert alert-${cssClass} mt-2`;
         div.appendChild(document.createTextNode(mensaje));
 
         const container = document.querySelector('.container-fluid');
         const grupobotones = document.querySelector('#grupobotones');
-        // container.insertBefore(div, grupobotones);
+
         container.appendChild(div);
         setTimeout(function() {
             div.remove();
@@ -75,10 +68,6 @@ $(document).ready(function() {
 
         // Eliminamos el registro que indica que la tabla esta vacia
 
-        // const ultimohijo = document.getElementById('registrosRutas')
-        // if (ultimohijo.className === 'odd') {
-        //     ultimohijo.removeChild(ultimohijo.lastElementChild);
-        // }
 
         // Input User Validation
         if (origen === '' || destino === '' || descripcion === '') {
@@ -86,7 +75,6 @@ $(document).ready(function() {
         } else {
             ui.addRuta(ruta);
             $('#exampleModal').modal('hide');
-            // e.preventDefault();
         }
 
     });
@@ -94,11 +82,3 @@ $(document).ready(function() {
         $(this).find('form')[0].reset();
     });
 });
-
-// document.getElementById("registrosRutas").addEventListener("click", function(e) {
-//     // alert("Esta a punto de eliminar una ruta");
-//     // alert(e.target);
-//     console.log(e.target);
-//     const ui = new UI();
-//     ui.eliminarRuta(e.target);
-// });
