@@ -4,299 +4,218 @@ $("#menu-toggle").click(function (e) {
     $("#wrapper").toggleClass("toggled");
 });
 
-//Editar la tablas
 
-// Product Constructor
-class Product {
-    constructor(name, price, year) {
-        this.name = name;
-        this.price = price;
-        this.year = year;
-    }
+var tablaID = "";
+var alerta = document.getElementById("alerta_coop");
+var fila_seleccionda = -1;
+var btn_guardar;
+var card_datos_ID = "";
+var objeto_coop = new Coopertativa("nombre_coop", "buses_coop", "estado_coop");
+var objeto_ruta = new Ruta("origen", "destino", "empresa");
+var objeto_empleado = new Empleado("nombre_empl", "apellido", "cedula", "correo", "empresa_empl");
+
+function openInicio(e) {
+    //e.preventDefault();
+}
+function openCoopertativa(e) {
+    fila_seleccionda = -1;
+    tablaID = "tablaCoop";
+    card_datos_ID = "entrada_coop";
+    alerta = document.getElementById("alerta_coop");
+    btn_guardar = document.getElementById("guardar_coop");
+}
+function openRuta(e) {
+    fila_seleccionda = -1;
+    tablaID = "tablaRutas";
+    card_datos_ID = "entrada_ruta";
+    alerta = document.getElementById("alerta_ruta");
+    btn_guardar = document.getElementById("guardar_ruta");
+}
+function openEmpleado(e) {
+    fila_seleccionda = -1;
+    tablaID = "tablaEmpleado";
+    card_datos_ID = "entrada_empleado";
+    alerta = document.getElementById("alerta_empleado");
+    btn_guardar = document.getElementById("guardar_empleado");
+}
+function openAnuncios(e) {
+    //e.preventDefault();
 }
 
-// UI Constructor
-class UI {
-    addProduct(product) {
-        const productList = document.getElementById('product-list');
-        const element = document.createElement('div');
-        element.innerHTML = `
-            <div class="card text-center mb-4">
-                <div class="card-body">
-                    <strong>Product</strong>: ${product.name} -
-                    <strong>Price</strong>: ${product.price} - 
-                    <strong>Year</strong>: ${product.year}
-                    <a href="#" class="btn btn-danger" name="delete">Delete</a>
-                </div>
-            </div>
-        `;
-        productList.appendChild(element);
-    }
+/*----Tabla Cooperativas -------*/
 
-    resetForm() {
-        document.getElementById('product-form').reset();
-    }
-
-    deleteProduct(element) {
-        if (element.name === 'delete') {
-            element.parentElement.parentElement.remove();
-            var a = element.parentElement.parentElement.innerText; //se obtiene el html
-            //var b= document.getElementById("IDdeTabla").rows[i].cells[j].innerText  
-            alert(a);
-            //var valores = $(this).parents("tr").find("strong")[1].innerHTML;
-            //console.log(valores);
-            //alert(valores);
-            this.showMessage('Product Deleted Succsssfully', 'success');
-        }
-    }
-
-    showMessage(message, cssClass) {
-        const div = document.createElement('div');
-        div.className = `alert alert-${cssClass} mt-2`;
-        div.appendChild(document.createTextNode(message));
-        // Show in The DOM
-        const container = document.querySelector('.container');
-        const app = document.querySelector('#App');
-        // Insert Message in the UI
-        container.insertBefore(div, app);
-        // Remove the Message after 3 seconds
-        setTimeout(function () {
-            document.querySelector('.alert').remove();
-        }, 3000);
-    }
-}
-
-// DOM Events
-document.getElementById('product-form').addEventListener('submit', function (e) {
+document.getElementById("entrada_coop").addEventListener('submit', function (e) {
     e.preventDefault();
-    const name = document.getElementById('name').value,
-        price = document.getElementById('price').value,
-        year = document.getElementById('year').value;
-
-    // Create a new Oject Product
-    const product = new Product(name, price, year);
-
-    // Create a new UI
-    const ui = new UI();
-
-    // Input User Validation
-    if (name === '' || price === '' || year === '') {
-        return ui.showMessage('Please Insert data in all fields', 'danger');
+    let name = document.getElementById('nombre_coop');
+    let buses = document.getElementById('buses_coop');
+    let estado = document.getElementById('estado_coop');
+    // Validacion de campos vacios
+    if (name.value === '' || buses.value === '' || estado.value === '') {
+        return mostrar_mensaje('Campos vacios', alerta, 'danger');
     }
 
-    // Save Product
-    ui.addProduct(product);
-    ui.showMessage('Product Added Successfully', 'success');
-    ui.resetForm();
-
-    e.preventDefault();
+    objeto_coop.agregarFila(tablaID, name.value, buses.value, estado.value);
+    //fila_seleccionda = -1;
+    //quitar_seleccion();
+    color_seleccion(tablaID);
+    seleccionar_filas(tablaID);
+    mostrar_mensaje('Se ha añadido', alerta, 'success');
+    cambiar_texto(false, btn_guardar);
+    limpiar("entrada_coop", objeto_coop);
 });
 
-document.getElementById('product-list').addEventListener('click', function (e) {
-    const ui = new UI();
-    ui.deleteProduct(e.target);
-    e.preventDefault();
+//Click en el boton editar
+$("#editar_coop").click(function (e) {
+    if (fila_seleccionda != -1) {
+        objeto_coop.getData(fila_seleccionda + 1, tablaID);
+        cambiar_texto(true, btn_guardar);
+    }
+});
+
+//Click en el boton Eliminar
+$("#eliminar_coop").click(function (e) {
+    eliminarFila(tablaID);
 });
 
 
-///--------------------------------------------------------------
+/*----Tabla Rutas -------*/
 
-//Agregar y eliminar filas:
-class Coopertativa {
-    constructor(name, buses, estado) {
-        this.name = name;
-        this.buses = buses;
-        this.estado = estado;
-    }
-}
-var alerta_campo = document.getElementById("alerta-campo");
-
-// Listener del boton guardar
-document.getElementById('entrada').addEventListener('submit', function (e) {
+document.getElementById("entrada_ruta").addEventListener('submit', function (e) {
     e.preventDefault();
-    var name = document.getElementById('txt1').value;
-    var buses = document.getElementById('txt2').value;
-    var estado = document.getElementById('txt3').value;
-
-    // Input User Validation
-    if (name === '' || buses === '' || estado === '') {
-        return mostrar_mensaje('Campos vacios', 'danger');
+    let origen = document.getElementById('origen');
+    let destino = document.getElementById('destino');
+    let empresa = document.getElementById('empresa');
+    // Validacion de campos vacios
+    if (origen.value === '' || destino.value === '' || empresa.value === '') {
+        return mostrar_mensaje('Campos vacios', alerta, 'danger');
     }
-    const coop = new Coopertativa(name, buses, estado);
-    agregarFila(coop);
-    mostrar_mensaje('Se ha añadido', 'success');
-    limpiar();
+
+    objeto_ruta.agregarFila(tablaID, origen.value, destino.value, empresa.value);
+    //fila_seleccionda = -1;
+    //quitar_seleccion();
+    color_seleccion(tablaID);
+    seleccionar_filas(tablaID);
+    mostrar_mensaje('Se ha añadido', alerta, 'success');
+    cambiar_texto(false, btn_guardar);
+    limpiar("entrada_ruta", objeto_ruta);
 });
 
-//Listener del boton eliminar de la tabla
-/*
-document.getElementById('tablaCoop-mala').addEventListener('click', function (e) {
-    const ui = new UI();
-    borrar_fila(e.target);
-    e.preventDefault();
-});*/
-
-function mostrar_mensaje(mensaje, tipo_alerta) {
-    alerta_campo.innerHTML = `<div class="alert alert-${tipo_alerta}" role="alert">
-    <strong>${mensaje}</strong></div>`;
-    setTimeout(function () { document.querySelector('.alert').remove(); }, 3000);
-}
-
-function agregarFila(coopertativa) {
-    var table = document.getElementById("tablaCoop");
-    var rowCount = table.rows.length; //con cabecera, -1 sin cabecera
-
-    document.getElementById("tablaCoop").insertRow(-1).innerHTML =
-        //'<td></td><td></td><td></td><td></td>';
-        `<tr><th scope="row">${rowCount}</th>
-        <td>${coopertativa.name}</td>
-        <td>${coopertativa.buses}</td>
-        <td>${coopertativa.estado}</td>
-        <td><div class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" class="custom-control-input" id="defaultInline${rowCount}">
-            <label class="custom-control-label" for="defaultInline${rowCount}">select</label>
-            </div>
-        </td>
-        </tr>`;
-}
-
-// probando
-$(function(){
-    $('table tr td').click(function(){
-        //var tabla= document.getElementById("tablaCoop");
-        var columna = $(this).index();
-        var fila = $(this).parent('tr').index();
-        alert(fila);
-        alert(columna);
-
-        //var fila2 = $(this).parent('tr');
-        //fila2.classList.add('active');
-    });
-})
-
-function getData() {
-   
-    var b= document.getElementById("tablaCoop").rows[1].cells[1].innerText  
-    alert(b);
-    var nombre= document.getElementById("txt1");
-    nombre.textContent = "Hola mundo";
-    //value="activo";
-    nombre.setAttribute('value', b);
-    nombre.setAttribute('disabled','');
-    //alert("Hola");
-    /*
-    var table = document.getElementById("tablaCoop");
-    var row = "";
-    for (var i = 0, row = table.rows[i]; i < table.rows.length; i++) {
-        var x = row.cells[0].childNodes[0].value;
-        var y = row.cells[1].childNodes[0].value;
-        var z = row.cells[2].childNodes[0].value; // select option field
-        console.log(x);
-        console.log(y);
-        console.log(z);
-        //alert(x);
-        //alert(y);
-        //alert(x);
+//Click en el boton editar
+$("#editar_ruta").click(function (e) {
+    if (fila_seleccionda != -1) {
+        objeto_ruta.getData(fila_seleccionda + 1, tablaID);
+        cambiar_texto(true, btn_guardar);
     }
-    alert("Adios");//innerHTML obtiene el htnl
-    */
+});
 
-    /*
-    
-    */
+//Click en el boton Eliminar
+$("#eliminar_ruta").click(function (e) {
+    eliminarFila(tablaID);
+});
 
 
-    /* 
-    
-    
-    var valores = "";
-    // Obtenemos todos los valores contenidos en los <td> de la fila
-    // seleccionada
-    $(this).parents("tr").find("td").each(function () {
-        valores += $(this).html() + "\n";
-    });
-    alert(valores);
-    */
-    /*
-    var valores = $(this).parents("tr").find("td")[1];
-    console.log(valores);
-    alert(valores);*/
-    //var a = this.parentElement.parentElement.innerHTML; //se obtiene el html
-    //alert(a);
-    //var producto = "";
-    //var cantidad = "";
-    //producto = $(this).parents("tr").find("td").eq(1).html();
-    //cantidad = $(this).parents("tr").find("td").eq(2).html();
 
-    //confirm("Desea eliminar el usuario: " + producto + " | " + cantidad);
+/*----Tabla Empleados -------*/
 
-    /*
-    $('#producto').val(producto);
-    $('#cantidad').val(cantidad);
-    $('#unidad').val(unidad);
-    $('#nempaque').val(numemp);
-    $('#empaque').val(empaque);
-    */
+document.getElementById("entrada_empleado").addEventListener('submit', function (e) {
+    e.preventDefault();
+    let nombre = document.getElementById('nombre_empl');
+    let apellido = document.getElementById('apellido');
+    let cedula = document.getElementById('cedula');
+    let correo = document.getElementById('correo');
+    let empresa = document.getElementById('empresa_empl');
+
+    // Validacion de campos vacios
+    if (nombre.value === '' || apellido.value === '' || cedula.value === '' || correo.value === '' || empresa.value === '') {
+        return mostrar_mensaje('Campos vacios', alerta, 'danger');
+    }
+    if (cedula.value.length > 10) {
+        return mostrar_mensaje('Cedula erronea', alerta, 'danger');
+    }
+
+    objeto_empleado.agregarFila(tablaID, nombre.value, apellido.value, cedula.value, correo.value, empresa.value);
+    //fila_seleccionda = -1;
+    //quitar_seleccion();
+    color_seleccion(tablaID);
+    seleccionar_filas(tablaID);
+    mostrar_mensaje('Se ha añadido', alerta, 'success');
+    cambiar_texto(false, btn_guardar);
+    limpiar("entrada_empleado", objeto_empleado);
+});
+
+//Click en el boton editar
+$("#editar_empleado").click(function (e) {
+    if (fila_seleccionda != -1) {
+        objeto_empleado.getData(fila_seleccionda + 1, tablaID);
+        cambiar_texto(true, btn_guardar);
+    }
+});
+
+//Click en el boton Eliminar
+$("#eliminar_empleado").click(function (e) {
+    eliminarFila(tablaID);
+});
+
+
+
+
+/*----- Generico ------- */
+function limpiar(card, objeto) {
+    document.getElementById(card).reset();
+    objeto.borrarCampos();
 }
 
-/*
-$(document).ready(function () {
-    $("#boton").click(function () {
-        alert("Hola");
+color_seleccion(tablaID);
+seleccionar_filas(tablaID);
+
+//Obtener indice de la fila y columna seleccionada 
+function seleccionar_filas(tabla) {
+    $(function () { //$(document).ready(function() { ... });
+        let table = "#" + tabla;
+        $('table tr td').click(function () {
+            //var columna = $(this).index();
+            fila_seleccionda = $(this).parent('tr').index();
+        });
+    })
+}
+
+//Para dar color ala fila seleccionada
+function color_seleccion(tabla) {
+    let table = "#" + tabla;
+    $('table tr').click(function (e) {
         //e.preventDefault();
-        //valores obtendra el dato del td por posciones [0]
-        //var valores = $(this).parents("tr").find("td")[1].innerHTML;
-        //console.log(valores);
-        //alert(valores);
+        $('table tr').removeClass('highlighted');
+        $(this).addClass('highlighted');
+        //var data = $(this).innerText;
+        //datos_fila.innerHTML = `${data}`;
+        //datos_fila.innerHTML = data;
     });
+}
 
-}); 
-*/
-/*
+function mostrar_mensaje(mensaje, elemento, tipo_alerta) {
+    elemento.innerHTML = `<div class="alert alert-${tipo_alerta} campo" role="alert">
+    <strong>${mensaje}</strong></div>`;
+    setTimeout(function () { document.querySelector('.alert').remove(); }, 2000);
+}
 
-document.getElementById("pp").addEventListener('submit', function (e) {
-    e.preventDefault();
-    alert("hola");
-    //var table = document.getElementById("tablaCoop");
-    //var rowCount = table.rows.length - 1; //con cabecera
-    //var valores = $(this).parents("tr").find("td")[1].innerHTML;
-    //alert(rowCount);
-});
+function quitar_seleccion(tabla) {
+    let table = "#" + tabla;
+    $('table tr').removeClass('highlighted');
+}
 
-document.getElementById('pp').addEventListener('submit', function (e) {
-    e.preventDefault();
-    alert('hola');
-});
-*/
+function cambiar_texto(band, element) {
+    if (band == true) {
+        element.setAttribute('value', "Guardar cambios");
+    } else {
+        element.setAttribute('value', "Ingresar nuevo");
+    }
+}
 
-// Fin probando
-
-function eliminarFila() {
-    var table = document.getElementById("tablaCoop");
+function eliminarFila(tabla) {
+    var table = document.getElementById(tabla);
     var rowCount = table.rows.length;
-    //console.log(rowCount);
     if (rowCount <= 1)
-        alert('No se puede eliminar el encabezado');
+        alert('Tabla vacia');
     else
         table.deleteRow(rowCount - 1);
 }
-
-function limpiar() {
-    document.getElementById('entrada').reset();
-}
-
-function borrar_fila(element) {
-    if (element.name === 'delete') {
-        element.parentElement.parentElement.remove();
-        mostrar_mensaje('Fila eliminada', 'success');
-    }
-}
-/*function save(){
-    var elegidos = $('input[type=checkbox]:checked');
-    var cantidad = [];
-    elegidos.each(function(){
-        cantidad.push($(this).attr('cantidad'));
-    })
-    console.log(cantidad);
-
-} */

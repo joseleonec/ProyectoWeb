@@ -13,12 +13,12 @@ busqueda.addEventListener('submit', function (e) {
     console.log(valor_a_buscar);
     if (valor_a_buscar != "") {
         //document.getElementById("demo").innerHTML = "Buscando..."; //colocar valores en una etiqueta
-        buscar_campo.innerHTML = `<p class="temporal alerta_busqueda">Buscando...</p>`;
+        buscar_campo.innerHTML = `<p class="temporal">Buscando...</p>`;
         document.getElementById("demo").style.color = "blue";
         setTimeout(function () { document.querySelector('.temporal').remove(); }, 2000);
     } else {
         alerta_campo.innerHTML = `<div class="alert alert-info" role="alert">
-        <strong>Ingresa el nombre de una cooperativa</strong></div>`;
+        <strong>Ingresa el nombre de una coopertativa</strong></div>`;
         setTimeout(function () { document.querySelector('.alert').remove(); }, 3000);
     }
 })

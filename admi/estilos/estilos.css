@@ -47,8 +47,7 @@ body {
 
 .cabecera {
   width: 100%;
-  background-color: tomato;
-  float: left;
+  background-color: #14b300;
   font-weight: bold;
   text-decoration: none;
 }
@@ -64,8 +63,15 @@ body {
 
 .cabecera-tittle:hover {
   color: black;
+  font-size: 20px;
   font-weight: bolder;
   text-decoration: none;
+}
+
+/*Boton*/
+.cerrar{
+  color: white;
+  font-weight: bold;
 }
 
 /* Menu */
@@ -76,6 +82,19 @@ body {
 
 .barra-menu:hover {
   color: orange;
+}
+
+/* Contenedor de la aletta*/
+
+.campo {
+  text-align: center;
+  max-height: 50px;
+}
+
+/* Contnedor de la entrada de datos*/
+
+.entrada_datos {
+  height: 350px;
 }
 
 /* Pie de pagina*/
@@ -94,23 +113,44 @@ body {
   background-size: cover;
 }
 
+/* Fondo */
+.Fondo{
+  background-position: center;
+  /*background-image: url(../img/crop.jpg);*/
+  /*Sin efecto de imagen fija*/
+  /*background: url(../img/crop0.jpg) no-repeat center fixed;*/
+  /*Efecto de imagen fija*/
+  background-size: cover;
+  background-color: rgb(240, 243, 245);
+}
+
 /* Tabla */
 
-.success, .error {
-  color: white;
-  padding: 5px;
-  margin: 5px 0 15px 0;
-}
-
-.success {
-  background: green;
-}
-
-.error {
-  background: red;
+tr.highlighted td {
+  background-color: rgba(117, 132, 218, 0.5);
 }
 
 /*Scroll para el contenedor*/
+
+.miscroll {
+  position: relative;
+  height: 350px;
+  /*altura desde donde aparecera el scroll*/
+  overflow: auto;
+  display: block;
+}
+
+.entrada_datos2 {
+  height: 430px;
+}
+
+.miscroll2 {
+  position: relative;
+  height: 430px;
+  /*altura desde donde aparecera el scroll*/
+  overflow: auto;
+  display: block;
+}
 
 /*
 .miscroll{
@@ -120,13 +160,3 @@ body {
   flex-wrap: nowrap;
 }
 */
-
-
-.miscroll { 
-  position: relative;
-  height: 350px; /*altura desde donde aparecera el scroll*/
-  overflow: auto;
-  display: block;
-}
-
-

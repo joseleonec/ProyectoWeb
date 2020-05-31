@@ -13,6 +13,7 @@
   <!-- Bootstrap barra-->
   <link rel="stylesheet" href="../bootstrap-4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="estilos/estilos.css">
+  <link rel="stylesheet" href="estilos/anuncios.css">
 </head>
 
 <body>
@@ -21,44 +22,46 @@
   <!--<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Descripcion">Boton cerrar</button>-->
 
   <!--Barra principal-->
-  <div class="d-flex menu">
-    <div class="container-fluid cabecera">
-      <div class="py-0 pb-2">
-        <div class="row justify-content-between align-items-center">
-          <div class="col-4 pt-3">
-            <p class="text-uppercase">Transport</p>
-          </div>
-          <div class="col-4 text-center">
-            <a class="cabecera-tittle" href="#">Administración</a>
-          </div>
-          <div class="col-4 pt-3 d-flex justify-content-end">
-            <div class="form-inline">
-              <p> Bienvenido ....</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
-              <a class="btn btn-sm btn-outline-primary" href="../admi/">Cerrar Sesion</a>
+  <!-- Top navigation -->
+
+  <div class="cabecera py-1 text-center">
+      <div class="row">
+        <div class="col-sm-4 order-2 order-sm-4 pt-3">
+          <h6><img src="../icons/config.svg">&nbsp;&nbsp;TRANSPORT</h6>
+        </div>
+        <div class="col-sm-4 order-1 order-sm-4 pt-3">
+          <h5><a class="cabecera-tittle" href="#">Administración</a></h5>
+        </div>
+        <div class="col-sm-4 order-3 order-sm-4 pt-3">
+          <div class="row">
+            <div class="col-sm-6">
+              <h6><img src="../icons/person.svg">&nbsp;&nbsp;Bienvenido ....</h6>
+            </div>
+            <div class="col-sm-6">
+              <a class="btn btn-sm btn-danger cerrar" href="../admi/">Cerrar Sesion</a>
             </div>
           </div>
         </div>
       </div>
-    </div>
   </div>
 
+
   <!-- Contenedor-->
-  <div class="d-flex" id="wrapper">
+  <div class="d-flex Fondo" id="wrapper">
     <!-- Menu deslizante -->
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading bg-dark barra-menu">--</div>
-      <div class="list-group list-group-flush" role="tablist">
+      <div class="list-group list-group-flush" role="tablist" id="mitab">
         <a class="list-group-item list-group-item-action bg-dark barra-menu active" data-toggle="list" role="tab"
-          href="#inicio">Inicio</a>
+          href="#inicio" onclick="openInicio()">Inicio</a>
         <a class="list-group-item list-group-item-action bg-dark barra-menu " data-toggle="list" role="tab"
-          href="#cooperativa">Cooperativas</a>
+          href="#cooperativa" onclick="openCoopertativa()">Cooperativas</a>
+        <a class="list-group-item list-group-item-action bg-dark barra-menu " data-toggle="list" role="tab" href="#ruta"
+          onclick="openRuta()">Rutas por cooperativa</a>
         <a class="list-group-item list-group-item-action bg-dark barra-menu " data-toggle="list" role="tab"
-          href="#ruta">Rutas por cooperativa</a>
+          href="#empleado" onclick="openEmpleado()">Empleados</a>
         <a class="list-group-item list-group-item-action bg-dark barra-menu " data-toggle="list" role="tab"
-          href="#empleado">Empleados</a>
-        <a class="list-group-item list-group-item-action bg-dark barra-menu " data-toggle="list" role="tab"
-          href="#anuncio">Anuncios</a>
+          href="#anuncio" onclick="openAnuncios()">Anuncios</a>
       </div>
     </div>
 
@@ -94,142 +97,395 @@
         <div class="tab-content pt-4">
           <div class="tab-pane active" role="tabpanel" id="inicio">
             <h3>Usuario administrador</h3>
-            <p>Configuracion de : Coopertativas, Rutas de las cooperativas, empleados de las coopertativas
+            <p>Configuracion de : Cooperativas, Rutas de las cooperativas, empleados de las cooperativas
               y anuncios de la pagina de inicio</p>
           </div>
           <div class="tab-pane fade" role="tabpanel" id="cooperativa">
             <h3>Cooperativa</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
               et dolore magna aliqua.</p>
+
+            <!-- CRUD -->
+            <div class="container-fluid">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="card entrada_datos">
+                      <div class="card-header">
+                        <h4>Añadir Cooperativa</h4>
+                      </div>
+                      <form id="entrada_coop" class="card-body">
+                        <div class="form-group">
+                          <input type="text" id="nombre_coop" placeholder="Nombre" class="form-control" value="">
+                        </div>
+                        <div class="form-group">
+                          <input type="number" id="buses_coop" min="1" pattern="^[0-9]+"
+                            placeholder="Cantidad de autobuses" class="form-control" value="">
+                        </div>
+                        <div class="form-group">
+                          <input type="text" id="estado_coop" placeholder="Estado" class="form-control" value="activo">
+                        </div>
+                        <input type="submit" id="guardar_coop" value="Ingresar nuevo" class="btn btn-success btn-block">
+                      </form>
+                    </div>
+                  </div>
+                  <div class="col-sm-9 miscroll">
+                    <!--div class="col-3"-->
+                    <table class="table table-hover table-bordered " id="tablaCoop">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th>Codigo</th>
+                          <th>Nombre</th>
+                          <th>N° Autobuses</th>
+                          <th>Estado</th>
+                          <th>Editar</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!--contenteditable="true"-->
+                        <tr>
+                          <td>1</td>
+                          <td>Turismo Oriental</td>
+                          <td>12</td>
+                          <td>activo</td>
+                          <td>
+                            <label><input type="checkbox" value="" checked> Select</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Viajeros Internacional</td>
+                          <td>8</td>
+                          <td>activo</td>
+                          <td>
+                            <label><input type="checkbox" value=""> Select</label>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="row pb-3">
+                  <div class="col-sm-3 pt-3 pb-2 campo">
+                    <div class="" id="alerta_coop"></div>
+                  </div>
+                  <div class="col-sm-9 pt-3 pb-2">
+                    <button type="button" id="editar_coop" class="btn btn-secondary">Editar</button>
+                    <button type="button" id="eliminar_coop" class="btn btn-warning" data-toggle="tooltip"
+                      data-placement="top" title="Dar de baja a los items seleccionados">Dar de baja</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Fin Crud -->
+
           </div>
           <div class="tab-pane fade" role="tabpanel" id="ruta">
             <h3>Rutas</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
               et dolore magna aliqua.</p>
+
+            <!-- CRUD -->
+            <div class="container-fluid">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="card entrada_datos">
+                      <div class="card-header">
+                        <h4>Añadir Ruta</h4>
+                      </div>
+                      <form id="entrada_ruta" class="card-body">
+                        <div class="form-group">
+                          <input type="text" id="origen" placeholder="Origen" class="form-control" value="">
+                        </div>
+                        <div class="form-group">
+                          <input type="text" id="destino" placeholder="Destino" class="form-control" value="">
+                        </div>
+                        <div class="form-group">
+                          <input type="text" id="empresa" placeholder="Cooperativa" class="form-control" value="">
+                        </div>
+                        <input type="submit" id="guardar_ruta" value="Ingresar nuevo" class="btn btn-success btn-block">
+                      </form>
+                    </div>
+                  </div>
+                  <div class="col-sm-9 miscroll">
+                    <!--div class="col-3"-->
+                    <table class="table table-hover table-bordered " id="tablaRutas">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th>Codigo</th>
+                          <th>Origen</th>
+                          <th>Destino</th>
+                          <th>Empresa</th>
+                          <th>Editar</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!--contenteditable="true"-->
+                        <tr>
+                          <td>1</td>
+                          <td>Cuenca</td>
+                          <td>Manta</td>
+                          <td>Turismo Oriental</td>
+                          <td>
+                            <label><input type="checkbox" value=""> Select</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Cuenca</td>
+                          <td>Azogues</td>
+                          <td>Tusrimo Internacional</td>
+                          <td>
+                            <label><input type="checkbox" value=""> Select</label>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="row pb-3">
+                  <div class="col-sm-3 pt-3 pb-2 campo">
+                    <div class="" id="alerta_ruta"></div>
+                  </div>
+                  <div class="col-sm-9 pt-3 pb-2">
+                    <button type="button" id="editar_ruta" class="btn btn-secondary">Editar</button>
+                    <button type="button" id="eliminar_ruta" class="btn btn-warning" data-toggle="tooltip"
+                      data-placement="top" title="Dar de baja a los items seleccionados">Dar de baja</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Fin Crud -->
+
           </div>
           <div class="tab-pane fade" role="tabpanel" id="empleado">
             <h3>Empleados</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
               et dolore magna aliqua.</p>
-          </div>
-          <div class="tab-pane fade" role="tabpanel" id="anuncio">
-            <h3>Anuncios </h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-              et dolore magna aliqua.</p>
-          </div>
-        </div>
 
-
-        <!-- CRUD -->
-        <div class="container-fluid">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm col-md-4">
-                <div class="card">
-                  <div class="card-header">
-                    <h4>Añadir Producto</h4>
+            <!-- CRUD -->
+            <div class="container-fluid">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="card entrada_datos2">
+                      <div class="card-header">
+                        <h4>Añadir empleado</h4>
+                      </div>
+                      <form id="entrada_empleado" class="card-body">
+                        <div class="form-group">
+                          <input type="text" id="nombre_empl" placeholder="Nombre" class="form-control" value="">
+                        </div>
+                        <div class="form-group">
+                          <input type="text" id="apellido" placeholder="Apellido" class="form-control" value="">
+                        </div>
+                        <div class="form-group">
+                          <input type="number" id="cedula" min="0" placeholder="Cedula" class="form-control" value="" />
+                        </div>
+                        <div class="form-group">
+                          <input type="email" id="correo" placeholder="Correo" class="form-control" value="">
+                        </div>
+                        <div class="form-group">
+                          <input type="text" id="empresa_empl" placeholder="Cooperativa" class="form-control" value="">
+                        </div>
+                        <input type="submit" id="guardar_empleado" value="Ingresar nuevo"
+                          class="btn btn-success btn-block">
+                      </form>
+                    </div>
                   </div>
-                  <form id="product-form" class="card-body">
-                    <div class="form-group">
-                      <input type="text" id="name" placeholder="Nombre" class="form-control">
-                    </div>
-                    <div class="form-group">
-                      <input type="number" id="price" min="1" pattern="^[0-9]+" placeholder="Cantidad de autobuses"
-                        class="form-control">
-                    </div>
-                    <div class="form-group">
-                      <input type="number" id="year" min="1900" max="2099" step="1" value="2018" class="form-control">
-                    </div>
-                    <input type="submit" value="Save" class="btn btn-primary btn-block">
-                    <br>
-                  </form>
-                  <h4>Añadir Cooperativa</h4>
-                  <form id="entrada" class="card-body">
-                    <div class="form-group">
-                      <input type="text" id="txt1" placeholder="Nombre" class="form-control">
-                    </div>
-                    <div class="form-group">
-                      <input type="number" id="txt2" min="1" pattern="^[0-9]+" placeholder="Cantidad de autobuses"
-                        class="form-control">
-                    </div>
-                    <div class="form-group">
-                      <input type="text" id="txt3" value="activo" class="form-control">
-                    </div>
-                    <input type="submit" value="Guardar" class="btn btn-primary btn-block">
-                    <div class="mt-3" id="alerta-campo"></div>
-                  </form>
+                  <div class="col-sm-9 miscroll2">
+                    <!--div class="col-3"-->
+                    <table class="table table-hover table-bordered " id="tablaEmpleado">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th>Codigo</th>
+                          <th>Nombre</th>
+                          <th>Apellido</th>
+                          <th>Cedula</th>
+                          <th>Correo</th>
+                          <th>Empresa</th>
+                          <th>Editar</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!--contenteditable="true"-->
+                        <tr>
+                          <td>1</td>
+                          <td>Andres</td>
+                          <td>Pesantez</td>
+                          <td>0104739827</td>
+                          <td>andy56_er@gmail.com</td>
+                          <td>Viajeros Internacional</td>
+                          <td>
+                            <label><input type="checkbox" value=""> Select</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Maya</td>
+                          <td>Montero</td>
+                          <td>0107856123</td>
+                          <td>maya34rg@hotmail.com</td>
+                          <td>Turismo Oriental</td>
+                          <td>
+                            <label><input type="checkbox" value=""> Select</label>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="row pb-3">
+                  <div class="col-sm-3 pt-3 pb-2 campo">
+                    <div class="" id="alerta_empleado"></div>
+                  </div>
+                  <div class="col-sm-9 pt-3 pb-2">
+                    <button type="button" id="editar_empleado" class="btn btn-secondary">Editar</button>
+                    <button type="button" id="eliminar_empleado" class="btn btn-warning" data-toggle="tooltip"
+                      data-placement="top" title="Dar de baja a los items seleccionados">Dar de baja</button>
+                  </div>
                 </div>
               </div>
-              <div class="col-sm miscroll">
-                <!--div class="col-3"-->
-                <table class="table table-hover table-bordered " id="tablaCoop">
-                  <thead class="thead-dark">
-                    <tr class="">
-                      <th scope="col">Codigo</th>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">N° Autobuses</th>
-                      <th scope="col">Estado</th>
-                      <th scope="col">Editar</th>
-                    </tr>
-                  </thead>
-                  <tbody class="" ><!--contenteditable="true"-->
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Turismo Oriental</td>
-                      <td>12</td>
-                      <td>active</td>
-                      <td>
-                        <div class="custom-control custom-checkbox custom-control-inline">
-                          <input type="checkbox" class="custom-control-input" id="defaultInline1" checked>
-                          <label class="custom-control-label" for="defaultInline1">select</label>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Viajeros Internacional</td>
-                      <td>8</td>
-                      <td>activo</td>
-                      <td>
-                        <div class="custom-control custom-checkbox custom-control-inline">
-                          <input type="checkbox" class="custom-control-input" id="defaultInline2">
-                          <label class="custom-control-label" for="defaultInline2">select</label>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <!--/div-->
+            </div>
+            <!-- Fin Crud -->
+          </div>
+          <!--Fin Seccion Empleados-->
+
+
+          <!--Seccion Anuncion-->
+          <div class="tab-pane fade" role="tabpanel" id="anuncio">
+            <h3>Anuncios </h3>
+            <p>Agregar nuevos post de paginas asociadas con el Terminal Terrestre, su contenido se observa en la
+              pagina de inicio</p>
+
+            <!-- Nav tabs -->
+            <div class="justify-content-center">
+              <ul class="nav nav-tabs border-primary text-center justify-content-center border-bottom border-primary">
+                <!--nav-tabs nav-pills-->
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#taxi"> Taxis </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#hotel"> Hoteles </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#restaurante"> Restaurantes </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Tab panes -->
+            <div class="tab-content pt-3">
+              <!--Taxis-->
+              <div class="tab-pane container active" id="taxi">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <strong>Titulo:</strong>
+                      <input type="text" placeholder="Nombre" class="form-control" value="Taxis">
+                      <strong>Descripcion:</strong>
+                      <textarea class="form-control" rows="5" id="comment"></textarea>
+                      <strong>Enlace de la pagina:</strong>
+                      <input type="text" placeholder="Nombre" class="form-control" value="http://azutaxi.com/">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="container">
+                      <p>Subir una imagen:</p>
+                      <input type="file" size="50" accept="image/png, .jpeg, .jpg, image/gif"
+                        onchange="processFiles(this.files)">
+                      <div class="cuadro_imagen" id="fileOutput">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6 pt-3">
+                    <button class="btn btn-primary" id="menu-toggle">Publicar y guardar</button>
+                    <button class="btn btn-success" id="menu-toggle">Guardar</button>
+                  </div>
+                </div>
               </div>
+              <!--Hoteles-->
+              <div class="tab-pane container fade" id="hotel">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <strong>Titulo:</strong>
+                      <input type="text" placeholder="Nombre" class="form-control" value="Hoteles">
+                      <strong>Descripcion:</strong>
+                      <textarea class="form-control" rows="5" id="comment"></textarea>
+                      <strong>Enlace de la pagina:</strong>
+                      <input type="text" placeholder="Nombre" class="form-control"
+                        value="http://www.hotelcuenca.com.ec/">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="container">
+                      <p>Subir una imagen:</p>
+                      <input type="file" size="50" accept="image/png, .jpeg, .jpg, image/gif"
+                        onchange="processFiles2(this.files)">
+                      <div class="cuadro_imagen" id="fileOutput2">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6 pt-3">
+                    <button class="btn btn-primary" id="menu-toggle">Publicar y guardar</button>
+                    <button class="btn btn-success" id="menu-toggle">Guardar</button>
+                  </div>
+                </div>
+              </div>
+              <!--Restaurantes-->
+              <div class="tab-pane container fade" id="restaurante">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <strong>Titulo:</strong>
+                      <input type="text" placeholder="Nombre" class="form-control" value="Restaurantes">
+                      <strong>Descripcion:</strong>
+                      <textarea class="form-control" rows="5" id="comment"></textarea>
+                      <strong>Enlace de la pagina:</strong>
+                      <input type="text" placeholder="Nombre" class="form-control"
+                        value="https://www.facebook.com/RestauranteElCarbonazo/">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="container">
+                      <p>Subir una imagen:</p>
+                      <input type="file" size="50" accept="image/png, .jpeg, .jpg, image/gif"
+                        onchange="processFiles3(this.files)">
+                      <div class="cuadro_imagen" id="fileOutput3">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6 pt-3">
+                    <button class="btn btn-primary" id="menu-toggle">Publicar y guardar</button>
+                    <button class="btn btn-success" id="menu-toggle">Guardar</button>
+                  </div>
+                </div>
+              </div>
+              <!--Fin contenidos de Tabs-->
             </div>
+            <!--Fin Seccion Anuncios-->
           </div>
+
+
+
+
         </div>
 
-        <div id="product-list" class="col-md-8"></div>
-        <!--Botones de edicion-->
-        <div class="container">
-          <div class="row">
-            <div class="col-sm pt-3 pb-3">
-              <button type="button" class="btn btn-warning" onclick="eliminarFila()">Eliminar Fila</button>
-              <button type="button" class="btn btn-secondary">Editar</button>
-              <button type="button" class="btn btn-success">Guardar cambios</button>
-              <button type="button" class="btn btn-warning">Dar de baja</button>
-            </div>
-          </div>
-        </div>
-
-        
-        <form id="pp">
-          <input type="submit" value="Ver" class="btn btn-primary" id="boton">
-        </form>
-        <input type="button" id="tst" value="OK" onclick="fnselect()" />
-        <input name="button2" type="button" onclick="getData();"
-        value="Click Aquí para ver el ALERTA">
 
       </div>
-      <!--Fin Contenedor-->
+      <br>
     </div>
-    <!-- /#page-content-wrapper -->
+    <!--Fin Contenedor-->
+  </div>
+  <!-- /#page-content-wrapper -->
   </div>
   <!-- Fin Contenido -->
 
@@ -245,8 +501,9 @@
   <!-- Importaciones -->
   <script src="../bootstrap-4.5.0/code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="../bootstrap-4.5.0/js/bootstrap.min.js"></script>
+  <script src="javasc/clases.js"></script>
   <script src="javasc/java.js"></script>
-
+  <script src="javasc/admi_anuncios.js"></script>
 </body>
 
 </html>
