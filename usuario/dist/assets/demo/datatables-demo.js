@@ -6,8 +6,8 @@ $(document).ready(function() {
             "targets": -1,
             "data": null,
             "defaultContent": `<button name='delete' class="btn btn-danger btn-rounded btn-sm my-0">
-            Eliminar
-        </button>`
+                Eliminar
+            </button>`
         }]
     });
 
@@ -22,5 +22,8 @@ $(document).ready(function() {
         }
 
     });
-
+    var dataTableCompras = $('#dataTableCompras').DataTable();
+    var dataTableViajes = $('#dataTableViajes').DataTable();
+    var dataTableSalidas = $('#dataTableSalidas').DataTable();
+    var dataTableReservas = $('#dataTableReservas').DataTable();
 });
