@@ -17,6 +17,13 @@ class UI {
                 <td>${ruta.destino}</td>
                 <td>${ruta.descripcion}</td>
                 <td>${ruta.fechaUltimaSalida}</td>
+                <td>
+                    <span class="table-remove">
+                        <button type="submit" class="btn btn-danger btn-rounded btn-sm my-0">
+                            Eliminar
+                        </button>
+                    </span>
+                </td>
         `;
         registrosRutas.appendChild(element);
         this.mostrarMensaje('Ruta regisrada con exito', 'success');
@@ -54,6 +61,13 @@ class UI {
 // ---------------------- CAPTURA DE EVENTOS -----------------------
 
 // EVENTO INGRESO DE RUTAS
+document.getElementById("dataTable").addEventListener("submit", function(e) {
+    // alert("Esta a punto de eliminar una ruta");
+    // alert(e.target);
+    // console.log(e.target);
+    const ui = new UI();
+    ui.eliminarRuta(e.target);
+});
 $(document).ready(function() {
     $("#btnguardar").click(function() {
         // console.log("Evento capturado");
@@ -77,10 +91,10 @@ $(document).ready(function() {
     });
 });
 
-// document.getElementById("lista-rutas").addEventListener("click", function(e) {
-//     // alert("Esta a punto de eliminar una ruta");
-//     // alert(e.target);
-//     // console.log(e.target);
-//     const ui = new UI();
-//     ui.eliminarRuta(e.target);
-// });
+document.getElementById("registrosRutas").addEventListener("click", function(e) {
+    // alert("Esta a punto de eliminar una ruta");
+    // alert(e.target);
+    console.log(e.target);
+    const ui = new UI();
+    ui.eliminarRuta(e.target);
+});
