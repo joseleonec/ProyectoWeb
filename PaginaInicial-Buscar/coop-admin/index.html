@@ -12,8 +12,10 @@
 	<title>Administracion Cooperativa</title>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   	<link rel="stylesheet" type="text/css" href="css/simple-sidebar.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<!--Boots-->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -21,92 +23,99 @@
 
 	
 </head>
-<body>
+<body class="sb-nav-fixed">
 	<!--Header -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-      	<button class="btn btn-primary" id="menu-toggle">Menu</button>
+	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+		<button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
+                class="fas fa-bars"></i></button>
   		<a class="navbar-brand" href="index.html">Turismo Oriental</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		    <span class="navbar-toggler-icon"></span>
-		</button>
-	  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-	    	<ul class="navbar-nav mr-auto"></ul>
-	    	<a class="btn btn-outline-primary" href="#">Sign up</a>
-	  	</div>
+		<form class=" d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <div class="input-group-append">
+                    <ul class="navbar-nav ml-auto ml-md-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                    class="fas fa-user fa-fw"></i></a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity
+                                    Log</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="login.html">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </form>
 	</nav>
-	<!--fin Header -->
-
-	<div class="d-flex" id="wrapper">
-	    <!-- Sidebar -->
-	    <div class="bg-light border-right" id="sidebar-wrapper">
-	      <div class="list-group list-group-flush">
-	        <a href="templates/admin_rutas.html" class="list-group-item list-group-item-action bg-light">Frecuencias y rutas</a>
-	        <a href="templates/venta_boletos.html" class="list-group-item list-group-item-action bg-light">Boletos</a>
-	        <a href="templates/admin_ventas.html" class="list-group-item list-group-item-action bg-light">Ventas</a>
-	        <a href="templates/admin_conductor.html" class="list-group-item list-group-item-action bg-light">Conductores</a>
-	        <a href="templates/admin_autobus.html" class="list-group-item list-group-item-action bg-light">Autobuses</a>
-	      </div>
-	    </div>
-	    <!-- /#sidebar-wrapper -->
-	    <div id="page-content-wrapper">
-	      	<div class="container-fluid card-deck mb-3 text-center ">
-	        	<div class="card mb-4 shadow-sm">
-		          	<div class="card-body">
+	<div id="layoutSidenav">
+		<div id="layoutSidenav_nav">
+			<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+				<div class="sb-sidenav-menu">
+					<div class="nav">
+						<a href="templates/admin_frecuencia.html" class="nav-link bg-dark">Frecuencias</a>
+				        <a href="templates/venta_boletos.html" class="nav-link bg-dark">Boletos</a>
+				        <a href="templates/admin_ventas.html" class="nav-link bg-dark ">Ventas</a>
+				        <a href="templates/admin_conductor.html" class="nav-link bg-dark">Conductores</a>
+				        <a href="templates/admin_autobus.html" class="nav-link bg-dark">Autobuses</a>
+					</div>
+				</div>
+				<div class="sb-sidenav-footer">
+			            <div class="small">Logged in as:</div>
+			                    Start Bootstrap
+	        	</div>
+			</nav>
+		</div>
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="card ">
+		          	<div class="card-body text-center">
 						<div class="row">
 						    <div class="col-lg-4">
 					            <img class="rounded-circle" src="img/rutas.jpeg" alt="Rutas" width="140" height="140">
-					            <h2>Rutas</h2>
-					            <p>Crear y editar rutas</p>
-					            <p><a class="btn btn-secondary" href="#" role="button">Administar rutas</a></p>
+					            <h2>Frecuencias</h2>
+					            <p>Crear y editar frecuencias</p>
+					            <p><a class="btn btn-secondary" href="templates/admin_frecuencia.html" role="button">Frecuencias</a></p>
+					      	</div>
+					      	<div class="col-lg-4">
+					            <img class="rounded-circle" src="img/boleto.png" alt="Boletos" width="140" height="140">
+					            <h2>Boletos</h2>
+					            <p>Venta de boletos</p>
+					            <p><a class="btn btn-secondary" href="templates/venta_boletos.html" role="button">Vender boletos</a></p>
+					      	</div>
+					      	<div class="col-lg-4">
+					            <img class="rounded-circle" src="img/ventas.png" alt="Ventas" width="140" height="140">
+					            <h2>Ventas</h2>
+					            <p>Reporte de ventas</p>
+					            <p><a class="btn btn-secondary" href="templates/admin_ventas.html" role="button">Administrar ventas</a></p>
+					      	</div>
+					      	
+							<div class="col-lg-4">
+					            <img class="rounded-circle" src="img/conductor.jpg" alt="Conductores" width="140" height="140">
+					            <h2>Conductores</h2>
+					            <p>Ingresar y visualizar conductores</p>
+					            <p><a class="btn btn-secondary" href="templates/admin_conductor.html" role="button">Administar conductores</a></p>
 					      	</div>
 					      	<div class="col-lg-4">
 					            <img class="rounded-circle" src="img/buses.jpg" alt="Autobuses" width="140" height="140">
 					            <h2>Autobuses</h2>
 					            <p>Ingresar y visualizar autobuses</p>
-					            <p><a class="btn btn-secondary" href="#" role="button">Administar autobuses</a></p>
-					      	</div>
-							<div class="col-lg-4">
-					            <img class="rounded-circle" src="img/conductor.jpg" alt="Conductores" width="140" height="140">
-					            <h2>Conductores</h2>
-					            <p>Ingresar y visualizar conductores</p>
-					            <p><a class="btn btn-secondary" href="#" role="button">Administar conductores</a></p>
-					      	</div>
-						    <div class="col-lg-4">
-					            <img class="rounded-circle" src="img/boleto.png" alt="Boletos" width="140" height="140">
-					            <h2>Boletos</h2>
-					            <p>Venta de boletos</p>
-					            <p><a class="btn btn-secondary" href="#" role="button">Vender boletos</a></p>
-					      	</div>
-						    <div class="col-lg-4">
-					            <img class="rounded-circle" src="img/clientes.jpg" alt="Clientes" width="140" height="140">
-					            <h2>Clientes</h2>
-					            <p>Visualizar clientes</p>
-					            <p><a class="btn btn-secondary" href="#" role="button">Administrar clientes</a></p>
-					      	</div>
-						    <div class="col-lg-4">
-					            <img class="rounded-circle" src="img/ventas.png" alt="Ventas" width="140" height="140">
-					            <h2>Ventas</h2>
-					            <p>Reporte de ventas</p>
-					            <p><a class="btn btn-secondary" href="#" role="button">Administrar ventas</a></p>
-					      	</div>
-					      	<div class="col-lg-4">
-					            <img class="rounded-circle" src="img/viajes.jpg" alt="Viajes" width="140" height="140">
-					            <h2>Viajes</h2>
-					            <p>Itineriario de viajes</p>
-					            <p><a class="btn btn-secondary" href="#" role="button">Administrar viajes</a></p>
+					            <p><a class="btn btn-secondary" href="templates/admin_autobus.html" role="button">Administar autobuses</a></p>
 					      	</div>
 					 	</div>
 		          	</div>
         		</div>
-	      	</div>
-	    </div>
+			</main>
+		</div>
 	</div>
+	<!--fin Header -->
+
   <!-- /#wrapper -->
 	
 
   <!-- Menu Toggle Script -->
   
   <script type="text/javascript" src="js/utils.js"></script>
-	
+  <script type="text/javascript" src="../js/scripts.js"></script>
 </body>
 </html>
