@@ -16,7 +16,7 @@ header{
 .text-center{
   background-color: #3c82f4;
   color: #fff;
-  width: 100vw;
+  width: 100%;
 }
 
 .s-title a {
@@ -39,7 +39,7 @@ header{
   font-size: 10pt;
   background: #191b30;
   color: #ccc;
-  width: 100vw;
+  width: 100%;
   text-align: justify;
   /*position: absolute;*/
   padding: 34pt;
