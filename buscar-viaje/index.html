@@ -2,26 +2,39 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <!--Responsive-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--Responsive-->
+
     <title>
         Buscar Viaje
     </title>
-    <!--
-    <link rel="stylesheet" href="../bootstrap-3.4.1/css/bootstrap.min.css">
-    <link rel=”stylesheet” href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    -->
 
-    <link rel="stylesheet" href="../bootstrap-4.5.0/css/bootstrap.min.css">
-    <!--link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"-->
+   <!--Estilos-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="../Estilos.css">
-    <link rel="stylesheet" href="estilos.css">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!--Boots-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
+    <!--Moment-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.21/moment-timezone-with-data-2012-2022.min.js"></script>
+     <!--Date picker-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
 </head>
 
 <body>
     <!--Barra de navegacion-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light barra" id="EjNav">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light barra sticky-top" id="EjNav">
         <a class="navbar-brand" href="../index.html">Transport</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,10 +98,130 @@
 
     <!--INICIO CONTENIDO-->
     <div class="container">
+        <div class="card-deck mb-3 ">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Buscar viaje</h4>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" novalidate>
+                        <!--Origen, destino y empresa-->
+                        <div class="row etq">
+                            <div class="col-md-4 mb-3">
+                                <label for="ciudad">Ciudad Origen</label>
+                                <select class="custom-select d-block w-100" id="origen" required>
+                                    <option value="">Elegir...</option>
+                                    <option>Cuenca</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a valid country.
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="ciudad">Ciudad Destino</label>
+                                <select class="custom-select d-block w-100" id="destino" required>
+                                  <option value="">Elegir...</option>
+                                  <option>Ambato</option>
+                                  <option>Guayaquil</option>
+                                  <option>Quito</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                  Please provide a valid state.
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="empresa">Empresa</label>
+                                <select class="custom-select d-block w-100" id="empresa" required>
+                                  <option value="">Elegir...</option>
+                                  <option>Azuay</option>
+                                  <option>Flota Imbabura</option>
+                                  <option>Turismo Oriental</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                  Please provide a valid state.
+                                </div>
+                            </div>
+                        </div>
+                        <!--fin Origen, destino y empresa-->
+                        <div class="row etq">
+                            <div class="col-md-4 mb-3">
+                                <label for="ciudad">Fecha de Salida</label>
+                                                        <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4"/>
+                                    <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                                        <div class="input-group-text">
+                                            
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-        <br>
-        <h3>Estos son los Viajes</h3>
-        <p>Todo tu contenido aqui</p>
+                            <div class="col-md-4 mb-3">
+                                <div class="form-group">
+                                <label for="exampleFormControlSelect1">Cantidad de Asientos</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                  <option>1</option>
+                                  <option>2</option>
+                                  <option>3</option>
+                                  <option>4</option>
+                                  <option>5</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="empresa"></label>
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">Buscar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card-deck mb-3">
+            <div class="card mb-4 shadow-sm">
+                <!--html se agrega dinamicamente con los resultados-->
+                <div class="card mb-4 ">
+                    <div class="card-body">
+                        <div class="row etq">
+                             <div class="col-md-4">
+                      <img src="img/rutas-orenses.jpg" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body text-right">
+                            <h5 class="card-title">Rutas Orenses</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                            <a href="#" class="btn btn-primary">Reservar</a>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4 ">
+                    <div class="card-body">
+                        <div class="row etq">
+                             <div class="col-md-4">
+                      <img src="img/rutas-orenses.jpg" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body text-right">
+                            <h5 class="card-title">Rutas Orenses</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                            <a href="#" class="btn btn-primary">Reservar</a>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!--fin html se agrega dinamicamente -->
+                
+            </div>
+        </div>
 
     </div>
     <!--Fin CONTENIDO-->
@@ -125,33 +258,10 @@
         </div>
     </div>
 
-
     <!--Fin Pie de pagina-->
 
+    <script type="text/javascript" src="scripts/datepicker.js"></script>
 
-
-    <!--
-    <script src="../bootstrap-4.5.0/js/popper.min.js"></script>
-    <script src="../bootstrap-4.5.0/js/jquery-3.5.1.slim.min.js"></script>
-    <script src="../bootstrap-4.5.0/js/jquery.min.js"></script>
-    <script src="../bootstrap-4.5.0/js/bootstrap.min.js"></script>
-    <script src="../bootstrap-3.4.1/js/bootstrap.min.js"></script>-->
-
-    <script src="java.js"></script>
-    <script src="../Java.js"></script>
-
-    <script src="../bootstrap-4.5.0/code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <!--script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script-->
-    <!--script src="../bootstrap-4.5.0/cdn.jsdelivr.net/popper.min.js"></script-->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="../bootstrap-4.5.0/js/bootstrap.min.js"></script>
-    <!--script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-        crossorigin="anonymous"></script-->
 
 </body>
 
