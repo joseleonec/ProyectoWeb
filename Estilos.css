@@ -16,7 +16,7 @@ header{
 .text-center{
   background-color: #3c82f4;
   color: #fff;
-  width: 100%;
+  width: 100vw;
 }
 
 .s-title a {
@@ -39,7 +39,7 @@ header{
   font-size: 10pt;
   background: #191b30;
   color: #ccc;
-  width: 100%;
+  width: 100vw;
   text-align: justify;
   /*position: absolute;*/
   padding: 34pt;
@@ -76,7 +76,7 @@ header{
 
 .barra{
   width: 100%;
-  position: fixed;
+  /*position: fixed;*/
   top: 0;
 }
 
