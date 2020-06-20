@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<!--Responsive-->
@@ -10,237 +11,261 @@
 	<!--Responsive-->
 
 	<title>Administrar rutas</title>
-	
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  	<link rel="stylesheet" type="text/css" href="../css/simple-sidebar.css">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="../css/simple-sidebar.css">
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<link rel="stylesheet" type="text/css" href="../css/styles.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+		integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
 	<!--Boots-->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
 
-		<!--Moment-->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.21/moment-timezone-with-data-2012-2022.min.js"></script>
+	<!--Moment-->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.21/moment-timezone-with-data-2012-2022.min.js"></script>
 
-	 <!--Date picker-->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
-  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+	<!--Date picker-->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
 
 </head>
+
 <body class="sb-nav-fixed">
 	<!--Header -->
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-      	<button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
-                class="fas fa-bars"></i></button>
-  		<a class="navbar-brand" href="../index.html">Turismo Oriental</a>
-	  	<form class=" d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <div class="input-group-append">
-                    <ul class="navbar-nav ml-auto ml-md-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    class="fas fa-user fa-fw"></i></a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity
-                                    Log</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="login.html">Logout</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </form>
+		<button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
+				class="fas fa-bars"></i></button>
+		<a class="navbar-brand" href="../index.html">Turismo Oriental</a>
+		<form class=" d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+			<div class="input-group">
+				<div class="input-group-append">
+					<ul class="navbar-nav ml-auto ml-md-0">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+									class="fas fa-user fa-fw"></i></a>
+							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+								<a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity
+									Log</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="login.html">Logout</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</form>
 	</nav>
 	<!--fin Header -->
 
 	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">
 			<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-		    	<div class="sb-sidenav-menu">     
-				    <div class="nav">
-				        <a href="admin_frecuencia.html" class="nav-link bg-dark active">Frecuencias</a>
-				        <a href="venta_boletos.html" class="nav-link">Boletos</a>
-				        <a href="admin_ventas.html" class="nav-link">Ventas</a>
-				        <a href="admin_conductor.html" class="nav-link">Conductores</a>
-				        <a href="admin_autobus.html" class="nav-link">Autobuses</a>
-				    </div>
-			    </div>
-			    <div class="sb-sidenav-footer">
-		            <div class="small">Logged in as:</div>
-		                    Start Bootstrap
-		        </div>
-		    </nav>
+				<div class="sb-sidenav-menu">
+					<div class="nav">
+						<a href="admin_frecuencia.html" class="nav-link bg-dark active">Frecuencias</a>
+						<a href="venta_boletos.html" class="nav-link">Boletos</a>
+						<a href="admin_ventas.html" class="nav-link">Ventas</a>
+						<a href="admin_conductor.html" class="nav-link">Conductores</a>
+						<a href="admin_autobus.html" class="nav-link">Autobuses</a>
+					</div>
+				</div>
+				<div class="sb-sidenav-footer">
+					<div class="small">Logged in as:</div>
+					Start Bootstrap
+				</div>
+			</nav>
 		</div>
 
-	    <div id="layoutSidenav_content">
-	    	<main>
-	    		<nav class="navbar navbar-expand-lg navbar-light ">
-			  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
-			    		<span class="navbar-toggler-icon"></span>
-			  		</button>
+		<div id="layoutSidenav_content">
+			<main>
+				<nav class="navbar navbar-expand-lg navbar-light ">
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1"
+						aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
 
 					<div class="collapse navbar-collapse" id="navbarSupportedContent1">
-					    <ul class="navbar-nav mr-auto">
-					    	<li class="nav-item active">
-					      		<a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Frecuencias</a>
-					      	</li>
-					      	<li class="nav-item">
-					        	<a class="nav-link" href="buscar_freq.html" tabindex="-1" aria-disabled="true">Buscar frecuencia</a>
-					      	</li>
-					      	<li class="nav-item">
-					      		<a class="nav-link" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="Cliente">Crear frecuencia</a>
-					      	</li>
-					    </ul>
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item active">
+								<a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Frecuencias</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="buscar_freq.html" tabindex="-1" aria-disabled="true">Buscar
+									frecuencia</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" type="button" data-toggle="modal" data-target="#exampleModal"
+									data-whatever="Cliente">Crear frecuencia</a>
+							</li>
+						</ul>
 						<div class="my-2 my-lg-0">
 							<div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-								    <div class="input-group-prepend">
-											<span class="input-group-text">Fecha</span>
-									</div>
-									<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4"/>
-									<div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
-						    			<div class="input-group-text">
-						    				
-						    				<i class="fa fa-calendar"></i>
-						    			</div>
+								<div class="input-group-prepend">
+									<span class="input-group-text">Fecha</span>
+								</div>
+								<input type="text" class="form-control datetimepicker-input"
+									data-target="#datetimepicker4" />
+								<div class="input-group-append" data-target="#datetimepicker4"
+									data-toggle="datetimepicker">
+									<div class="input-group-text">
+
+										<i class="fa fa-calendar"></i>
 									</div>
 								</div>
+							</div>
 						</div>
-					 </div>
+					</div>
 				</nav>
-	    		<!--Contenedor -->
-			    <div class="container-fluid card-deck mb-3 ">
-		        	
-		        	<div class="card mb-4">
-		          		<div class="card-header">
-		          			<div class="row">
-		          				<div class="col-sm-8">
-		          					<h3 class="my-0 font-weight-normal">Administrar frecuencias</h3>
-		          				</div>
-		          				<div class="col-sm-4">
-		          					<button class="btn btn-primary btn-block" type="submit">Guardar y publicar</button>
-		          				</div>
-		          			</div>
-		          		</div>
-		          		<div class="card-body">
-		          			<!--Tabla de rutas-->
-							<div class="table-responsive">
-					            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-					              	<thead class="thead-dark">
-						                <tr>
-						                  <th>Hora</th>
-						                  <th>Origen</th>
-						                  <th>Destino</th>
-						                  <th>Autobus</th>
-						                  <th>Disco</th>
-						                  <th>Conductor</th>
-						                  <th>Ruta</th>
-						                  
-						                </tr>
-					              	</thead>
-						            <tbody>
-						                <tr>
-						                  <td>11:45</td>
-						                  <td>Cuenca</td>
-						                  <td>Machala</td>
-						                  <td>AAV - 1578</td>
-						                  <td>48</td>
-						                  <td>Juan Perez</td>
-						                  <td>CM365</td>
-						                </tr>
-						                <tr>
-						                  <td>12:25</td>
-						                  <td>Cuenca</td>
-						                  <td>Machala</td>
-						                  <td>AAV - 0078</td>
-						                  <td>40</td>
-						                  <td>Luis Perez</td>
-						                  <td>CM355</td>
-						                </tr>
-					              	</tbody>
-					            </table>
-					        </div>
-		          			<!--Fin tabla de rutas-->
-		          		</div>
-			      	</div>
-		      	</div>
-	    	</main>
-	    </div>
-	</div>
-  <!-- /#wrapper -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  	<div class="modal-dialog" role="document">
-    	<div class="modal-content">
-      		<div class="modal-header">
-        		<h5 class="modal-title" id="exampleModalLabel">Nueva frecuencia</h5>
-        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-         			 <span aria-hidden="true">&times;</span>
-       			</button>
-     		 </div>
-			<div class="modal-body">
-		        <form action="/action_page.php" class="was-validated">
-				    <div class="form-group">
-				      <label for="uname">Origen</label>
-				      <input type="text" class="form-control" id="origen" placeholder="Cuenca" name="uname" required>
-				    </div>
-				    <div class="form-group">
-				      <label for="uname">Destino</label>
-				      <input type="text" class="form-control" id="destino" placeholder="Cuenca" name="uname" required>
-				    </div>
-				    <div class="form-group">
-				      <label for="uname">Ruta</label>
-				      <input type="text" class="form-control" id="ruta" placeholder="CM365" name="uname" required>
-				    </div>
-				    <div class="form-group">
-				      <label for="uname">Hora</label>
-				      <input type="text" class="form-control" id="hora" placeholder="12:30" name="uname" required>
-				    </div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-					  <label class="form-check-label" for="inlineCheckbox1">Lunes</label>
-					</div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-					  <label class="form-check-label" for="inlineCheckbox2">Martes</label>
-					</div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-					  <label class="form-check-label" for="inlineCheckbox2">Miercoles</label>
-					</div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-					  <label class="form-check-label" for="inlineCheckbox2">Jueves</label>
-					</div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-					  <label class="form-check-label" for="inlineCheckbox2">Viernes</label>
-					</div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-					  <label class="form-check-label" for="inlineCheckbox2">Sabado</label>
-					</div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-					  <label class="form-check-label" for="inlineCheckbox2">Domingo</label>
-					</div>	    
-			   		<div class="modal-footer">
-			        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			        	<button type="submit" class="btn btn-primary">Submit</button>
-			      	</div>
-	  			</form>
-	      	</div>
-	    </div>
-  	</div>
-</div>
+				<!--Contenedor -->
+				<div class="container-fluid card-deck mb-3 ">
 
-  <!-- Menu Toggle Script -->
-  
-  <script type="text/javascript" src="../js/utils.js"></script>
-  <script type="text/javascript" src="../js/scripts.js"></script>
+					<div class="card mb-4">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-sm-8">
+									<h3 class="my-0 font-weight-normal">Administrar frecuencias</h3>
+								</div>
+								<div class="col-sm-4">
+									<button class="btn btn-primary btn-block" type="submit">Guardar y publicar</button>
+								</div>
+							</div>
+						</div>
+						<div class="card-body">
+							<!--Tabla de rutas-->
+							<div class="table-responsive">
+								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+									<thead class="thead-dark">
+										<tr>
+											<th>Hora</th>
+											<th>Origen</th>
+											<th>Destino</th>
+											<th>Autobus</th>
+											<th>Disco</th>
+											<th>Conductor</th>
+											<th>Ruta</th>
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>11:45</td>
+											<td>Cuenca</td>
+											<td>Machala</td>
+											<td>AAV - 1578</td>
+											<td>48</td>
+											<td>Juan Perez</td>
+											<td>CM365</td>
+										</tr>
+										<tr>
+											<td>12:25</td>
+											<td>Cuenca</td>
+											<td>Machala</td>
+											<td>AAV - 0078</td>
+											<td>40</td>
+											<td>Luis Perez</td>
+											<td>CM355</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!--Fin tabla de rutas-->
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
+	<!-- /#wrapper -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Nueva frecuencia</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="/action_page.php" class="was-validated">
+						<div class="form-group">
+							<label for="uname">Origen</label>
+							<input type="text" class="form-control" id="origen" placeholder="Cuenca" name="uname"
+								required>
+						</div>
+						<div class="form-group">
+							<label for="uname">Destino</label>
+							<input type="text" class="form-control" id="destino" placeholder="Cuenca" name="uname"
+								required>
+						</div>
+						<div class="form-group">
+							<label for="uname">Ruta</label>
+							<input type="text" class="form-control" id="ruta" placeholder="CM365" name="uname" required>
+						</div>
+						<div class="form-group">
+							<label for="uname">Hora</label>
+							<input type="text" class="form-control" id="hora" placeholder="12:30" name="uname" required>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+							<label class="form-check-label" for="inlineCheckbox1">Lunes</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+							<label class="form-check-label" for="inlineCheckbox2">Martes</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+							<label class="form-check-label" for="inlineCheckbox2">Miercoles</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+							<label class="form-check-label" for="inlineCheckbox2">Jueves</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+							<label class="form-check-label" for="inlineCheckbox2">Viernes</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+							<label class="form-check-label" for="inlineCheckbox2">Sabado</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+							<label class="form-check-label" for="inlineCheckbox2">Domingo</label>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Menu Toggle Script -->
+
+	<script type="text/javascript" src="../js/utils.js"></script>
+	<script type="text/javascript" src="../js/scripts.js"></script>
 
 </body>
+
 </html>

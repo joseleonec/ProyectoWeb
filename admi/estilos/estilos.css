@@ -1,6 +1,6 @@
 /* Configuracion de la barra */
 
-body {
+.cuerpo {
   overflow-x: hidden;
 }
 
@@ -46,7 +46,7 @@ body {
 /* Cabezera*/
 
 .cabecera {
-  width: 100%;
+  min-width: 100%;
   background-color: #14b300;
   font-weight: bold;
   text-decoration: none;
@@ -68,8 +68,11 @@ body {
   text-decoration: none;
 }
 
+/*----------*/
+
 /*Boton*/
-.cerrar{
+
+.cerrar {
   color: white;
   font-weight: bold;
 }
@@ -114,7 +117,8 @@ body {
 }
 
 /* Fondo */
-.Fondo{
+
+.Fondo {
   background-position: center;
   /*background-image: url(../img/crop.jpg);*/
   /*Sin efecto de imagen fija*/
@@ -126,8 +130,18 @@ body {
 
 /* Tabla */
 
+.tabla_content {
+  width: 100%;
+}
+
 tr.highlighted td {
   background-color: rgba(117, 132, 218, 0.5);
+}
+
+/* Contendor de la Imagen explorador de archivos*/
+
+.content-imagen {
+  width: 100%;
 }
 
 /*Scroll para el contenedor*/

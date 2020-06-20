@@ -1,3 +1,9 @@
+#contenedor_coop {
+    padding-top: 20px;
+    padding-bottom: 100px;
+    overflow-x: hidden;
+}
+
 /* Botones */
 
 .boton-coop {
@@ -15,14 +21,26 @@
     color: white;
 }
 
-/* Tabla */
-/*
-.tabla-coop {
-    border: 0.3px solid #007df4;
+/*Modal*/
+
+.modal-coop {
+    background-position: center;
+    background: url(../img/into.jpg) no-repeat center fixed;
+    background-size: cover;
 }
-*/
+
+.transparente {
+    text-align: center;
+    color: white;
+    height: 370px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0, 0, 3, 0.603) !important;
+}
 
 /* Alerta*/
+
 .alerta_busqueda {
     /*text-align: center;*/
     max-height: 50px;
@@ -54,6 +72,82 @@ input[type="radio"]:checked~label {
 }
 
 /*Elementos de la fila de la Tabla*/
-.align-right{
+
+.align-right {
     display: inline-block;
+}
+
+.hide {
+    display: none;
+}
+
+.red {
+    color: Red;
+}
+
+/* Tabla */
+
+/*
+.tabla-coop {
+    border: 0.3px solid #007df4;
+}
+*/
+
+@media (max-width: 575.98px) {
+    .table-responsive-sm {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .table-responsive-sm>.table-bordered {
+        border: 0;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .table-responsive-md {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .table-responsive-md>.table-bordered {
+        border: 0;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .table-responsive-lg {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .table-responsive-lg>.table-bordered {
+        border: 0;
+    }
+}
+
+@media (max-width: 1199.98px) {
+    .table-responsive-xl {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .table-responsive-xl>.table-bordered {
+        border: 0;
+    }
+}
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table-responsive>.table-bordered {
+    border: 0;
 }

@@ -20,42 +20,39 @@
 </head>
 
 <body>
-    <!--Barra de navegacion-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top barra" id="EjNav">
-        <a class="navbar-brand" href="../index.html">Transport</a>
+    <!--Barra de navegacion navbar-light -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top barra" id="EjNav">
+        <div class="s-title-logo">
+            <a href="../index.html">Transport</a>
+        </div>
+        <!--a class="boton-barra navbar-brand" href="../index.html">Transport</a-->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <div class="collapse navbar-collapse boton-barra" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                <li class="nav-item boton-color">
+                    <a class="nav-link" href="../buscar-viaje/">
+                        <img src="../icons/ruta1.svg">&nbsp;&nbsp;Buscar Viaje</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../buscar-viaje/">Buscar Viaje
-                        <!--span class="sr-only">(current)</span--></a>
+                <div class="dropdown-divider"></div>
+                <li class="nav-item boton-color">
+                    <a class="nav-link " href="../rutas/">
+                        <img src="../icons/mapa2.svg">&nbsp;&nbsp;Rutas</a>
                 </li>
-                <li>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                <div class="dropdown-divider"></div>
+                <li class="nav-item active btn-seleccion boton-color">
+                    <a class="nav-link" href="index.html">
+                        <img src="../icons/bus.svg">&nbsp;&nbsp;Cooperativas</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../rutas/">Rutas</a>
-                </li>
-                <li>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                </li>
-                <li class="nav-item active btn-seleccion">
-                    <a class="nav-link" href="index.html">Cooperativas</a>
-                </li>
-                <li>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                </li>
+                <div class="dropdown-divider"></div>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        <a class="nav-link dropdown-toggle boton-color" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Idioma
                         </a>
@@ -64,10 +61,8 @@
                             <a class="dropdown-item" href="#">Spanish</a>
                         </div>
                     </li>
-                    <li>
-                        <p>&nbsp;&nbsp;&nbsp;</p>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="../usuario/dist/login.html"><img
+                    <div class="dropdown-divider"></div>
+                    <li class="nav-item"><a class="nav-link boton-color" href="../usuario/dist/login.html"><img
                                 src="../icons/person.svg">&nbsp;&nbsp;Sign
                             Up</a></li>
                 </ul>
@@ -77,164 +72,177 @@
             </form>
         </div>
     </nav>
+
     <!--Bienvenida-->
-    <div class="py-3 jumbotron text-center encabezado">
+    <!--div class="py-3 jumbotron text-center encabezado">
         <h2 class="s-title"><a href="../index.html">Transport</a></h2>
         <p class="s-description">Terminal terrestre de Cuenca</p>
+    </div-->
+    <div class="py-5" id="img-categoria">
+        <div class="py-4 text-center">
+            <h2 class="s-title"><a href="../index.html">Transport</a></h2>
+            <p class="s-description">Terminal terrestre de Cuenca</p>
+        </div>
     </div>
-
     <!--INICIO CONTENIDO-->
-    <div class="container">
-        <br>
-        <h3>Cooperativas que brindan el servicio de transporte nacional e internacional</h3>
-        <br>
-        <p>¿Qué cooperativa buscas?</p>
-        <div class="row">
-            <div class="">
-
+    <div class="categoria">
+        <div class="container contenedor_categoria">
+            <br>
+            <h3>Cooperativas que brindan el servicio de transporte nacional e internacional</h3>
+            <br>
+            <p>¿Qué cooperativa buscas?</p>
+            <form class="form-inline" id="busqueda">
+                <input id="txt_buscar" class="col-sm-4 form-control mr-sm-2" placeholder="Search" onkeyup="doSearch()">
+                <!--input id="txt_buscar" class="col-sm-4 form-control mr-sm-2" placeholder="Search"-->
+                <button id="btn_buscar" class="col-sm-2 btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+            <div class="row pt-2 pb-4 alerta_busqueda">
+                <p class="" id="demo"></p>
+                <div class="col-sm-6" id="alerta-campo"></div>
             </div>
-        </div>
-        <form class="form-inline" id="busqueda">
-            <input id="txt_buscar" class="col-sm-4 form-control mr-sm-2" type="search" placeholder="Search"
-                aria-label="Search">
-            <button id="btn_buscar" class="col-sm-2 btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-        </form>
-        <div class="row pt-2 pb-4 alerta_busqueda">
-            <p class="" id="demo"></p>
-            <div class="col-sm-6" id="alerta-campo"></div>
-        </div>
 
-        <br>
-        <table class="table table-hover table-bordered tabla-coop" id="tabla_coop_public">
-            <thead class="thead-dark">
-                <tr class="row">
-                    <th class="col-3">&nbsp;&nbsp;Logo</th>
-                    <th class="col-3">Cooperativa</th>
-                    <th class="col-3">Opinion General</th>
-                    <th class="col-3">--</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="row">
-                    <td class="col-sm-3">
-                        <img class="align-right" src="img/oriental.png" width="120" height="70">
-                    </td>
-                    <td class="col-sm-3">
-                        <p class="align-right">&nbsp;&nbsp;&nbsp;Turismo Oriental</p>
-                    </td>
-                    <td class="col-sm-3">
-                        <div>
-                            <form class="align-right">
-                                <p class="clasificacion">
-                                    <input id="radio1" type="radio" name="estrellas" value="5" disabled>
-                                    <label for="radio1">★</label>
-                                    <input id="radio2" type="radio" name="estrellas" value="4" disabled>
-                                    <label for="radio2">★</label>
-                                    <input id="radio3" type="radio" name="estrellas" value="3" checked disabled>
-                                    <label for="radio3">★</label>
-                                    <input id="radio4" type="radio" name="estrellas" value="2" disabled>
-                                    <label for="radio4">★</label>
-                                    <input id="radio5" type="radio" name="estrellas" value="1" disabled>
-                                    <label for="radio5">★</label>
-                                </p>
-                            </form>
-                        </div>
-                    </td>
-                    <td class="col-sm-3">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
-                            Dejar opinión
-                        </button>
-                    </td>
-                </tr>
-                <tr class="row">
-                    <td class="col-sm-3">
-                        <img class="align-right" src="img/viajeros1.png" width="120" height="70">
-                    </td>
-                    <td class="col-sm-3">
-                        <p class="align-right"> &nbsp;&nbsp;&nbsp;Viajeros Internacional</p>
-                    </td>
-                    <td class="col-sm-3">
-                        <div>
-                            <form class="align-right">
-                                <p class="clasificacion">
-                                    <input id="radio6" type="radio" name="estrellas" value="5" disabled>
-                                    <label for="radio6">★</label>
-                                    <input id="radio7" type="radio" name="estrellas" value="4" checked disabled>
-                                    <label for="radio7">★</label>
-                                    <input id="radio8" type="radio" name="estrellas" value="3" disabled>
-                                    <label for="radio8">★</label>
-                                    <input id="radio9" type="radio" name="estrellas" value="2" disabled>
-                                    <label for="radio9">★</label>
-                                    <input id="radio10" type="radio" name="estrellas" value="1" disabled>
-                                    <label for="radio10">★</label>
-                                </p>
-                            </form>
-                        </div>
-                    </td>
-                    <td class="col-sm-3">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
-                            Dejar opinión
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+            <br>
+            <div class="">
+                <!--table class="table table-bordered" id="dataTable"-->
+                <table class="table table-hover conten" id="tabla_coop_public">
+                    <thead class="thead-dark">
+                        <tr class="row">
+                            <th class="col-3">&nbsp;&nbsp;Logo</th>
+                            <th class="col-4">Cooperativa</th>
+                            <th class="col-5">Opinion General</th>
+                            <!--th class="col-3">--</th-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="row">
+                            <td class="col-sm-3">
+                                <img class="align-right" src="img/oriental.png" width="120" height="70">
+                            </td>
+                            <td class="col-sm-3">
+                                <p class="align-right">&nbsp;&nbsp;&nbsp;Turismo Oriental</p>
+                            </td>
+                            <td class="">
+                                <div class="">
+                                    <form class="align-right">
+                                        <p class="clasificacion">
+                                            <input id="radio1" type="radio" name="estrellas" value="5" disabled>
+                                            <label for="radio1">★</label>
+                                            <input id="radio2" type="radio" name="estrellas" value="4" disabled>
+                                            <label for="radio2">★</label>
+                                            <input id="radio3" type="radio" name="estrellas" value="3" checked disabled>
+                                            <label for="radio3">★</label>
+                                            <input id="radio4" type="radio" name="estrellas" value="2" disabled>
+                                            <label for="radio4">★</label>
+                                            <input id="radio5" type="radio" name="estrellas" value="1" disabled>
+                                            <label for="radio5">★</label>
+                                        </p>
+                                    </form>
+                                </div>
+                            </td>
+                            <td class="">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#exampleModal1">
+                                    Dejar opinión
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td class="col-sm-3">
+                                <img class="align-right" src="img/viajeros1.png" width="120" height="70">
+                            </td>
+                            <td class="col-sm-3">
+                                <p class="align-right"> &nbsp;&nbsp;&nbsp;Viajeros Internacional</p>
+                            </td>
+                            <td class="">
+                                <div>
+                                    <form class="align-right">
+                                        <p class="clasificacion">
+                                            <input id="radio6" type="radio" name="estrellas" value="5" disabled>
+                                            <label for="radio6">★</label>
+                                            <input id="radio7" type="radio" name="estrellas" value="4" checked disabled>
+                                            <label for="radio7">★</label>
+                                            <input id="radio8" type="radio" name="estrellas" value="3" disabled>
+                                            <label for="radio8">★</label>
+                                            <input id="radio9" type="radio" name="estrellas" value="2" disabled>
+                                            <label for="radio9">★</label>
+                                            <input id="radio10" type="radio" name="estrellas" value="1" disabled>
+                                            <label for="radio10">★</label>
+                                        </p>
+                                    </form>
+                                </div>
+                            </td>
+                            <td class="">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#exampleModal1">
+                                    Dejar opinión
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class='noSearch hide'>
+                            <td colspan="5"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Valoramos tu opinión</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div></div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <strong>Deja tu comentario:</strong>
-                            <textarea class="form-control" rows="5" id="comment"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <strong>Calificar</strong>
-                            <form class="align-right">
-                                <p class="clasificacion">
-                                    <input id="r1" type="radio" name="estrellas" value="5">
-                                    <label for="r1">★</label>
-                                    <input id="r2" type="radio" name="estrellas" value="4">
-                                    <label for="r2">★</label>
-                                    <input id="r3" type="radio" name="estrellas" value="3">
-                                    <label for="r3">★</label>
-                                    <input id="r4" type="radio" name="estrellas" value="2">
-                                    <label for="r4">★</label>
-                                    <input id="r5" type="radio" name="estrellas" value="1" checked>
-                                    <label for="r5">★</label>
-                                </p>
-                            </form>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button id="btnguardar" type="button" class="btn btn-primary">Guardar opinion</button>
+    <div class="">
+        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Valoramos tu opinión</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div></div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <strong>Deja tu comentario:</strong>
+                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <strong>Calificar</strong>
+                                <form class="align-right">
+                                    <p class="clasificacion">
+                                        <input id="r1" type="radio" name="estrellas" value="5">
+                                        <label for="r1">★</label>
+                                        <input id="r2" type="radio" name="estrellas" value="4">
+                                        <label for="r2">★</label>
+                                        <input id="r3" type="radio" name="estrellas" value="3">
+                                        <label for="r3">★</label>
+                                        <input id="r4" type="radio" name="estrellas" value="2">
+                                        <label for="r4">★</label>
+                                        <input id="r5" type="radio" name="estrellas" value="1" checked>
+                                        <label for="r5">★</label>
+                                    </p>
+                                </form>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button id="btnguardar" type="button" class="btn btn-success">Guardar opinion</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+
     <!--Fin Cooperativas-->
-    <br><br><br>
     <!--Pie de pagina-->
     <!--div class="container" id="foot"-->
     <div class="footer" id="foot">
         <div class="row">
-            <br><br>
             <div class="col-sm-4">
                 <h3 class="foot-title-column">Ayuda</h3>
                 <br>
@@ -261,7 +269,6 @@
             </div>
         </div>
     </div>
-    <div class="scroll-to-top"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
 
     <!--Fin Pie de pagina-->
 

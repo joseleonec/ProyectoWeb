@@ -46,7 +46,7 @@
 }
 .flexslider .slides > li {
   display: none;
-  -webkit-backface-visibility: hidden;
+  --webkit-backface-visibility: hidden;
 }
 .flexslider .slides img {
   width: 100%;
@@ -198,6 +198,8 @@ html[xmlns] .flexslider .slides {
   position: absolute;
   bottom: -40px;
   text-align: center;
+  /*Controles del slider parte inferior*/
+  display:none;
 }
 .flex-control-nav li {
   margin: 0 6px;

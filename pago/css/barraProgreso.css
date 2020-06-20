@@ -1,0 +1,183 @@
+input {
+  padding: 10px;
+  max-width: 70%;
+  font-size: 17px;
+  font-family: Raleway;
+  border: 1px solid #aaaaaa;
+}
+
+/* Mark input boxes that gets an error on validation: */
+
+input.invalid {
+  background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+
+.tab {
+  display: none;
+}
+
+/* Make circles that indicate the steps of the form: */
+
+.step {
+  height: 15px;
+  width: 15px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  /*ocultar circulos de abajo*/
+  /*display: inline-block;*/
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+
+.step.finish {
+  background-color: #4CAF50;
+}
+
+/*--------Compra finalizada---------*/
+
+.compra_fin_imagen {
+  max-width: 100px;
+  max-height: 100px;
+  margin-bottom: 30px;
+}
+
+/*--------Titulo---------*/
+
+.titulo_compra {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/*-------Contenedor contenido---------------*/
+
+.proceso {
+  /*background-color: #3c82f4;*/
+  margin-top: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 20px;
+  /*width: 100%;*/
+  /*min-width: 300px;*/
+}
+
+.Menu_tab {
+  padding-top: 80px;
+  padding-left: 40px;
+}
+
+/*-------Botones next and previous---------------*/
+
+.botonN {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+/*-------Barra de progreso---------------*/
+
+.progressbar-wrapper {
+  /*width: 100%;*/
+  /*padding-top: 10px;*/
+  text-align: left;
+  padding-left: 0px;
+  padding-right: 10px;
+}
+
+.progressbar li {
+  list-style-type: none;
+  width: 25%;
+  float: left;
+  font-size: 15px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  color: #7d7d7d;
+}
+
+/*antes de la linea agraga el circulo*/
+
+.progressbar li:before {
+  width: 30px;
+  height: 30px;
+  content: "";
+  line-height: 30px;
+  border: 2px solid #7d7d7d;
+  display: block;
+  text-align: center;
+  margin: 0 auto 3px auto;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+  background-color: #fff;
+}
+
+/*caracteristicas de la linea */
+
+.progressbar li:after {
+  width: 100%;
+  height: 2px;
+  content: '';
+  position: absolute;
+  background-color: #7d7d7d;
+  top: 15px;
+  left: -50%;
+  z-index: 0;
+}
+
+/*Una linea ala izquierda del primer nodo*/
+
+.progressbar li:first-child:after {
+  content: none;
+}
+
+.progressbar li.active {
+  font-weight: bold;
+  border-color: #55b776;
+}
+
+.progressbar li.active:before {
+  border-color: #55b776;
+  background-color: #55b776;
+}
+
+.progressbar li.active+li:after {
+  background-color: #55b776;
+}
+
+.progressbar li.actual {
+  color: black;
+  font-weight: bold;
+}
+
+.progressbar li.actual:before {
+  border-color: #3c82f4;
+  background-color: #3c82f4;
+  content: url(../../icons/carrito.svg);
+}
+
+/*
+.progressbar li::before {
+  background: #fff url(user.svg) no-repeat center center;
+  background-size: 60%;
+}
+*/
+
+/*Contador del numero cirulo*/
+
+/*
+.progressbar {
+  counter-reset: step;
+}
+
+.progressbar li:before {
+  content: counter(step);
+  counter-increment: step;
+}
+*/

@@ -21,6 +21,7 @@ var objeto_empleado = new Empleado("nombre_empl", "apellido", "cedula", "correo"
 
 function openInicio(e) {
     //e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
 }
 function openCoopertativa(e) {
     fila_seleccionda = -1;
@@ -28,6 +29,7 @@ function openCoopertativa(e) {
     card_datos_ID = "entrada_coop";
     alerta = document.getElementById("alerta_coop");
     btn_guardar = document.getElementById("guardar_coop");
+    $("#wrapper").toggleClass("toggled");
 }
 function openRuta(e) {
     fila_seleccionda = -1;
@@ -35,6 +37,7 @@ function openRuta(e) {
     card_datos_ID = "entrada_ruta";
     alerta = document.getElementById("alerta_ruta");
     btn_guardar = document.getElementById("guardar_ruta");
+    $("#wrapper").toggleClass("toggled");
 }
 function openEmpleado(e) {
     fila_seleccionda = -1;
@@ -42,9 +45,11 @@ function openEmpleado(e) {
     card_datos_ID = "entrada_empleado";
     alerta = document.getElementById("alerta_empleado");
     btn_guardar = document.getElementById("guardar_empleado");
+    $("#wrapper").toggleClass("toggled");
 }
 function openAnuncios(e) {
     //e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
 }
 
 /*----Tabla Cooperativas -------*/

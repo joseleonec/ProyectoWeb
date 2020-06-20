@@ -47,42 +47,37 @@
 
 <body>
     <!--Barra de navegacion-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top barra" id="EjNav">
-        <a class="navbar-brand" href="../index.html">Transport</a>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top barra" id="EjNav">
+        <div class="s-title-logo">
+            <a href="../index.html">Transport</a>
+        </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse boton-barra" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                <li class="nav-item active btn-seleccion boton-color">
+                    <a class="nav-link" href="index.html">
+                        <img src="../icons/ruta1.svg">&nbsp;&nbsp;Buscar Viaje</a>
                 </li>
-                <li class="nav-item active btn-seleccion">
-                    <a class="nav-link" href="index.html">Buscar Viaje
-                        <!--span class="sr-only">(current)</span--></a>
+                <div class="dropdown-divider"></div>
+                <li class="nav-item boton-color">
+                    <a class="nav-link " href="../rutas/">
+                        <img src="../icons/mapa2.svg">&nbsp;&nbsp;Rutas</a>
                 </li>
-                <li>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                <div class="dropdown-divider"></div>
+                <li class="nav-item boton-color">
+                    <a class="nav-link" href="../coopertativas/">
+                        <img src="../icons/bus.svg">&nbsp;&nbsp;Cooperativas</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../rutas/">Rutas</a>
-                </li>
-                <li>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../coopertativas/">Cooperativas</a>
-                </li>
-                <li>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                </li>
+                <div class="dropdown-divider"></div>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        <a class="nav-link dropdown-toggle boton-color" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Idioma
                         </a>
@@ -91,164 +86,167 @@
                             <a class="dropdown-item" href="#">Spanish</a>
                         </div>
                     </li>
-                    <li>
-                        <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="../usuario/dist/login.html"><img
-                                src="../icons/person.svg">&nbsp;&nbsp;Sign Up</a></li>
+                    <div class="dropdown-divider"></div>
+                    <li class="nav-item"><a class="nav-link boton-color" href="../usuario/dist/login.html"><img
+                                src="../icons/person.svg">&nbsp;&nbsp;Sign
+                            Up</a></li>
                 </ul>
                 <!--p class="navbar-text pull-right">
-                    Conectado como <a href="#" class="navbar-link">Mario Kart</a>
-                </p-->
+                            Conectado como <a href="#" class="navbar-link">Mario Kart</a>
+                        </p-->
             </form>
         </div>
     </nav>
 
     <!--Bienvenida-->
-    <div class="py-3 jumbotron text-center encabezado">
-        <h2 class="s-title"><a href="../index.html">Transport</a></h2>
-        <p class="s-description">Terminal terrestre de Cuenca</p>
+    <div class="py-5" id="img-categoria">
+        <div class="py-4 text-center">
+            <h2 class="s-title"><a href="../index.html">Transport</a></h2>
+            <p class="s-description">Terminal terrestre de Cuenca</p>
+        </div>
     </div>
 
     <!--INICIO CONTENIDO-->
-    <div class="container">
-        <div class="card-deck mb-3 ">
-            <div class="card mb-4 shadow-sm">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Buscar viaje</h4>
-                </div>
-                <div class="card-body">
-                    <form class="needs-validation" novalidate>
-                        <!--Origen, destino y empresa-->
-                        <div class="row etq">
-                            <div class="col-md-4 mb-3">
-                                <label for="ciudad">Ciudad Origen</label>
-                                <select class="custom-select d-block w-100" id="origen" required>
-                                    <option value="">Elegir...</option>
-                                    <option>Cuenca</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Please select a valid country.
+    <div class="categoria">
+        <div class="container contenedor_categoria">
+            <div class="card-deck mb-3 conten">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-normal">Buscar viaje</h4>
+                    </div>
+                    <div class="card-body">
+                        <form class="needs-validation" novalidate>
+                            <!--Origen, destino y empresa-->
+                            <div class="row etq">
+                                <div class="col-md-4 mb-3">
+                                    <label for="ciudad">Ciudad Origen</label>
+                                    <select class="custom-select d-block w-100" id="origen" required>
+                                        <option value="">Elegir...</option>
+                                        <option>Cuenca</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please select a valid country.
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="ciudad">Ciudad Destino</label>
-                                <select class="custom-select d-block w-100" id="destino" required>
-                                    <option value="">Elegir...</option>
-                                    <option>Ambato</option>
-                                    <option>Guayaquil</option>
-                                    <option>Quito</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Please provide a valid state.
+                                <div class="col-md-4 mb-3">
+                                    <label for="ciudad">Ciudad Destino</label>
+                                    <select class="custom-select d-block w-100" id="destino" required>
+                                        <option value="">Elegir...</option>
+                                        <option>Ambato</option>
+                                        <option>Guayaquil</option>
+                                        <option>Quito</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid state.
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="empresa">Empresa</label>
-                                <select class="custom-select d-block w-100" id="empresa" required>
-                                    <option value="">Elegir...</option>
-                                    <option>Azuay</option>
-                                    <option>Flota Imbabura</option>
-                                    <option>Turismo Oriental</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Please provide a valid state.
-                                </div>
-                            </div>
-                        </div>
-                        <!--fin Origen, destino y empresa-->
-                        <div class="row etq">
-                            <div class="col-md-4 mb-3">
-                                <label for="ciudad">Fecha de Salida</label>
-                                <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input"
-                                        data-target="#datetimepicker4" />
-                                    <div class="input-group-append" data-target="#datetimepicker4"
-                                        data-toggle="datetimepicker">
-                                        <div class="input-group-text">
-
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="empresa">Empresa</label>
+                                    <select class="custom-select d-block w-100" id="empresa" required>
+                                        <option value="">Elegir...</option>
+                                        <option>Azuay</option>
+                                        <option>Flota Imbabura</option>
+                                        <option>Turismo Oriental</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid state.
                                     </div>
                                 </div>
                             </div>
+                            <!--fin Origen, destino y empresa-->
+                            <div class="row etq">
+                                <div class="col-md-4 mb-3">
+                                    <label for="ciudad">Fecha de Salida</label>
+                                    <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input"
+                                            data-target="#datetimepicker4" />
+                                        <div class="input-group-append" data-target="#datetimepicker4"
+                                            data-toggle="datetimepicker">
+                                            <div class="input-group-text">
 
-                            <div class="col-md-4 mb-3">
-                                <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Cantidad de Asientos</label>
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Cantidad de Asientos</label>
+                                        <select class="form-control" id="exampleFormControlSelect1">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="empresa"></label>
+                                    <button class="btn btn-primary btn-lg btn-block" type="submit">Buscar</button>
                                 </div>
                             </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="empresa"></label>
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">Buscar</button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="card-deck mb-3">
-            <div class="card mb-4 shadow-sm">
-                <!--html se agrega dinamicamente con los resultados-->
-                <div class="card mb-4 ">
-                    <div class="card-body">
-                        <div class="row etq">
-                            <div class="col-md-4">
-                                <img src="img/rutas-orenses.jpg" class="card-img" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body text-right">
-                                    <h5 class="card-title">Rutas Orenses</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural
-                                        lead-in to additional content. This content is a little bit longer.</p>
+            <div class="card-deck mb-3 conten">
+                <div class="card mb-4 shadow-sm">
+                    <!--html se agrega dinamicamente con los resultados-->
+                    <div class="card mb-4 ">
+                        <div class="card-body">
+                            <div class="row etq">
+                                <div class="col-md-4">
+                                    <img src="img/rutas-orenses.jpg" class="card-img" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body text-right">
+                                        <h5 class="card-title">Rutas Orenses</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a
+                                            natural
+                                            lead-in to additional content. This content is a little bit longer.</p>
 
-                                    <a href="../pago/" class="btn btn-primary">Comprar</a>
-                                    <a href="../pago/" class="btn btn-primary">Reservar</a>
+                                        <a href="../pago/" class="btn btn-primary">Comprar</a>
+                                        <a href="../pago/" class="btn btn-primary">Reservar</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="card mb-4 ">
-                    <div class="card-body">
-                        <div class="row etq">
-                            <div class="col-md-4">
-                                <img src="img/rutas-orenses.jpg" class="card-img" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body text-right">
-                                    <h5 class="card-title">Rutas Orenses</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural
-                                        lead-in to additional content. This content is a little bit longer.</p>
+                    <div class="card mb-4 ">
+                        <div class="card-body">
+                            <div class="row etq">
+                                <div class="col-md-4">
+                                    <img src="img/rutas-orenses.jpg" class="card-img" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body text-right">
+                                        <h5 class="card-title">Rutas Orenses</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a
+                                            natural
+                                            lead-in to additional content. This content is a little bit longer.</p>
 
-                                    <a href="../pago/" class="btn btn-primary">Comprar</a>
-                                    <a href="../pago/" class="btn btn-primary">Reservar</a>
+                                        <a href="../pago/" class="btn btn-primary">Comprar</a>
+                                        <a href="../pago/" class="btn btn-primary">Reservar</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!--fin html se agrega dinamicamente -->
+
                 </div>
-
-                <!--fin html se agrega dinamicamente -->
-
             </div>
         </div>
-
     </div>
+
     <!--Fin CONTENIDO-->
-    <br><br><br>
     <!--Pie de pagina-->
     <!--div class="container" id="foot"-->
     <div class="footer" id="foot">
         <div class="row">
-            <br><br>
             <div class="col-sm-4">
                 <h3 class="foot-title-column">Ayuda</h3>
                 <br>
