@@ -1,0 +1,245 @@
+/* Configuracion de la barra */
+
+.cuerpo {
+  overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+
+/*botones*/
+
+.btnes {
+  text-align: center;
+}
+
+/* Cabezera*/
+
+.cabecera {
+  min-width: 100%;
+  background-color: #14b300;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.cabecera:hover {
+  text-decoration: none;
+}
+
+.text-cabecera {
+  color: black;
+  text-decoration: none;
+}
+
+.text-cabecera:hover {
+  color: black;
+  /*text-decoration: none;*/
+}
+
+.cabecera-tittle {
+  color: black;
+  text-decoration: none;
+}
+
+.cabecera-tittle:hover {
+  color: black;
+  font-size: 20px;
+  font-weight: bolder;
+  text-decoration: none;
+}
+
+/*----------*/
+
+/*Boton*/
+
+.cerrar {
+  color: white;
+  font-weight: bold;
+}
+
+/* Menu */
+
+.barra-menu {
+  color: white;
+}
+
+.barra-menu:hover {
+  color: orange;
+}
+
+/* Contenedor de la aletta*/
+
+.campo {
+  text-align: center;
+  max-height: 50px;
+}
+
+/* Contnedor de la entrada de datos*/
+
+.entrada_datos_empl {
+  height: 480px;
+}
+
+.entrada_datos_coop {
+  height: 350px;
+}
+
+.entrada_datos_ruta {
+  height: 350px;
+}
+
+.entrada_datos_employ {
+  height: 520px;
+}
+
+/* Alerta */
+.alerta{
+  padding: 10px;
+}
+
+/* Pie de pagina*/
+
+.pie {
+  color: whitesmoke;
+  padding: 10mm;
+}
+
+#img-fondo {
+  background-position: center;
+  /*background-image: url(../img/crop.jpg);*/
+  /*Sin efecto de imagen fija*/
+  background: url(../img/crop0.jpg) no-repeat center fixed;
+  /*Efecto de imagen fija*/
+  background-size: cover;
+}
+
+/* Fondo */
+
+.Fondo {
+  background-position: center;
+  /*background-image: url(../img/crop.jpg);*/
+  /*Sin efecto de imagen fija*/
+  /*background: url(../img/crop0.jpg) no-repeat center fixed;*/
+  /*Efecto de imagen fija*/
+  background-size: cover;
+  background-color: rgb(240, 243, 245);
+}
+
+/* Tabla */
+
+.tabla_content {
+  width: 100%;
+}
+
+tr.highlighted td {
+  background-color: rgba(117, 132, 218, 0.5);
+}
+
+/* Contendor de la Imagen explorador de archivos*/
+
+.content-imagen {
+  width: 100%;
+}
+
+/*Scroll para el contenedor*/
+
+.miscroll {
+  position: relative;
+  height: 450px;
+  /*altura desde donde aparecera el scroll*/
+  overflow: auto;
+  display: block;
+}
+
+/* #acercaDe{
+
+} */
+.modal-contenido{
+  width: 700px;
+}
+
+.logo {
+  background-position: center;
+  background-image: url(../img/escudo.png);
+  /*Sin efecto de imagen fija*/
+  /*background: url(../img/escudo.png) no-repeat center fixed;*/
+  /*Efecto de imagen fija*/
+  background-size: cover;
+  height: 100px;
+}
+
+.logo-head{
+  background-position: center;
+  background-image: url(../img/bus1.png);
+  /*Sin efecto de imagen fija*/
+  /*background: url(../img/escudo.png) no-repeat center fixed;*/
+  /*Efecto de imagen fija*/
+  background-size: cover;
+  height: 70px;
+  width: 100px;
+}
+
+.centrado {
+  text-align: center;
+}
+
+.miscrollC {
+  position: relative;
+  height: 350px;
+  /*altura desde donde aparecera el scroll*/
+  overflow: auto;
+  display: block;
+}
+
+.miscroll2 {
+  position: relative;
+  height: 430px;
+  /*altura desde donde aparecera el scroll*/
+  overflow: auto;
+  display: block;
+}
+
+/*
+.miscroll{
+  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  flex-wrap: nowrap;
+}
+*/
