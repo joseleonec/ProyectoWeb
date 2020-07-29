@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!--Responsive-->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!--Responsive-->
+
+	<title>Venta de boletos</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  	<link rel="stylesheet" type="text/css" href="../css/simple-sidebar.css">
+  	<link rel="stylesheet" type="text/css" href="../css/style.css">
+  	<link rel="stylesheet" type="text/css" href="../css/styles.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+	<!--Boots-->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+	<!--Moment-->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.21/moment-timezone-with-data-2012-2022.min.js"></script>
+
+	 <!--Date picker-->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+	
+</head>
+<body class="sb-nav-fixed">
+	<!--Header -->
+	<main-header></main-header>
+	<!--fin Header -->
+
+	<div id="layoutSidenav">
+	    <!-- Sidebar -->
+	    <main-sidebar></main-sidebar>
+	    <!-- /#sidebar-wrapper -->
+
+	    <div id="layoutSidenav_content">
+	    	<main>
+	    		<nav class="navbar navbar-expand-lg navbar-light ">
+				  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+				    <span class="navbar-toggler-icon"></span>
+				  </button>
+
+				  <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+				    <ul class="navbar-nav mr-auto">
+				      <li class="nav-item ">
+						<main-date></main-date>
+				      </li>
+				    </ul>
+				    <form class="form-inline my-2 my-lg-0">
+				      <input class="form-control mr-sm-2" type="search" placeholder="Destino" aria-label="Search">
+				      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+				    </form>
+				  </div>
+				</nav>
+				<div class="container-fluid card-deck ">
+		        	<div class="card mb-8">
+			          	<div class="card-header">
+			            	<h5>Venta de boletos</h5>
+			          	</div>
+				      	<div class="card-body">
+				      		<div class="row border">
+				      			<div class="col-sm-8">
+			      				 	<ul class="list-group list-group-flush text-left">
+									  <li class="list-group-item ">Destino <span class="text-muted">Quito</span></li>
+									  <li class="list-group-item">Disco <span class="text-muted">38</span></li>
+									  <li class="list-group-item">Disponibles <span class="text-muted">14</span></li>
+									</ul> 
+				      			</div>
+				      			<div class="col-sm-4 text-right">
+				      				<h3 class="p-4">15:45</h3>
+				      				<button type="button" class=" btn btn btn-outline-primary">
+				      					Seleccionar
+				      				</button>  
+				      			</div>
+				      		</div>
+				      	</div>
+		        	</div>
+		        	<div class="card mb-4">
+		          		<div class="card-header">
+		            		<h5 class="my-0 font-weight-sm">Descripción</h5>
+		          		</div>
+		          		<div class="card-body">
+			        		<div >
+						      	<ul class="list-group mb-3">
+						            <li class="list-group-item d-flex justify-content-between lh-condensed">
+						              <div>
+						                <h6 class="my-0">Origen</h6>
+						              </div>
+						              <span class="text-muted">Cuenca</span>
+						            </li>
+						            <li class="list-group-item d-flex justify-content-between lh-condensed">
+						              <div>
+						                <h6 class="my-0">Destino</h6>
+						              </div>
+						              <span class="text-muted">Quito</span>
+						            </li>
+						            <li class="list-group-item d-flex justify-content-between lh-condensed">
+						              <div>
+						                <h6 class="my-0">Asientos</h6>
+						              </div>
+						              <span class="text-muted">12,13,14,15</span>
+						            </li>
+						             <li class="list-group-item d-flex justify-content-between lh-condensed">
+						              <div>
+						                <h6 class="my-0">Hora</h6>
+						              </div>
+						              <span class="text-muted">15:45</span>
+						            </li>
+						             <li class="list-group-item d-flex justify-content-between lh-condensed">
+						              <div>
+						                <h6 class="my-0">Iva</h6>
+						              </div>
+						              <span class="text-muted">$6.30</span>
+						            </li>
+						             <li class="list-group-item d-flex justify-content-between lh-condensed">
+						              <div>
+						                <h6 class="my-0">Sub total</h6>
+						              </div>
+						              <span class="text-muted">$18.70</span>
+						            </li>
+						            <li class="list-group-item d-flex justify-content-between bg-light">
+						              <div class="text-success">
+						                <h6 class="my-0">Total (USD)</h6>
+						              </div>
+						              <span class="text-success"><strong>$20</strong></span>
+						            </li>
+						        </ul>
+			              	</div>
+			  				<div >
+					          	<form class="needs-validation" novalidate>
+					          		
+								  	<div class="input-group mb-3">
+												  <div class="input-group-prepend">
+												    <span class="input-group-text" id="basic-addon1">Cantidad de Asientos</span>
+												  </div>
+									   <select class="form-control" id="exampleFormControlSelect1">
+									      <option>1</option>
+									      <option>2</option>
+									      <option>3</option>
+									      <option>4</option>
+									      <option>5</option>
+									    </select>
+									</div>
+					          		<hr class="mb-4">
+					          		<div class="input-group mb-3">
+									  <div class="input-group-prepend">
+									    <span class="input-group-text" id="basic-addon1">Cedula</span>
+									  </div>
+									  <input type="text" class="form-control" placeholder="0123456789" aria-label="Username" aria-describedby="basic-addon1">
+									</div>
+									<div class="input-group mb-3">
+									  <div class="input-group-prepend">
+									    <span class="input-group-text" id="basic-addon1">Nombre</span>
+									  </div>
+									  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+									</div>
+									<div class="input-group mb-3">
+									  <div class="input-group-prepend">
+									    <span class="input-group-text" id="basic-addon1">Correo electronico</span>
+									  </div>
+									<input type="email" class="form-control" id="email" placeholder="you@example.com">
+										<div class="invalid-feedback">
+											Please enter a valid email address for shipping updates.
+										</div>
+									</div>		                  
+						            <hr class="mb-4">
+						            <button class="btn btn-outline-success btn-lg btn-block" type="submit">Vender</button>
+			          			</form>
+			        		</div>
+		          		</div>
+			      	</div>
+			    </div>
+	    	</main>
+			
+		      
+	      <!--Ingreso de datos-->
+		      
+	    </div>
+
+	</div>
+  <!-- /#wrapper -->
+	
+
+  <!-- Menu Toggle Script -->
+  
+  	<script type="text/javascript" src="../js/utils.js"></script>
+	<script type="text/javascript" src="../js/local.js"></script>
+	<script type="text/javascript" src="../js/components/header.js"></script>
+	<script type="text/javascript" src="../js/components/sidebar.js"></script>
+	<script type="text/javascript" src="../js/components/datepicker.js"></script>
+</body>
+</html>
