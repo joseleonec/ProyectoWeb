@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -29,7 +28,7 @@
         </div>
         <div class="col-sm-4 order-1 order-sm-4 pt-3">
           <h5><a class="cabecera-tittle" href="#">Transport</a></h5>
-          <h5><a class="cabecera-tittle" href="#">Administración</a></h5>
+          <h5><a class="cabecera-tittle" href="../inicio.html">Administración</a></h5>
         </div>
         <div class="col-sm-4 order-3 order-sm-4 pt-3">
           <div class="row">
@@ -50,14 +49,14 @@
       <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="sidebar-heading bg-dark barra-menu">--</div>
         <div class="list-group list-group-flush" role="tablist" id="mitab">
-          <a class="list-group-item list-group-item-action bg-dark barra-menu active" role="tab"
-            href="../inicio.html">Inicio</a>
           <a class="list-group-item list-group-item-action bg-dark barra-menu " role="tab"
+            href="../inicio.html">Inicio</a>
+          <a class="list-group-item list-group-item-action bg-dark barra-menu active" role="tab"
             href="empleados.html">Empleados</a>
           <a class="list-group-item list-group-item-action bg-dark barra-menu " role="tab"
             href="cooperativas.html">Cooperativas</a>
           <a class="list-group-item list-group-item-action bg-dark barra-menu " role="tab"
-            href="rutas.html">Rutas-Cooperativas</a>
+            href="rutas.html">Viajes-Cooperativas</a>
           <a class="list-group-item list-group-item-action bg-dark barra-menu " role="tab"
             href="anuncios.html">Anuncios</a>
         </div>
@@ -128,6 +127,18 @@
                         </div>
                         <form id="entrada_empleado" class="card-body">
                           <div class="form-group">
+                            <div class="form-horizontal">
+                              <select class="form-control" id="agencias">
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <input type="text" id="nickname" placeholder="Nombre de usuario" class="form-control" value="">
+                          </div>
+                          <div class="form-group">
+                            <input type="text" id="password" placeholder="Contraseña" class="form-control" value="">
+                          </div>
+                          <div class="form-group">
                             <input type="text" id="nombre_empl" placeholder="Nombre" class="form-control" value="">
                           </div>
                           <div class="form-group">
@@ -140,31 +151,25 @@
                           <div class="form-group">
                             <input type="email" id="correo" placeholder="Correo" class="form-control" value="">
                           </div>
-                          <div class="form-group">
-                            <input type="text" id="password" placeholder="Contraseña" class="form-control" value="">
-                          </div>
-                          <div class="form-group">
-                            <input type="text" id="empresa_empl" placeholder="Cooperativa" class="form-control"
-                              value="">
-                          </div>
                           <input type="submit" id="guardar_empleado" value="Ingresar nuevo"
                             class="btn btn-success btn-block">
                           <div class="form-group alerta" id="alerta_employ"></div>
                         </form>
                       </div>
                     </div>
-                    <div class="col-sm-9 miscroll2">
-                      <!--div class="col-3"-->
+                    <div class="col-sm-9 miscrollEmploy">
+                      <!--TABLA-->
                       <table class="table table-hover table-bordered tabla_content" id="tablaEmpleado">
                         <thead class="thead-dark">
                           <tr>
-                            <th>Codigo</th>
+                            <th>Id</th>
+                            <th>Agencia</th>
+                            <th>Nickname</th>
+                            <th>Password</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Cedula</th>
                             <th>Correo</th>
-                            <th>Contraseña</th>
-                            <th>Empresa</th>
                             <th>--</th>
                             <th>--</th>
                           </tr>
@@ -172,12 +177,13 @@
                         <tbody id="BodyTablaEmpleado">
                           <tr>
                             <td>1</td>
+                            <td>1</td>
+                            <td>andy</td>
+                            <td>1234</td>
                             <td>Andres</td>
                             <td>Pesantez</td>
                             <td>0104739827</td>
                             <td>andy56_er@gmail.com</td>
-                            <td>1234</td>
-                            <td>Viajeros Internacional</td>
                             <td>
                               <button class="task-ver btn btn-secondary">
                                 Editar
@@ -191,12 +197,13 @@
                           </tr>
                           <tr>
                             <td>2</td>
+                            <td>1</td>
+                            <td>maya</td>
+                            <td>5678</td>
                             <td>Maya</td>
                             <td>Montero</td>
                             <td>0107856123</td>
                             <td>maya34rg@hotmail.com</td>
-                            <td>5678</td>
-                            <td>Turismo Oriental</td>
                             <td>
                               <button class="task-ver btn btn-secondary">
                                 Editar

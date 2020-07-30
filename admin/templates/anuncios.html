@@ -14,8 +14,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link rel="stylesheet" href="../estilos/estilos.css">
-  <link rel="stylesheet" href="../estilos/anuncios.css">
-
 </head>
 
 <body>
@@ -29,7 +27,7 @@
         </div>
         <div class="col-sm-4 order-1 order-sm-4 pt-3">
           <h5><a class="cabecera-tittle" href="#">Transport</a></h5>
-          <h5><a class="cabecera-tittle" href="#">Administración</a></h5>
+          <h5><a class="cabecera-tittle" href="../inicio.html">Administración</a></h5>
         </div>
         <div class="col-sm-4 order-3 order-sm-4 pt-3">
           <div class="row">
@@ -50,15 +48,15 @@
       <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="sidebar-heading bg-dark barra-menu">--</div>
         <div class="list-group list-group-flush" role="tablist" id="mitab">
-          <a class="list-group-item list-group-item-action bg-dark barra-menu active" role="tab"
+          <a class="list-group-item list-group-item-action bg-dark barra-menu " role="tab"
             href="../inicio.html">Inicio</a>
           <a class="list-group-item list-group-item-action bg-dark barra-menu " role="tab"
             href="empleados.html">Empleados</a>
           <a class="list-group-item list-group-item-action bg-dark barra-menu " role="tab"
             href="cooperativas.html">Cooperativas</a>
           <a class="list-group-item list-group-item-action bg-dark barra-menu " role="tab"
-            href="rutas.html">Rutas-Cooperativas</a>
-          <a class="list-group-item list-group-item-action bg-dark barra-menu " role="tab"
+            href="rutas.html">Viajes-Cooperativas</a>
+          <a class="list-group-item list-group-item-action bg-dark barra-menu active" role="tab"
             href="anuncios.html">Anuncios</a>
         </div>
       </div>
@@ -99,30 +97,37 @@
                 <ul class="nav nav-tabs border-primary text-center justify-content-center border-bottom border-primary">
                   <!--nav-tabs nav-pills-->
                   <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#taxi"> Taxis </a>
+                    <a class="nav-link active" data-toggle="tab" href="#taxi"> Publicidad </a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#hotel"> Hoteles </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#restaurante"> Restaurantes </a>
-                  </li>
+                  <!--li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#noticias"> Noticias </a>
+                  </li-->
                 </ul>
               </div>
 
               <!-- Tab panes -->
               <div class="tab-content pt-3">
-                <!--Taxis-->
+                <!--Categorias de anuncios-->
                 <div class="tab-pane container active" id="taxi">
                   <div class="row">
                     <div class="col-sm-6">
                       <div class="form-group">
+                        <div class="form-horizontal">
+                          <strong>Categoria: </strong>
+                          <select class="form-control" id="menu_categorias">
+                            <option>Taxis</option>
+                            <option>Hoteles</option>
+                            <option>Restaurantes</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
                         <strong>Titulo:</strong>
-                        <input type="text" placeholder="Nombre" class="form-control" value="Taxis">
+                        <input id="titulo" type="text" placeholder="Nombre del sitio" class="form-control" value="">
                         <strong>Descripcion:</strong>
-                        <textarea class="form-control" rows="5" id="comment"></textarea>
+                        <textarea id="descripcion" class="form-control" rows="5"></textarea>
                         <strong>Enlace de la pagina:</strong>
-                        <input type="text" placeholder="Nombre" class="form-control" value="http://azutaxi.com/">
+                        <input id="url" type="text" placeholder="URL" class="form-control" value="">
                       </div>
                     </div>
                     <div class="col-sm-6">
@@ -135,75 +140,35 @@
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-sm-6 pt-3">
-                      <button class="btn btn-primary" id="menu-toggle">Publicar y guardar</button>
-                      <button class="btn btn-success" id="menu-toggle">Guardar</button>
+                  <div class="row pt-3">
+                    <div class="col-sm-6">
+                      <button class="btn btn-success" id="guardar_anuncio">Publicar y guardar</button>
+                    </div>
+                  </div>
+                  <div class="row pt-3">
+                    <div class="col-sm-6">
+                      <div class="form-group" id="alerta_anuncio"></div>
                     </div>
                   </div>
                 </div>
-                <!--Hoteles-->
-                <div class="tab-pane container fade" id="hotel">
+                <!--Tweets-->
+                <!--div class="tab-pane container fade" id="noticias">
                   <div class="row">
                     <div class="col-sm-6">
                       <div class="form-group">
                         <strong>Titulo:</strong>
-                        <input type="text" placeholder="Nombre" class="form-control" value="Hoteles">
-                        <strong>Descripcion:</strong>
+                        <input type="text" placeholder="Nombre" class="form-control" value="Noticias">
+                        <strong>URL twitter:</strong>
                         <textarea class="form-control" rows="5" id="comment"></textarea>
-                        <strong>Enlace de la pagina:</strong>
-                        <input type="text" placeholder="Nombre" class="form-control"
-                          value="http://www.hotelcuenca.com.ec/">
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="container">
-                        <p>Subir una imagen:</p>
-                        <input type="file" size="50" accept="image/png, .jpeg, .jpg, image/gif"
-                          onchange="processFiles2(this.files)">
-                        <div class="cuadro_imagen" id="fileOutput2">
-                        </div>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-sm-6 pt-3">
-                      <button class="btn btn-primary" id="menu-toggle">Publicar y guardar</button>
-                      <button class="btn btn-success" id="menu-toggle">Guardar</button>
+                      <button class="btn btn-success" id="guardar_noticia">Publicar y guardar</button>
                     </div>
                   </div>
-                </div>
-                <!--Restaurantes-->
-                <div class="tab-pane container fade" id="restaurante">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <strong>Titulo:</strong>
-                        <input type="text" placeholder="Nombre" class="form-control" value="Restaurantes">
-                        <strong>Descripcion:</strong>
-                        <textarea class="form-control" rows="5" id="comment"></textarea>
-                        <strong>Enlace de la pagina:</strong>
-                        <input type="text" placeholder="Nombre" class="form-control"
-                          value="https://www.facebook.com/RestauranteElCarbonazo/">
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="container">
-                        <p>Subir una imagen:</p>
-                        <input type="file" size="50" accept="image/png, .jpeg, .jpg, image/gif"
-                          onchange="processFiles3(this.files)">
-                        <div class="cuadro_imagen" id="fileOutput3">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-6 pt-3">
-                      <button class="btn btn-primary" id="menu-toggle">Publicar y guardar</button>
-                      <button class="btn btn-success" id="menu-toggle">Guardar</button>
-                    </div>
-                  </div>
-                </div>
+                </div-->
                 <!--Fin contenidos de Tabs-->
               </div>
               <!--Fin Seccion Anuncios-->

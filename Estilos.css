@@ -118,6 +118,62 @@ header{
   border: 0px solid #000000;
 }
 
+/* scroll de tweeter*/
+
+.miscrolltweets {
+  position: relative;
+  height: 550px;
+  /*altura desde donde aparecera el scroll*/
+  overflow: auto;
+  display: block;
+}
+
+/*-----Scroll table, header fixed--------*/
+
+.table-container {
+  height: 10em;
+}
+
+table {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  width: 100%;
+  min-width: 600px;
+}
+
+table thead {
+  /* head takes the height it requires, 
+  and it's not scaled when table is resized */
+  flex: 0 0 auto;
+  width: calc(100% - 0.9em);
+}
+
+table tbody {
+  /* body takes all the remaining available space */
+  height: 250px;
+  /*altura a la que se hara scroll*/
+  flex: 100 100 auto;
+  display: block;
+  overflow-y: scroll;
+}
+
+table tbody tr {
+  width: 100%;
+}
+
+table thead, table tbody tr {
+  display: table;
+  table-layout: fixed;
+}
+
+/*----------------*/
+.scroll {
+  overflow-x: auto;
+  display: block;
+}
+
+/*----------------*/
 /* Imagen de fondo de las categorias*/
 
 #img-categoria {
@@ -168,6 +224,9 @@ header{
   color: #000000c9;
 }
 
+.texto-color{
+  color:black;
+}
 .categoria {
   /*background-color: rgb(184, 201, 221);*/
   background: rgba(237, 237, 237, 1);
@@ -181,7 +240,35 @@ header{
   /**/
 }
 
+
+/*---contenedor horarios*/
+
+.titulo-cabecera{
+  padding-bottom: 20px;
+}
+
 /* Color fondo para la pagina de Inicio*/
+
+/* .fondo-1 {
+  height: 100%;
+  background-position: center;
+  background: url(img/clock.jpg) no-repeat center fixed;
+  background-size: cover;
+}
+
+.fondo-1 ::before {
+  content: "";
+  position: center;
+  opacity: 70%;
+} */
+
+.fondo-1 {
+  background-position: center;
+  background: url(img/clock.jpg) no-repeat left fixed;
+  background-color: rgba(148, 146, 146, 0.6);
+  background-blend-mode: lighten;
+  /* You may add things like width, height, background-size... */
+}
 
 .fondo-inicio {
   height: 100%;

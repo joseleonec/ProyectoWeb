@@ -121,11 +121,15 @@
 }
 
 .entrada_datos_ruta {
+  height: 410px;
+}
+
+.entrada_datos_destino {
   height: 350px;
 }
 
 .entrada_datos_employ {
-  height: 520px;
+  height: 570px;
 }
 
 /* Alerta */
@@ -177,15 +181,7 @@ tr.highlighted td {
   width: 100%;
 }
 
-/*Scroll para el contenedor*/
 
-.miscroll {
-  position: relative;
-  height: 450px;
-  /*altura desde donde aparecera el scroll*/
-  overflow: auto;
-  display: block;
-}
 
 /* #acercaDe{
 
@@ -219,6 +215,16 @@ tr.highlighted td {
   text-align: center;
 }
 
+/*Scroll para el contenedor*/
+
+.miscroll {
+  position: relative;
+  height: 450px;
+  /*altura desde donde aparecera el scroll*/
+  overflow: auto;
+  display: block;
+}
+
 .miscrollC {
   position: relative;
   height: 350px;
@@ -227,12 +233,43 @@ tr.highlighted td {
   display: block;
 }
 
-.miscroll2 {
+.miscrollEmploy {
   position: relative;
-  height: 430px;
+  height: 570px;
   /*altura desde donde aparecera el scroll*/
   overflow: auto;
   display: block;
+}
+
+.scrollComentarios {
+  position: relative;
+  height: 800px;
+  /*altura desde donde aparecera el scroll*/
+  overflow: auto;
+  display: block;
+}
+
+.cuadro_imagen {
+  margin-top: 30px;
+  border: solid 1px black;
+  padding: 5px;
+  max-width: 300px;
+  height: 150px;
+  background: lightyellow;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+.servicios{
+  border-color: green;
+  /*border-bottom: #007df4;
+  border: green;*/
+}
+
+.image-file{
+  height: auto;
+  word-wrap: break-word;
 }
 
 /*
