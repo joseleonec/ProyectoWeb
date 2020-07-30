@@ -27,12 +27,12 @@ class Header extends HTMLElement {
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
                                         class="fas fa-user fa-fw"></i></a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity
-                                        Log</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="#" class="btn btn-danger dropdown-item" role="button" onclick=logOut()>Logout</a>
-                                </div>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                        <a class="dropdown-item" href="#">Configuración</a>
+                                        <a class="dropdown-item" href="#">Registro de Actividad</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="login.html">Salir</a>
+                                    </div>
                             </li>
                         </ul>
                     </div>

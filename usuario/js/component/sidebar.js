@@ -40,7 +40,13 @@ class SideBar extends HTMLElement {
 			<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
 		    	<div class="sb-sidenav-menu">     
 				    <sidebar-menu></sidebar-menu>
-			    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                <div class="small">
+                    Loggeado como:
+                </div>
+                Administrador
+            </div>
 		    </nav>
 		</div>
     `;
