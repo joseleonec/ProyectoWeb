@@ -3,7 +3,8 @@ const referencia = {
     "Mis Rutas": "misrutas.html",
     "Historial de Viajes": "viajes.html",
     "Historial de compras": "compras.html",
-    "Carritos": "reservas.html"
+    "Carritos": "reservas.html",
+    "Editar Perfil": "perfil.html"
 };
 
 class SideBarMenu extends HTMLElement {
@@ -45,7 +46,7 @@ class SideBar extends HTMLElement {
                 <div class="small">
                     Loggeado como:
                 </div>
-                Administrador
+                <p id="logedas"> </p>
             </div>
 		    </nav>
 		</div>

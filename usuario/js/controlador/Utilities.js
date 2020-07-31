@@ -13,7 +13,6 @@ function mostrarMensaje(mensaje, cssClass) {
     }, 100);
 }
 
-
 function POST(url, data) {
     fetch(url, {
             method: 'POST', // or 'PUT'
