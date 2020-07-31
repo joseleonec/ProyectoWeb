@@ -87,7 +87,7 @@
         <!-- Contenido -->
         <div class="container-fluid">
           <div class="tab-content pt-4">
-            <div class="tab-pane active" role="tabpanel" id="cooperativa">
+            <div class="tab-pane active pagina" role="tabpanel" id="cooperativa">
               <h3>Cooperativas de transporte</h3>
               <p>Agregar, editar o dar de baja a las cooperativas de transporte.</p>
 
@@ -106,7 +106,7 @@
 
               <!-- Tab panes -->
               <div class="tab-content pt-3">
-                <!--Taxis-->
+                <!--Cooperativas-->
                 <div class="tab-pane active" id="coop">
                   <!-- CRUD -->
                   <div calss="stick-top">
@@ -133,7 +133,7 @@
                         </div>
                       </div>
                       <div class="col-sm-9 miscroll">
-                        <!--div class="col-3"-->
+                        <!--"Tabla"-->
                         <table class="table table-hover table-bordered tabla_content" id="tablaCoop">
                           <thead class="thead-dark">
                             <tr>
@@ -186,40 +186,43 @@
                   </div>
                   <!-- Fin Crud -->
                 </div>
-                <!--Hoteles-->
+                <!--Comentarios-->
                 <div class="tab-pane container fade" id="comentarios">
                   <div class="row pb-3">
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                       <p>Buscar comentarios de una agencia</p>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-8">
                       <form class="form-inline" id="busqueda_Comen">
-                        <input id="txt_buscar_comentarios" class="col-sm-4 form-control mr-sm-2" placeholder="Buscar"
-                          onkeyup="buscarComentarios()">
-                        <!--input id="txt_buscar" class="col-sm-4 form-control mr-sm-2" placeholder="Search"-->
-                        <button type="button" class="btn btn-success">Buscar</button>
+                        <input id="txt_buscar_comentarios" class="col-sm-4 form-control mr-sm-2" placeholder="Buscar">
+                        <button id="coop-buscar" type="button" class="btn btn-success">Buscar</button>
                       </form>
                     </div>
                   </div>
-                  <div class="row scrollComentarios" id=contenedor_comentarios>
+                  <div class="row scrollComentarios" id="contenedor_comentarios">
                     <div class="card">
                       <div class="card-body">
-                        <h5 class="card-title">Ana Tenemaza</h5>
-                        <p><strong>Email: </strong>ana_tene23@gmail.com</p>
-                        <p><strong>Calificacion: </strong>4/5</p>
-                        <p class="card-text">This is a wider card with supporting text below as a
-                          natural lead-in to additional content. This content is a little bit longer.</p>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
+                        <h5 class="card-title">Rutas Orences</h5>
                       </div>
                     </div>
                     <div class="card">
-                      <div class="card-body">
+                      <div class="card-body" value="1">
                         <h5 class="card-title">Ana Tenemaza</h5>
                         <p><strong>Email: </strong>ana_tene23@gmail.com</p>
                         <p><strong>Calificacion: </strong>4/5</p>
                         <p class="card-text">This is a wider card with supporting text below as a
                           natural lead-in to additional content. This content is a little bit longer.</p>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
+                        <button type="button" class="comentario-delete btn btn-danger">Eliminar</button>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-body" value="3">
+                        <h5 class="card-title">Maria Tenemaza</h5>
+                        <p><strong>Email: </strong>ana_tene23@gmail.com</p>
+                        <p><strong>Calificacion: </strong>4/5</p>
+                        <p class="card-text">This is a wider card with supporting text below as a
+                          natural lead-in to additional content. This content is a little bit longer.</p>
+                        <button type="button" class="comentario-delete btn btn-danger">Eliminar</button>
                       </div>
                     </div>
                   </div>
@@ -273,6 +276,7 @@
       </div>
     </div>
   </div>
+
   <!-- Footer -->
   <div id="img-fondo">
     <footer class="pie">
@@ -293,9 +297,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
-  <script src="../javasc/clases.js"></script>
+
   <script src="../javasc/java.js"></script>
-  <script src="../javasc/admi_anuncios.js"></script>
 </body>
 
 </html>

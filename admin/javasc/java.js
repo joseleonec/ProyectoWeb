@@ -1,10 +1,30 @@
 $(document).ready(function () {
     console.log("ready!");
     $("#wrapper").toggleClass("toggled");
-    var pg_clientes = document.getElementById("tabEmploy");
-    if (pg_clientes != null) {
-        //cargarClientes();
+    var pagina_actual = document.getElementsByClassName('pagina');
+    if (pagina_actual[0] !== undefined) {
+        switch (pagina_actual[0].getAttribute('id')) {
+            case "tabEmpleado":
+                cargarEmpleado();
+                break;
+            case "cooperativa":
+                cargarCooperativa();
+                break;
+            case "Restaurantes":
+                alert("restaurante");
+                break;
+            default:
+                break;
+        }
     }
+    /* var pg_coop = document.getElementById("cooperativa");
+    if (pg_coop != null) {
+        cargarCooperativa();
+    }
+    var pg_empleados = document.getElementById("tabEmpleado");
+    if (pg_empleados != null) {
+        cargarEmpleado();
+    } */
 });
 
 //Oculta el menu
@@ -33,7 +53,7 @@ var url_clientes_ip = "http://cryptic-beach-67438.herokuapp.com/api/listar";
 var url_carrito = "https://cryptic-beach-67438.herokuapp.com/interfaz";
 var url_facturas = "https://facturacionapp9.herokuapp.com/api/";
 var url_solicitudes = "https://springtest999.herokuapp.com/api/solicituddevolucion/";
-var url_cliente_no = "https://cryptic-beach-67438.herokuapp.com/api";
+var url_cooperativas = "https://terminal25backend.herokuapp.com/";
 
 function openInicio() {
     $("#wrapper").toggleClass("toggled");
@@ -57,110 +77,7 @@ function limpiar(card) {
     document.getElementById(card).reset();
 }
 
-//metodo POST
-function nuevoEmpleado(nombre, apellido, cedula, correo, contra, empresa) {
-    var data = { name: usuario, email: correo, password: contraseña, phone: telefono, saldo: saldo, state: estado, id_carrito: idCarrito };
-    let url = url_clientes + "/cliente";
-    fetch(url, {
-        method: 'POST', // or 'PUT'
-        body: JSON.stringify(data), // data can be `string` or {object}!
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(function (data_res) {
-        console.log("Respuesta: " + data_res);
-        cambiar_texto(false, btn_guardar);
-        limpiar("entrada_empleado");
-        mostrar_mensaje('Exito', alerta, 'success');
-        cargarEmpleado();
-    }).catch(function (error) {
-        console.log('Error post: ' + error);
-        mostrar_mensaje('No se pudo agregar', alerta, 'danger');
-    });
-}
-
-//metodo PUT
-function editarEmpleado(nombre, apellido, cedula, correo, contra, empresa) {
-    var data = { id: ID_cliente_editando, name: usuario, email: correo, password: contraseña, phone: telefono, state: estado };
-    let url = url_clientes + "/cliente";
-    fetch(url, {
-        method: 'PUT', // or 'PUT'
-        body: JSON.stringify(data), // data can be `string` or {object}!
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(function (data_res) {
-        console.log("Respuesta: " + data_res);
-        cambiar_texto(false, btn_guardar);
-        limpiar("entrada_empleado");
-        editando = false;
-        mostrar_mensaje('Se ha modificado', alerta, 'success');
-        cargarEmpleado();
-    }).catch(function (error) {
-        console.log('Error Id carrito: ' + error);
-        mostrar_mensaje('No se pudo editar', alerta, 'danger');
-    });
-}
-
-//metodo GET
-function cargarEmpleado() {
-    let url = url_clientes + "cliente/listar";
-    fetch(url).then(function (response) {
-        return response.json();
-    }).then(function (data) {
-        let template = '';
-        data.forEach(task => {
-            template +=
-                `<tr>
-            <td>${task.id}</td>
-            <td>${task.name}</td>
-            <td>${task.email}</td>
-            <td>${task.password}</td>
-            <td>${task.phone}</td>
-            <td>${task.saldo}</td>
-            <td>${task.state}</td>
-            <td>
-            <button class="task-ver btn btn-secondary">
-              Editar
-            </button>
-            </td>
-            <td>
-                <button class="task-delete btn btn-danger">
-                Delete
-                </button>
-            </td>
-            </tr>`
-        });
-        template += `
-        <tr class='noSearch hide'>
-            <td colspan="5"></td>
-        </tr>`
-        console.log("listo");
-        $('#BodyTablaEmpleado').html(template);
-    }).catch(err => {
-        console.log(err);
-    });
-}
-
-//metodo DELETE
-function eliminarEmpleado() {
-    if (confirm('Seguro que desea eliminar?')) {
-        //$(this).parent().parent().remove();
-        let element = $(this)[0].parentElement.parentElement;
-        let id_fila = element.cells[0].innerText;
-        let url = url_clientes + "/cliente?id=" + id_fila;
-        fetch(url, {
-            method: 'DELETE'
-        }).then(() => {
-            console.log('removed');
-            element.remove();
-        }).catch(err => {
-            console.error(err)
-        });
-    }
-}
-
-/*----------------Empleados----*/
+/*----------------Empleados--------*/
 $(document).on('click', '#tab_clientes', cargarEmpleado);//carga los datos de clientes
 
 $("#guardar_empleado").click(function (e) {
@@ -177,7 +94,7 @@ $("#guardar_empleado").click(function (e) {
     if (empresa === "Agencias" || nickname === '' || contra === '' || nombre === '' || apellido === '' || cedula === '' || correo === '') {
         return mostrar_mensaje('Campos vacios', alerta, 'danger');
     }
-    if (cedula.value.length > 10) {
+    if (cedula.length > 10) {
         return mostrar_mensaje('Cedula erronea', alerta, 'danger');
     }
     var id_empresa = empresa.split(" ");
@@ -227,8 +144,7 @@ $("#guardar_cooperativa").click(function (e) {
     nuevoCooperativa(name.value, buses.value, estado.value);
 });
 
-$(".coop-editar").click(function (e) {
-    //const element = $(this)[0].activeElement.parentElement.parentElement;
+$(document).on('click', '.coop-editar', function (e) {
     const datos = e.target.parentElement.parentElement.getElementsByTagName('td');
     ID_cliente_editando = datos[0].innerText;
     $('#nombre_coop').val(datos[1].innerText);
@@ -236,10 +152,100 @@ $(".coop-editar").click(function (e) {
     $('#ruc_coop').val(datos[3].innerText);
     editando_coop = true;
     cambiar_texto(true, btn_guardar_coop);
-    e.preventDefault();
 });
 
 $(document).on('click', '.coop-delete', eliminarCooperativa);
+
+$(document).on('click', '#coop-buscar', function (e) {
+    let valor = document.getElementById("txt_buscar_comentarios").value;
+    if (valor != "") {
+        buscarComentarios(valor);
+    }
+});
+
+$(document).on('click', '.comentario-delete', eliminarComentario);
+
+function buscarComentarios(idCooperativa) {
+    let url = url_cooperativas + "comentario/idagencia=" + idCooperativa;
+    fetch(url).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        let template = '';
+        let nombre;
+        data.forEach(task => {
+            nombre = task.agencia.nombre;
+            template += `<div class="card">
+            <div class="card-body" value="${task.idComentario}">
+                <h5 class="card-title">${task.usuario.nombre}</h5>
+                <p><strong>Email: </strong>${task.usuario.email}</p>
+                <p><strong>Calificacion: </strong>${task.calificacion}/5</p>
+                <p class="card-text">${task.comentario}</p>
+                <button type="button" class="comentario-delete btn btn-danger">Eliminar</button>
+            </div >
+            </div > `;
+        });
+        let aux = `<div class="card"><div class="card-body"><h5 class="card-title">${nombre}</h5>
+            </div></div>`;
+        template = aux + template;
+        console.log("Comentarios cargados");
+        $('#contenedor_comentarios').html(template);
+    }).catch(err => {
+        //console.log(err);
+    });
+}
+
+function eliminarComentario() {
+    if (confirm('Seguro que desea eliminar?')) {
+        //$(this).parent().parent().remove();
+        let element = $(this)[0].parentElement.parentElement;
+        let id_fila = $(this).parent().attr('value');
+        console.log(id_fila);
+        element.remove();
+        /* let url = url_clientes + "/cliente?id=" + id_fila;
+        fetch(url, {
+            method: 'DELETE'
+        }).then(() => {
+            console.log('removed');
+            element.remove();
+        }).catch(err => {
+            console.error(err)
+        }); */
+    }
+}
+
+//metodo GET
+function cargarCooperativa() {
+    let url = url_cooperativas + "agencia/listar";
+    fetch(url).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        let template = '';
+        data.forEach(task => {
+            template +=
+                `<tr>
+            <td>${task.idAgencia}</td>
+            <td>${task.nombre}</td>
+            <td>${task.email}</td>
+            <td>${task.ruc}</td>
+            <td>
+                <button class="coop-editar btn btn-secondary">
+                    Editar
+                </button>
+            </td>
+            <td>
+                <button class="coop-delete btn btn-danger">
+                    Delete
+                </button>
+            </td>
+            </tr>`
+        });
+        //document.getElementById("bodyTableCoop").innerHTML = template;
+        $('#bodyTableCoop').html(template);
+        console.log("Cooperativas cargadas");
+    }).catch(err => {
+        console.log(err);
+    });
+}
 
 //metodo POST
 function nuevoCooperativa(nombre, buses, estado) {
@@ -286,43 +292,6 @@ function editarCooperativa(nombre, buses, estado) {
     });
 }
 
-//metodo GET
-function cargarCooperativa() {
-    let url = url_clientes + "cliente/listar";
-    fetch(url).then(function (response) {
-        return response.json();
-    }).then(function (data) {
-        let template = '';
-        data.forEach(task => {
-            template +=
-                `<tr>
-            <td>${task.id}</td>
-            <td>${task.name}</td>
-            <td>${task.buses}</td>
-            <td>${task.state}</td>
-            <td>
-            <button class="coop-editar btn btn-secondary">
-              Editar
-            </button>
-            </td>
-            <td>
-                <button class="coop-delete btn btn-danger">
-                Delete
-                </button>
-            </td>
-            </tr>`
-        });
-        template += `
-        <tr class='noSearch hide'>
-            <td colspan="5"></td>
-        </tr>`
-        console.log("listo");
-        $('#bodyTableCoop').html(template);
-    }).catch(err => {
-        console.log(err);
-    });
-}
-
 //metodo DELETE
 function eliminarCooperativa() {
     if (confirm('Seguro que desea eliminar?')) {
@@ -342,6 +311,111 @@ function eliminarCooperativa() {
     }
 }
 
+/*----------------Empleados--------*/
+//metodo POST
+function nuevoEmpleado(nombre, apellido, cedula, correo, contra, empresa) {
+    var data = { name: usuario, email: correo, password: contraseña, phone: telefono, saldo: saldo, state: estado, id_carrito: idCarrito };
+    let url = url_clientes + "/cliente";
+    fetch(url, {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(function (data_res) {
+        console.log("Respuesta: " + data_res);
+        cambiar_texto(false, btn_guardar);
+        limpiar("entrada_empleado");
+        mostrar_mensaje('Exito', alerta, 'success');
+        cargarEmpleado();
+    }).catch(function (error) {
+        console.log('Error post: ' + error);
+        mostrar_mensaje('No se pudo agregar', alerta, 'danger');
+    });
+}
+
+//metodo PUT
+function editarEmpleado(nombre, apellido, cedula, correo, contra, empresa) {
+    var data = { id: ID_cliente_editando, name: usuario, email: correo, password: contraseña, phone: telefono, state: estado };
+    let url = url_clientes + "/cliente";
+    fetch(url, {
+        method: 'PUT', // or 'PUT'
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(function (data_res) {
+        console.log("Respuesta: " + data_res);
+        cambiar_texto(false, btn_guardar);
+        limpiar("entrada_empleado");
+        editando = false;
+        mostrar_mensaje('Se ha modificado', alerta, 'success');
+        cargarEmpleado();
+    }).catch(function (error) {
+        console.log('Error Id carrito: ' + error);
+        mostrar_mensaje('No se pudo editar', alerta, 'danger');
+    });
+}
+
+//metodo GET
+function cargarEmpleado() {
+    let url = url_cooperativas + "empleado/listar";
+    fetch(url).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        let template = '';
+        data.forEach(task => {
+            template +=
+                `<tr>
+            <td>${task.idEmpleado}</td>
+            <td>${task.agencia.idAgencia}</td>
+            <td>${task.nickname}</td>
+            <td>${task.password}</td>
+            <td>${task.nombre}</td>
+            <td>${task.apellido}</td>
+            <td>${task.cedula}</td>
+            <td>${task.email}</td>
+            <td>
+                <button class="task-ver btn btn-secondary">
+                    Editar
+            </button>
+            </td>
+            <td>
+                <button class="task-delete btn btn-danger">
+                    Delete
+                </button>
+            </td>
+            </tr>`
+        });
+        template += `
+            < tr class='noSearch hide' >
+                <td colspan="5"></td>
+        </tr> `
+        $('#BodyTablaEmpleado').html(template);
+        console.log("Empleados cargados");
+    }).catch(err => {
+        console.log(err);
+    });
+}
+
+//metodo DELETE
+function eliminarEmpleado() {
+    if (confirm('Seguro que desea eliminar?')) {
+        //$(this).parent().parent().remove();
+        let element = $(this)[0].parentElement.parentElement;
+        let id_fila = element.cells[0].innerText;
+        let url = url_clientes + "/cliente?id=" + id_fila;
+        fetch(url, {
+            method: 'DELETE'
+        }).then(() => {
+            console.log('removed');
+            element.remove();
+        }).catch(err => {
+            console.error(err)
+        });
+    }
+}
+
 /*----------------RUTAS---------*/
 function Cargar_Agencias() {
     let url = url_parroquias;
@@ -352,7 +426,7 @@ function Cargar_Agencias() {
         let template = '<option selected ="" disabled>Agencias</option>';
         data.forEach(task => {
             template +=
-                `<option>${task.idParroquia} ${task.nombreParroquia}</option>`;
+                `< option > ${task.idParroquia} ${task.nombreParroquia}</option > `;
         });
         $('#menu_parroquias').html(template);
     }).catch(err => {
@@ -369,7 +443,7 @@ function Cargar_Destinos() {
         let template = '<option selected ="" disabled>Destino</option>';
         data.forEach(task => {
             template +=
-                `<option>${task.idParroquia} ${task.nombreParroquia}</option>`;
+                `< option > ${task.idParroquia} ${task.nombreParroquia}</option > `;
         });
         $('#menu_parroquias').html(template);
     }).catch(err => {
@@ -466,27 +540,27 @@ function cargarRuta() {
         let template = '';
         data.forEach(task => {
             template +=
-                `<tr>
+                `< tr >
             <td>${task.id}</td>
             <td>${task.origen}</td>
             <td>${task.destino}</td>
             <td>${task.empresa}</td>
             <td>
-            <button class="ruta-editar btn btn-secondary">
-              Editar
+                <button class="ruta-editar btn btn-secondary">
+                    Editar
             </button>
             </td>
             <td>
                 <button class="ruta-delete btn btn-danger">
-                Delete
+                    Delete
                 </button>
             </td>
-            </tr>`
+            </tr > `
         });
         template += `
-        <tr class='noSearch hide'>
-            <td colspan="5"></td>
-        </tr>`
+            < tr class='noSearch hide' >
+                <td colspan="5"></td>
+        </tr > `
         console.log("listo");
         $('#BodyTableRutas').html(template);
     }).catch(err => {
@@ -601,27 +675,27 @@ function cargarRuta() {
         let template = '';
         data.forEach(task => {
             template +=
-                `<tr>
+                `< tr >
             <td>${task.id}</td>
             <td>${task.origen}</td>
             <td>${task.destino}</td>
             <td>${task.empresa}</td>
             <td>
-            <button class="ruta-editar btn btn-secondary">
-              Editar
+                <button class="ruta-editar btn btn-secondary">
+                    Editar
             </button>
             </td>
             <td>
                 <button class="ruta-delete btn btn-danger">
-                Delete
+                    Delete
                 </button>
             </td>
-            </tr>`
+            </tr > `
         });
         template += `
-        <tr class='noSearch hide'>
-            <td colspan="5"></td>
-        </tr>`
+            < tr class='noSearch hide' >
+                <td colspan="5"></td>
+        </tr > `
         console.log("listo");
         $('#BodyTableRutas').html(template);
     }).catch(err => {
