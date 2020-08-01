@@ -1,0 +1,63 @@
+.container {
+    height: 100%;
+    align-content: center;
+}
+
+.card {
+    height: 370px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0, 0, 3, 0.849) !important;
+}
+
+.card-registro {
+    height: 450px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0, 0, 3, 0.849) !important;
+}
+
+.card-header h3 {
+    color: white;
+}
+
+.texto_login {
+    color: white;
+}
+
+.login-color {
+    color: black;
+    background-color: cornflowerblue;
+}
+
+.login_btn {
+    color: black;
+    background-color: cornflowerblue;
+    width: 100%;
+}
+
+.login_btn:hover {
+    color: black;
+    background-color: darkorange;
+}
+
+html, body {
+    height: 100%;
+    background-position: center;
+    /*background-image: url(../img/crop.jpg);*/
+    /*Sin efecto de imagen fija*/
+    background: url(../img/szar.png) no-repeat center fixed;
+    /*Efecto de imagen fija*/
+    background-size: cover;
+}
+
+/*
+html,body{
+background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
+font-family: 'Numans', sans-serif;
+}*/

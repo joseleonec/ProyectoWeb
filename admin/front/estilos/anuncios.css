@@ -1,0 +1,22 @@
+.cuadro_imagen {
+    margin-top: 30px;
+    border: solid 1px black;
+    padding: 5px;
+    max-width: 300px;
+    height: 150px;
+    background: lightyellow;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+.servicios{
+    border-color: green;
+    /*border-bottom: #007df4;
+    border: green;*/
+}
+
+.image-file{
+    height: auto;
+    word-wrap: break-word;
+}
