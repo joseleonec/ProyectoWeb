@@ -46,13 +46,15 @@
     <script>
 
   function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
-    console.log('statusChangeCallback');
+    //console.log('statusChangeCallback');
     console.log(response);                   // The current login status of the person.
     if (response.status === 'connected') {   // Logged into your webpage and Facebook.
       testAPI();  
     } else {                                 // Not logged into your webpage or we are unable to tell.
-      if (response.status === 'not_authorized'){
-        alert("Usuario no conectado");
+      //if (response.status === 'not_authorized'){
+      if (response.status === 'unknown'){
+        //alert("Usuario no conectado");
+        console.log("Nadie conectado"); 
       }
       document.getElementById('status').innerHTML = 'Please log ' + 'into this webpage.';
     }
@@ -64,19 +66,16 @@
     });
   }
 
-  function cerrarSesion2(e){
-    e.preventDefault();
+  function cerrarSesion2(){
     FB.logout(function(response) {
         alert(" Adios vaquero");
     });
   }
 
-  function cerrarSesion(e){
-        e.preventDefault();
-        alert("Adios vaquero");
-        //FB.getLoginStatus(function(response) {
-            //if (response.status === 'connected') {
-                /* alert("Adios vaquero");
+    function cerrarSesion(){
+        //alert("Click");
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
                 FB.logout(function(response) {
                     // this part just clears the $_SESSION var
                     // replace with your own code
@@ -84,17 +83,17 @@
                         alert("Adios vaquero");
                     });
                 });
-                alert("Adios vaquero"); */
-            //}else{
-              //  alert("No esta iniciado");
-            //}
-        //});  
+            }else{
+                alert("No esta iniciado");
+            }
+        });  
     }
 
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '624975514822984',
-      cookie     : true,                     // Enable cookies to allow the server to access the session.
+      status     : true, 
+      cookie     : false,                     // Enable cookies to allow the server to access the session.
       xfbml      : true,                     // Parse social plugins on this webpage.
       version    : 'v7.0'           // Use this Graph API version for this call.
     });
@@ -120,6 +119,10 @@
     });
   }
 
+  $(document).on('click','#cerrar', function(e){
+    e.preventDefault();
+    cerrarSesion();
+  });
 </script>
 
 
@@ -172,8 +175,8 @@
                     <br>
                     <br>
 
-                    <button id="" name="" class="btn btn-outline-success my-2 my-sm-0 login-color" 
-                        onclick="cerrarSesion();">Cerrar Sesion</button>
+                    <button id="cerrar" name="" class="btn btn-outline-success my-2 my-sm-0 login-color" 
+                        >Cerrar Sesion</button>
                     <div class="pt-3" id="alerta"></div>
                     <div class="texto_login"><a class="texto_login" href="registro.php">¿No tienes una cuenta?</a></div>
                 </form>
