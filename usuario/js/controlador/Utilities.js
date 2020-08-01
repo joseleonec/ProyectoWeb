@@ -10,7 +10,7 @@ function mostrarMensaje(mensaje, cssClass) {
     container.appendChild(div);
     setTimeout(function() {
         div.remove();
-    }, 100);
+    }, 200);
 }
 
 function POST(url, data) {
@@ -35,7 +35,7 @@ function PUT(url, data) {
         }).then(res => res.json())
         .catch(error => console.error('Error:', error))
         .then(response => console.log('Success:', response));
-    document.getElementById("labelid").readOnly = false;
+    // document.getElementById("labelid").readOnly = false;
 }
 
 function DELETE(url, id) {

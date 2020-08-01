@@ -25,14 +25,12 @@ function cargarCampos(idUsuario) {
     fetch(url + idUsuario).then(function(response) {
         return response.json();
     }).then(function(data) {
-        // console.log(data);
         document.getElementById("idUsuario").value = data.idUsuario;
         document.getElementById("nombreusuario").value = data.nombre;
         document.getElementById("apellidousuario").value = data.apellido;
         document.getElementById("cedulausuario").value = data.cedula;
         document.getElementById("emailusuario").value = data.email;
         document.getElementById("nicknameusuario").value = data.nickname;
-
         document.getElementById("usuariosaldo").innerText = data.saldo;
         document.getElementById("logedas").innerText = data.nickname;
     }).catch(function() {
@@ -40,79 +38,99 @@ function cargarCampos(idUsuario) {
     });
 }
 
+function desactvarCampos() {
+    cambiarEstado(true);
+}
+
+function cambiarEstado(boolean) {
+    document.getElementById("nombreusuario").readOnly = boolean;
+    document.getElementById("apellidousuario").readOnly = boolean;
+    document.getElementById("cedulausuario").readOnly = boolean;
+    document.getElementById("emailusuario").readOnly = boolean;
+    document.getElementById("nicknameusuario").readOnly = boolean;
+    document.getElementById("passwordusuario").readOnly = boolean;
+    document.getElementById("confirmpasswordusuario").readOnly = boolean;
+}
+
+function actvarCampos() {
+    cambiarEstado(false);
+}
+
 $(document).ready(function() {
 
     idUsuario = 2;
     cargarCampos(idUsuario);
 
+    $("#guardarusuario").click(function(e) {
 
-    // POST
-    // $("#btn-guardar-solicitud").click(function() {
-    //     // console.log("Evento capturado");
-    //     const id = document.getElementById("labelid").value.toUpperCase();
-    //     const idProducto = document.getElementById("labelidProducto").value.toUpperCase();
-    //     const idFactura = document.getElementById("labelidFactura").value.toUpperCase();
-    //     const idCliente = document.getElementById("labeliidCliente").value.toUpperCase();
-    //     var fechaDeRegistro = document.getElementById("labelfechaDeRegistro").value.toUpperCase();
-    //     fechaDeRegistro = fechaDeRegistro.split("T")[0] + " " + fechaDeRegistro.split("T")[1];
-    //     const motivoDevolucion = document.getElementById("labelmotivoDevolucion").value.toUpperCase();
-    //     const estadoAprobacion = document.getElementById("labelestadoAprobacion").value.toUpperCase();
-    //     // Eliminamos el registro que indica que la tabla esta vacia
-    //     // Input User Validation
-    //     if (id === '' || idProducto === '' || idFactura === '' || idCliente === '' || fechaDeRegistro === '' || motivoDevolucion === '') {
-    //         mostrarMensaje('Please Insert data in all fields', 'danger');
-    //     } else {
-    //         const data = {
-    //             "idSolicitud": id,
-    //             "idProducto": idProducto,
-    //             "idFactura": idFactura,
-    //             "idCliente": idCliente,
-    //             "fechaDeRegistro": fechaDeRegistro,
-    //             "motivoDevolucion": motivoDevolucion,
-    //             "estadoAprobacion": estadoAprobacion
-    //         }
-    //         if (document.getElementById("labelid").readOnly) {
+        var valor = document.getElementById("guardarusuario").value;
+        if (valor === "Guardar Cambios") {
+            // console.log("hola");
+            const id = document.getElementById("idUsuario").value;
+            const nombre = document.getElementById("nombreusuario").value;
+            const apellido = document.getElementById("apellidousuario").value;
+            const cedula = document.getElementById("cedulausuario").value;
+            const email = document.getElementById("emailusuario").value;
+            const nickname = document.getElementById("nicknameusuario").value;
+            const saldo = document.getElementById("usuariosaldo").value;
+            const password = document.getElementById("passwordusuario").value;
+            const passwordConfirm = document.getElementById("confirmpasswordusuario").value;
 
-    //             PUT(url, data);
-    //             vaciarTabla(datatable);
-    //             llenarTabla(datatable);
+            // Input User Validation
+            if (id === '' || nombre === '' || apellido === '' || cedula === '' || email === '' || nickname === '' || password === '' || passwordConfirm === '') {
+                // mostrarMensaje('Please Insert data in all fields', 'danger');
+                alert('Please Insert data in all fields');
+            } else if (password != passwordConfirm) {
+                alert('Las contraseñas no coinciden');
+                // mostrarMensaje('Las contraseñas no coinciden', 'danger');
+            } else {
+                fetch(url + id).then(function(response) {
+                    return response.json();
+                }).then(function(obj) {
+                    const psw = obj.password;
+                    if (password === psw) {
+                        const data = {
+                            "idUsuario": id,
+                            "nombre": nombre,
+                            "apellido": apellido,
+                            "cedula": cedula,
+                            "email": email,
+                            "nickname": nickname,
+                            "saldo": saldo,
+                            "password": password
+                        };
+                        // console.log("Error")
+                        PUT(url, data);
+                        // console.log("Error despues put")
+                        document.getElementById("cancelar").disabled = true;
+                        document.getElementById("guardarusuario").value = "Editar";
+                        desactvarCampos();
+                        document.getElementById("passwordusuario").value = ""
+                        document.getElementById("confirmpasswordusuario").value = "";
+                        cargarCampos(id);
+                        alert("Cambios registrados")
+                        mostrarMensaje('Cambios regisrados con exito', 'success');
+                    }
+                }).catch(function() {
+                    console.log("Error en el metodo GET");
+                });
+                // alert("Cambios registrados")
 
-    //         } else {
+            }
+        } else if (valor === "Editar") {
+            // console.log("hola");
+            actvarCampos();
+            document.getElementById("cancelar").disabled = false;
+            document.getElementById("guardarusuario").value = "Guardar Cambios";
+        }
+        // console.log("hola");
+        // console.log(valor)
+    });
 
-    //             POST(url, data);
-    //             addRow(datatable, data);
-    //         }
-    //         $('#exampleModal').modal('hide');
-    //         mostrarMensaje('Elemento regisrado con exito', 'success');
-    //     }
-    // });
-    // $('#exampleModal').on('hidden.bs.modal', function() {
-    //     $(this).find('form')[0].reset();
-    // });
-
-    // // DELETE
-    // datatable.on('click', 'tbody tr', function(e) {
-    //     const botonname = e.target.name;
-    //     const columns = e.target.parentElement.parentElement.getElementsByTagName('td');
-    //     const ID = columns[0].innerText;
-    //     if (botonname === 'delete') {
-
-    //         DELETE(url, ID);
-    //         console.log(this);
-    //         datatable.row(this).remove().draw();
-    //         mostrarMensaje('Elemento eliminado ', 'info');
-
-    //     } else if (botonname === 'edit') {
-    //         document.getElementById("labelid").readOnly = true;
-    //         document.getElementById("labelid").value = columns[0].innerText;
-
-    //         document.getElementById("labelidUbicacion").value = columns[1].innerText;
-    //         document.getElementById("labelidDespachador").value = columns[2].innerText;
-    //         document.getElementById("labelidFactura").value = columns[3].innerText;
-
-    //         document.getElementById("labelprioridad").value = columns[4].innerText;
-    //         document.getElementById("labelestado").value = columns[5].innerText;
-    //         document.getElementById("labelpesoKg").value = columns[6].innerText;
-    //     }
-    // });
+    $("#cancelar").click(function() {
+        desactvarCampos();
+        document.getElementById("cancelar").disabled = true;
+        document.getElementById("guardarusuario").value = "Editar";
+        cargarCampos(idUsuario);
+    });
 });

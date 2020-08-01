@@ -36,7 +36,8 @@
                                 <!-- left column -->
                                 <div class="col-md-3">
                                     <div class="pb-4 text-center">
-                                        <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+                                        <!-- <img src="default-avatar.png//placehold.it/200" class="avatar img-circle" alt="avatar"> -->
+                                        <img src="images/default-avatar.png" class="avatar img-circle" alt="avatar">
                                         <h6>Cambiar foto</h6>
                                         <input type="file" class="form-control">
                                     </div>
@@ -46,7 +47,9 @@
                                             <h5 class="card-title">SALDO</h5>
                                         </div>
                                         <div class="card-body">
-                                            <h5 id="usuariosaldo" class="card-title"></h5>
+                                            $
+                                            <i id="usuariosaldo" class="card-title">
+                                            </i>
                                         </div>
                                     </div>
 
@@ -55,7 +58,7 @@
                                 <div class="col-md-9 personal-info">
                                     <div class="alert alert-info alert-dismissable">
                                         <a class="panel-close close" data-dismiss="alert">×</a>
-                                        <i class="fa fa-coffee"></i> This is an <strong>.alert</strong>. Use this to show important messages to the user.
+                                        <i class="fa fa-check"> </i>Cuenta Activa
                                     </div>
                                     <h3>Información personal</h3>
                                     <form class="form-horizontal" role="form">
@@ -68,51 +71,56 @@
                                         <div class="form-group">
                                             <label class="col-lg-3 control-label">Nombres</label>
                                             <div class="col-lg-8">
-                                                <input id="nombreusuario" class="form-control" type="text" value="">
+                                                <input id="nombreusuario" class="form-control" readonly type="text" value="">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-lg-3 control-label">Apellidos</label>
                                             <div class="col-lg-8">
-                                                <input id="apellidousuario" class="form-control" type="text" value="">
+                                                <input id="apellidousuario" class="form-control" readonly type="text" value="">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-lg-3 control-label">Cedula:</label>
                                             <div class="col-lg-8">
-                                                <input id="cedulausuario" class="form-control" type="number" value="">
+                                                <input id="cedulausuario" class="form-control" readonly type="number" value="">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-lg-3 control-label">Email</label>
                                             <div class="col-lg-8">
-                                                <input id="emailusuario" class="form-control" type="text" value="">
+                                                <input id="emailusuario" class="form-control" readonly type="text" value="">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-3 control-label">nickname</label>
                                             <div class="col-md-8">
-                                                <input id="nicknameusuario" class="form-control" type="text" value="">
+                                                <input id="nicknameusuario" class="form-control" readonly type="text" value="">
                                             </div>
                                         </div>
+                                    </form>
+
+                                    <form class="form-horizontal" role="form">
+                                        <h5>Escriba la contraseña para confirmar cambios</h5>
                                         <div class="form-group">
+
                                             <label class="col-md-3 control-label">contraseña</label>
                                             <div class="col-md-8">
-                                                <input id="passwordusuario" class="form-control" type="password" value="">
+                                                <input id="passwordusuario" class="form-control" readonly type="password" value="">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-3 control-label">Confirmar contraseña:</label>
                                             <div class="col-md-8">
-                                                <input id="confirmpasswordusuario" class="form-control" type="password" value="">
+                                                <input id="confirmpasswordusuario" class="form-control" readonly type="password" value="">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-3 control-label"></label>
                                             <div class="col-md-8">
-                                                <input id="guardar" type="button" class="btn btn-primary" value="Save Changes">
+                                                <input id="guardarusuario" type="button" class="btn btn-primary" value="Editar">
                                                 <span></span>
-                                                <input id="cancelar" type="reset" class="btn btn-default" value="Cancel">
+                                                <input id="cancelar" type="reset" class="btn btn-default" disabled value="Cancelar">
                                             </div>
                                         </div>
                                     </form>
