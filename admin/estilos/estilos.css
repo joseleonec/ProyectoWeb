@@ -121,7 +121,7 @@
 }
 
 .entrada_datos_ruta {
-  height: 410px;
+  height: 360px;
 }
 
 .entrada_datos_destino {
@@ -133,7 +133,8 @@
 }
 
 /* Alerta */
-.alerta{
+
+.alerta {
   padding: 10px;
 }
 
@@ -181,13 +182,17 @@ tr.highlighted td {
   width: 100%;
 }
 
-
-
 /* #acercaDe{
 
 } */
-.modal-contenido{
+
+.modal-contenido {
   width: 700px;
+}
+
+.logo-empresa{
+  max-height: 100px;
+  max-width: 100px;
 }
 
 .logo {
@@ -200,21 +205,11 @@ tr.highlighted td {
   height: 100px;
 }
 
-.logo-head{
-  background-position: center;
-  background-image: url(../img/bus1.png);
-  /*Sin efecto de imagen fija*/
-  /*background: url(../img/escudo.png) no-repeat center fixed;*/
-  /*Efecto de imagen fija*/
-  background-size: cover;
-  height: 70px;
-  width: 100px;
-}
-
 .centrado {
   text-align: center;
 }
 
+/*----------------*/
 /*Scroll para el contenedor*/
 
 .miscroll {
@@ -249,6 +244,8 @@ tr.highlighted td {
   display: block;
 }
 
+/*---------------------*/
+
 .cuadro_imagen {
   margin-top: 30px;
   border: solid 1px black;
@@ -261,13 +258,13 @@ tr.highlighted td {
   text-align: center;
 }
 
-.servicios{
+.servicios {
   border-color: green;
   /*border-bottom: #007df4;
   border: green;*/
 }
 
-.image-file{
+.image-file {
   height: auto;
   word-wrap: break-word;
 }

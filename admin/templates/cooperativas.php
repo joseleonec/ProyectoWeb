@@ -1,3 +1,16 @@
+<?php
+  session_start();
+ 
+  if(!isset($_SESSION['id_usuario'])){
+    header("Location: ../index.php");
+  }else{
+    //Obterner las variable
+    $variable=$_SESSION['id_usuario'];
+    $id_user=$_SESSION['id_identificador'];
+    $url_back=$_SESSION['URLback'];
+  }
+  
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,21 +36,20 @@
     <div class="container cabecera py-1 text-center">
       <div class="row">
         <div class="col-sm-4 order-2 order-sm-4 pt-3">
-          <!--h6><img src="icons/config.svg">&nbsp;&nbsp;Home</h6-->
-          <div class="logo-head"></div>
-          <!--h6><img src="../icons/config.svg">&nbsp;&nbsp;<a class="text-cabecera" href="#">Volver a la tienda</a></h6-->
+          <img class="logo-empresa" src="../img/bus1.png">
         </div>
         <div class="col-sm-4 order-1 order-sm-4 pt-3">
           <h5><a class="cabecera-tittle" href="#">Transport</a></h5>
-          <h5><a class="cabecera-tittle" href="../inicio.html">Administración</a></h5>
+          <h5><a class="cabecera-tittle" href="../inicio.php">Administración</a></h5>
         </div>
         <div class="col-sm-4 order-3 order-sm-4 pt-3">
           <div class="row">
             <div class="col-sm-6">
-              <h6><img src="../icons/person.svg">&nbsp;&nbsp;Bienvenido ....</h6>
+              <h6><img src="../icons/person.svg">&nbsp;&nbsp;Bienvenido</h6>
+              <h6><?php echo $variable;?></h6>
             </div>
             <div class="col-sm-6">
-              <a class="btn btn-sm btn-danger cerrar" href="../index.html">Cerrar Sesion</a>
+            <a class="btn btn-sm btn-danger cerrar" href="../salir.php">Cerrar Sesion</a>
             </div>
           </div>
         </div>
@@ -51,15 +63,15 @@
         <div class="sidebar-heading bg-dark barra-menu">--</div>
         <div class="list-group list-group-flush" role="tablist" id="mitab">
           <a class="list-group-item list-group-item-action bg-dark barra-menu " role="tab"
-            href="../inicio.html">Inicio</a>
+            href="../inicio.php">Inicio</a>
           <a class="list-group-item list-group-item-action bg-dark barra-menu " role="tab"
-            href="empleados.html">Empleados</a>
+            href="empleados.php">Empleados</a>
           <a class="list-group-item list-group-item-action bg-dark barra-menu active" role="tab"
-            href="cooperativas.html">Cooperativas</a>
+            href="cooperativas.php">Cooperativas</a>
           <a class="list-group-item list-group-item-action bg-dark barra-menu " role="tab"
-            href="rutas.html">Viajes-Cooperativas</a>
+            href="rutas.php">Viajes-Cooperativas</a>
           <a class="list-group-item list-group-item-action bg-dark barra-menu " role="tab"
-            href="anuncios.html">Anuncios</a>
+            href="anuncios.php">Anuncios</a>
         </div>
       </div>
 
@@ -74,6 +86,9 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+              <li class="nav-item active">
+                <a class="nav-link" target="_blank" href="../../">Ver sitio</a>
+              </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">Opciones</a>
@@ -200,31 +215,6 @@
                     </div>
                   </div>
                   <div class="row scrollComentarios" id="contenedor_comentarios">
-                    <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title">Rutas Orences</h5>
-                      </div>
-                    </div>
-                    <div class="card">
-                      <div class="card-body" value="1">
-                        <h5 class="card-title">Ana Tenemaza</h5>
-                        <p><strong>Email: </strong>ana_tene23@gmail.com</p>
-                        <p><strong>Calificacion: </strong>4/5</p>
-                        <p class="card-text">This is a wider card with supporting text below as a
-                          natural lead-in to additional content. This content is a little bit longer.</p>
-                        <button type="button" class="comentario-delete btn btn-danger">Eliminar</button>
-                      </div>
-                    </div>
-                    <div class="card">
-                      <div class="card-body" value="3">
-                        <h5 class="card-title">Maria Tenemaza</h5>
-                        <p><strong>Email: </strong>ana_tene23@gmail.com</p>
-                        <p><strong>Calificacion: </strong>4/5</p>
-                        <p class="card-text">This is a wider card with supporting text below as a
-                          natural lead-in to additional content. This content is a little bit longer.</p>
-                        <button type="button" class="comentario-delete btn btn-danger">Eliminar</button>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -297,7 +287,15 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
-
+  <!------->
+  <script type="text/JavaScript"> 
+    function user_data() {
+      return "<?php echo $id_user ?>";
+    };
+    function get_url() {
+      return "<?php echo $url_back ?>";
+    };
+  </script> 
   <script src="../javasc/java.js"></script>
 </body>
 

@@ -118,6 +118,13 @@ header{
   border: 0px solid #000000;
 }
 
+/* Texto pie de pagina*/
+
+.textFoot {
+  text-align: justify;
+  /*text-justify: inter-word;*/
+}
+
 /* scroll de tweeter*/
 
 .miscrolltweets {
@@ -156,6 +163,7 @@ table tbody {
   flex: 100 100 auto;
   display: block;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 table tbody tr {
@@ -168,12 +176,14 @@ table thead, table tbody tr {
 }
 
 /*----------------*/
+
 .scroll {
   overflow-x: auto;
   display: block;
 }
 
 /*----------------*/
+
 /* Imagen de fondo de las categorias*/
 
 #img-categoria {
@@ -224,9 +234,10 @@ table thead, table tbody tr {
   color: #000000c9;
 }
 
-.texto-color{
-  color:black;
+.texto-color {
+  color: black;
 }
+
 .categoria {
   /*background-color: rgb(184, 201, 221);*/
   background: rgba(237, 237, 237, 1);
@@ -240,10 +251,9 @@ table thead, table tbody tr {
   /**/
 }
 
-
 /*---contenedor horarios*/
 
-.titulo-cabecera{
+.titulo-cabecera {
   padding-bottom: 20px;
 }
 

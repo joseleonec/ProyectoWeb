@@ -95,7 +95,7 @@
 									<ul>
 										<li><i class="fa fa-phone"></i>(012)1234 5678</li>
 										<li><i class="fa fa-clock-o"></i>Siempre abierto</li>
-										<li><i class="fa fa-envelope"></i>example.com</li>
+										<li><i class="fa fa-envelope"></i>info@emov.gob.ec</li>
 									</ul>
 								</div>
 							</aside>
@@ -107,10 +107,14 @@
 							<aside id="custom_html-3" class="widget_text widget widget_custom_html">
 								<div class="textwidget custom-html-widget">
 									<ul>
-										<li><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i
-													class="fa fa-twitter"></i></a><a href="#"><i
-													class="fa fa-envelope"></i></a><a href="#"><i
-													class="fa fa-google"></i></a></li>
+										<li><a href="https://www.facebook.com/TerminalTerrestreDeCuenca/"
+												target="_blank">
+												<i class="fa fa-facebook"></i></a>
+											<a href="https://twitter.com/ctccuenca" target="_blank"><i
+													class="fa fa-twitter"></i></a>
+											<a href="#"><i class="fa fa-envelope"></i></a>
+											<a href="#"><i class="fa fa-google"></i></a>
+										</li>
 									</ul>
 								</div>
 							</aside>
@@ -141,14 +145,11 @@
 						<div class="header-right clearfix">
 							<aside id="custom_html-4" class="widget_text widget widget_custom_html">
 								<div class="textwidget custom-html-widget">
-									<div class="four columns"><i class="fa fa-phone"></i><span>Call
-											Us:</span><br>1254-256-212-54</div>
-									<div class="four columns "><i class="fa fa-clock-o"></i><span>Opening
-											Time:</span><br>Siempre abierto<br></div>
+									<div class="four columns"><i class="fa fa-phone"></i>
+										<span>Llámenos:</span><br>(07) 2 844 688</div>
+									<div class="four columns "><i class="fa fa-clock-o"></i>
+										<span>Hora de apertura:</span><br>Siempre abierto<br></div>
 									<!--i class="fa fa-envelope"></i-->
-									<div class="four columns "><a id="boton-bonito"
-											href="usuario/dist/login.html">Iniciar sesion
-										</a></div>
 									<div class="four columns ">
 										<!--select>
 											<option>Spanish</option>
@@ -213,11 +214,11 @@
 		<!-- INICIO CONTENIDO -->
 		<div class="salidas fondo-1">
 			<div class="section-head titulo-cabecera">
-				<h1 class="title-divider">Proximas salidas</h1>
+				<h1 class="title-divider">Próximas salidas</h1>
 				<p class="sub-description sub-titulo">Viajes desde la Ciudad de Cuenca</p>
 			</div>
 			<div class="container texto-color">
-				<h4><strong>Salida: </strong>05/12/2020</h4>
+				<h4 id="fecha_salida"></h4>
 			</div>
 			<div class="container texto-color scroll">
 				<table class="table " id="">
@@ -230,56 +231,7 @@
 							<th>Hora</th>
 						</tr>
 					</thead>
-					<tbody class="" id="">
-						<tr>
-							<td>Cuenca</td>
-							<td>Guayaquil</td>
-							<td>Rutas Orence</td>
-							<td>ABD-134</td>
-							<td>05:00</td>
-						</tr>
-						<tr>
-							<td>Cuenca</td>
-							<td>Azogues</td>
-							<td>Via El Cajas</td>
-							<td>ABD-134</td>
-							<td>05:00</td>
-						</tr>
-						<tr>
-							<td>Cuenca</td>
-							<td>Azogues</td>
-							<td>San Francisco</td>
-							<td>ABD-134</td>
-							<td>05:00</td>
-						</tr>
-						<tr>
-							<td>Jonas Alexander</td>
-							<td>Developer</td>
-							<td>San Francisco</td>
-							<td>ABD-134</td>
-							<td>05:00</td>
-						</tr>
-						<tr>
-							<td>Shad Decker</td>
-							<td>Regional Director</td>
-							<td>Edinburgh</td>
-							<td>ABD-134</td>
-							<td>05:00</td>
-						</tr>
-						<tr>
-							<td>Michael Bruce</td>
-							<td>Javascript Developer</td>
-							<td>Singapore</td>
-							<td>ABD-134</td>
-							<td>05:00</td>
-						</tr>
-						<tr>
-							<td>Donna Snider</td>
-							<td>Customer Support</td>
-							<td>New York</td>
-							<td>ABD-134</td>
-							<td>05:00</td>
-						</tr>
+					<tbody class="" id="bodyTablaInicio">
 					</tbody>
 				</table>
 			</div>
@@ -304,14 +256,15 @@
 										<div class="latest-post-details">
 											<h4><a>TAXIS</a></h4>
 											<div class="latest-post-content">
-												<p>
-												<h3>Azu taxi</h3>
-												Solicitar un taxi nunca ha sido más fácil, rápido y seguro.
-												Un servicio seguro con los Taxis de la Unión de Cooperativas de
-												Transporte en Taxis de Azuay.
+												<h3 id="nombreSitioT">Azu taxi</h3>
+												<p id="descripcionStitoT">
+													Solicitar un taxi nunca ha sido más fácil, rápido y seguro.
+													Un servicio seguro con los Taxis de la Unión de Cooperativas de
+													Transporte en Taxis de Azuay.
 												</p>
 												<br>
-												<a target="_blank" href="http://azutaxi.com/">Visitar pagina</a>
+												<a id="urlSitioT" target="_blank" href="http://azutaxi.com/">Visitar
+													pagina</a>
 											</div><!-- .latest-post-content -->
 										</div><!-- .latest-post-details -->
 									</div><!-- .latest-post -->
@@ -325,18 +278,17 @@
 										<div class="latest-post-details">
 											<h4><a>HOTELES</a></h4>
 											<div class="latest-post-content">
-												<p>
-												<h3>Hotel Cuenca</h3>
-												¿Buscas donde alojarte en Cuenca? Entonces no te pierdas Hotel Cuenca,
-												un hotel para familias que te acerca a lo mejor de Cuenca.
-
-												Cuenca Hotel tiene servicio de habitaciones y conserje para que tu
-												estancia sea más agradable. El establecimiento también cuenta con
-												desayuno incluido.
+												<h3 id="nombreSitioH">Hotel Cuenca</h3>
+												<p id="descripcionStitoH">
+													¿Buscas donde alojarte en Cuenca? Entonces no te pierdas Hotel
+													Cuenca,un hotel para familias que te acerca a lo mejor de Cuenca.
+													Cuenca Hotel tiene servicio de habitaciones y conserje para que tu
+													estancia sea más agradable. El establecimiento también cuenta con
+													desayuno incluido.
 												</p>
 												<br>
-												<a target="_blank" href="http://www.hotelcuenca.com.ec/">Visitar
-													pagina</a>
+												<a id="urlSitioH" target="_blank"
+													href="http://www.hotelcuenca.com.ec/">Visitar pagina</a>
 											</div><!-- .latest-post-content -->
 										</div><!-- .latest-post-details -->
 									</div><!-- .latest-post -->
@@ -366,19 +318,19 @@
 										<div class="latest-post-details">
 											<h4><a>RESTAURANTES</a></h4>
 											<div class="latest-post-content">
-												<p>
-												<h3>El Confesionario</h3>
-												Detalles
-												TIPOS DE COMIDA
-												Internacional, Fusión
-												DIETAS ESPECIALES
-												Apto para vegetarianos, Opciones sin gluten, Opciones veganas
-												COMIDAS
-												Desayuno, Almuerzo, Cena, Brunch, Abierto hasta tarde, Bebidas
-												Ver todos los detalles
-												Comidas, Características
+												<h3 id="nombreSitioR">El Confesionario</h3>
+												<p id="descripcionStitoR">
+													Detalles
+													TIPOS DE COMIDA
+													Internacional, Fusión
+													DIETAS ESPECIALES
+													Apto para vegetarianos, Opciones sin gluten, Opciones veganas
+													COMIDAS
+													Desayuno, Almuerzo, Cena, Brunch, Abierto hasta tarde, Bebidas
+													Ver todos los detalles
+													Comidas, Características
 												</p>
-												<a target="_blank"
+												<a id="urlSitioR" target="_blank"
 													href="https://www.facebook.com/ElConfesionarioCuenca/">Visitar
 													pagina</a>
 											</div><!-- .latest-post-content -->
@@ -403,43 +355,38 @@
 
 				<div class="one-third column">
 					<aside id="custom_html-5" class="widget_text widget widget_custom_html">
-						<div class="textwidget custom-html-widget">
-							<h4 class="widget-title">Fetch</h4>Structure personal participate in ethics training as
-							part
-							of our best practices program and each employee is provided with a skillset that help
-							them
-							makes the best decisions.
+						<div class="textwidget custom-html-widget textFoot">
+							<h4 class="widget-title">Nosotros</h4>
+							EI Terminal terrestre de Cuenca se encuentra ubicado entre las avenidas Gil Ramírez y
+							España, entre las calles Chapetones y Del Chorro al noreste de la ciudad de Cuenca en
+							Ecuador.
+							A tan sólo un kilómetro del Aeropuerto Mariscal Lamar, es un terminal multifuncional que se
+							utiliza como estación de buses intercantonales, además de cubrir las rutas
+							interprovinciales. Adicionalmente funciona como enlace para el Tranvía y líneas troncales de
+							la ciudad.
+							La Municipal EMOV es la entidad que se encarga de la administración de esta terminal.
 						</div>
 					</aside>
 				</div>
 
 				<div class="one-third column">
-					<aside id="recent-posts-3" class="widget widget_recent_entries">
-						<h4 class="widget-title">Entradas recientes</h4>
-						<ul>
-							<li>
-								<a href="#">Post One</a>
-							</li>
-							<li>
-								<a href="#">Post Two</a>
-							</li>
-							<li>
-								<a href="#">Post Tree</a>
-							</li>
-						</ul>
-					</aside>
+					<div class="textwidget custom-html-widget textFoot">
+						<h4 class="widget-title">Horario de Atención</h4>
+						<i class="fa fa-clock-o"></i><br>
+						El horario de atención del terminal es
+						continuo durante las 24 horas del día, los 365 días del año.
+					</div>
 				</div>
 
 				<div class="one-third column">
 					<aside id="custom_html-6" class="widget_text widget widget_custom_html">
 						<div class="textwidget custom-html-widget">
-							<h4 class="widget-title">Contact Details</h4>
+							<h4 class="widget-title">Contáctanos</h4>
 							<ul>
-								<li>14 Tottenham Court Road, London, English</li>
-								<li>(102) 6666 8888</li>
-								<li>example.com</li>
-								<li>(102) 8888 9999</li>
-								<li>Siempre abierto</li>
+								<li> Dirección: Av. Gil Ramírez Dávalos y España, Calle Chapetones y Calle Del Chorro
+								</li>
+								<li><i class="fa fa-phone"></i>Teléfonos: (07) 2 844 688</li>
+								<li><i class="fa fa-envelope"></i>info@emov.gob.ec</li>
 							</ul>
 						</div>
 					</aside>
@@ -449,12 +396,13 @@
 		<div class="site-info">
 			<div class="container">
 				<div class="copyright sixteen columns">
-					<p> Powered by <a href="http://wordpress.org/" target="_blank"> WordPress.</a> Theme: Fetch by
+					<p>© 2020 Copyright Transport</p>
+					<!--p> Powered by <a href="http://wordpress.org/" target="_blank"> WordPress.</a> Theme: Fetch by
 						<a href="https://www.webulousthemes.com/" target="_blank" rel="designer">Webulous Themes</a>
-					</p>
+					</p-->
 				</div>
 			</div>
-		</div><!-- .site-info -->
+		</div>
 		<div class="scroll-to-top"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
 	</footer>
 
@@ -469,6 +417,9 @@
 		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
 		</script>
 	<!-- Importaciones -->
+	<!--script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script-->
 	<!------->
 </body>
 
