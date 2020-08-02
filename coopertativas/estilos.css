@@ -6,6 +6,10 @@
 
 /* Botones */
 
+body {
+    overflow-x: hidden;
+}
+
 .boton-coop {
     text-decoration: none;
     padding: 10px 20px;
@@ -21,6 +25,18 @@
     color: white;
 }
 
+/*Scroll de la tabla*/
+
+.miscroll {
+    position: relative;
+    min-width: 500px;
+    overflow-x: auto;
+    display: block;
+}
+
+.heightTable{
+    height: 500px;
+}
 /*Modal*/
 
 .modal-coop {
