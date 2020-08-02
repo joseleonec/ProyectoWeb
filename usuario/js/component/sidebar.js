@@ -1,10 +1,10 @@
 const referencia = {
+    "Mi Perfil": "perfil.html",
     "Proximas Salidas": "salidas.html",
-    "Mis Rutas": "misrutas.html",
-    "Historial de Viajes": "viajes.html",
-    "Historial de compras": "compras.html",
     "Carritos": "reservas.html",
-    "Editar Perfil": "perfil.html"
+    "Historial de compras": "compras.html",
+    "Mis Rutas": "rutas.html",
+    "Historial de Viajes": "viajes.html"
 };
 
 class SideBarMenu extends HTMLElement {

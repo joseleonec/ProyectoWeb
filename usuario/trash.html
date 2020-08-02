@@ -1,72 +1,51 @@
-<!--Header -->
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-    <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
-        <i class="fas fa-bars"></i>
-    </button>
-    <a class="navbar-brand" href="">Admin Entrega y devolucion</a>
-    <!-- Navbar Search-->
-    <form class=" d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-        <div class="input-group">
-            <!-- <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" /> -->
-            <div class="input-group-append">
-                <!-- <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button> -->
-                <!-- Navbar-->
-                <ul class="navbar-nav ml-auto ml-md-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                class="fas fa-user fa-fw"></i></a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">Configuración</a>
-                            <a class="dropdown-item" href="#">Registro de Actividad</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="login.html">Salir</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </form>
-</nav>
-<!--fin Header -->
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- sedebar -->
-<div id="layoutSidenav_nav">
-    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-        <div class="sb-sidenav-menu">
-            <div class="nav">
-                <a class="nav-link" href="EmpresasDeEnvios.html">
-                    Empresas de Envios
-                </a>
-                <a class="nav-link" href="Tarifas.html">
-                    Tarifas
-                </a>
-                <a class="nav-link" href="Parroquias.html">
-                    Parroquias
-                </a>
-                <a class="nav-link" href="EntregasADomicilio.html">
-                    Entregas a domicilio
-                </a>
-                <a class="nav-link" href="EntregasEnBodega.html">
-                    Entregas en bodega
-                </a>
-                <a class="nav-link" href="Solicitudes.html">
-                    Solicitudes de devolución
-                </a>
-                <a class="nav-link" href="NotasDeCredito.html">
-                    Notas de credito
-                </a>
-                <a class="nav-link" href="Sustituciones.html">
-                    Sustituciones
-                </a>
-            </div>
-        </div>
-        <div class="sb-sidenav-footer">
-            <div class="small">
-                Loggeado como:
-            </div>
-            Administrador
-        </div>
-    </nav>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
-<!--  -->
+<body>
+    <fb:login-button size="large" scope="public_profile,email" returnscopes="true" onlogin="checkLoginState();">Login to Facebook</fb:login-button>
+    <script>
+        //Load the JavaScript SDK asynchronously
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        window.fbAsyncInit = function() {
+            //FB JavaScript SDK configuration and setup
+            FB.init({
+                appId: '633430383982407', //FB App ID
+                cookie: true, //enable cookies to allow the server to access the session
+                xfbml: true, //parse social plugins on this page
+                version: 'v3.2' //use this graph api version 3.2
+            });
+        }
+    </script>
+
+</body>
+
+
+<!-- <div id="spinner" style="background: #4267b2; border-radius: 5px; color: white; height: 40px; text-align: center; width: 250px;">
+    Loading -->
+<!-- <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-use-continue-as="true" data-onlogin="checkLoginState();">
+</div> -->
+<script>
+    var finished_rendering = function() {
+        console.log("finished rendering plugins");
+        var spinner = document.getElementById("spinner");
+        spinner.removeAttribute("style");
+        spinner.removeChild(spinner.childNodes[0]);
+    };
+    FB.Event.subscribe('xfbml.render', finished_rendering);
+</script>
+
+</html>

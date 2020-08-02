@@ -1,25 +1,26 @@
-const url = 'https://springtest999.herokuapp.com/api/parroquia/';
+const url = 'https://terminal25backend.herokuapp.com/factura/';
+const urlCounter = 'https://terminal25backend.herokuapp.com/boleto/count/'
+var idUsuario = 1;
 
-function addRow(datatable, parroquia) {
-    const span = document.createElement('span');
-    span.className = 'table-remove';
-    span.innerHTML = `
-        <span class="table-remove">
-            <button name="delete" type="submit"
-                class="btn btn-danger btn-rounded btn-sm my-0">
-                Eliminar
-            </button>
-            <button name="edit" type="submit"
-            class="btn btn-warning btn-rounded btn-sm my-0">
-                Editar
-            </button>
-        </span>
-            `;
-    datatable.row.add([parroquia.idParroquia, parroquia.nombreParroquia, span]).draw();
+function addRow(datatable, factura) {
+    var fecha = factura.fecha.slice(0, 16).replace(/T/g, ' ');
+    fecha = new Date(fecha).toString().split("G")[0];
+
+    var token = "idcarrito=" + factura.carrito.idCarrito;
+
+    fetch(urlCounter + token).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        const boletos = data;
+        datatable.row.add([factura.idFactura, fecha, factura.carrito.idCarrito, boletos, "$ " + factura.total]).draw();
+    }).catch(function() {
+        console.log("Error al Llenar la tabla");
+    });
 }
 
-function llenarTablaParroquias(datatable) {
-    fetch(url).then(function(response) {
+function llenarTabla(datatable) {
+    var token = "idusuario=" + idUsuario;
+    fetch(url + token).then(function(response) {
         return response.json();
     }).then(function(data) {
         data.forEach(i => {
@@ -34,23 +35,9 @@ function llenarTablaParroquias(datatable) {
 
 $(document).ready(function() {
 
-    var datatable = $('#tablaParroquia').DataTable({
-        "columnDefs": [{
-            "targets": -1,
-            "data": null,
-            "defaultContent": `
-                <button name="edit" type="submit"
-                    class="btn btn-warning btn-rounded btn-sm my-0" data-toggle="modal" data-target="#exampleModal">
-                    Editar
-                </button>
-                <button name='delete' class="btn btn-danger btn-rounded btn-sm my-0" >
-                    Eliminar
-                </button>`
-
-        }]
-    });
+    var datatable = $('#tablaCompras').DataTable();
     // LLENAR TABLA
-    llenarTablaParroquias(datatable);
+    llenarTabla(datatable);
     // POST
     $("#btn-guardar-parroquia").click(function() {
         // console.log("Evento capturado");
@@ -68,11 +55,11 @@ $(document).ready(function() {
             if (document.getElementById("labelid").readOnly) {
                 PUT(url, data);
                 vaciarTabla(datatable);
-                llenarTablaParroquias(datatable);
+                llenarTabla(datatable);
             } else {
                 POST(url, data);
                 vaciarTabla(datatable)
-                llenarTablaParroquias(datatable);
+                llenarTabla(datatable);
                 addRow(datatable, data);
             }
             $('#exampleModal').modal('hide');

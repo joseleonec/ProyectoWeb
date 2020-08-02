@@ -1,25 +1,12 @@
-const url = 'https://springtest999.herokuapp.com/api/notadecredito/';
+const url = 'https://terminal25backend.herokuapp.com/carrito/idusuario='
+const idUsuario = 2;
 
-function addRow(datatable, nota) {
-    const span = document.createElement('span');
-    span.className = 'table-remove';
-    span.innerHTML = `
-        <span class="table-remove">
-            <button name="delete" type="submit"
-                class="btn btn-danger btn-rounded btn-sm my-0">
-                Eliminar
-            </button>
-            <button name="edit" type="submit"
-            class="btn btn-warning btn-rounded btn-sm my-0">
-                Editar
-            </button>
-        </span>
-            `;
-    datatable.row.add([nota.idNotaDeCredito, nota.solicitudDevolucion.idSolicitud, nota.monto, nota.autorizacionSRI, span]).draw();
+function addRow(datatable, carrito) {
+    datatable.row.add([carrito.idCarrito, carrito.fechaCreacion, carrito.estado]).draw();
 }
 
 function llenarTabla(datatable) {
-    fetch(url).then(function(response) {
+    fetch(url + idUsuario).then(function(response) {
         return response.json();
     }).then(function(data) {
         data.forEach(i => {
@@ -33,14 +20,14 @@ function llenarTabla(datatable) {
 
 $(document).ready(function() {
 
-    var datatable = $('#tablaNota').DataTable({
+    var datatable = $('#tablaSustitucion').DataTable({
         "columnDefs": [{
             "targets": -1,
             "data": null,
             "defaultContent": `
                 <button name="edit" type="submit"
-                    class="btn btn-warning btn-rounded btn-sm my-0" data-toggle="modal" data-target="#exampleModal">
-                    Editar
+                    class="btn btn-info btn-rounded btn-sm my-0" data-toggle="modal" data-target="#exampleModal">
+                    Ver
                 </button>
                 <button name='delete' class="btn btn-danger btn-rounded btn-sm my-0" >
                     Eliminar
@@ -50,12 +37,12 @@ $(document).ready(function() {
     // LLENAR TABLA
     llenarTabla(datatable);
     // POST
-    $("#btn-guardar-nota-de-credito").click(function() {
+    $("#btn-guardar-sustitucion").click(function() {
         // console.log("Evento capturado");
         const id = document.getElementById("labelid").value.toUpperCase();
         const idSolicitud = document.getElementById("labelidSolicitud").value.toUpperCase();
+        const idProductoSustituto = document.getElementById("labelidProductoSustituto").value.toUpperCase();
         const monto = document.getElementById("labelmonto").value.toUpperCase();
-        const autorizacionSRI = document.getElementById("labelautorizacionSRI").value.toUpperCase();
 
         var solicitudDevolucion;
         fetch('https://springtest999.herokuapp.com/api/solicituddevolucion/' + idSolicitud).then(function(response) {
@@ -68,15 +55,15 @@ $(document).ready(function() {
 
         // Eliminamos el registro que indica que la tabla esta vacia
         // Input User Validation
-        if (id === '' || idSolicitud === '' || autorizacionSRI === '' || monto === '' || solicitudDevolucion == null) {
+        if (id === '' || idSolicitud === '' || idProductoSustituto === '' || monto === '' || solicitudDevolucion == null) {
 
             mostrarMensaje('Please Insert data in all fields', 'danger');
         } else {
             const data = {
-                "idEntregaDomicilio": id,
+                "idSustitucion": id,
                 "solicitudDevolucion": solicitudDevolucion,
                 "monto": monto,
-                "autorizacionSRI": autorizacionSRI
+                "autorizacionSRI": idProductoSustituto
             };
             if (document.getElementById("labelid").readOnly) {
 
@@ -102,22 +89,10 @@ $(document).ready(function() {
         const columns = e.target.parentElement.parentElement.getElementsByTagName('td');
         const ID = columns[0].innerText;
         if (botonname === 'delete') {
-
             DELETE(url, ID);
             console.log(this);
             datatable.row(this).remove().draw();
             mostrarMensaje('Elemento eliminado ', 'info');
-
-        } else if (botonname === 'edit') {
-
-            document.getElementById("labelid").readOnly = true;
-            document.getElementById("labelid").value = columns[0].innerText;
-
-            document.getElementById("labelidSolicitud").value = columns[1].innerText;
-            document.getElementById("labelmonto").value = columns[2].innerText;
-            document.getElementById("labelautorizacionSRI").value = columns[3].innerText;
-
-
         }
     });
 });

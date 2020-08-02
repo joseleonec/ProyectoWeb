@@ -1,27 +1,24 @@
-const url = 'https://springtest999.herokuapp.com/api/empresa/';
+const url = 'https://terminal25backend.herokuapp.com/itinerario/';
 
-function addRow(datatable, empresa) {
-    const span = document.createElement('span');
-    span.className = 'table-remove';
-    span.innerHTML = `
-        <span class="table-remove">
-            <button name="delete" type="submit"
-                class="btn btn-danger btn-rounded btn-sm my-0">
-                Eliminar
-            </button>
-            <button name="edit" type="submit"
-            class="btn btn-warning btn-rounded btn-sm my-0">
-                Editar
-            </button>
-        </span>
-            `;
-    datatable.row.add([empresa.idEmpresa, empresa.razonSocial, empresa.costoKgExtra, empresa.pesoMaximoDelPaquete, span]).draw();
+function addRow(datatable, itinerario) {
+    datatable.row.add([itinerario.viaje.origen,
+        itinerario.viaje.destino.nombre,
+        itinerario.agencia.nombre, itinerario.bus.placa, itinerario.horaSalida
+    ]).draw();
 }
 
-function llenarTablaEmpresas(datatable) {
-    fetch(url).then(function(response) {
+function llenarTabla(datatable) {
+    // OBTENER FECHA ACTUAL
+    // 2020-07-30
+    // var fecha = new Date(2020, 06, 30).toJSON().slice(0, 10);
+    var fecha = new Date().toJSON().slice(0, 10);
+    console.log(fecha)
+    const token = "fecha=" + fecha.toString();;
+    console.log(token);
+    fetch(url + token).then(function(response) {
         return response.json();
     }).then(function(data) {
+        console.log(data);
         data.forEach(i => {
             addRow(datatable, i);
             // console.log(i.nombre);
@@ -35,13 +32,13 @@ function llenarTablaEmpresas(datatable) {
 $(document).ready(function() {
 
     var datatable = $('#tableSalidas').DataTable({
-        "columnDefs": [{
-            "targets": -1,
-            "data": null
-        }]
+        // "columnDefs": [{
+        //     "targets": -1,
+        //     "data": null
+        // }]
     });
     // LLENAR TABLA
-    llenarTablaEmpresas(datatable);
+    llenarTabla(datatable);
     // POST
     $("#btn-guardar-empresa").click(function() {
         // console.log("Evento capturado");
@@ -63,7 +60,7 @@ $(document).ready(function() {
             if (document.getElementById("labelid").readOnly) {
                 PUT(url, data);
                 vaciarTabla(datatable);
-                llenarTablaEmpresas(datatable);
+                llenarTabla(datatable);
             } else {
 
                 POST(url, data);

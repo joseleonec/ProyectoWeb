@@ -1,6 +1,6 @@
-const url = 'https://springtest999.herokuapp.com/api/sustitucion/';
+const url = 'https://springtest999.herokuapp.com/api/notadecredito/';
 
-function addRow(datatable, sustitucion) {
+function addRow(datatable, nota) {
     const span = document.createElement('span');
     span.className = 'table-remove';
     span.innerHTML = `
@@ -15,7 +15,7 @@ function addRow(datatable, sustitucion) {
             </button>
         </span>
             `;
-    datatable.row.add([sustitucion.idSustitucion, sustitucion.solicitudDevolucion.idSolicitud, sustitucion.idProductoSustituto, sustitucion.monto, span]).draw();
+    datatable.row.add([nota.idNotaDeCredito, nota.solicitudDevolucion.idSolicitud, nota.monto, nota.autorizacionSRI, span]).draw();
 }
 
 function llenarTabla(datatable) {
@@ -33,7 +33,7 @@ function llenarTabla(datatable) {
 
 $(document).ready(function() {
 
-    var datatable = $('#tablaSustitucion').DataTable({
+    var datatable = $('#tablaRutas').DataTable({
         "columnDefs": [{
             "targets": -1,
             "data": null,
@@ -50,12 +50,12 @@ $(document).ready(function() {
     // LLENAR TABLA
     llenarTabla(datatable);
     // POST
-    $("#btn-guardar-sustitucion").click(function() {
+    $("#btn-guardar-nota-de-credito").click(function() {
         // console.log("Evento capturado");
         const id = document.getElementById("labelid").value.toUpperCase();
         const idSolicitud = document.getElementById("labelidSolicitud").value.toUpperCase();
-        const idProductoSustituto = document.getElementById("labelidProductoSustituto").value.toUpperCase();
         const monto = document.getElementById("labelmonto").value.toUpperCase();
+        const autorizacionSRI = document.getElementById("labelautorizacionSRI").value.toUpperCase();
 
         var solicitudDevolucion;
         fetch('https://springtest999.herokuapp.com/api/solicituddevolucion/' + idSolicitud).then(function(response) {
@@ -68,15 +68,15 @@ $(document).ready(function() {
 
         // Eliminamos el registro que indica que la tabla esta vacia
         // Input User Validation
-        if (id === '' || idSolicitud === '' || idProductoSustituto === '' || monto === '' || solicitudDevolucion == null) {
+        if (id === '' || idSolicitud === '' || autorizacionSRI === '' || monto === '' || solicitudDevolucion == null) {
 
             mostrarMensaje('Please Insert data in all fields', 'danger');
         } else {
             const data = {
-                "idSustitucion": id,
+                "idEntregaDomicilio": id,
                 "solicitudDevolucion": solicitudDevolucion,
                 "monto": monto,
-                "autorizacionSRI": idProductoSustituto
+                "autorizacionSRI": autorizacionSRI
             };
             if (document.getElementById("labelid").readOnly) {
 
@@ -101,7 +101,6 @@ $(document).ready(function() {
         const botonname = e.target.name;
         const columns = e.target.parentElement.parentElement.getElementsByTagName('td');
         const ID = columns[0].innerText;
-
         if (botonname === 'delete') {
 
             DELETE(url, ID);
@@ -115,10 +114,10 @@ $(document).ready(function() {
             document.getElementById("labelid").value = columns[0].innerText;
 
             document.getElementById("labelidSolicitud").value = columns[1].innerText;
-            document.getElementById("labelidProductoSustituto").value = columns[2].innerText;
-            document.getElementById("labelmonto").value = columns[3].innerText;
+            document.getElementById("labelmonto").value = columns[2].innerText;
+            document.getElementById("labelautorizacionSRI").value = columns[3].innerText;
+
 
         }
     });
-
 });
