@@ -112,7 +112,7 @@
                 <ul class="nav nav-tabs border-primary text-center justify-content-center border-bottom border-primary">
                   <!--nav-tabs nav-pills-->
                   <li class="nav-item">
-                    <a id="tab_clientes" class="nav-link active" data-toggle="tab" href="#clientes_content"> Lista de
+                    <a id="tab_employ" class="nav-link active" data-toggle="tab" href="#clientes_content"> Lista de
                       empleados</a>
                   </li>
                 </ul>
@@ -270,7 +270,9 @@
     function get_url() {
       return "<?php echo $url_back ?>";
     };
-  </script> 
+  </script>
+  <!---ALERT---->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="../javasc/java.js"></script>
 </body>
 

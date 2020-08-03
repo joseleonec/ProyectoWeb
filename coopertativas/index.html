@@ -121,7 +121,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="">
+    <div id="Modal" class="">
         <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog " role="document">
@@ -134,9 +134,37 @@
                     </div>
                     <div></div>
                     <div id="bodyModal" class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <strong>Deja tu comentario:</strong>
+                                <textarea id="text_comentario" class="form-control" rows="5" id="comment"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <strong>Calificar</strong>
+                                <form class="align-right">
+                                    <p id="calificador" name="Mis" class="clasificacion">
+                                        <input id="r1" type="radio" name="estrellas" onclick="handleClick(this);"
+                                            value="5">
+                                        <label for="r1">★</label>
+                                        <input id="r2" type="radio" name="estrellas" onclick="handleClick(this);"
+                                            value="4">
+                                        <label for="r2">★</label>
+                                        <input id="r3" type="radio" name="estrellas" onclick="handleClick(this);"
+                                            value="3">
+                                        <label for="r3">★</label>
+                                        <input id="r4" type="radio" name="estrellas" onclick="handleClick(this);"
+                                            value="2">
+                                        <label for="r4">★</label>
+                                        <input id="r5" type="radio" name="estrellas" onclick="handleClick(this);"
+                                            value="1" checked>
+                                        <label for="r5">★</label>
+                                    </p>
+                                </form>
+                            </div>
+                        </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <div id="footerModal" class="modal-footer">
+                        <button id="btnCancelar" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                         <button id="btnguardar" type="button" class="btn btn-success guardar_comentario"
                             data-dismiss="modal">Guardar opinion</button>
                     </div>
@@ -191,7 +219,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
-    <!--Agregar budqueda-->
+    <!--Alertas-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script-->
     <script src="java.js"></script>
 

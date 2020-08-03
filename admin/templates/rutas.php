@@ -172,41 +172,6 @@
                           </tr>
                         </thead>
                         <tbody id="BodyTableRutas">
-                          <!--contenteditable="true"-->
-                          <tr>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>Cuenca</td>
-                            <td>2</td>
-                            <td>Avenida</td>
-                            <td>
-                              <button class="ruta-editar btn btn-secondary">
-                                Editar
-                              </button>
-                            </td>
-                            <td>
-                              <button class="ruta-delete btn btn-danger">
-                                Delete
-                              </button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>Cuenca</td>
-                            <td>2</td>
-                            <td>Camino viejo</td>
-                            <td>
-                              <button class="ruta-editar btn btn-secondary">
-                                Editar
-                              </button>
-                            </td>
-                            <td>
-                              <button class="ruta-delete btn btn-danger">
-                                Delete
-                              </button>
-                            </td>
-                          </tr>
                         </tbody>
                       </table>
                     </div>
@@ -251,39 +216,6 @@
                           </tr>
                         </thead>
                         <tbody id="BodyTableDestino">
-                          <!--contenteditable="true"-->
-                          <tr>
-                            <td>1</td>
-                            <td>Azogues</td>
-                            <td>-132.564</td>
-                            <td>123.4564</td>
-                            <td>
-                              <button class="destino-editar btn btn-secondary">
-                                Editar
-                              </button>
-                            </td>
-                            <td>
-                              <button class="destino-delete btn btn-danger">
-                                Delete
-                              </button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>2</td>
-                            <td>Quito</td>
-                            <td>-3.5656</td>
-                            <td>-45.6787</td>
-                            <td>
-                              <button class="destino-editar btn btn-secondary">
-                                Editar
-                              </button>
-                            </td>
-                            <td>
-                              <button class="destino-delete btn btn-danger">
-                                Delete
-                              </button>
-                            </td>
-                          </tr>
                         </tbody>
                       </table>
                     </div>
@@ -363,7 +295,9 @@
     function get_url() {
       return "<?php echo $url_back ?>";
     };
-  </script> 
+  </script>
+  <!---ALERT---->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
   <script src="../javasc/java.js"></script>
 </body>
 

@@ -1,10 +1,14 @@
+var idUser = "";
+
 $(document).ready(function () {
     console.log("ready!");
     pedirDatos();
+    //idUser = dataUser(); //pedir al php
+    //idUser = 1; //logueado
+    idUser = "";  //No logueado
 });
 
 function volver_a_inicio() {
-    // alert("Gracias por visitar nuestra pagina, nos vamos a el mirador de la serrania")
     location.href = "../index.html"
 }
 
@@ -24,7 +28,7 @@ async function pedirDatos() {
 }
 
 //metodo GET
-var Cooperativas;
+var Cooperativas = "";
 function cargarCooperativa() {
     let url = url_back + "agencia/listar";
     return fetch(url).then(function (response) {
@@ -33,11 +37,11 @@ function cargarCooperativa() {
         Cooperativas = data;
         console.log("Cooperativas cargadas public");
     }).catch(err => {
-        console.log("Cooperativas:" + err);
+        //console.log("Cooperativas:" + err);
     });
 }
 
-var Comentarios;
+var Comentarios = "";
 function cargarComentarios() {
     let url = url_back + "comentario/listar";
     return fetch(url).then(function (response) {
@@ -79,10 +83,10 @@ function cargarDatos() {
             `
             <tr class="row">
             <td class="col-sm-3">
-                <img class="align-right" onerror="this.src='img/nofound.jpg';" src="img/${task.nombre}.png" width="120" height="70">
+                <img class="align-right" src="img/${task.nombre}.png" onerror="this.src='img/nofound.jpg';" width="120" height="70">
             </td>
             <td class="col-sm-3" value="${task.idAgencia}">
-                <p class="align-right">&nbsp;&nbsp;&nbsp;${task.nombre}</p>
+                ${task.nombre}
             </td>
             <td class="col-sm-3">
                 <form class="align-right">
@@ -173,10 +177,19 @@ function cargarDatos() {
                         </p>
                     </form>
                 </td>
-                <td class="col-sm-3">
-                    <button type="button" class="btn btn-primary task-comentar" data-toggle="modal" data-target="#exampleModal1">
-                        Dejar opinión
-                    </button>
+                <td class="col-sm-3">`;
+        if (idUser != "") { //logueado
+            template += `
+            <button type="button" class="btn btn-primary task-comentar" data-toggle="modal" data-target="#exampleModal1">
+                Dejar opinión
+            </button>`;
+        } else { // No logueado
+            template += `
+            <button type="button" class="btn btn-primary task-comentar" >
+                Dejar opinión
+            </button>`;
+        }
+        template += `
                 </td>
                 </tr>`;
     });
@@ -186,54 +199,93 @@ function cargarDatos() {
 
 var idAgenciaCOM;
 $(document).on('click', '.task-comentar', function (e) {
-    const datos = e.target.parentElement.parentElement.getElementsByTagName('td');
-    var idAgencia = datos[1].getAttribute('value');
-    let template = '';
-    Cooperativas.forEach(task => {
-        if (task.idAgencia == idAgencia) {
-            idAgenciaCOM = idAgencia;
-            document.getElementById("exampleModalLabel").innerHTML = `${task.nombre} <br> Valoramos tu opinión`;
-            document.getElementById("bodyModal").innerHTML = `
-            <form>
-            <div class="form-group">
-                <strong>Deja tu comentario:</strong>
-                <textarea id="text_comentario" class="form-control" rows="5" id="comment"></textarea>
-            </div>
-            <div class="form-group">
-                <strong>Calificar</strong>
-                <form class="align-right">
-                    <p id="calificador" name="Mis" class="clasificacion">
-                        <input id="r1" type="radio" name="estrellas" onclick="handleClick(this);"value="5">
-                        <label for="r1">★</label>
-                        <input id="r2" type="radio" name="estrellas" onclick="handleClick(this);"value="4">
-                        <label for="r2">★</label>
-                        <input id="r3" type="radio" name="estrellas" onclick="handleClick(this);"value="3">
-                        <label for="r3">★</label>
-                        <input id="r4" type="radio" name="estrellas" onclick="handleClick(this);"value="2">
-                        <label for="r4">★</label>
-                        <input id="r5" type="radio" name="estrellas" onclick="handleClick(this);" value="1" checked>
-                        <label for="r5">★</label>
-                    </p>
-                </form>
-            </div>
-            </form>`;
-        }
-    });
+    if (idUser != "") {
+        let datos = e.target.parentElement.parentElement.getElementsByTagName('td');
+        idAgenciaCOM = datos[1].getAttribute('value');
+        let name = datos[1].innerHTML;
+        document.getElementById("exampleModalLabel").innerHTML = `${name} <br> Valoramos tu opinión`;
+    } else {
+        //$("#exampleModal1").removeClass('show');
+        swal("No puede comentar", "Debe iniciar session", "warning");
+    }
     e.preventDefault();
 });
 
-var currentValue = 0;
+/* var bandera = false;
+function cargarAtributos() {
+    $('.task-comentar').each(function (i, obj) {
+        $(obj).attr("data-toggle", "modal");
+        $(obj).attr("data-target", "#exampleModal1");
+        //$('.task-comentar').removeAttr(attribute);
+        bandera = true;
+    });
+} */
+
+//var obj = document.getElementById("btnCancelar");
+//obj.click();
+//$("#exampleModal1").removeAttr("class");
+//var targetElement = document.getElementById("exampleModal1");
+//addClass(targetElement, "someClass");
+//targetElement.removeClass("shows");
+//Funcion al cerrar el modal de comentarios
+
+$("#exampleModal1").on("hidden.bs.modal", function () {
+    document.getElementById("text_comentario").value = "";
+});
+
+var currentValue = 1;
 function handleClick(myRadio) {
     currentValue = myRadio.value;
 }
 
 $(document).on('click', '.guardar_comentario', function (e) {
-    let comentario = document.getElementById("text_comentario").value;
-    alert("Agenicia:" + idAgenciaCOM + " Comentario: " + comentario + " Puntaje: " + currentValue);
     e.preventDefault();
+    let comentario = document.getElementById("text_comentario").value;
+    let agenciaLocal = "";
+    Cooperativas.forEach(coop => {
+        if (coop.idAgencia == idAgenciaCOM) {
+            agenciaLocal = coop;
+        }
+    });
+    getUsuario(idUser);
+    //userCliente = 1 //eliminar esta linea
+    if (userCliente != "" && agenciaLocal != "") {
+        let data = { agencia: agenciaLocal, calificacion: currentValue, comentario: comentario, usuario: userCliente };
+        let url = url_back + "comentario";
+        fetch(url, {
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (data_res) {
+            //console.log("Respuesta: " + data_res);
+            pedirDatos();
+            swal("Comentario enviado", "Gracias por tu contribución", "success");
+        }).catch(function (error) {
+            swal("Fallo", "No se pudo enviar", "error");
+            //console.log('Error post: ' + error);
+        });
+    } else {
+        swal("Fallo", "--", "warning");
+    }
 });
 
+var userCliente = "";
+function getUsuario(idUser) {
+    let url = url_back + "usuario/" + idUser;
+    fetch(url).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        userCliente = data;
+        //console.log("usuario logueado");
+    }).catch(err => {
+        //console.log("Catch:" + err);
+    });
+}
+
 //-------------
+
 function doSearch() {
     const tableReg = document.getElementById('tabla_coop_public');
     const searchText = document.getElementById('txt_buscar').value.toLowerCase();
@@ -287,3 +339,4 @@ function mostrar_mensaje(mensaje, elemento, tipo_alerta) {
     <strong>${mensaje}</strong></div>`;
     //setTimeout(function () { document.querySelector('.alert').remove(); }, 2000);
 }
+
