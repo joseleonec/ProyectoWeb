@@ -119,7 +119,7 @@ function graficarMapa(latitudeOrigen, longitudeOrigen, latitudeDestino, longitud
         }).addTo(mymap);
     }
 }
-
+/*
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
         var latitude = position.coords.latitude;
@@ -157,3 +157,4 @@ if (navigator.geolocation) {
         id: 'mapbox/streets-v11'
     }).addTo(mymap);
 }
+*/
