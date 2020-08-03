@@ -20,8 +20,22 @@ function llenarTabla(datatable) {
 
 
 $(document).ready(function () {
-    // loadId();
-    var datatable = $('#tablaSustitucion').DataTable({
+    var datatable = $('#tablaReservas').DataTable({
+        "columnDefs": [{
+            "targets": -1,
+            "data": null,
+            "defaultContent": `
+                    <button name="edit" type="submit"
+                        class="btn btn-info btn-rounded btn-sm my-0" data-toggle="modal" data-target="#exampleModal">
+                        Ver
+                    </button>
+                    <button name='delete' class="btn btn-danger btn-rounded btn-sm my-0" >
+                        Eliminar
+                    </button>`
+        }]
+    });
+
+    var datatableCart = $('#tablaCarrito').DataTable({
         "columnDefs": [{
             "targets": -1,
             "data": null,
@@ -51,7 +65,7 @@ $(document).ready(function () {
             }).catch(function () {
                 console.log("Error al hallar el ID de usuario");
             });
-    
+
         } else {
             window.location.href = "../login.html";
             console.log("reservas no hay usuario");
@@ -102,9 +116,26 @@ $(document).ready(function () {
             mostrarMensaje('Elemento regisrado con exito', 'success');
         }
     });
+    // Reset modal form after close
     $('#exampleModal').on('hidden.bs.modal', function () {
-        $(this).find('form')[0].reset();
+        // $(this).find('form')[0].reset();
     });
+
+    //modal show
+    $('#exampleModal').on('show.bs.modal', function (event) {
+
+        const datos = event.relatedTarget.parentElement.parentElement.getElementsByTagName('td');
+        // console.log(datos[0]);
+        const id = datos[0].innerText;
+        // console.log("ID: ");
+        // console.log(id);
+        var modal = $(this)
+        modal.find('.modal-title').text('Carrito');
+        var title = document.querySelector("#exampleModalLabel");
+        title.name = id;
+        title.innerText += " " + title.name;
+    });
+
     // DELETE
     datatable.on('click', 'tbody tr', function (e) {
         const botonname = e.target.name;
