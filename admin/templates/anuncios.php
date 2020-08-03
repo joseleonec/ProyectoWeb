@@ -261,7 +261,9 @@
     function get_url() {
       return "<?php echo $url_back ?>";
     };
-  </script> 
+  </script>
+  <!---ALERT---->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
   <script src="../javasc/java.js"></script>
 </body>
 

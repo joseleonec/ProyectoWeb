@@ -42,7 +42,7 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
-        <!--Icons-->
+    <!--Icons-->
     <!--link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"-->
     <!--more-->
@@ -133,8 +133,8 @@
                                 <div class="col-md-4 mb-3">
                                     <label for="ciudad">Ciudad Origen</label>
                                     <select class="custom-select d-block w-100" id="origen" required>
-                                        <option value="">Elegir...</option>
-                                        <option>Cuenca</option>
+                                        <option disabled>Elegir...</option>
+                                        <option selected>Cuenca</option>
                                     </select>
                                     <div class="invalid-feedback">
                                         Please select a valid country.
@@ -143,10 +143,6 @@
                                 <div class="col-md-4 mb-3">
                                     <label for="ciudad">Ciudad Destino</label>
                                     <select class="custom-select d-block w-100" id="destino" required>
-                                        <option value="">Elegir...</option>
-                                        <option>Ambato</option>
-                                        <option>Guayaquil</option>
-                                        <option>Quito</option>
                                     </select>
                                     <div class="invalid-feedback">
                                         Please provide a valid state.
@@ -155,10 +151,6 @@
                                 <div class="col-md-4 mb-3">
                                     <label for="empresa">Empresa</label>
                                     <select class="custom-select d-block w-100" id="empresa" required>
-                                        <option value="">Elegir...</option>
-                                        <option>Azuay</option>
-                                        <option>Flota Imbabura</option>
-                                        <option>Turismo Oriental</option>
                                     </select>
                                     <div class="invalid-feedback">
                                         Please provide a valid state.
@@ -170,7 +162,7 @@
                                 <div class="col-md-4 mb-3">
                                     <label for="ciudad">Fecha de Salida</label>
                                     <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input"
+                                        <input id="Fecha" type="text" class="form-control datetimepicker-input"
                                             data-target="#datetimepicker4" />
                                         <div class="input-group-append" data-target="#datetimepicker4"
                                             data-toggle="datetimepicker">
@@ -185,7 +177,7 @@
                                 <div class="col-md-4 mb-3">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Cantidad de Asientos</label>
-                                        <select class="form-control" id="exampleFormControlSelect1">
+                                        <select id="menu_acientos" class="form-control" id="exampleFormControlSelect1">
                                             <option>1</option>
                                             <option>2</option>
                                             <option>3</option>
@@ -196,7 +188,7 @@
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="empresa"></label>
-                                    <button class="btn btn-primary btn-lg btn-block" type="submit">Buscar</button>
+                                    <button id="btnBuscarViaje" class="btn btn-primary btn-lg btn-block" type="submit">Buscar</button>
                                 </div>
                             </div>
                         </form>
@@ -204,51 +196,7 @@
                 </div>
             </div>
             <div class="card-deck mb-3 conten">
-                <div class="card mb-4 shadow-sm">
-                    <!--html se agrega dinamicamente con los resultados-->
-                    <div class="card mb-4 ">
-                        <div class="card-body">
-                            <div class="row etq">
-                                <div class="col-md-4">
-                                    <img src="img/rutas-orenses.jpg" class="card-img" alt="...">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body text-right">
-                                        <h5 class="card-title">Rutas Orenses</h5>
-                                        <p class="card-text">This is a wider card with supporting text below as a
-                                            natural lead-in to additional content. This content is a little bit longer.
-                                        </p>
-
-                                        <a href="../pago/" class="btn btn-warning">Agregar al carrito</a>
-                                        <!-- <a href="../pago/" class="btn btn-primary">Reservar</a> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-4 ">
-                        <div class="card-body">
-                            <div class="row etq">
-                                <div class="col-md-4">
-                                    <img src="img/rutas-orenses.jpg" class="card-img" alt="...">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body text-right">
-                                        <h5 class="card-title">Rutas Orenses</h5>
-                                        <p class="card-text">This is a wider card with supporting text below as a
-                                            natural lead-in to additional content. This content is a little bit longer.
-                                        </p>
-
-                                        <a href="../pago/" class="btn btn-warning">Agregar al carrito</a>
-                                        <!-- <a href="../pago/" class="btn btn-primary">Reservar</a> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--fin html se agrega dinamicamente -->
-
+                <div id="resultadosBusqueda" class="card mb-4 shadow-sm">
                 </div>
             </div>
         </div>
@@ -262,8 +210,8 @@
             <div class="col-sm-4">
                 <h3 class="foot-title-column">Ayuda</h3>
                 <br>
-                <p>En esta sección puede comentar los servicios prestados por las cooperativas de transporte. Debes
-                    haber iniciado sesión antes.</p>
+                <p>En esta sección puede buscar los viajes prestados por el terminal. 
+                    Para utilizar el carrito debe iniciar sesión antes.</p>
             </div>
             <div class="col-sm-4">
                 <h3 class="foot-title-column">Contáctanos</h3>
@@ -284,11 +232,11 @@
             </div>
         </div>
     </div>
-
     <!--Fin Pie de pagina-->
 
+    <!--Alertas-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript" src="scripts/datepicker.js"></script>
-
 
 </body>
 

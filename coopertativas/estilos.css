@@ -29,7 +29,7 @@ body {
 
 .miscroll {
     position: relative;
-    min-width: 500px;
+    /*min-width: 500px;*/
     overflow-x: auto;
     display: block;
 }

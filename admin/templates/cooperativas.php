@@ -161,39 +161,6 @@
                             </tr>
                           </thead>
                           <tbody id="bodyTableCoop">
-                            <!--contenteditable="true"-->
-                            <tr>
-                              <td>1</td>
-                              <td>Turismo Oriental</td>
-                              <td>12</td>
-                              <td>activo</td>
-                              <td>
-                                <button class="coop-editar btn btn-secondary">
-                                  Editar
-                                </button>
-                              </td>
-                              <td>
-                                <button class="coop-delete btn btn-danger">
-                                  Delete
-                                </button>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>2</td>
-                              <td>Viajeros Internacional</td>
-                              <td>8</td>
-                              <td>activo</td>
-                              <td>
-                                <button class="coop-editar btn btn-secondary">
-                                  Editar
-                                </button>
-                              </td>
-                              <td>
-                                <button class="coop-delete btn btn-danger">
-                                  Delete
-                                </button>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -295,7 +262,9 @@
     function get_url() {
       return "<?php echo $url_back ?>";
     };
-  </script> 
+  </script>
+  <!---ALERT---->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
   <script src="../javasc/java.js"></script>
 </body>
 

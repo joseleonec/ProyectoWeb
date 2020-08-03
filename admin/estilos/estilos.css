@@ -43,6 +43,8 @@
   }
 }
 
+/*------------------*/
+
 /*botones*/
 
 .btnes {
@@ -190,7 +192,7 @@ tr.highlighted td {
   width: 700px;
 }
 
-.logo-empresa{
+.logo-empresa {
   max-height: 100px;
   max-width: 100px;
 }
@@ -210,6 +212,7 @@ tr.highlighted td {
 }
 
 /*----------------*/
+
 /*Scroll para el contenedor*/
 
 .miscroll {

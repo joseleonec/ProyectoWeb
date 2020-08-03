@@ -1,9 +1,9 @@
-var id_client = "";
+var id_admin = "";
 var url_back = "";
 
 $(document).ready(function () {
     console.log("ready!");
-    id_client = user_data();
+    id_admin = user_data();
     url_back = get_url();
     $("#wrapper").toggleClass("toggled");
     var pagina_actual = document.getElementsByClassName('pagina');
@@ -21,8 +21,6 @@ $(document).ready(function () {
                 cargarRuta();
                 cargarDestino();
                 break;
-            case "tab-dd":
-                break;
             default:
                 break;
         }
@@ -35,20 +33,20 @@ $("#menu-toggle").click(function (e) {
     $("#wrapper").toggleClass("toggled");
 });
 
-var ID_cliente_editando = 0;
+var ID_empleado_editando = 0;
 var ID_coop_editando = 0;
 var ID_ruta_editando = 0;
 var ID_destino_editando = 0;
-var alerta = document.getElementById("alerta_employ");
+var alerta_employ = document.getElementById("alerta_employ");
 var alerta_coop = document.getElementById("alerta_coop");
 var alerta_ruta = document.getElementById("alerta_ruta");
 var alerta_destino = document.getElementById("alerta_destino");
 var alerta_anuncio = document.getElementById("alerta_anuncio");
-var editando = false;
+var editando_employ = false;
 var editando_coop = false;
 var editando_ruta = false;
 var editando_destino = false;
-var btn_guardar = document.getElementById("guardar_empleado");
+var btn_guardar_employ = document.getElementById("guardar_empleado");
 var btn_guardar_coop = document.getElementById("guardar_cooperativa");
 var btn_guardar_ruta = document.getElementById("guardar_ruta");
 var btn_guardar_destino = document.getElementById("guardar_destino");
@@ -76,7 +74,8 @@ function limpiar(card) {
 }
 
 /*----------------Empleados--------*/
-$(document).on('click', '#tab_clientes', cargarEmpleado);//carga los datos de clientes
+
+$(document).on('click', '#tab_employ', cargarEmpleado);
 
 $("#guardar_empleado").click(function (e) {
     e.preventDefault();
@@ -89,16 +88,16 @@ $("#guardar_empleado").click(function (e) {
     let correo = document.getElementById('correo').value;
 
     // Validacion de campos vacios
-    if (empresa === "Agencias" || nickname === '' || contra === '' || nombre === '' || apellido === '' || cedula === '' || correo === '') {
-        return mostrar_mensaje('Campos vacios', alerta, 'danger');
+    if (empresa === "Agencias" || empresa === "" || nickname === '' || contra === '' || nombre === '' || apellido === '' || cedula === '' || correo === '') {
+        return mostrar_mensaje('Campos vacios', alerta_employ, 'danger');
     }
     if (cedula.length > 10) {
-        return mostrar_mensaje('Cedula erronea', alerta, 'danger');
+        return mostrar_mensaje('Cedula erronea', alerta_employ, 'danger');
     }
-    var id_empresa = empresa.split(" ");
+    let id_empresa = empresa.split(" ");
     id_empresa = parseInt(id_empresa[0], 10);//10 base decimal
     //Si se esta editando
-    if (editando == true) {
+    if (editando_employ == true) {
         editarEmpleado(id_empresa, nickname, contra, nombre, apellido, cedula, correo);
         return;
     }
@@ -109,42 +108,206 @@ $(document).on('click', '.task-delete', eliminarEmpleado);
 
 $(document).on('click', '.task-ver', (e) => {
     //const element = $(this)[0].activeElement.parentElement.parentElement;
-    const datos = e.target.parentElement.parentElement.getElementsByTagName('td');
-    const idPersona = datos[0].innerText;
-    console.log(idPersona);
-    ID_cliente_editando = idPersona;
+    let datos = e.target.parentElement.parentElement.getElementsByTagName('td');
+    let idPersona = datos[0].innerText;
+    //console.log(idPersona);
+    ID_empleado_editando = idPersona;
     $('#nickname').val(datos[2].innerText);
     $('#password').val(datos[3].innerText);
     $('#nombre_empl').val(datos[4].innerText);
     $('#apellido').val(datos[5].innerText);
     $('#cedula').val(datos[6].innerText);
     $('#correo').val(datos[7].innerText);
-    editando = true;
-    cambiar_texto(true, btn_guardar);
+    editando_employ = true;
+    cambiar_texto(true, btn_guardar_employ);
     e.preventDefault();
 });
+
+//metodo POST
+function nuevoEmpleado(id_empresa, nickname, contra, nombre, apellido, cedula, correo) {
+    getAgencia(id_empresa);
+    if (agencia != "") {
+        let data = {
+            agencia: agencia, apellido: apellido, cedula: cedula, email: correo,
+            nickname: nickname, nombre: nombre, password: contra
+        };
+        let url = url_back + "empleado";
+        fetch(url, {
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (data_res) {
+            //console.log("Respuesta: " + data_res);
+            cambiar_texto(false, btn_guardar_employ);
+            limpiar("entrada_empleado");
+            mostrar_mensaje('Exito', alerta_employ, 'success');
+            cargarEmpleado();
+        }).catch(function (error) {
+            //console.log('Error post: ' + error);
+            mostrar_mensaje('No se pudo agregar', alerta_employ, 'danger');
+        });
+        agencia = "";
+    }
+
+}
+
+//metodo PUT
+function editarEmpleado(id_empresa, nickname, contra, nombre, apellido, cedula, correo) {
+    getAgencia(id_empresa);
+    if (agencia != "") {
+        let data = {
+            agencia: agencia, apellido: apellido, cedula: cedula, email: correo, idEmpleado: ID_empleado_editando,
+            nickname: nickname, nombre: nombre, password: contra
+        };
+        let url = url_back + "empleado";
+        fetch(url, {
+            method: 'PUT', // or 'PUT'
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (data_res) {
+            //console.log("Respuesta: " + data_res);
+            cambiar_texto(false, btn_guardar_employ);
+            limpiar("entrada_empleado");
+            editando_employ = false;
+            mostrar_mensaje('Se ha modificado', alerta_employ, 'success');
+            cargarEmpleado();
+        }).catch(function (error) {
+            //console.log('Error: ' + error);
+            mostrar_mensaje('No se pudo editar', alerta_employ, 'danger');
+        });
+        agencia = "";
+    }
+}
+
+//metodo GET
+function cargarEmpleado() {
+    let url = url_back + "empleado/listar";
+    fetch(url).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        let template = ``;
+        data.forEach(task => {
+            template +=
+                `<tr>
+            <td>${task.idEmpleado}</td>
+            <td>${task.agencia.idAgencia}</td>
+            <td>${task.nickname}</td>
+            <td>${task.password}</td>
+            <td>${task.nombre}</td>
+            <td>${task.apellido}</td>
+            <td>${task.cedula}</td>
+            <td>${task.email}</td>
+            <td>
+                <button class="task-ver btn btn-secondary">
+                    Editar
+            </button>
+            </td>
+            <td>
+                <button class="task-delete btn btn-danger">
+                    Delete
+                </button>
+            </td>
+            </tr>`
+        });
+        template += `
+            < tr class='noSearch hide' >
+                <td colspan="5"></td>
+        </tr> `;
+        $('#menu-agencias').html(template);
+        $('#BodyTablaEmpleado').html(template);
+        console.log("Empleados cargados");
+    }).catch(err => {
+        //console.log(err);
+    });
+}
+
+function CargarMenuAgencias() {
+    let url = url_back + "agencia/listar";
+    fetch(url).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        let template = `<option selected ="" disabled>Agencias</option>`;
+        data.forEach(task => {
+            template += `<option> ${task.idAgencia} ${task.nombre}</option>`;
+        });
+        $('#menu_agencias').html(template);
+        console.log("Agencias listas");
+    }).catch(err => {
+        //console.log(err);
+    });
+}
+
+//metodo DELETE
+function eliminarEmpleado() {
+    swal({
+        title: "¿Seguro que desea eliminar?",
+        text: "Este empleado se eliminará",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            //$(this).parent().parent().remove();
+            let element = $(this)[0].parentElement.parentElement;
+            let id_fila = element.cells[0].innerText;
+            let url = url_back + "empleado/" + id_fila;
+            fetch(url, {
+                method: 'DELETE'
+            }).then(() => {
+                //console.log('removed');
+                element.remove();
+                swal("Empleado eliminado", {
+                    icon: "success",
+                });
+            }).catch(err => {
+                //console.error(err);
+                swal("NO se pudo eliminar", {
+                    icon: "error",
+                });
+            });
+        } /*else {
+          swal("Your imaginary file is safe!");
+        }*/
+    });
+}
+
+var agencia = "";
+function getAgencia(idAgencia) {
+    let url = url_back + "agencia/" + idAgencia;
+    fetch(url).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        agencia = data;
+    }).catch(err => {
+        //console.log(err);
+    });
+}
 
 /*--------------- Cooperativas----*/
 
 $("#guardar_cooperativa").click(function (e) {
     e.preventDefault();
-    let name = document.getElementById('nombre_coop');
-    let buses = document.getElementById('email_coop');
-    let estado = document.getElementById('ruc_coop');
+    let name_coop = document.getElementById('nombre_coop').value;
+    let email_coop = document.getElementById('email_coop').value;
+    let ruc_coop = document.getElementById('ruc_coop').value;
     // Validacion de campos vacios
-    if (name.value === '' || buses.value === '' || estado.value === '') {
+    if (name_coop === '' || email_coop === '' || ruc_coop === '') {
         return mostrar_mensaje('Campos vacios', alerta_coop, 'danger');
     }
     if (editando_coop == true) { //se esta editando
-        editarCooperativa(name.value, buses.value, estado.value);
+        editarCooperativa(name_coop, email_coop, ruc_coop);
         return;
     }
-    nuevoCooperativa(name.value, buses.value, estado.value);
+    nuevoCooperativa(name_coop, email_coop, ruc_coop);
 });
 
 $(document).on('click', '.coop-editar', function (e) {
-    const datos = e.target.parentElement.parentElement.getElementsByTagName('td');
-    ID_cliente_editando = datos[0].innerText;
+    let datos = e.target.parentElement.parentElement.getElementsByTagName('td');
+    ID_coop_editando = datos[0].innerText;
     $('#nombre_coop').val(datos[1].innerText);
     $('#email_coop').val(datos[2].innerText);
     $('#ruc_coop').val(datos[3].innerText);
@@ -193,22 +356,37 @@ function buscarComentarios(idCooperativa) {
 }
 
 function eliminarComentario() {
-    if (confirm('Seguro que desea eliminar?')) {
-        //$(this).parent().parent().remove();
-        let element = $(this)[0].parentElement.parentElement;
-        let id_fila = $(this).parent().attr('value');
-        console.log(id_fila);
-        element.remove();
-        /* let url = url_clientes + "/cliente?id=" + id_fila;
-        fetch(url, {
-            method: 'DELETE'
-        }).then(() => {
-            console.log('removed');
-            element.remove();
-        }).catch(err => {
-            console.error(err)
-        }); */
-    }
+    swal({
+        title: "¿Seguro que desea eliminar?",
+        text: "Este comentario se eliminará",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            //$(this).parent().parent().remove();
+            let element = $(this)[0].parentElement.parentElement;
+            let idComentario = $(this).parent().attr('value');
+            //console.log(idComentario);
+            let url = url_back + "comentario/" + idComentario;
+            fetch(url, {
+                method: 'DELETE'
+            }).then(() => {
+                //console.log('removed');
+                element.remove();
+                swal("Comentario eliminado", {
+                    icon: "success",
+                });
+            }).catch(err => {
+                //console.log(err);
+                swal("NO se pudo eliminar", {
+                    icon: "error",
+                });
+            });
+        } /*else {
+          swal("Your imaginary file is safe!");
+        }*/
+    });
 }
 
 //metodo GET
@@ -241,14 +419,14 @@ function cargarCooperativa() {
         $('#bodyTableCoop').html(template);
         console.log("Cooperativas cargadas");
     }).catch(err => {
-        console.log(err);
+        //console.log(err);
     });
 }
 
 //metodo POST
-function nuevoCooperativa(nombre, buses, estado) {
-    var data = { name: nombre, buses: buses, state: estado };
-    let url = url_back + "/cliente";
+function nuevoCooperativa(name_coop, email_coop, ruc_coop) {
+    let data = { email: email_coop, nombre: name_coop, ruc: ruc_coop };
+    let url = url_back + "agencia";
     fetch(url, {
         method: 'POST', // or 'PUT'
         body: JSON.stringify(data), // data can be `string` or {object}!
@@ -256,21 +434,21 @@ function nuevoCooperativa(nombre, buses, estado) {
             'Content-Type': 'application/json'
         }
     }).then(function (data_res) {
-        console.log("Respuesta: " + data_res);
+        //console.log("Respuesta: " + data_res);
         cambiar_texto(false, btn_guardar_coop);
         limpiar("entrada_coop");
         mostrar_mensaje('Exito', alerta_coop, 'success');
         cargarCooperativa();
     }).catch(function (error) {
-        console.log('Error post: ' + error);
+        //console.log('Error post: ' + error);
         mostrar_mensaje('No se pudo agregar', alerta_coop, 'danger');
     });
 }
 
 //metodo PUT
-function editarCooperativa(nombre, buses, estado) {
-    var data = { id: ID_coop_editando, name: nombre, buses: buses, state: estado };
-    let url = url_back + "/cliente";
+function editarCooperativa(name_coop, email_coop, ruc_coop) {
+    let data = { email: email_coop, idAgencia: ID_coop_editando, nombre: name_coop, ruc: ruc_coop };
+    let url = url_back + "agencia";
     fetch(url, {
         method: 'PUT', // or 'PUT'
         body: JSON.stringify(data), // data can be `string` or {object}!
@@ -278,157 +456,50 @@ function editarCooperativa(nombre, buses, estado) {
             'Content-Type': 'application/json'
         }
     }).then(function (data_res) {
-        console.log("Respuesta: " + data_res);
+        //console.log("Respuesta: " + data_res);
         cambiar_texto(false, btn_guardar_coop);
         limpiar("entrada_coop");
         editando_coop = false;
         mostrar_mensaje('Se ha modificado', alerta_coop, 'success');
         cargarCooperativa();
     }).catch(function (error) {
-        console.log('Error Id carrito: ' + error);
+        //console.log('Error Id carrito: ' + error);
         mostrar_mensaje('No se pudo editar', alerta_coop, 'danger');
     });
 }
 
 //metodo DELETE
 function eliminarCooperativa() {
-    if (confirm('Seguro que desea eliminar?')) {
-        //$(this).parent().parent().remove();
-        let element = $(this)[0].parentElement.parentElement;
-        let id_fila = element.cells[0].innerText;
-        element.remove();
-        /* let url = url_clientes + "/cliente?id=" + id_fila;
-        fetch(url, {
-            method: 'DELETE'
-        }).then(() => {
-            console.log('removed');
-            element.remove();
-        }).catch(err => {
-            console.error(err)
-        }); */
-    }
-}
-
-/*----------------Empleados--------*/
-//metodo POST
-function nuevoEmpleado(nombre, apellido, cedula, correo, contra, empresa) {
-    var data = { name: usuario, email: correo, password: contraseña, phone: telefono, saldo: saldo, state: estado, id_carrito: idCarrito };
-    let url = url_back + "/cliente";
-    fetch(url, {
-        method: 'POST', // or 'PUT'
-        body: JSON.stringify(data), // data can be `string` or {object}!
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(function (data_res) {
-        console.log("Respuesta: " + data_res);
-        cambiar_texto(false, btn_guardar);
-        limpiar("entrada_empleado");
-        mostrar_mensaje('Exito', alerta, 'success');
-        cargarEmpleado();
-    }).catch(function (error) {
-        console.log('Error post: ' + error);
-        mostrar_mensaje('No se pudo agregar', alerta, 'danger');
+    swal({
+        title: "¿Seguro que desea eliminar?",
+        text: "Esta cooperativa se eliminará",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            //$(this).parent().parent().remove();
+            let element = $(this)[0].parentElement.parentElement;
+            let id_fila = element.cells[0].innerText;
+            let url = url_back + "agencia/" + id_fila;
+            fetch(url, {
+                method: 'DELETE'
+            }).then(() => {
+                //console.log('removed');
+                element.remove();
+                swal("Cooperativa eliminada", {
+                    icon: "success",
+                });
+            }).catch(err => {
+                //console.error(err);
+                swal("NO se pudo eliminar", {
+                    icon: "error",
+                });
+            });
+        } /*else {
+          swal("Your imaginary file is safe!");
+        }*/
     });
-}
-
-//metodo PUT
-function editarEmpleado(nombre, apellido, cedula, correo, contra, empresa) {
-    var data = { id: ID_cliente_editando, name: usuario, email: correo, password: contraseña, phone: telefono, state: estado };
-    let url = url_back + "/cliente";
-    fetch(url, {
-        method: 'PUT', // or 'PUT'
-        body: JSON.stringify(data), // data can be `string` or {object}!
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(function (data_res) {
-        console.log("Respuesta: " + data_res);
-        cambiar_texto(false, btn_guardar);
-        limpiar("entrada_empleado");
-        editando = false;
-        mostrar_mensaje('Se ha modificado', alerta, 'success');
-        cargarEmpleado();
-    }).catch(function (error) {
-        console.log('Error Id carrito: ' + error);
-        mostrar_mensaje('No se pudo editar', alerta, 'danger');
-    });
-}
-
-//metodo GET
-function cargarEmpleado() {
-    let url = url_back + "empleado/listar";
-    fetch(url).then(function (response) {
-        return response.json();
-    }).then(function (data) {
-        let template = ``;
-        data.forEach(task => {
-            template +=
-                `<tr>
-            <td>${task.idEmpleado}</td>
-            <td>${task.agencia.idAgencia}</td>
-            <td>${task.nickname}</td>
-            <td>${task.password}</td>
-            <td>${task.nombre}</td>
-            <td>${task.apellido}</td>
-            <td>${task.cedula}</td>
-            <td>${task.email}</td>
-            <td>
-                <button class="task-ver btn btn-secondary">
-                    Editar
-            </button>
-            </td>
-            <td>
-                <button class="task-delete btn btn-danger">
-                    Delete
-                </button>
-            </td>
-            </tr>`
-        });
-        template += `
-            < tr class='noSearch hide' >
-                <td colspan="5"></td>
-        </tr> `;
-        $('#menu-agencias').html(template);
-        $('#BodyTablaEmpleado').html(template);
-        console.log("Empleados cargados");
-    }).catch(err => {
-        console.log(err);
-    });
-}
-
-function CargarMenuAgencias() {
-    let url = url_back + "agencia/listar";
-    fetch(url).then(function (response) {
-        return response.json();
-    }).then(function (data) {
-        let template = `<option selected ="" disabled>Agencias</option>`;
-        data.forEach(task => {
-            template += `<option> ${task.idAgencia} ${task.nombre}</option>`;
-        });
-        $('#menu_agencias').html(template);
-        console.log("Agencias listas");
-    }).catch(err => {
-        console.log(err);
-    });
-}
-
-//metodo DELETE
-function eliminarEmpleado() {
-    if (confirm('Seguro que desea eliminar?')) {
-        //$(this).parent().parent().remove();
-        let element = $(this)[0].parentElement.parentElement;
-        let id_fila = element.cells[0].innerText;
-        let url = url_back + "/cliente?id=" + id_fila;
-        fetch(url, {
-            method: 'DELETE'
-        }).then(() => {
-            console.log('removed');
-            element.remove();
-        }).catch(err => {
-            console.error(err)
-        });
-    }
 }
 
 /*----------------Viajes---------*/
@@ -452,23 +523,23 @@ function Cargar_Destinos() {
 $("#guardar_ruta").click(function (e) {
     e.preventDefault();
     //let agencia = document.getElementById('menu_agencias').value;
-    let origen = document.getElementById('origen');
+    let origen = document.getElementById('origen').value;
     let destino = document.getElementById('menu_destinos').value;
-    let ruta = document.getElementById('ruta_a');
+    let ruta = document.getElementById('ruta_a').value;
     // Validacion de campos vacios
-    if (origen.value === '' || ruta.value === '' || destino === "Destinos") {
+    if (origen === '' || ruta === '' || destino === "Destinos" || destino === "") {
         return mostrar_mensaje('Campos vacios', alerta_ruta, 'danger');
     }
-    var id_destino = destino.split(" ");
+    let id_destino = destino.split(" ");
     id_destino = parseInt(id_destino[0], 10);//10 base decimal
     if (id_destino == 1) {
         return mostrar_mensaje('Cambie el destino', alerta_ruta, 'danger');
     }
     if (editando_ruta == true) { //se esta editando
-        editarRuta(id_agencia, origen.value, id_destino, ruta.value);
+        editarRuta(origen, id_destino, ruta);
         return;
     }
-    nuevoRuta(id_agencia, origen.value, id_destino, ruta.value);
+    nuevoRuta(origen, id_destino, ruta);
 });
 
 $(document).on('click', '.ruta-editar', function (e) {
@@ -513,72 +584,108 @@ function cargarRuta() {
         console.log("listo");
         $('#BodyTableRutas').html(template);
     }).catch(err => {
-        console.log(err);
+        //console.log(err);
     });
 }
 
 //metodo POST
-function nuevoRuta(id_agencia, orige, id_destino, ruta) {
-    var data = { origen: origen, destino: destino, empresa: empresa };
-    let url = url_clientes + "/cliente";
-    fetch(url, {
-        method: 'POST', // or 'PUT'
-        body: JSON.stringify(data), // data can be `string` or {object}!
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(function (data_res) {
-        console.log("Respuesta: " + data_res);
-        cambiar_texto(false, btn_guardar_ruta);
-        limpiar("entrada_ruta");
-        mostrar_mensaje('Exito', alerta_ruta, 'success');
-        cargarRuta();
-    }).catch(function (error) {
-        console.log('Error post: ' + error);
-        mostrar_mensaje('No se pudo agregar', alerta_ruta, 'danger');
-    });
+function nuevoRuta(origen, id_destino, ruta) {
+    getDestino(id_destino);
+    if (destino != "") {
+        let data = { destino: destino, nombreRuta: ruta, origen: "Cuenca" };
+        let url = url_back + "viaje";
+        fetch(url, {
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (data_res) {
+            //console.log("Respuesta: " + data_res);
+            cambiar_texto(false, btn_guardar_ruta);
+            limpiar("entrada_ruta");
+            mostrar_mensaje('Exito', alerta_ruta, 'success');
+            cargarRuta();
+        }).catch(function (error) {
+            //console.log('Error post: ' + error);
+            mostrar_mensaje('No se pudo agregar', alerta_ruta, 'danger');
+        });
+        destino = "";
+    }
+
 }
 
 //metodo PUT
-function editarRuta(id_agencia, origen, id_destino, ruta) {
-    var data = { id: ID_coop_editando, name: nombre, buses: buses, state: estado };
-    let url = url_clientes + "/cliente";
-    fetch(url, {
-        method: 'PUT', // or 'PUT'
-        body: JSON.stringify(data), // data can be `string` or {object}!
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(function (data_res) {
-        console.log("Respuesta: " + data_res);
-        cambiar_texto(false, btn_guardar_ruta);
-        limpiar("entrada_ruta");
-        editando_ruta = false;
-        mostrar_mensaje('Se ha modificado', alerta_ruta, 'success');
-        cargarRuta();
-    }).catch(function (error) {
-        console.log('Error Id carrito: ' + error);
-        mostrar_mensaje('No se pudo editar', alerta_ruta, 'danger');
-    });
+function editarRuta(origen, id_destino, ruta) {
+    getDestino(id_destino);
+    if (destino != "") {
+        let data = { destino: destino, idViaje: ID_ruta_editando, nombreRuta: ruta, origen: "Cuenca" };
+        let url = url_back + "viaje";
+        fetch(url, {
+            method: 'PUT', // or 'PUT'
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (data_res) {
+            //console.log("Respuesta: " + data_res);
+            cambiar_texto(false, btn_guardar_ruta);
+            limpiar("entrada_ruta");
+            editando_ruta = false;
+            mostrar_mensaje('Se ha modificado', alerta_ruta, 'success');
+            cargarRuta();
+        }).catch(function (error) {
+            //console.log('Error Id carrito: ' + error);
+            mostrar_mensaje('No se pudo editar', alerta_ruta, 'danger');
+        });
+        destino = "";
+    }
 }
 
 //metodo DELETE
 function eliminarRuta() {
-    if (confirm('Seguro que desea eliminar?')) {
-        //$(this).parent().parent().remove();
-        let element = $(this)[0].parentElement.parentElement;
-        let id_fila = element.cells[0].innerText;
-        element.remove();
-        /* let url = url_clientes + "/cliente?id=" + id_fila;
-        fetch(url, {
-            method: 'DELETE'
-        }).then(() => {
-            console.log('removed');
-            element.remove();
-        }).catch(err => {
-            console.error(err)
-        }); */
-    }
+    swal({
+        title: "¿Seguro que desea eliminar?",
+        text: "Este viaje se eliminará",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            //$(this).parent().parent().remove();
+            let element = $(this)[0].parentElement.parentElement;
+            let id_fila = element.cells[0].innerText;
+            let url = url_back + "viaje/" + id_fila;
+            fetch(url, {
+                method: 'DELETE'
+            }).then(() => {
+                //console.log('removed');
+                element.remove();
+                swal("Viaje eliminado", {
+                    icon: "success",
+                });
+            }).catch(err => {
+                //console.error(err);
+                swal("NO se pudo eliminar", {
+                    icon: "error",
+                });
+            });
+        } /*else {
+          swal("Your imaginary file is safe!");
+        }*/
+    });
+}
+
+var destino = "";
+function getDestino(idDestino) {
+    let url = url_back + "ubicacion/" + idDestino;
+    fetch(url).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        destino = data;
+    }).catch(err => {
+        //console.log(err);
+    });
 }
 
 /*------------------Destinos---------------------*/
@@ -642,14 +749,17 @@ function cargarDestino() {
         console.log("Destinos cargados");
         $('#BodyTableDestino').html(template);
     }).catch(err => {
-        console.log(err);
+        //console.log(err);
     });
 }
 
 //metodo POST
 function nuevoDestino(nombre, latitud, longitud) {
-    var data = { latitud: latitud, longitud: longitud, nombre: nombre };
-    let url = url_back + "/cliente";
+    let data = {
+        latitud: latitud, longitud: longitud,
+        nombre: nombre
+    };
+    let url = url_back + "ubicacion";
     fetch(url, {
         method: 'POST', // or 'PUT'
         body: JSON.stringify(data), // data can be `string` or {object}!
@@ -657,7 +767,7 @@ function nuevoDestino(nombre, latitud, longitud) {
             'Content-Type': 'application/json'
         }
     }).then(function (data_res) {
-        console.log("Respuesta: " + data_res);
+        //console.log("Respuesta: " + data_res);
         cambiar_texto(false, btn_guardar_destino);
         limpiar("entrada_destino");
         mostrar_mensaje('Exito', alerta_destino, 'success');
@@ -670,8 +780,11 @@ function nuevoDestino(nombre, latitud, longitud) {
 
 //metodo PUT
 function editarDestino(nombre, latitud, longitud) {
-    var data = { idUbicacion: ID_destino_editando, latitud: latitud, longitud: longitud, nombre: nombre };
-    let url = url_back + "/cliente";
+    let data = {
+        idUbicacion: ID_destino_editando, latitud: latitud, longitud: longitud,
+        nombre: nombre
+    };
+    let url = url_back + "ubicacion";
     fetch(url, {
         method: 'PUT', // or 'PUT'
         body: JSON.stringify(data), // data can be `string` or {object}!
@@ -679,8 +792,8 @@ function editarDestino(nombre, latitud, longitud) {
             'Content-Type': 'application/json'
         }
     }).then(function (data_res) {
-        console.log("Respuesta: " + data_res);
-        cambiar_texto(false, btn_guardar_ruta);
+        //console.log("Respuesta: " + data_res);
+        cambiar_texto(false, btn_guardar_destino);
         limpiar("entrada_destino");
         editando_destino = false;
         mostrar_mensaje('Se ha modificado', alerta_destino, 'success');
@@ -693,21 +806,36 @@ function editarDestino(nombre, latitud, longitud) {
 
 //metodo DELETE
 function eliminarDestino() {
-    if (confirm('Seguro que desea eliminar?')) {
-        //$(this).parent().parent().remove();
-        let element = $(this)[0].parentElement.parentElement;
-        let id_fila = element.cells[0].innerText;
-        element.remove();
-        /* let url = url_clientes + "/cliente?id=" + id_fila;
-        fetch(url, {
-            method: 'DELETE'
-        }).then(() => {
-            console.log('removed');
-            element.remove();
-        }).catch(err => {
-            console.error(err)
-        }); */
-    }
+    swal({
+        title: "¿Seguro que desea eliminar?",
+        text: "Este destino se eliminará",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            //$(this).parent().parent().remove();
+            let element = $(this)[0].parentElement.parentElement;
+            let id_fila = element.cells[0].innerText;
+            let url = url_back + "ubicacion/" + id_fila;
+            fetch(url, {
+                method: 'DELETE'
+            }).then(() => {
+                //console.log('removed');
+                element.remove();
+                swal("Destino eliminado", {
+                    icon: "success",
+                });
+            }).catch(err => {
+                //console.error(err);
+                swal("NO se pudo eliminar", {
+                    icon: "error",
+                });
+            });
+        } /*else {
+          swal("Your imaginary file is safe!");
+        }*/
+    });
 }
 
 /*----------------Anuncios-----------------------*/
@@ -723,14 +851,11 @@ $("#guardar_anuncio").click(function (e) {
         return mostrar_mensaje('Campos vacios', alerta_anuncio, 'danger');
     }
     switch (categoria) {
-        case "Taxis":
-            guardarAnuncio(1, "Taxis", nombreSitio, descripcion, link);
+        case "Taxis": guardarAnuncio(1, "Taxis", nombreSitio, descripcion, link);
             break;
-        case "Hoteles":
-            guardarAnuncio(2, "Hoteles", nombreSitio, descripcion, link);
+        case "Hoteles": guardarAnuncio(2, "Hoteles", nombreSitio, descripcion, link);
             break;
-        case "Restaurantes":
-            guardarAnuncio(3, "Restaurantes", nombreSitio, descripcion, link);
+        case "Restaurantes": guardarAnuncio(3, "Restaurantes", nombreSitio, descripcion, link);
             break;
         default:
             break;
@@ -775,14 +900,11 @@ function cargarCategoria(idServicio) {
 
 //metodo PUT
 function guardarAnuncio(id, categoria, nombreSitio, descripcion, link) {
-    var data = {
+    let data = {
         idServicio: id, nombreSitio: nombreSitio, descripcion: descripcion, url: link
-        , categoria: {
-            idCategoria: id,
-            nombre: categoria
-        }
+        , categoria: { idCategoria: id, nombre: categoria }
     };
-    let url = url_back + "/servicio";
+    let url = url_back + "servicio";
     fetch(url, {
         method: 'PUT', // 'POST' or 'PUT'
         body: JSON.stringify(data), // data can be `string` or {object}!
@@ -811,8 +933,9 @@ function processFiles(files) {
 }
 
 /*---------------------------------------*/
-/*---Busquedas de las tablas */
-/*La busqueda se realizan al ingresar texto en el input*/
+
+/* Busquedas de las tablas */
+/* La busqueda se realizan al ingresar texto en el input*/
 
 function doSearch() {
     const tableReg = document.getElementById('tablaEmpleado');
