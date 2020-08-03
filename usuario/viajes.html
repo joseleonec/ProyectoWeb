@@ -10,7 +10,8 @@
     <title>Viajes</title>
     <link href="css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+        crossorigin="anonymous" />
     <script src="js/all.min.js" crossorigin="anonymous"></script>
 </head>
 
@@ -32,11 +33,13 @@
                             Registrar nueva Solicitud
                         </button> -->
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Ingresa los datos para la Solicitud
+                                        <h5 class="modal-title" id="exampleModalLabel">Ingresa los datos para la
+                                            Solicitud
                                         </h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -63,19 +66,22 @@
                                             </div>
                                             <div class="form-group ">
                                                 <label for="labelfechaDeRegistro">Fecha De Registro</label>
-                                                <input type="datetime-local" class="form-control" id="labelfechaDeRegistro">
+                                                <input type="datetime-local" class="form-control"
+                                                    id="labelfechaDeRegistro">
                                             </div>
                                             <div class="form-group">
                                                 <label for="labelmotivoDevolucion">Motivo Devolucion</label>
                                                 <select name="select" class="form-control" id="labelmotivoDevolucion">
                                                     <option value="PRODUCTO CADUCADO">PRODUCTO CADUCADO</option>
-                                                    <option value="PRODUCTO AVERIADO" selected>PRODUCTO AVERIADO</option>
+                                                    <option value="PRODUCTO AVERIADO" selected>PRODUCTO AVERIADO
+                                                    </option>
                                                     <option value="PRODUCTO ROTO">PRODUCTO ROTO</option>
                                                     <option value="PRODUCTO EQUIVOCADO">PRODUCTO EQUIVOCADO</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="labelestadoAprobacion">Ingrese el estado de la entrega</label>
+                                                <label for="labelestadoAprobacion">Ingrese el estado de la
+                                                    entrega</label>
                                                 <select name="select" class="form-control" id="labelestadoAprobacion">
                                                     <option value="ENTREGADO">APROBADO</option>
                                                     <option value="PENDIENTE" selected>PENDIENTE</option>
@@ -87,8 +93,10 @@
                                     </div>
 
                                     <div class="modal-footer ">
-                                        <button type="button " class="btn btn-secondary " data-dismiss="modal">Cancelar</button>
-                                        <button id="btn-guardar-solicitud" type="button " class="btn btn-primary ">Guardar
+                                        <button type="button " class="btn btn-secondary "
+                                            data-dismiss="modal">Cancelar</button>
+                                        <button id="btn-guardar-solicitud" type="button "
+                                            class="btn btn-primary ">Guardar
                                         </button>
                                     </div>
                                 </div>
@@ -136,7 +144,8 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
 
     <!--sxripts locales para los Datatables de Jquery -->
     <script src="js/jquery.dataTables.min.js"></script>
@@ -144,11 +153,22 @@
 
     <script type="text/javascript" src="js/BarraLateral.js"></script>
     <script type="text/javascript" src="js/controlador/Utilities.js"></script>
-    <script type="text/javascript" src="js/controlador/viajesControlador.js"></script>
+
 
     <!-- componentes -->
     <script type="text/javascript" src="js/component/header.js"></script>
     <script type="text/javascript" src="js/component/sidebar.js"></script>
+
+
+    <!-- FIREBASE -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src=" https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js "></script>
+    <script src=" https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js "></script>
+    <script src="js/auth.js"></script>
+    <script src="js/logout.js"></script>
 </body>
+
+<!--Scripts especificos de cada Entidad -->
+<script type="text/javascript" src="js/controlador/viajesControlador.js"></script>
 
 </html>

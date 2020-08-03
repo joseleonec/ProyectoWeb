@@ -1,13 +1,11 @@
 const url = 'https://terminal25backend.herokuapp.com/factura/';
 const urlCounter = 'https://terminal25backend.herokuapp.com/boleto/count/'
-var idUsuario = 1;
+var idUsuario;
 
 function addRow(datatable, factura) {
     var fecha = factura.fecha.slice(0, 16).replace(/T/g, ' ');
     fecha = new Date(fecha).toString().split("G")[0];
-
     var token = "idcarrito=" + factura.carrito.idCarrito;
-
     fetch(urlCounter + token).then(function(response) {
         return response.json();
     }).then(function(data) {
@@ -32,12 +30,33 @@ function llenarTabla(datatable) {
     });
 }
 
-
 $(document).ready(function() {
 
     var datatable = $('#tablaCompras').DataTable();
     // LLENAR TABLA
-    llenarTabla(datatable);
+    emailAuth.onAuthStateChanged(user => {
+        // USUARIO_AUTH = user;
+        if (user) {
+            var userURL = 'https://terminal25backend.herokuapp.com/usuario/email=';
+            console.log("Compras sc: " + user.email);
+            fetch(userURL + user.email.toString()).then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                idUsuario = data.idUsuario;
+                console.log("compras usuario: " + idUsuario);
+                llenarTabla(datatable);
+                document.getElementById("logedas").innerText = data.nickname;
+                // iniciar();
+            }).catch(function () {
+                console.log("Error al hallar el ID de usuario");
+            });
+    
+        } else {
+            window.location.href = "../login.html";
+            console.log("compras no hay usuario");
+        }
+    });
+
     // POST
     $("#btn-guardar-parroquia").click(function() {
         // console.log("Evento capturado");

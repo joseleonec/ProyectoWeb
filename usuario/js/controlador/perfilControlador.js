@@ -58,8 +58,28 @@ function actvarCampos() {
 
 $(document).ready(function() {
 
-    idUsuario = 2;
-    cargarCampos(idUsuario);
+
+    emailAuth.onAuthStateChanged(user => {
+        // USUARIO_AUTH = user;
+        if (user) {
+            var userURL = 'https://terminal25backend.herokuapp.com/usuario/email=';
+            console.log("Compras sc: " + user.email);
+            fetch(userURL + user.email.toString()).then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                idUsuario = data.idUsuario;
+                console.log("compras usuario: " + idUsuario);
+                cargarCampos(idUsuario);
+                // iniciar();
+            }).catch(function () {
+                console.log("Error al hallar el ID de usuario");
+            });
+    
+        } else {
+            window.location.href = "../login.html";
+            console.log("compras no hay usuario");
+        }
+    });
 
     $("#guardarusuario").click(function(e) {
 

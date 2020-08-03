@@ -46,7 +46,7 @@ class SideBar extends HTMLElement {
                 <div class="small">
                     Loggeado como:
                 </div>
-                <p id="logedas"> </p>
+                <p id="logedas"></p>
             </div>
 		    </nav>
 		</div>

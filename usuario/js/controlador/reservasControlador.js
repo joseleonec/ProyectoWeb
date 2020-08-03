@@ -1,43 +1,65 @@
-const url = 'https://terminal25backend.herokuapp.com/carrito/idusuario='
-const idUsuario = 2;
+const url = 'https://terminal25backend.herokuapp.com/carrito/idusuario=';
+var idUsuario;
+
 
 function addRow(datatable, carrito) {
     datatable.row.add([carrito.idCarrito, carrito.fechaCreacion, carrito.estado]).draw();
 }
 
 function llenarTabla(datatable) {
-    fetch(url + idUsuario).then(function(response) {
+    fetch(url + idUsuario).then(function (response) {
         return response.json();
-    }).then(function(data) {
+    }).then(function (data) {
         data.forEach(i => {
             addRow(datatable, i);
         });
-    }).catch(function() {
+    }).catch(function () {
         console.log("Error al Llenar la tabla");
     });
 }
 
 
-$(document).ready(function() {
-
+$(document).ready(function () {
+    // loadId();
     var datatable = $('#tablaSustitucion').DataTable({
         "columnDefs": [{
             "targets": -1,
             "data": null,
             "defaultContent": `
-                <button name="edit" type="submit"
-                    class="btn btn-info btn-rounded btn-sm my-0" data-toggle="modal" data-target="#exampleModal">
-                    Ver
-                </button>
-                <button name='delete' class="btn btn-danger btn-rounded btn-sm my-0" >
-                    Eliminar
-                </button>`
+                    <button name="edit" type="submit"
+                        class="btn btn-info btn-rounded btn-sm my-0" data-toggle="modal" data-target="#exampleModal">
+                        Ver
+                    </button>
+                    <button name='delete' class="btn btn-danger btn-rounded btn-sm my-0" >
+                        Eliminar
+                    </button>`
         }]
     });
-    // LLENAR TABLA
-    llenarTabla(datatable);
+    emailAuth.onAuthStateChanged(user => {
+        // USUARIO_AUTH = user;
+        if (user) {
+            var userURL = 'https://terminal25backend.herokuapp.com/usuario/email=';
+            console.log("Reservas sc: " + user.email);
+            fetch(userURL + user.email.toString()).then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                idUsuario = data.idUsuario;
+                console.log(idUsuario);
+                llenarTabla(datatable);
+                document.getElementById("logedas").innerText = data.nombre;
+                // iniciar();
+            }).catch(function () {
+                console.log("Error al hallar el ID de usuario");
+            });
+    
+        } else {
+            window.location.href = "../login.html";
+            console.log("reservas no hay usuario");
+        }
+    });
+
     // POST
-    $("#btn-guardar-sustitucion").click(function() {
+    $("#btn-guardar-sustitucion").click(function () {
         // console.log("Evento capturado");
         const id = document.getElementById("labelid").value.toUpperCase();
         const idSolicitud = document.getElementById("labelidSolicitud").value.toUpperCase();
@@ -45,11 +67,11 @@ $(document).ready(function() {
         const monto = document.getElementById("labelmonto").value.toUpperCase();
 
         var solicitudDevolucion;
-        fetch('https://springtest999.herokuapp.com/api/solicituddevolucion/' + idSolicitud).then(function(response) {
+        fetch('https://springtest999.herokuapp.com/api/solicituddevolucion/' + idSolicitud).then(function (response) {
             return response.json();
-        }).then(function(data) {
+        }).then(function (data) {
             solicitudDevolucion = data;
-        }).catch(function() {
+        }).catch(function () {
             console.log("Error al recuperar registro compuesto");
         });
 
@@ -80,11 +102,11 @@ $(document).ready(function() {
             mostrarMensaje('Elemento regisrado con exito', 'success');
         }
     });
-    $('#exampleModal').on('hidden.bs.modal', function() {
+    $('#exampleModal').on('hidden.bs.modal', function () {
         $(this).find('form')[0].reset();
     });
     // DELETE
-    datatable.on('click', 'tbody tr', function(e) {
+    datatable.on('click', 'tbody tr', function (e) {
         const botonname = e.target.name;
         const columns = e.target.parentElement.parentElement.getElementsByTagName('td');
         const ID = columns[0].innerText;
@@ -96,3 +118,5 @@ $(document).ready(function() {
         }
     });
 });
+
+

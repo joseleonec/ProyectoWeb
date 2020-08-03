@@ -31,7 +31,7 @@ class Header extends HTMLElement {
                                         <a class="dropdown-item" href="#">Configuración</a>
                                         <a class="dropdown-item" href="#">Registro de Actividad</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="login.html">Salir</a>
+                                        <button id="logout" class="dropdown-item" >Salir</button>
                                     </div>
                             </li>
                         </ul>
