@@ -19,11 +19,12 @@ function signOut() {
 const loginForm = document.querySelector("#form-signin-form");
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
+
     //get user info
     const email = loginForm['login-email'].value;
     const password = loginForm['login-password'].value;
-    //sign up on the user
 
+    //sign up on the user
     emailAuth.signInWithEmailAndPassword(email, password)
         .then(
             cred => {
