@@ -1,26 +1,39 @@
-// function onSignIn(googleUser) {
-//     var profile = googleUser.getBasicProfile();
-
-//     console.log('Id Profile: ' + profile.getId());
-//     console.log('Name: ' + profile.getName());
-//     console.log('Image URL: ' + profile.getImageUrl());
-//     console.log('Email: ' + profile.getEmail());
-//     console.log('Id Token ' + googleUser.getAuthResponse().id_token);
-// }
-
-// function signOut() {
-//     var auth2 = gapi.auth2.getAuthInstance();
-//     auth2.signOut().then(function () {
-//         //una vez deslogueado
-//         console.log("Adios")
-//     });
-// }
-
+const url = 'https://terminal25backend.herokuapp.com/usuario/';
 emailAuth.onAuthStateChanged(user => {
     // USUARIO_AUTH = user;
+    var email = user.email;
+    var bandera = true;
+    console.log(user);
     if (user) {
-        // email = user.email;
-        window.location.href = "../perfil.html";
+        fetch(url + "email=" + email).then(function (response) {
+            return response.json();
+        }).then(function (x) {
+            console.log("x:");
+            console.log(x);
+            if (x.email === email || user.displayName === x.nickname) {
+                bandera = false;
+                // console.log(x);
+                window.location.href = "../perfil.html";
+                // alert("El email ya esta registrado");
+            } else if (bandera) {
+                const data = {
+                    "nombre": user.displayName,
+                    "apellido": "apellido",
+                    "cedula": "cedula",
+                    "nickname": user.displayName,
+                    "password": "password",
+                    "email": user.email,
+                    "saldo": 0.0
+                };
+                console.log("var");
+                console.log(data);
+                POST(url, data);
+                window.location.href = "../perfil.html";
+            }
+        }).catch(function () {
+            console.log("Error al autenticar usuario");
+        });
+        // window.location.href = "../perfil.html";
         // window.location.href = "../salidas.html";
     } else {
         console.log("no existe un sesion");
@@ -46,53 +59,33 @@ loginForm.addEventListener('submit', (e) => {
 // Login with Google
 const botonLoginGoogle = document.querySelector("#login-google");
 botonLoginGoogle.addEventListener('click', e => {
+    e.preventDefault();
     console.log("click google");
     var provider = new firebase.auth.GoogleAuthProvider();
-    emailAuth.signInWithPopup(provider).then(function (result) {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        var token = result.credential.accessToken;
-        // The signed-in user info.
-        var user = result.user;
-        // ...
-    }).catch(function (error) {
-        botonLoginGoogle.valuee="Error" + error;
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        // ...
-    });
-    // emailAuth.signInWithPopup(provider)
-    //     .then(
-    //         result => {
-    //             console.log("Google signed in" + result);
-    //         }
-
-    //     ).catch(
-    //         err => {
-    //             console.log("Error:" + err);
-    //         }
-
-    //     );
+    //POPUP
+    emailAuth.signInWithRedirect(provider).then(function (result) {
+        console.log("Google signed in" + result);
+    }).catch(
+        err => {
+            console.log("Error:" + err);
+        }
+    );
+    console.log("fin");
 });
+
 // Login with Facebook
-const botonLoginFacebook = document.querySelector("#login-facebook");
+const botonLoginFacebook = document.querySelector('#login-facebook');
 botonLoginFacebook.addEventListener('click', e => {
-    console.log("click Facebook");
+    e.preventDefault();
+    // loginForm.reset();
     const provider = new firebase.auth.FacebookAuthProvider();
-    emailAuth.signInWithPopup(provider)
-        .then(
-            result => {
-                console.log("Facebook signed in" + result);
-            }
+    emailAuth.signInWithRedirect(provider).then((result) => {
+        console.log(result);
+        console.log("facebook sign in");
+    }).catch(
+        err => {
+            console.log(err);
+        }
+    );
 
-        ).catch(
-            err => {
-                console.log("Error:" + err);
-            }
-
-        );
-});
+})

@@ -16,15 +16,15 @@ function addRow(datatable, solicitud) {
         </span>
             `;
     datatable.row.add([solicitud.idSolicitud, solicitud.idProducto, solicitud.idFactura,
-        solicitud.idCliente, solicitud.fechaDeRegistro,
-        solicitud.motivoDevolucion, solicitud.estadoAprobacion, span
+    solicitud.idCliente, solicitud.fechaDeRegistro,
+    solicitud.motivoDevolucion, solicitud.estadoAprobacion, span
     ]).draw();
 }
 
 function cargarCampos(idUsuario) {
-    fetch(url + idUsuario).then(function(response) {
+    fetch(url + idUsuario).then(function (response) {
         return response.json();
-    }).then(function(data) {
+    }).then(function (data) {
         document.getElementById("idUsuario").value = data.idUsuario;
         document.getElementById("nombreusuario").value = data.nombre;
         document.getElementById("apellidousuario").value = data.apellido;
@@ -33,7 +33,8 @@ function cargarCampos(idUsuario) {
         document.getElementById("nicknameusuario").value = data.nickname;
         document.getElementById("usuariosaldo").innerText = data.saldo;
         document.getElementById("logedas").innerText = data.nickname;
-    }).catch(function() {
+
+    }).catch(function () {
         console.log("Error en el metodo GET");
     });
 }
@@ -56,12 +57,14 @@ function actvarCampos() {
     cambiarEstado(false);
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
 
 
     emailAuth.onAuthStateChanged(user => {
         // USUARIO_AUTH = user;
         if (user) {
+            const imgsrc = user.photoURL;
+            document.getElementById("perfil-img").src = imgsrc;
             var userURL = 'https://terminal25backend.herokuapp.com/usuario/email=';
             console.log("Compras sc: " + user.email);
             fetch(userURL + user.email.toString()).then(function (response) {
@@ -74,14 +77,14 @@ $(document).ready(function() {
             }).catch(function () {
                 console.log("Error al hallar el ID de usuario");
             });
-    
+
         } else {
             window.location.href = "../login.html";
             console.log("compras no hay usuario");
         }
     });
 
-    $("#guardarusuario").click(function(e) {
+    $("#guardarusuario").click(function (e) {
 
         var valor = document.getElementById("guardarusuario").value;
         if (valor === "Guardar Cambios") {
@@ -104,9 +107,9 @@ $(document).ready(function() {
                 alert('Las contraseñas no coinciden');
                 // mostrarMensaje('Las contraseñas no coinciden', 'danger');
             } else {
-                fetch(url + id).then(function(response) {
+                fetch(url + id).then(function (response) {
                     return response.json();
-                }).then(function(obj) {
+                }).then(function (obj) {
                     const psw = obj.password;
                     if (password === psw) {
                         const data = {
@@ -131,7 +134,7 @@ $(document).ready(function() {
                         alert("Cambios registrados")
                         mostrarMensaje('Cambios regisrados con exito', 'success');
                     }
-                }).catch(function() {
+                }).catch(function () {
                     console.log("Error en el metodo GET");
                 });
                 // alert("Cambios registrados")
@@ -147,7 +150,7 @@ $(document).ready(function() {
         // console.log(valor)
     });
 
-    $("#cancelar").click(function() {
+    $("#cancelar").click(function () {
         desactvarCampos();
         document.getElementById("cancelar").disabled = true;
         document.getElementById("guardarusuario").value = "Editar";
