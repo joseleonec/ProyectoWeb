@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <meta name="google-signin-client_id"
-        content="990936533205-sj7f4m63ocgtrurvadlu5ol75n1qlbel.apps.googleusercontent.com" />
+    <!-- <meta name="google-signin-client_id"
+        content="990936533205-sj7f4m63ocgtrurvadlu5ol75n1qlbel.apps.googleusercontent.com" /> -->
     <link rel="stylesheet" href="css/all.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/login.css">
@@ -35,19 +35,21 @@
                                 <input type="checkbox" class="custom-control-input" id="customCheck1">
                                 <label class="custom-control-label" for="customCheck1">Recordar</label>
                             </div>
-                            <button id="login" class="btn btn-lg btn-primary btn-block text-uppercase text-white"  href="#">Iniciar sesión</button>
-                            <!-- <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"> -->
-                                <a class="text-white" href="rutas.html">Iniciar sesión</a>
+                            <button id="login" class="btn btn-lg btn-primary btn-block text-uppercase text-white"  href="#">
+                                Iniciar sesión
                             </button>
+                            <!-- <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"> -->
+                                <!-- <a class="text-white" href="rutas.html">Iniciar sesión</a> -->
+                            <!-- </button> -->
 
                         </form>
                         <form id="social-signin" class="form-signin">
                             <hr class="my-4">
                             <div class="g-signin2" data-longtitle="true" data-onsuccess="onSignIn"></div>
-                            <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit">
+                            <button id="login-google" class="btn btn-lg btn-google btn-block text-uppercase" type="button">
                                 <img class="" src="images/icon-google.png" style="max-height: 30px;">
                                 Iniciar sesión con Google</button>
-                            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit">
+                            <button id="login-facebook" class="btn btn-lg btn-facebook btn-block text-uppercase" type="button">
                                 <img class="" src="images/icon-facebook.png" style="max-height: 30px;">
                                 Iniciar sesión con Facebook</button>
                             <a class="d-block text-center mt-2 " href="register.html">¿Aún no tienes cuenta?</a>
@@ -59,33 +61,11 @@
             </div>
         </div>
     </div>
-    <!-- FIREBASE -->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <!-- <script src=" https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js "></script> -->
-    <!-- <script src=" https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js "></script> -->
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-
-    <!-- <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: " AIzaSyDkPxP35KxmCaFiF12ikKMpJiqiKlJmR-4",
-            authDomain: "terminalcuenca.firebaseapp.com",
-            databaseURL: "https://terminalcuenca.firebaseio.com",
-            projectId: "terminalcuenca",
-            storageBucket: "terminalcuenca.appspot.com",
-            messagingSenderId: "963023183685",
-            appId: "1:963023183685:web:ddfff1fb0efbbbd683282c"
-        }; // Initialize Firebase firebase.initializeApp(firebaseConfig);
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-    </script> -->
     <!-- <script src="js/auth.js"></script> -->
     <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
     <!-- <script src="js/login.js"></script> -->
 
-    
     <!-- FIREBASE -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src=" https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js "></script>
