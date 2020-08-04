@@ -96,21 +96,21 @@
                                 src="../icons/carrito.svg">&nbsp;&nbsp;Carrito
                         </a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle boton-color" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Idioma
+                    <li class="nav-item">
+                        <a class="nav-link boton-color">
+                            <div id="google_translate_element" class="google"></div>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">English</a>
-                            <a class="dropdown-item" href="#">Spanish</a>
-                        </div>
                     </li>
                     <div class="dropdown-divider"></div>
-                    <li class="nav-item">
-                        <a class="nav-link boton-color" href="../usuario/dist/login.html"><img
-                                src="../icons/person.svg">&nbsp;&nbsp;Sign Up
+                    <li class="nav-item dropdown">
+                        <a id="cuentaMapa" class="nav-link dropdown-toggle boton-color" href="#" id="navbarDropdown"
+                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="../icons/person.svg">&nbsp;&nbsp;Iniciar sesión
                         </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="../usuario/perfil.html">Cuenta</a>
+                            <a id="logout" class="dropdown-item" href="index.html">Cerrar sesión</a>
+                        </div>
                     </li>
                 </ul>
                 <!--p class="navbar-text pull-right">
@@ -218,8 +218,8 @@
             <div class="col-sm-4">
                 <h3 class="foot-title-column">Ayuda</h3>
                 <br>
-                <p>En esta sección puede comentar los servicios prestados por las cooperativas de transporte. Debes
-                    haber iniciado sesión antes.</p>
+                <p>En esta sección puede visualizar las rutas de los viajes que realizan las cooperativas de transporte.
+                </p>
             </div>
             <div class="col-sm-4">
                 <h3 class="foot-title-column">Contáctanos</h3>
@@ -241,9 +241,18 @@
         </div>
     </div>
 
-    <!---ALERT---->
+    <!-- FIREBASE--Login de usuario-->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src=" https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js "></script>
+    <script src=" https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js "></script>
+    <!--Alertas-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <!--Fin Pie de pagina-->
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script-->
+    <script src="../usuario/js/auth.js"></script>
+    <script src="../usuario/js/logout.js"></script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+        </script>
     <script type="text/javascript" src="rutas.js"></script>
     <!--script type="text/javascript" src="scripts/datepicker.js"></script-->
 

@@ -1,5 +1,16 @@
 var url_back = "https://terminal25backend.herokuapp.com/";
 
+emailAuth.onAuthStateChanged(user => {
+    // USUARIO_AUTH = user;
+    console.log(user);
+    if (user) {
+        console.log("Si esta logueado");
+        document.getElementById("cuentaMapa").innerHTML = `<img src="../icons/person.svg">&nbsp;&nbsp;${user.displayName}`;
+    } else {
+        console.log("No existe una sesion ..");
+    }
+});
+
 $(document).ready(function () {
     console.log("ready!");
     //pedirDatos();
@@ -70,62 +81,52 @@ $(document).on('click', '.verMapa', function (e) {
     let coor_origen = origen.split(" ");
     let coor_destino = destino.split(" ");
 
-    let latitudeOrigen = parseFloat(coor_origen[0]); 
-    let longitudeOrigen = parseFloat(coor_origen[1]); 
+    let latitudeOrigen = parseFloat(coor_origen[0]);
+    let longitudeOrigen = parseFloat(coor_origen[1]);
     let latitudeDestino = parseFloat(coor_destino[0]);
     let longitudeDestino = parseFloat(coor_destino[1]);
     //swal("No puede comentar", "Debe iniciar session", "warning");
     graficarMapa(latitudeOrigen, longitudeOrigen, latitudeDestino, longitudeDestino);
 });
 
+var mymap = null;
+
 function graficarMapa(latitudeOrigen, longitudeOrigen, latitudeDestino, longitudeDestino) {
     if (navigator.geolocation) {
+        console.log("Graficando");
         navigator.geolocation.getCurrentPosition(function (position) {
             //var latitude = position.coords.latitude;
             //var longitude = position.coords.longitude;
 
-            var mymap = L.map('mapa', {
-                center: [latitudeDestino, longitudeDestino],
-                zoom: 12
-            });
+            /*  mymap = L.map('mapa', {
+                 center: [latitudeDestino, longitudeDestino],
+                 zoom: 12
+             }); */
 
-            L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            /*L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
                 maxZoom: 25,
                 attribution: 'Datos del mapa de &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, ' + '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' + 'Imágenes © <a href="https://www.mapbox.com/">Mapbox</a>',
                 id: 'mapbox/streets-v11'
-            }).addTo(mymap);
-
+            }).addTo(mymap);*/
+            console.log(mymap);
             L.Routing.control({
                 waypoints: [
                     L.latLng(latitudeDestino, longitudeDestino),
-                    /* L.latLng(-3.1479155, -79.2564351)*/
                     L.latLng(latitudeOrigen, longitudeOrigen)
-                    //L.latLng(-2.892180, -78.992936)
                 ],
                 language: 'es'
             }).addTo(mymap);
         });
-    } else {
-        var mymap = L.map('mapa', {
-            //center: [-2.892180, -78.992936],
-            center: [latitudeOrigen, longitudeOrigen],
-            zoom: 17
-        });
-
-        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-            maxZoom: 25,
-            attribution: 'Datos del mapa de &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, ' + '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' + 'Imágenes © <a href="https://www.mapbox.com/">Mapbox</a>',
-            id: 'mapbox/streets-v11'
-        }).addTo(mymap);
     }
 }
-/*
+
 if (navigator.geolocation) {
+    console.log("Mapa inicializado");
     navigator.geolocation.getCurrentPosition(function (position) {
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
 
-        var mymap = L.map('mapa', {
+        mymap = L.map('mapa', {
             center: [latitude, longitude],
             zoom: 12
         });
@@ -136,17 +137,9 @@ if (navigator.geolocation) {
             id: 'mapbox/streets-v11'
         }).addTo(mymap);
 
-        L.Routing.control({
-            waypoints: [
-                //L.latLng(-2.893399, -78.993609),
-                L.latLng(latitude, longitude),
-                L.latLng(-2.7397435, -78.86261)
-            ],
-            language: 'es'
-        }).addTo(mymap);
     });
 } else {
-    var mymap = L.map('mapa', {
+    mymap = L.map('mapa', {
         center: [-2.7397435, -78.86261],
         zoom: 17
     });
@@ -157,4 +150,7 @@ if (navigator.geolocation) {
         id: 'mapbox/streets-v11'
     }).addTo(mymap);
 }
-*/
+
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({ pageLanguage: 'es', includedLanguages: 'es,sp,ca,eu,gl,en,fr,it,pt,de', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true }, 'google_translate_element');
+}

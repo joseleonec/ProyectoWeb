@@ -1,3 +1,14 @@
+emailAuth.onAuthStateChanged(user => {
+    // USUARIO_AUTH = user;
+    console.log(user);
+    if (user) {
+        console.log("Si esta logueado");
+        document.getElementById("cuentaR").innerHTML = `<img src="../icons/person.svg">&nbsp;&nbsp;${user.displayName}`;
+    } else {
+        console.log("No existe una sesion ..");
+    }
+});
+
 $(function () {
     $('#datetimepicker4').datetimepicker({
         format: 'L'
@@ -20,7 +31,7 @@ $(document).on('click', '.agregarCarrito', function (e) {
     e.preventDefault();
     if (idUser == "") {
         swal("Ups! no puede comprar", "Debe iniciar session", "warning");
-    }else{
+    } else {
         redireccionar();
     }
 });
@@ -42,6 +53,7 @@ $(document).on('click', '#btnBuscarViaje', function (e) {
             , "warning");
         return
     }
+    //console.log(fecha);
     let aux = fecha.split("/");
     let Fecha = aux[2] + "-" + aux[0] + "-" + aux[1];
     //swal("Buscando", origen + ":" + destino + ":" + empresa + ":" + Fecha + nAcientos, "success");
@@ -157,4 +169,8 @@ function cargarCooperativas() {
     }).catch(err => {
         //console.log(err);
     });
+}
+
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({ pageLanguage: 'es', includedLanguages: 'es,sp,ca,eu,gl,en,fr,it,pt,de', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true }, 'google_translate_element');
 }

@@ -1,11 +1,26 @@
-var idUser = "";
+var idUser = "si";
+var email = "";
+
+//------verificar sesion-------
+emailAuth.onAuthStateChanged(user => {
+    // USUARIO_AUTH = user;
+    console.log(user);
+    if (user) {
+        idUser = "si";
+        email = user.email;
+        console.log("Si esta logueado Estado: " + idUser);
+        document.getElementById("cuenta").innerHTML = `<img src="../icons/person.svg">&nbsp;&nbsp;${user.displayName}`;
+    } else {
+        console.log("No existe una sesion ..");
+    }
+});
 
 $(document).ready(function () {
     console.log("ready!");
     pedirDatos();
     //idUser = dataUser(); //pedir al php
     //idUser = 1; //logueado
-    idUser = "";  //No logueado
+    //idUser = "";  //No logueado
 });
 
 function volver_a_inicio() {
@@ -18,7 +33,8 @@ var url_back = "https://terminal25backend.herokuapp.com/";
 async function pedirDatos() {
     const coop = cargarCooperativa();
     const comentarios = cargarComentarios();
-    let data = await Promise.all([coop, comentarios])
+    let data2 = await Promise.all([coop, comentarios]);
+    console.log("Fin Carga");
     try {
         promedios();
         cargarDatos();
@@ -211,24 +227,6 @@ $(document).on('click', '.task-comentar', function (e) {
     e.preventDefault();
 });
 
-/* var bandera = false;
-function cargarAtributos() {
-    $('.task-comentar').each(function (i, obj) {
-        $(obj).attr("data-toggle", "modal");
-        $(obj).attr("data-target", "#exampleModal1");
-        //$('.task-comentar').removeAttr(attribute);
-        bandera = true;
-    });
-} */
-
-//var obj = document.getElementById("btnCancelar");
-//obj.click();
-//$("#exampleModal1").removeAttr("class");
-//var targetElement = document.getElementById("exampleModal1");
-//addClass(targetElement, "someClass");
-//targetElement.removeClass("shows");
-//Funcion al cerrar el modal de comentarios
-
 $("#exampleModal1").on("hidden.bs.modal", function () {
     document.getElementById("text_comentario").value = "";
 });
@@ -237,6 +235,11 @@ var currentValue = 1;
 function handleClick(myRadio) {
     currentValue = myRadio.value;
 }
+
+/* $(document).on('click', '.task-delete', actionFunction);
+
+function actionFunction() {
+} */
 
 $(document).on('click', '.guardar_comentario', function (e) {
     e.preventDefault();
@@ -247,42 +250,39 @@ $(document).on('click', '.guardar_comentario', function (e) {
             agenciaLocal = coop;
         }
     });
-    getUsuario(idUser);
-    //userCliente = 1 //eliminar esta linea
-    if (userCliente != "" && agenciaLocal != "") {
-        let data = { agencia: agenciaLocal, calificacion: currentValue, comentario: comentario, usuario: userCliente };
-        let url = url_back + "comentario";
-        fetch(url, {
-            method: 'POST', // or 'PUT'
-            body: JSON.stringify(data), // data can be `string` or {object}!
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(function (data_res) {
-            //console.log("Respuesta: " + data_res);
-            pedirDatos();
+
+    if (bandera == false) {
+        console.log("Obteniendo user...");
+        cargarId();
+        console.log("Fin obtencion");
+    }
+
+    if (email != "") {
+        if (userCliente != "" && agenciaLocal != "") {
             swal("Comentario enviado", "Gracias por tu contribución", "success");
-        }).catch(function (error) {
-            swal("Fallo", "No se pudo enviar", "error");
-            //console.log('Error post: ' + error);
-        });
+            /* let data = { agencia: agenciaLocal, calificacion: currentValue, comentario: comentario, usuario: userCliente };
+            let url = url_back + "comentario";
+            fetch(url, {
+                method: 'POST', // or 'PUT'
+                body: JSON.stringify(data), // data can be `string` or {object}!
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function (data_res) {
+                //console.log("Respuesta: " + data_res);
+                pedirDatos();
+                swal("Comentario enviado", "Gracias por tu contribución", "success");
+            }).catch(function (error) {
+                swal("Fallo", "No se pudo enviar", "error");
+                //console.log('Error post: ' + error);
+            }); */
+        } else {
+            swal("Fallo", "--", "warning");
+        }
     } else {
-        swal("Fallo", "--", "warning");
+        swal("No puede comentar", "Debe iniciar session", "warning");
     }
 });
-
-var userCliente = "";
-function getUsuario(idUser) {
-    let url = url_back + "usuario/" + idUser;
-    fetch(url).then(function (response) {
-        return response.json();
-    }).then(function (data) {
-        userCliente = data;
-        //console.log("usuario logueado");
-    }).catch(err => {
-        //console.log("Catch:" + err);
-    });
-}
 
 //-------------
 
@@ -340,3 +340,52 @@ function mostrar_mensaje(mensaje, elemento, tipo_alerta) {
     //setTimeout(function () { document.querySelector('.alert').remove(); }, 2000);
 }
 
+//------Obtencion user-------
+var userCliente = "";
+var bandera = false;
+function cargarId() {
+    let url = url_back + "usuario/email=" + email;
+    fetch(url).then(function (response) {
+        return response.json();
+    }).then(function (response) {
+        let id = response.idUsuario;
+        if (id != "") {
+            bandera = true;
+            userCliente = response;
+            console.log("Listo");
+        }
+    }).catch(function () {
+        console.log("Error al encontrar usuario");
+    });
+}
+
+
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({ pageLanguage: 'es', includedLanguages: 'es,sp,ca,eu,gl,en,fr,it,pt,de', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true }, 'google_translate_element');
+}
+
+/*
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+        { pageLanguage: 'en' },
+        'google_translate_element'
+    );
+}
+*/
+/* var bandera = false;
+function cargarAtributos() {
+    $('.task-comentar').each(function (i, obj) {
+        $(obj).attr("data-toggle", "modal");
+        $(obj).attr("data-target", "#exampleModal1");
+        //$('.task-comentar').removeAttr(attribute);
+        bandera = true;
+    });
+} */
+
+//var obj = document.getElementById("btnCancelar");
+//obj.click();
+//$("#exampleModal1").removeAttr("class");
+//var targetElement = document.getElementById("exampleModal1");
+//addClass(targetElement, "someClass");
+//targetElement.removeClass("shows");
+//Funcion al cerrar el modal de comentarios

@@ -42,12 +42,12 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+    <link rel="stylesheet" href="../Estilos.css">
     <!--Icons-->
     <!--link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"-->
     <!--more-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../Estilos.css">
 </head>
 
 <body>
@@ -86,21 +86,21 @@
                                 src="../icons/carrito.svg">&nbsp;&nbsp;Carrito
                         </a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle boton-color" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Idioma
+                    <li class="nav-item">
+                        <a class="nav-link boton-color">
+                            <div id="google_translate_element" class="google"></div>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">English</a>
-                            <a class="dropdown-item" href="#">Spanish</a>
-                        </div>
                     </li>
                     <div class="dropdown-divider"></div>
-                    <li class="nav-item">
-                        <a class="nav-link boton-color" href="../usuario/dist/login.html"><img
-                                src="../icons/person.svg">&nbsp;&nbsp;Sign Up
+                    <li class="nav-item dropdown">
+                        <a id="cuentaR" class="nav-link dropdown-toggle boton-color" href="#" id="navbarDropdown"
+                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="../icons/person.svg">&nbsp;&nbsp;Iniciar sesión
                         </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="../usuario/perfil.html">Cuenta</a>
+                            <a id="logout" class="dropdown-item" href="index.html">Cerrar sesión</a>
+                        </div>
                     </li>
                 </ul>
                 <!--p class="navbar-text pull-right">
@@ -160,6 +160,10 @@
                             <!--fin Origen, destino y empresa-->
                             <div class="row etq">
                                 <div class="col-md-4 mb-3">
+                                    <!--label for="Fecha">Fecha de Salida</label>
+                                    <br>
+                                    <input type="date" id="Fecha" name="trip-start" value="2020-08-03" min="2018-01-01"
+                                        max="2030-12-31"-->
                                     <label for="ciudad">Fecha de Salida</label>
                                     <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
                                         <input id="Fecha" type="text" class="form-control datetimepicker-input"
@@ -188,7 +192,8 @@
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="empresa"></label>
-                                    <button id="btnBuscarViaje" class="btn btn-primary btn-lg btn-block" type="submit">Buscar</button>
+                                    <button id="btnBuscarViaje" class="btn btn-primary btn-lg btn-block"
+                                        type="submit">Buscar</button>
                                 </div>
                             </div>
                         </form>
@@ -210,7 +215,7 @@
             <div class="col-sm-4">
                 <h3 class="foot-title-column">Ayuda</h3>
                 <br>
-                <p>En esta sección puede buscar los viajes prestados por el terminal. 
+                <p>En esta sección puede buscar los viajes prestados por el terminal.
                     Para utilizar el carrito debe iniciar sesión antes.</p>
             </div>
             <div class="col-sm-4">
@@ -234,8 +239,18 @@
     </div>
     <!--Fin Pie de pagina-->
 
+    <!-- FIREBASE--Login de usuario-->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src=" https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js "></script>
+    <script src=" https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js "></script>
     <!--Alertas-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script-->
+    <script src="../usuario/js/auth.js"></script>
+    <script src="../usuario/js/logout.js"></script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+        </script>
     <script type="text/javascript" src="scripts/datepicker.js"></script>
 
 </body>

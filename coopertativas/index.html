@@ -56,21 +56,21 @@
                                 src="../icons/carrito.svg">&nbsp;&nbsp;Carrito
                         </a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle boton-color" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Idioma
+                    <li class="nav-item">
+                        <a class="nav-link boton-color">
+                            <div id="google_translate_element" class="google"></div>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">English</a>
-                            <a class="dropdown-item" href="#">Spanish</a>
-                        </div>
                     </li>
                     <div class="dropdown-divider"></div>
-                    <li class="nav-item">
-                        <a class="nav-link boton-color" href="../usuario/dist/login.html"><img
-                                src="../icons/person.svg">&nbsp;&nbsp;Sign Up
+                    <li class="nav-item dropdown">
+                        <a id="cuenta" class="nav-link dropdown-toggle boton-color" href="#" id="navbarDropdown"
+                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="../icons/person.svg">&nbsp;&nbsp;Iniciar sesión
                         </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="../usuario/perfil.html">Cuenta</a>
+                            <a id="logout" class="dropdown-item" href="index.html">Cerrar sesión</a>
+                        </div>
                     </li>
                 </ul>
                 <!--p class="navbar-text pull-right">
@@ -164,7 +164,8 @@
                         </form>
                     </div>
                     <div id="footerModal" class="modal-footer">
-                        <button id="btnCancelar" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button id="btnCancelar" type="button" class="btn btn-secondary"
+                            data-dismiss="modal">Cancelar</button>
                         <button id="btnguardar" type="button" class="btn btn-success guardar_comentario"
                             data-dismiss="modal">Guardar opinion</button>
                     </div>
@@ -219,11 +220,19 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
+    <!-- FIREBASE--Login de usuario-->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src=" https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js "></script>
+    <script src=" https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js "></script>
     <!--Alertas-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script-->
+    <script src="../usuario/js/auth.js"></script>
+    <script src="../usuario/js/logout.js"></script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+        </script>
     <script src="java.js"></script>
-
 </body>
 
 </html>

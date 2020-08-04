@@ -5,5 +5,7 @@ logout.addEventListener('click', (e) => {
     e.preventDefault();
     emailAuth.signOut().then(() => {
         console.log("user signed out");
+        location.reload();
+        //window.location.href ="index.html";
     });
 });
