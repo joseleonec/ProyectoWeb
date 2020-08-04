@@ -1,7 +1,6 @@
 const url = 'https://terminal25backend.herokuapp.com/usuario/';
 emailAuth.onAuthStateChanged(user => {
     // USUARIO_AUTH = user;
-
     var bandera = true;
     console.log(user);
     if (user) {
@@ -89,4 +88,5 @@ botonLoginFacebook.addEventListener('click', e => {
         }
     );
 
-})
+});
+

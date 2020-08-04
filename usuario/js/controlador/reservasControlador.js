@@ -1,5 +1,6 @@
 const urlCarritos = 'https://terminal25backend.herokuapp.com/carrito/idusuario=';
 const urlBoletos = 'https://terminal25backend.herokuapp.com/boleto/';
+const urlItinerario = 'https://terminal25backend.herokuapp.com/itinerario/';
 
 var idUsuario;
 
@@ -52,11 +53,42 @@ $(document).ready(function () {
         const botonname = e.target.name;
         if (botonname === 'delete') {
             const columns = e.target.parentElement.parentElement.getElementsByTagName('td');
-            const ID = columns[0].innerText;
-            DELETE(urlCarritos, ID);
-            console.log(this);
+            const idBoleto = columns[0].innerText;
+            const idItinerario = columns[2].innerText;
+            const cantidad = columns[5].innerText;
             datatableBoletos.row(this).remove().draw();
-            mostrarMensaje('Elemento eliminado ', 'info');
+            // fetch(urlItinerario + idItinerario).then(function (response) {
+            //     return response.json();
+            // }).then(function (itinerario) {
+            //     if (itinerario.status == 200) {
+            //         console.log(itinerario);
+            //         itinerario.asientosDisponibles += cantidad;
+            //         // DELETE(urlBoletos, idBoleto);
+            //         fetch(urlBoletos + idBoleto, { method: "DELETE" })
+            //             .then(function (response) {
+            //                 return response.json();
+            //             }).then(function (data) {
+            //                 if (data.status == 200) {
+            //                     // PUT(urlItinerario, itinerario);
+            //                     fetch(urlItinerario, {
+            //                         method: 'PUT',
+            //                         body: JSON.stringify(data), // data can be `string` or {object}!
+            //                         headers: {
+            //                             'Content-Type': 'application/json'
+            //                         }
+            //                     }).then(function () {
+            //                         if (itinerario.status == 200) {
+
+            //                         }
+            //                     }).catch(error => console.error('Error:', error))
+            //                         .then(response => console.log('Success:', response));
+            //                 } else {
+            //                 }
+            //             });
+            //     }
+            //     // console.log(this);
+            //     // mostrarMensaje('Elemento eliminado ', 'info');
+            // });
         }
     });
     emailAuth.onAuthStateChanged(user => {
@@ -129,6 +161,7 @@ $(document).ready(function () {
     // Reset modal form after close
     $('#exampleModal').on('hidden.bs.modal', function () {
         //  $(this).find('form')[0].reset();
+        datatableBoletos.clear().draw();
     });
 
     //modal show
@@ -155,6 +188,7 @@ $(document).ready(function () {
                 datatableBoletos.row.add(
                     [
                         boleto.idBoleto,
+                        boleto.itinerario.idItinerario,
                         boleto.itinerario.viaje.origen,
                         boleto.itinerario.viaje.destino.nombre,
                         boleto.itinerario.agencia.nombre,
