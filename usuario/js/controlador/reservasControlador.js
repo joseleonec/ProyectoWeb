@@ -1,13 +1,14 @@
-const url = 'https://terminal25backend.herokuapp.com/carrito/idusuario=';
-var idUsuario;
+const urlCarritos = 'https://terminal25backend.herokuapp.com/carrito/idusuario=';
+const urlBoletos = 'https://terminal25backend.herokuapp.com/boleto/';
 
+var idUsuario;
 
 function addRow(datatable, carrito) {
     datatable.row.add([carrito.idCarrito, carrito.fechaCreacion, carrito.estado]).draw();
 }
 
 function llenarTabla(datatable) {
-    fetch(url + idUsuario).then(function (response) {
+    fetch(urlCarritos + idUsuario).then(function (response) {
         return response.json();
     }).then(function (data) {
         data.forEach(i => {
@@ -18,9 +19,9 @@ function llenarTabla(datatable) {
     });
 }
 
-
 $(document).ready(function () {
-    var datatable = $('#tablaReservas').DataTable({
+
+    var datatableGeneral = $('#tablaReservas').DataTable({
         "columnDefs": [{
             "targets": -1,
             "data": null,
@@ -34,20 +35,29 @@ $(document).ready(function () {
                     </button>`
         }]
     });
-
-    var datatableCart = $('#tablaCarrito').DataTable({
+    var datatableBoletos = $('#tablaBoletos').DataTable({
         "columnDefs": [{
             "targets": -1,
             "data": null,
             "defaultContent": `
-                    <button name="edit" type="submit"
-                        class="btn btn-info btn-rounded btn-sm my-0" data-toggle="modal" data-target="#exampleModal">
-                        Ver
+                    <button name="delete" class="btn btn-sm btn-danger">
+                        <i class="fa fa-trash"></i>
                     </button>
-                    <button name='delete' class="btn btn-danger btn-rounded btn-sm my-0" >
-                        Eliminar
-                    </button>`
+                `
         }]
+    });
+
+    // DELETE BOLETO
+    datatableBoletos.on('click', 'tbody tr', function (e) {
+        const botonname = e.target.name;
+        if (botonname === 'delete') {
+            const columns = e.target.parentElement.parentElement.getElementsByTagName('td');
+            const ID = columns[0].innerText;
+            DELETE(urlCarritos, ID);
+            console.log(this);
+            datatableBoletos.row(this).remove().draw();
+            mostrarMensaje('Elemento eliminado ', 'info');
+        }
     });
     emailAuth.onAuthStateChanged(user => {
         // USUARIO_AUTH = user;
@@ -59,7 +69,7 @@ $(document).ready(function () {
             }).then(function (data) {
                 idUsuario = data.idUsuario;
                 console.log(idUsuario);
-                llenarTabla(datatable);
+                llenarTabla(datatableGeneral);
                 document.getElementById("logedas").innerText = data.nombre;
                 // iniciar();
             }).catch(function () {
@@ -73,81 +83,101 @@ $(document).ready(function () {
     });
 
     // POST
-    $("#btn-guardar-sustitucion").click(function () {
-        // console.log("Evento capturado");
-        const id = document.getElementById("labelid").value.toUpperCase();
-        const idSolicitud = document.getElementById("labelidSolicitud").value.toUpperCase();
-        const idProductoSustituto = document.getElementById("labelidProductoSustituto").value.toUpperCase();
-        const monto = document.getElementById("labelmonto").value.toUpperCase();
+    // $("#btn-guardar-sustitucion").click(function () {
+    //     // console.log("Evento capturado");
+    //     const id = document.getElementById("labelid").value.toUpperCase();
+    //     const idSolicitud = document.getElementById("labelidSolicitud").value.toUpperCase();
+    //     const idProductoSustituto = document.getElementById("labelidProductoSustituto").value.toUpperCase();
+    //     const monto = document.getElementById("labelmonto").value.toUpperCase();
 
-        var solicitudDevolucion;
-        fetch('https://springtest999.herokuapp.com/api/solicituddevolucion/' + idSolicitud).then(function (response) {
-            return response.json();
-        }).then(function (data) {
-            solicitudDevolucion = data;
-        }).catch(function () {
-            console.log("Error al recuperar registro compuesto");
-        });
+    //     var solicitudDevolucion;
+    //     fetch('https://springtest999.herokuapp.com/api/solicituddevolucion/' + idSolicitud).then(function (response) {
+    //         return response.json();
+    //     }).then(function (data) {
+    //         solicitudDevolucion = data;
+    //     }).catch(function () {
+    //         console.log("Error al recuperar registro compuesto");
+    //     });
 
-        // Eliminamos el registro que indica que la tabla esta vacia
-        // Input User Validation
-        if (id === '' || idSolicitud === '' || idProductoSustituto === '' || monto === '' || solicitudDevolucion == null) {
+    //     // Eliminamos el registro que indica que la tabla esta vacia
+    //     // Input User Validation
+    //     if (id === '' || idSolicitud === '' || idProductoSustituto === '' || monto === '' || solicitudDevolucion == null) {
 
-            mostrarMensaje('Please Insert data in all fields', 'danger');
-        } else {
-            const data = {
-                "idSustitucion": id,
-                "solicitudDevolucion": solicitudDevolucion,
-                "monto": monto,
-                "autorizacionSRI": idProductoSustituto
-            };
-            if (document.getElementById("labelid").readOnly) {
+    //         mostrarMensaje('Please Insert data in all fields', 'danger');
+    //     } else {
+    //         const data = {
+    //             "idSustitucion": id,
+    //             "solicitudDevolucion": solicitudDevolucion,
+    //             "monto": monto,
+    //             "autorizacionSRI": idProductoSustituto
+    //         };
+    //         if (document.getElementById("labelid").readOnly) {
 
-                PUT(url, data);
-                vaciarTabla(datatable);
-                llenarTabla(datatable);
+    //             PUT(urlCarritos, data);
+    //             vaciarTabla(datatableGeneral);
+    //             llenarTabla(datatableGeneral);
 
-            } else {
+    //         } else {
 
-                POST(url, data);
-                addRow(datatable, data);
-            }
-            $('#exampleModal').modal('hide');
-            mostrarMensaje('Elemento regisrado con exito', 'success');
-        }
-    });
+    //             POST(urlCarritos, data);
+    //             addRow(datatableGeneral, data);
+    //         }
+    //         $('#exampleModal').modal('hide');
+    //         mostrarMensaje('Elemento regisrado con exito', 'success');
+    //     }
+    // });
     // Reset modal form after close
     $('#exampleModal').on('hidden.bs.modal', function () {
-        // $(this).find('form')[0].reset();
+        //  $(this).find('form')[0].reset();
     });
 
     //modal show
     $('#exampleModal').on('show.bs.modal', function (event) {
-
         const datos = event.relatedTarget.parentElement.parentElement.getElementsByTagName('td');
         // console.log(datos[0]);
-        const id = datos[0].innerText;
-        // console.log("ID: ");
-        // console.log(id);
+        const idCarrito = datos[0].innerText;
+        const estado = datos[2].innerText;
         var modal = $(this)
         modal.find('.modal-title').text('Carrito');
         var title = document.querySelector("#exampleModalLabel");
-        title.name = id;
+        title.name = idCarrito;
         title.innerText += " " + title.name;
+        if (estado === "CADUCADO") {
+            document.querySelector("#finalizar").disabled = true;
+            document.querySelector("#agregar-boletos").disabled = true;
+        }
+        fetch(urlBoletos + "idcarrito=" + idCarrito).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            console.log(data);
+            data.forEach(boleto => {
+                console.log(boleto);
+                datatableBoletos.row.add(
+                    [
+                        boleto.idBoleto,
+                        boleto.itinerario.viaje.origen,
+                        boleto.itinerario.viaje.destino.nombre,
+                        boleto.itinerario.agencia.nombre,
+                        boleto.itinerario.viaje.nombreRuta,
+                        boleto.cantidadDeAsientos,
+                        boleto.costo
+                    ]
+                ).draw();
+            });
+        });
     });
 
     // DELETE
-    datatable.on('click', 'tbody tr', function (e) {
+    datatableGeneral.on('click', 'tbody tr', function (e) {
         const botonname = e.target.name;
         const columns = e.target.parentElement.parentElement.getElementsByTagName('td');
         const ID = columns[0].innerText;
         if (botonname === 'delete') {
-            DELETE(url, ID);
+            DELETE(urlCarritos, ID);
             console.log(this);
-            datatable.row(this).remove().draw();
+            datatableGeneral.row(this).remove().draw();
             mostrarMensaje('Elemento eliminado ', 'info');
         }
     });
+
 });
-
-

@@ -1,10 +1,11 @@
 const url = 'https://terminal25backend.herokuapp.com/usuario/';
 emailAuth.onAuthStateChanged(user => {
     // USUARIO_AUTH = user;
-    var email = user.email;
+
     var bandera = true;
     console.log(user);
     if (user) {
+        var email = user.email;
         fetch(url + "email=" + email).then(function (response) {
             return response.json();
         }).then(function (x) {
