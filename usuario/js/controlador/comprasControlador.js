@@ -52,7 +52,7 @@ $(document).ready(function() {
             });
     
         } else {
-            window.location.href = "../login.html";
+            window.location.href = "login.html";
             console.log("compras no hay usuario");
         }
     });

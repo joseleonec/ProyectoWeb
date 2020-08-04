@@ -53,8 +53,8 @@ emailAuth.onAuthStateChanged(user => {
     // USUARIO_AUTH = user;
     if (user) {
         // email = user.email;
-        window.location.href = "../perfil.html";
-        // window.location.href = "../salidas.html";
+        window.location.href = "perfil.html";
+        // window.location.href = "salidas.html";
     } else {
         console.log("no existe un sesion");
     }

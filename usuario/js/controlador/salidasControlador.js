@@ -55,7 +55,7 @@ $(document).ready(function () {
                 console.log("Error al hallar el ID de usuario");
             });
         } else {
-            window.location.href = "../login.html";
+            window.location.href = "login.html";
             console.log("reservas no hay usuario");
         }
     });

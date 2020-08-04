@@ -13,7 +13,7 @@ emailAuth.onAuthStateChanged(user => {
             if (x.email === email || user.displayName === x.nickname) {
                 bandera = false;
                 // console.log(x);
-                window.location.href = "../perfil.html";
+                window.location.href = "perfil.html";
                 // alert("El email ya esta registrado");
             } else if (bandera) {
                 const data = {
@@ -28,13 +28,11 @@ emailAuth.onAuthStateChanged(user => {
                 console.log("var");
                 console.log(data);
                 POST(url, data);
-                window.location.href = "../perfil.html";
+                window.location.href = "perfil.html";
             }
         }).catch(function () {
             console.log("Error al autenticar usuario");
         });
-        // window.location.href = "../perfil.html";
-        // window.location.href = "../salidas.html";
     } else {
         console.log("no existe un sesion");
     }

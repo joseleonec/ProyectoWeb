@@ -33,6 +33,7 @@ function cargarCampos(idUsuario) {
         document.getElementById("nicknameusuario").value = data.nickname;
         document.getElementById("usuariosaldo").innerText = data.saldo;
         document.getElementById("logedas").innerText = data.nickname;
+
     }).catch(function () {
         console.log("Error en el metodo GET");
     });
@@ -78,7 +79,7 @@ $(document).ready(function () {
             });
 
         } else {
-            window.location.href = "../login.html";
+            window.location.href = "login.html";
             console.log("compras no hay usuario");
         }
     });
@@ -97,6 +98,7 @@ $(document).ready(function () {
             const saldo = document.getElementById("usuariosaldo").value;
             const password = document.getElementById("passwordusuario").value;
             const passwordConfirm = document.getElementById("confirmpasswordusuario").value;
+
             // Input User Validation
             if (id === '' || nombre === '' || apellido === '' || cedula === '' || email === '' || nickname === '' || password === '' || passwordConfirm === '') {
                 // mostrarMensaje('Please Insert data in all fields', 'danger');

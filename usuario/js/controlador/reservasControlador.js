@@ -109,7 +109,7 @@ $(document).ready(function () {
             });
 
         } else {
-            window.location.href = "../login.html";
+            window.location.href = "login.html";
             console.log("reservas no hay usuario");
         }
     });
