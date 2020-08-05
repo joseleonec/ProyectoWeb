@@ -59,8 +59,6 @@ $(document).ready(function () {
             console.log("reservas no hay usuario");
         }
     });
-
-
     // POST
     $("#btn-guardar-empresa").click(function () {
         // console.log("Evento capturado");

@@ -9,7 +9,7 @@ function addRow(datatable, carrito) {
 }
 
 function llenarTabla(datatable) {
-    fetch(urlCarritos + idUsuario).then(function (response) {
+    fetch(urlCarrito + idUsuario).then(function (response) {
         return response.json();
     }).then(function (data) {
         data.forEach(i => {
@@ -23,6 +23,7 @@ function llenarTabla(datatable) {
 $(document).ready(function () {
 
     var datatableGeneral = $('#tablaReservas').DataTable({
+        "info": false,
         "columnDefs": [{
             "targets": -1,
             "data": null,
@@ -37,6 +38,10 @@ $(document).ready(function () {
         }]
     });
     var datatableBoletos = $('#tablaBoletos').DataTable({
+        "sDom": 'lrtip',
+        "searching": false,
+        "paging": false,
+        "info": false,
         "columnDefs": [{
             "targets": -1,
             "data": null,
@@ -54,43 +59,11 @@ $(document).ready(function () {
         if (botonname === 'delete') {
             const columns = e.target.parentElement.parentElement.getElementsByTagName('td');
             const idBoleto = columns[0].innerText;
-            const idItinerario = columns[2].innerText;
-            const cantidad = columns[5].innerText;
             datatableBoletos.row(this).remove().draw();
-            // fetch(urlItinerario + idItinerario).then(function (response) {
-            //     return response.json();
-            // }).then(function (itinerario) {
-            //     if (itinerario.status == 200) {
-            //         console.log(itinerario);
-            //         itinerario.asientosDisponibles += cantidad;
-            //         // DELETE(urlBoletos, idBoleto);
-            //         fetch(urlBoletos + idBoleto, { method: "DELETE" })
-            //             .then(function (response) {
-            //                 return response.json();
-            //             }).then(function (data) {
-            //                 if (data.status == 200) {
-            //                     // PUT(urlItinerario, itinerario);
-            //                     fetch(urlItinerario, {
-            //                         method: 'PUT',
-            //                         body: JSON.stringify(data), // data can be `string` or {object}!
-            //                         headers: {
-            //                             'Content-Type': 'application/json'
-            //                         }
-            //                     }).then(function () {
-            //                         if (itinerario.status == 200) {
-
-            //                         }
-            //                     }).catch(error => console.error('Error:', error))
-            //                         .then(response => console.log('Success:', response));
-            //                 } else {
-            //                 }
-            //             });
-            //     }
-            //     // console.log(this);
-            //     // mostrarMensaje('Elemento eliminado ', 'info');
-            // });
+            DELETE(urlBoletos, idBoleto);
         }
     });
+
     emailAuth.onAuthStateChanged(user => {
         // USUARIO_AUTH = user;
         if (user) {
@@ -175,14 +148,16 @@ $(document).ready(function () {
         var title = document.querySelector("#exampleModalLabel");
         title.name = idCarrito;
         title.innerText += " " + title.name;
-        if (estado === "CADUCADO") {
+        if (estado === "CADUCADO" || estado === "FINALIZADO") {
             document.querySelector("#finalizar").disabled = true;
             document.querySelector("#agregar-boletos").disabled = true;
         }
+        var total = 0;
+        var subtotal = 0;
         fetch(urlBoletos + "idcarrito=" + idCarrito).then(function (response) {
             return response.json();
         }).then(function (data) {
-            console.log(data);
+            console.log(data.status);
             data.forEach(boleto => {
                 console.log(boleto);
                 datatableBoletos.row.add(
@@ -197,7 +172,13 @@ $(document).ready(function () {
                         boleto.costo
                     ]
                 ).draw();
+                subtotal += boleto.costo;
+                subtotal = parseInt(subtotal * 100) / 100;
             });
+            total = subtotal * 1.12;
+            total = parseInt(total * 100) / 100;
+            document.querySelector('#pago-subtotal').innerText = subtotal;
+            document.querySelector('#pago-total').innerText = total;
         });
     });
 
@@ -207,7 +188,7 @@ $(document).ready(function () {
         const columns = e.target.parentElement.parentElement.getElementsByTagName('td');
         const ID = columns[0].innerText;
         if (botonname === 'delete') {
-            DELETE(urlCarritos, ID);
+            DELETE(urlCarrito, ID);
             console.log(this);
             datatableGeneral.row(this).remove().draw();
             mostrarMensaje('Elemento eliminado ', 'info');

@@ -19,7 +19,7 @@ class Header extends HTMLElement {
     	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
           	<button class="btn btn-link btn-sm order-1 order-lg-0" onclick=changeWindow() id="sidebarToggle" href="#"><i
                     class="fas fa-bars"></i></button>
-      		<a class="navbar-brand text-light" onclick=changeWindow id="agencia">Transport</a>
+      		<a class="navbar-brand text-light" href="../index.html" id="agencia">Transport</a>
     	  	<form class=" d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <div class="input-group">
                     <div class="input-group-append">
