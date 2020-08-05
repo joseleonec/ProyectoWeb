@@ -7,7 +7,7 @@ var idUsuario;
 var idCarrito;
 var email;
 var usuario;
-
+var factura;
 emailAuth.onAuthStateChanged(user => {
     // USUARIO_AUTH = user;
     // console.log("Verificando sesion");
@@ -103,7 +103,6 @@ function cargarDetalle(datatableDetalle) {
                             subtotal += boleto.costo;
                             subtotal = parseInt(subtotal * 100) / 100;
                         });
-
                         total = subtotal * 1.12;
                         total = parseInt(total * 100) / 100;
                         // total = total.toString(); //If it's not already a String
@@ -111,15 +110,23 @@ function cargarDetalle(datatableDetalle) {
                         // Number(total); //If you need it back as a Number
                         document.querySelector('#pago-subtotal').innerText = subtotal;
                         document.querySelector('#pago-total').innerText = total;
+                        var fecha = new Date().toJSON();
+                        factura = {
+                            // "idFactura": 1,
+                            "fecha": fecha,
+                            "total": total,
+                            "usuario": usuario,
+                            "carrito": cart[0]
+                        }
+                        // POST(urlFactura,factura);
+                        console.log(factura);
                     });
                 }).catch(function () {
                     console.log("Error al hallar el ID de usuario");
                 });
-
             }).catch(function () {
                 console.log("Error al hallar el usuario");
             });
-
         } else {
             window.location.href = "login.html";
             console.log("compras no hay usuario");
