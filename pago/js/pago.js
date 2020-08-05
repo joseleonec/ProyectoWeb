@@ -52,6 +52,7 @@ function llenarTabla(datatable) {
     });
 }
 var datatableDetalle;
+var tablaDetalleHTMNL;
 $(document).ready(function () {
     datatableDetalle = $('#tabla-detalle').DataTable({
         "sDom": 'lrtip',
@@ -60,7 +61,6 @@ $(document).ready(function () {
         "info": false
     });
     cargarDetalle(datatableDetalle);
-    // generarCodigo();
 });
 
 function cargarDetalle(datatableDetalle) {
@@ -103,6 +103,7 @@ function cargarDetalle(datatableDetalle) {
                             subtotal += boleto.costo;
                             subtotal = parseInt(subtotal * 100) / 100;
                         });
+                        tablaDetalleHTMNL = $('#resumen');
                         total = subtotal * 1.12;
                         total = parseInt(total * 100) / 100;
                         // total = total.toString(); //If it's not already a String
@@ -118,22 +119,22 @@ function cargarDetalle(datatableDetalle) {
                             "usuario": usuario,
                             "carrito": cart[0]
                         }
-                        // POST(urlFactura,factura);
+                        POST(urlFactura,factura);
+                        tablaDetalleHTMNL = $('#resumen');
+                        console.log(tablaDetalleHTMNL);
                         console.log(factura);
                     });
                 }).catch(function () {
-                    console.log("Error al hallar el ID de usuario");
+                    console.log("Error al hallar el CARRITO");
                 });
             }).catch(function () {
-                console.log("Error al hallar el usuario");
+                console.log("Error al hallar boleto");
             });
         } else {
             window.location.href = "login.html";
             console.log("compras no hay usuario");
         }
     });
-
-
 }
 
 // BARRA DE PROGRESO
@@ -157,6 +158,7 @@ function nextPrev(n) {
     // Increase or decrease the current tab by 1:
     currentTab = currentTab + n;
     // if you have reached the end of the form...
+
     if (currentTab >= x.length) {
         // ... the form gets submitted:
         return false;
@@ -180,69 +182,49 @@ function showTab(n) {
     if (n == (x.length - 1)) { //llega al final de los tabs
         document.getElementById("nextBtn").style.display = "none";
         document.getElementById("prevBtn").style.display = "none";
-        generarCodigo();
+        // generarCodigo();
+        console.log(factura);
+        POST(urlFactura, factura);
     } else {
         document.getElementById("nextBtn").innerHTML = "Next";
     }
 }
 
-function generarCodigo() {
+// function generarCodigo() {
 
-    emailAuth.onAuthStateChanged(user => {
-        // USUARIO_AUTH = user;
-        if (user) {
-            var userURL = 'https://terminal25backend.herokuapp.com/usuario/email=';
-            console.log("pago sc: " + user.email);
-            fetch(userURL + user.email.toString()).then(function (response) {
-                return response.json();
-            }).then(function (usuario) {
-                idUsuario = usuario.idUsuario;
-                console.log(idUsuario);
-                fetch(urlCarrito + idCarrito).then(function (response) {
-                    return response.json();
-                }).then(function (carrito) {
-                    var fecha = new Date().toJSON();
-                    console.log(fecha)
-                    var total = document.querySelector('#pago-total').innerText;
-                    var factura = {
-                        // "idFactura": 1,
-                        "fecha": fecha,
-                        "total": total,
-                        "usuario": usuario,
-                        "carrito": carrito
-                    }
-                    POST(urlFactura, factura);
-                }).catch(function () {
-                    console.log("Error al Llenar la tabla");
-                });
-            }).catch(function () {
-                console.log("Error al hallar el ID de usuario");
-            });
-        }
-    });
-
-    var factura = {
-        // "idFactura": 1,
-        "fecha": "2017-10-17T05:53:55.000+00:00",
-        "total": 65.92,
-        "usuario": {
-            "idUsuario": 4,
-            "nickname": "eastwoold",
-            "password": "futuro",
-            "saldo": 0.0,
-            "nombre": "Marty",
-            "apellido": "McFly",
-            "cedula": "0112347673",
-            "email": "martydoc@gmail.com",
-            "hibernateLazyInitializer": {}
-        },
-        "carrito": {
-            "idCarrito": 1,
-            "estado": "PENDIENTE",
-            "fechaCreacion": "2019-03-01T10:13:00.000+00:00"
-        }
-    }
-}
+//     emailAuth.onAuthStateChanged(user => {
+//         // USUARIO_AUTH = user;
+//         if (user) {
+//             var userURL = 'https://terminal25backend.herokuapp.com/usuario/email=';
+//             console.log("pago sc: " + user.email);
+//             fetch(userURL + user.email.toString()).then(function (response) {
+//                 return response.json();
+//             }).then(function (usuario) {
+//                 idUsuario = usuario.idUsuario;
+//                 console.log(idUsuario);
+//                 fetch(urlCarrito + idCarrito).then(function (response) {
+//                     return response.json();
+//                 }).then(function (carrito) {
+//                     var fecha = new Date().toJSON();
+//                     console.log(fecha)
+//                     var total = document.querySelector('#pago-total').innerText;
+//                     var factura = {
+//                         // "idFactura": 1,
+//                         "fecha": fecha,
+//                         "total": total,
+//                         "usuario": usuario,
+//                         "carrito": carrito
+//                     }
+//                     POST(urlFactura, factura);
+//                 }).catch(function () {
+//                     console.log("Error al Llenar la tabla");
+//                 });
+//             }).catch(function () {
+//                 console.log("Error al hallar el ID de usuario");
+//             });
+//         }
+//     });
+// }
 
 function setProgreso(actual) {
     var i, vectorCirculos = document.getElementsByClassName("barr");

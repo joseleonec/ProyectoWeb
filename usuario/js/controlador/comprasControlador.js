@@ -21,6 +21,8 @@ function llenarTabla(datatable) {
     fetch(url + token).then(function (response) {
         return response.json();
     }).then(function (data) {
+        console.log("Data facturas");
+        console.log(data);
         data.forEach(i => {
             addRow(datatable, i);
             // console.log(i.nombre);
@@ -89,6 +91,7 @@ $(document).ready(function () {
 
     // POST
     $("#btn-guardar-parroquia").click(function () {
+        ``
         // console.log("Evento capturado");
         const id = document.getElementById("labelid").value.toUpperCase();
         const nombreParroquia = document.getElementById("labelnombreParroquia").value.toUpperCase();
@@ -127,6 +130,23 @@ $(document).ready(function () {
             console.log(this);
             mostrarMensaje('Elemento eliminado ', 'info');
         } else if (botonname === 'qr') {
+            let urlQr = "https://prebaflaskqr589.herokuapp.com/boleto/";
+            // fetch(urlQr + ID + ".png").then(function (response) {
+            //     return response.text();
+            // }).then(function (data) {
+            //     console.log("Codigo obtenido: " + data);
+            // }).catch(err => {
+            //     console.log("Error al obtener: " + err);
+            // });
+            fetch(urlQr + "1" + ".png")
+            .then(function (resp) {
+                return resp.blob();
+            }).then(function (blob) {
+                download(blob);
+            });
+            console.log(urlQr + "1" + ".png");
+
+
             console.log(this);
             // console.log(datos[1]);
             document.getElementById("labelid").readOnly = true;

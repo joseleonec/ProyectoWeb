@@ -10,7 +10,7 @@ emailAuth.onAuthStateChanged(user => {
         }).then(function (x) {
             console.log("x:");
             console.log(x);
-            if (x.email === email || user.displayName === x.nickname) {
+            if (x && (x.email === email || user.displayName === x.nickname)) {
                 bandera = false;
                 // console.log(x);
                 window.location.href = "perfil.html";
@@ -20,15 +20,15 @@ emailAuth.onAuthStateChanged(user => {
                     "nombre": user.displayName,
                     "apellido": "apellido",
                     "cedula": "cedula",
-                    "nickname": user.displayName,
-                    "password": "password",
+                    "nickname": user.email.slice(0, Math.min(user.email.length, 15)),
+                    "password": "*********",
                     "email": user.email,
                     "saldo": 0.0
                 };
                 console.log("var");
                 console.log(data);
                 POST(url, data);
-                window.location.href = "perfil.html";
+                // window.location.href = "perfil.html";
             }
         }).catch(function () {
             console.log("Error al autenticar usuario");
@@ -48,6 +48,38 @@ loginForm.addEventListener('submit', (e) => {
     emailAuth.signInWithEmailAndPassword(email, password)
         .then(
             cred => {
+                // if (cred.user) {
+                //     var noEstaRegistrado = true;
+                //     var email = cred.user.email;
+                //     fetch(url + "email=" + email).then(function (response) {
+                //         return response.json();
+                //     }).then(function (x) {
+                //         console.log("x:");
+                //         console.log(x);
+                //         if (x && (x.email === email || user.displayName === x.nickname)) {
+                //             noEstaRegistrado = false;
+                //             // console.log(x);
+                //             window.location.href = "perfil.html";
+                //             // alert("El email ya esta registrado");
+                //         } else if (noEstaRegistrado) {
+                //             const data = {
+                //                 "nombre": user.email,
+                //                 "apellido": "apellido",
+                //                 "cedula": "cedula",
+                //                 "nickname": user.email,
+                //                 "password": password,
+                //                 "email": user.email,
+                //                 "saldo": 0.0
+                //             };
+                //             console.log("var");
+                //             console.log(data);
+                //             POST(url, data);
+                //             window.location.href = "perfil.html";
+                //         }
+                //     }).catch(function () {
+                //         console.log("Error al autenticar usuario");
+                //     });
+                // }
                 // console.log(cred.user.email);var USUARIO_AUTH;
                 // window.location.href = "../perfil.html";
             }).catch(error => alert('Error:', error))
@@ -61,13 +93,46 @@ botonLoginGoogle.addEventListener('click', e => {
     console.log("click google");
     var provider = new firebase.auth.GoogleAuthProvider();
     //POPUP
-    emailAuth.signInWithRedirect(provider).then(function (result) {
-        console.log("Google signed in" + result);
-    }).catch(
-        err => {
-            console.log("Error:" + err);
-        }
-    );
+    emailAuth.signInWithRedirect(provider).
+        then(function (cred) {
+            // if (cred.user) {
+            //     var noEstaRegistrado = true;
+            //     var email = cred.user.email;
+            //     fetch(url + "email=" + email).then(function (response) {
+            //         return response.json();
+            //     }).then(function (x) {
+            //         console.log("x:");
+            //         console.log(x);
+            //         if (x && (x.email === email || user.displayName === x.nickname)) {
+            //             noEstaRegistrado = false;
+            //             // console.log(x);
+            //             window.location.href = "perfil.html";
+            //             // alert("El email ya esta registrado");
+            //         } else if (noEstaRegistrado) {
+            //             const data = {
+            //                 "nombre": user.displayName,
+            //                 "apellido": "apellido",
+            //                 "cedula": "cedula",
+            //                 "nickname": user.displayName,
+            //                 "password": "password",
+            //                 "email": user.email,
+            //                 "saldo": 0.0
+            //             };
+            //             console.log("var");
+            //             console.log(data);
+            //             POST(url, data);
+            //             // window.location.href = "perfil.html";
+            //         }
+            //     }).catch(function () {
+            //         console.log("Error al autenticar usuario");
+            //     });
+            // }
+            console.log("Google signed in" + cred);
+        }).catch(
+            err => {
+                console.log("Error:" + err);
+            }
+        );
     console.log("fin");
 });
 
@@ -77,14 +142,47 @@ botonLoginFacebook.addEventListener('click', e => {
     e.preventDefault();
     // loginForm.reset();
     const provider = new firebase.auth.FacebookAuthProvider();
-    emailAuth.signInWithRedirect(provider).then((result) => {
-        console.log(result);
-        console.log("facebook sign in");
-    }).catch(
-        err => {
-            console.log(err);
-        }
-    );
+    emailAuth.signInWithRedirect(provider)
+        .then((cred) => {
+            // if (cred.user) {
+            //     var noEstaRegistrado = true;
+            //     var email = cred.user.email;
+            //     fetch(url + "email=" + email).then(function (response) {
+            //         return response.json();
+            //     }).then(function (x) {
+            //         console.log("x:");
+            //         console.log(x);
+            //         if (x && (x.email === email || user.displayName === x.nickname)) {
+            //             noEstaRegistrado = false;
+            //             // console.log(x);
+            //             window.location.href = "perfil.html";
+            //             // alert("El email ya esta registrado");
+            //         } else if (noEstaRegistrado) {
+            //             const data = {
+            //                 "nombre": user.displayName,
+            //                 "apellido": "apellido",
+            //                 "cedula": "cedula",
+            //                 "nickname": user.displayName,
+            //                 "password": "password",
+            //                 "email": user.email,
+            //                 "saldo": 0.0
+            //             };
+            //             console.log("var");
+            //             console.log(data);
+            //             POST(url, data);
+            //             // window.location.href = "perfil.html";
+            //         }
+            //     }).catch(function () {
+            //         console.log("Error al autenticar usuario");
+            //     });
+            // }
+            console.log(cred);
+            console.log("facebook sign in");
+        }).catch(
+            err => {
+                console.log(err);
+            }
+        );
 
 });
 

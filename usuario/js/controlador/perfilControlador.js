@@ -49,41 +49,37 @@ function cambiarEstado(boolean) {
     document.getElementById("cedulausuario").readOnly = boolean;
     document.getElementById("emailusuario").readOnly = boolean;
     document.getElementById("nicknameusuario").readOnly = boolean;
-    document.getElementById("passwordusuario").readOnly = boolean;
-    document.getElementById("confirmpasswordusuario").readOnly = boolean;
+    // document.getElementById("passwordusuario").readOnly = boolean;
+    // document.getElementById("confirmpasswordusuario").readOnly = boolean;
 }
 
 function actvarCampos() {
     cambiarEstado(false);
 }
+emailAuth.onAuthStateChanged(user => {
+    // USUARIO_AUTH = user;
+    if (user) {
+        const imgsrc = user.photoURL;
+        document.getElementById("perfil-img").src = imgsrc;
+        var userURL = 'https://terminal25backend.herokuapp.com/usuario/email=';
+        console.log("Compras sc: " + user.email);
+        fetch(userURL + user.email.toString()).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            idUsuario = data.idUsuario;
+            console.log("compras usuario: " + idUsuario);
+            cargarCampos(idUsuario);
+            // iniciar();
+        }).catch(function () {
+            console.log("Error al hallar el ID de usuario");
+        });
 
+    } else {
+        window.location.href = "login.html";
+        console.log("compras no hay usuario");
+    }
+});
 $(document).ready(function () {
-
-
-    emailAuth.onAuthStateChanged(user => {
-        // USUARIO_AUTH = user;
-        if (user) {
-            const imgsrc = user.photoURL;
-            document.getElementById("perfil-img").src = imgsrc;
-            var userURL = 'https://terminal25backend.herokuapp.com/usuario/email=';
-            console.log("Compras sc: " + user.email);
-            fetch(userURL + user.email.toString()).then(function (response) {
-                return response.json();
-            }).then(function (data) {
-                idUsuario = data.idUsuario;
-                console.log("compras usuario: " + idUsuario);
-                cargarCampos(idUsuario);
-                // iniciar();
-            }).catch(function () {
-                console.log("Error al hallar el ID de usuario");
-            });
-
-        } else {
-            window.location.href = "login.html";
-            console.log("compras no hay usuario");
-        }
-    });
-
     $("#guardarusuario").click(function (e) {
 
         var valor = document.getElementById("guardarusuario").value;
@@ -96,44 +92,43 @@ $(document).ready(function () {
             const email = document.getElementById("emailusuario").value;
             const nickname = document.getElementById("nicknameusuario").value;
             const saldo = document.getElementById("usuariosaldo").value;
-            const password = document.getElementById("passwordusuario").value;
-            const passwordConfirm = document.getElementById("confirmpasswordusuario").value;
+            // const password = document.getElementById("passwordusuario").value;
+            // const passwordConfirm = document.getElementById("confirmpasswordusuario").value;
 
             // Input User Validation
-            if (id === '' || nombre === '' || apellido === '' || cedula === '' || email === '' || nickname === '' || password === '' || passwordConfirm === '') {
+            if (id === '' || nombre === '' || apellido === '' || cedula === '' || email === '' || nickname === '') {
                 // mostrarMensaje('Please Insert data in all fields', 'danger');
                 alert('Please Insert data in all fields');
-            } else if (password != passwordConfirm) {
+            } /* else if (password != passwordConfirm) {
                 alert('Las contraseñas no coinciden');
                 // mostrarMensaje('Las contraseñas no coinciden', 'danger');
-            } else {
+            } */ else {
                 fetch(url + id).then(function (response) {
                     return response.json();
                 }).then(function (obj) {
-                    const psw = obj.password;
-                    if (password === psw) {
-                        const data = {
-                            "idUsuario": id,
-                            "nombre": nombre,
-                            "apellido": apellido,
-                            "cedula": cedula,
-                            "email": email,
-                            "nickname": nickname,
-                            "saldo": saldo,
-                            "password": password
-                        };
-                        // console.log("Error")
-                        PUT(url, data);
-                        // console.log("Error despues put")
-                        document.getElementById("cancelar").disabled = true;
-                        document.getElementById("guardarusuario").value = "Editar";
-                        desactvarCampos();
-                        document.getElementById("passwordusuario").value = ""
-                        document.getElementById("confirmpasswordusuario").value = "";
-                        cargarCampos(id);
-                        alert("Cambios registrados")
-                        mostrarMensaje('Cambios regisrados con exito', 'success');
-                    }
+                    // const psw = obj.password;
+                    const data = {
+                        "idUsuario": id,
+                        "nombre": nombre,
+                        "apellido": apellido,
+                        "cedula": cedula,
+                        "email": email,
+                        "nickname": nickname,
+                        "saldo": saldo,
+                        "password": "***********"
+                    };
+                    // console.log("Error")
+                    PUT(url, data);
+                    // console.log("Error despues put")
+                    document.getElementById("cancelar").disabled = true;
+                    document.getElementById("guardarusuario").value = "Editar";
+                    desactvarCampos();
+                    // document.getElementById("passwordusuario").value = ""
+                    // document.getElementById("confirmpasswordusuario").value = "";
+                    cargarCampos(id);
+                    alert("Cambios registrados")
+                    mostrarMensaje('Cambios regisrados con exito', 'success');
+
                 }).catch(function () {
                     console.log("Error en el metodo GET");
                 });

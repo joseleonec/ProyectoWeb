@@ -8,38 +8,40 @@ function mostrarMensaje(mensaje, cssClass) {
     div.appendChild(document.createTextNode(mensaje));
     const container = document.querySelector('.container-fluid');
     container.appendChild(div);
-    setTimeout(function() {
+    setTimeout(function () {
         div.remove();
     }, 200);
 }
 
 function POST(url, data) {
     fetch(url, {
-            method: 'POST', // or 'PUT'
-            body: JSON.stringify(data), // data can be `string` or {object}!
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(res => res.json())
-        .catch(error => console.error('Error:', error))
-        .then(response => console.log('Success:', response));
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json())
+        .catch(error => console.error('POST Error:', error))
+        .then(response => console.log('POST Success:', response));
 }
 
 function PUT(url, data) {
     fetch(url, {
-            method: 'PUT',
-            body: JSON.stringify(data), // data can be `string` or {object}!
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(res => res.json())
-        .catch(error => console.error('Error:', error))
-        .then(response => console.log('Success:', response));
+        method: 'PUT',
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json())
+        .catch(error => console.error('PUT Error:', error))
+        .then(response => console.log('PUT Success:', response));
     // document.getElementById("labelid").readOnly = false;
 }
 
 function DELETE(url, id) {
     fetch(url + id, {
         method: "DELETE"
-    });
+    }).then(res => res.json())
+        .catch(error => console.error('DELETE Error:', error))
+        .then(response => console.log('DELETE Success:', response));
 }
