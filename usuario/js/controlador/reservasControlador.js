@@ -9,7 +9,7 @@ function addRow(datatable, carrito) {
 }
 
 function llenarTabla(datatable) {
-    fetch(urlCarrito + idUsuario).then(function (response) {
+    fetch(urlCarritos + idUsuario).then(function (response) {
         return response.json();
     }).then(function (data) {
         data.forEach(i => {
@@ -195,4 +195,14 @@ $(document).ready(function () {
         }
     });
 
+    var botonfinalizar = document.querySelector('#finalizar');
+    botonfinalizar.addEventListener('click', () => {
+        window.location.href = "../pago/index.html";
+    });
+
+    var botonfinalizar = document.querySelector('#agregar-boletos');
+    botonfinalizar.addEventListener('click', () => {
+        window.location.href = "../pago/index.html";
+    });
 });
+
