@@ -175,279 +175,230 @@
                                     </table>
                                 </div>
                             </div>
-                            <!-- <ul class="list-group mb-3">
-                                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                    <div>
-                                        <h6 class="my-0">Origen</h6>
-                                    </div>
-                                    <span class="text-muted">Cuenca</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                    <div>
-                                        <h6 class="my-0">Destino</h6>
-                                    </div>
-                                    <span class="text-muted">Quito</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                    <div>
-                                        <h6 class="my-0">Asientos</h6>
-                                    </div>
-                                    <span class="text-muted">12,13,14,15</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                    <div>
-                                        <h6 class="my-0">Fecha</h6>
-                                    </div>
-                                    <span class="text-muted">10/12/2020</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                    <div>
-                                        <h6 class="my-0">Hora</h6>
-                                    </div>
-                                    <span class="text-muted">15:45</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                    <div>
-                                        <h6 class="my-0">Iva</h6>
-                                    </div>
-                                    <span class="text-muted">$6.30</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                    <div>
-                                        <h6 class="my-0">Sub total</h6>
-                                    </div>
-                                    <span class="text-muted">$18.70</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                    <h6>---</h6>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between bg-light">
-                                    <div class="text-success">
-                                        <h6 class="my-0">Total (USD)</h6>
-                                    </div>
-                                    <span class="text-success"><strong>$20</strong></span>
-                                </li>
-                            </ul>
-                        </div> -->
                         </div>
-                            <div class="tab">
-                                <h3>Elija su forma de pago</h3>
-                                <div class="card">
-                                    <div class="card-header">
-                                        <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
-                                            <!-- Credit card form tabs -->
-                                            <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
-                                                <li class="nav-item">
-                                                    <a data-toggle="pill" href="#credit-card" class="nav-link active ">
-                                                        <i class="fas fa-credit-card mr-2"></i> Tarjeta de credito
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a data-toggle="pill" href="#paypal" class="nav-link ">
-                                                        <i class="fab fa-paypal mr-2"></i> Paypal
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a data-toggle="pill" href="#net-banking" class="nav-link ">
-                                                        <i class="fas fa-mobile-alt mr-2"></i> Net Banking
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- End -->
+                        <div class="tab">
+                            <h3>Elija su forma de pago</h3>
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
+                                        <!-- Credit card form tabs -->
+                                        <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
+                                            <li class="nav-item">
+                                                <a data-toggle="pill" href="#credit-card" class="nav-link active ">
+                                                    <i class="fas fa-credit-card mr-2"></i> Tarjeta de credito
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a data-toggle="pill" href="#paypal" class="nav-link ">
+                                                    <i class="fab fa-paypal mr-2"></i> Paypal
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a data-toggle="pill" href="#net-banking" class="nav-link ">
+                                                    <i class="fas fa-mobile-alt mr-2"></i> Net Banking
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- End -->
 
-                                        <!-- Credit card form content -->
-                                        <div class="tab-content">
-                                            <!-- credit card info-->
-                                            <div id="credit-card" class="tab-pane fade show active pt-3">
-                                                <form role="form">
-                                                    <div class="form-group">
-                                                        <label for="username">
-                                                            <h6>Titular</h6>
-                                                        </label>
-                                                        <input type="text" name="firstname"
-                                                            placeholder="Nombre del titular" required
-                                                            class="form-control ">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="cardNumber">
-                                                            <h6>Número de tarjeta</h6>
-                                                        </label>
-                                                        <div class="input-group">
-                                                            <input type="text" name="cardNumber"
-                                                                placeholder="Número de tarjeta válida"
-                                                                class="form-control " required>
-                                                            <div class="input-group-append">
-                                                                <span class="input-group-text text-muted">
-                                                                    <i class="fab fa-cc-visa mx-1"></i>
-                                                                    <i class="fab fa-cc-mastercard mx-1"></i>
-                                                                    <i class="fab fa-cc-amex mx-1"></i>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-8">
-                                                            <div class="form-group">
-                                                                <label>
-                                                                    <span class="hidden-xs">
-                                                                        <h6>Fecha de caducidad</h6>
-                                                                    </span>
-                                                                </label>
-                                                                <div class="input-group">
-                                                                    <input type="number" placeholder="Mes" name=""
-                                                                        class="form-control" required>
-                                                                    <input type="number" placeholder="Año" name=""
-                                                                        class="form-control" required>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group mb-4">
-                                                                <label data-toggle="tooltip"
-                                                                    title="Three digit CV code on the back of your card">
-                                                                    <h6>
-                                                                        CVV
-                                                                        <i class="fa fa-question-circle d-inline"></i>
-                                                                    </h6>
-                                                                </label>
-                                                                <input type="text" required class="form-control">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <!-- End -->
-
-                                            <!-- Paypal info -->
-                                            <div id="paypal" class="tab-pane fade pt-3">
-                                                <form action="https://www.paypal.com/cgi-bin/webscr" method="post"
-                                                    target="_top">
-                                                    <input type="hidden" name="cmd" value="_s-xclick">
-                                                    <input type="hidden" name="hosted_button_id" value="QY4ZAXK7ZRSTN">
-                                                    <table>
-                                                        <tr>
-                                                            <td><input type="hidden" name="on0" value="Boletos">Boletos
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><select name="os0">
-                                                                    <option value="Viaje corto">Viaje corto $10.00 USD
-                                                                    </option>
-                                                                    <option value="Viaje normal">Viaje normal $15.00 USD
-                                                                    </option>
-                                                                    <option value="Viaje largo">Viaje largo $18.00 USD
-                                                                    </option>
-                                                                </select> </td>
-                                                        </tr>
-                                                    </table>
-                                                    <input type="hidden" name="currency_code" value="USD">
-                                                    <input type="image"
-                                                        src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif"
-                                                        name="submit"
-                                                        alt="PayPal - The safer, easier way to pay online!">
-                                                    <img type="hidden" alt=""
-                                                        src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif"
-                                                        width="1" height="1">
-                                                </form>
-
-                                            </div>
-                                            <!-- End -->
-                                            <!-- bank transfer info -->
-                                            <div id="net-banking" class="tab-pane fade pt-3">
-                                                <div class="form-group ">
-                                                    <label for="Select Your Bank">
-                                                        <h6>Elige tu Banco</h6>
+                                    <!-- Credit card form content -->
+                                    <div class="tab-content">
+                                        <!-- credit card info-->
+                                        <div id="credit-card" class="tab-pane fade show active pt-3">
+                                            <form role="form">
+                                                <div class="form-group">
+                                                    <label for="username">
+                                                        <h6>Titular</h6>
                                                     </label>
-                                                    <select class="form-control" id="ccmonth">
-                                                        <option value="" selected disabled>--Selecciona tu Banco--
-                                                        </option>
-                                                        <option>Banco Pichincha</option>
-                                                        <option>Banco del Pacifico 2</option>
-                                                        <option>Banco de Guayaquil</option>
-                                                        <option>Banco del Austro</option>
-                                                    </select>
+                                                    <input type="text" name="firstname" placeholder="Nombre del titular"
+                                                        required class="form-control ">
                                                 </div>
                                                 <div class="form-group">
-                                                    <!-- <iframe src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LfKURIUAAAAAO50vlwWZkyK_G2ywqE52NU7YO0S&amp;co=aHR0cHM6Ly9ib290c3RyYXBpb3VzLmNvbTo0NDM.&amp;hl=es&amp;v=BT5UwN2jyUJCo7TdbwTYi_58&amp;size=normal&amp;cb=6abyylssgy8x" width="250" height="85"
+                                                    <label for="cardNumber">
+                                                        <h6>Número de tarjeta</h6>
+                                                    </label>
+                                                    <div class="input-group">
+                                                        <input type="text" name="cardNumber"
+                                                            placeholder="Número de tarjeta válida" class="form-control "
+                                                            required>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text text-muted">
+                                                                <i class="fab fa-cc-visa mx-1"></i>
+                                                                <i class="fab fa-cc-mastercard mx-1"></i>
+                                                                <i class="fab fa-cc-amex mx-1"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-8">
+                                                        <div class="form-group">
+                                                            <label>
+                                                                <span class="hidden-xs">
+                                                                    <h6>Fecha de caducidad</h6>
+                                                                </span>
+                                                            </label>
+                                                            <div class="input-group">
+                                                                <input type="number" placeholder="Mes" name=""
+                                                                    class="form-control" required>
+                                                                <input type="number" placeholder="Año" name=""
+                                                                    class="form-control" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group mb-4">
+                                                            <label data-toggle="tooltip"
+                                                                title="Three digit CV code on the back of your card">
+                                                                <h6>
+                                                                    CVV
+                                                                    <i class="fa fa-question-circle d-inline"></i>
+                                                                </h6>
+                                                            </label>
+                                                            <input type="text" required class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <!-- End -->
+
+                                        <!-- Paypal info -->
+                                        <div id="paypal" class="tab-pane fade pt-3">
+                                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post"
+                                                target="_top">
+                                                <input type="hidden" name="cmd" value="_s-xclick">
+                                                <input type="hidden" name="hosted_button_id" value="QY4ZAXK7ZRSTN">
+                                                <table>
+                                                    <tr>
+                                                        <td><input type="hidden" name="on0" value="Boletos">Boletos
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><select name="os0">
+                                                                <option value="Viaje corto">Viaje corto $10.00 USD
+                                                                </option>
+                                                                <option value="Viaje normal">Viaje normal $15.00 USD
+                                                                </option>
+                                                                <option value="Viaje largo">Viaje largo $18.00 USD
+                                                                </option>
+                                                            </select> </td>
+                                                    </tr>
+                                                </table>
+                                                <input type="hidden" name="currency_code" value="USD">
+                                                <input type="image"
+                                                    src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif"
+                                                    name="submit" alt="PayPal - The safer, easier way to pay online!">
+                                                <img type="hidden" alt=""
+                                                    src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1"
+                                                    height="1">
+                                            </form>
+
+                                        </div>
+                                        <!-- End -->
+                                        <!-- bank transfer info -->
+                                        <div id="net-banking" class="tab-pane fade pt-3">
+                                            <div class="form-group ">
+                                                <label for="Select Your Bank">
+                                                    <h6>Elige tu Banco</h6>
+                                                </label>
+                                                <select class="form-control" id="ccmonth">
+                                                    <option value="" selected disabled>--Selecciona tu Banco--
+                                                    </option>
+                                                    <option>Banco Pichincha</option>
+                                                    <option>Banco del Pacifico 2</option>
+                                                    <option>Banco de Guayaquil</option>
+                                                    <option>Banco del Austro</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <!-- <iframe src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LfKURIUAAAAAO50vlwWZkyK_G2ywqE52NU7YO0S&amp;co=aHR0cHM6Ly9ib290c3RyYXBpb3VzLmNvbTo0NDM.&amp;hl=es&amp;v=BT5UwN2jyUJCo7TdbwTYi_58&amp;size=normal&amp;cb=6abyylssgy8x" width="250" height="85"
                                             role="presentation" name="a-q4pwophs62e4" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox">
                                         </iframe> -->
-                                                    <p>
-                                                        <button type="button" class="btn btn-primary ">
-                                                            <i class="fas fa-mobile-alt mr-2"></i>
-                                                            Proceder al pago
-                                                        </button>
-                                                    </p>
-                                                </div>
-                                                <p class="text-muted">
-                                                    Nota: Después de hacer clic en el botón, se lo dirigirá a una puerta
-                                                    de
-                                                    enlace
-                                                    segura para el pago. Después de completar el proceso de pago, será
-                                                    redirigido de
-                                                    nuevo al sitio web para ver los detalles de su pedido.
+                                                <p>
+                                                    <button type="button" class="btn btn-primary ">
+                                                        <i class="fas fa-mobile-alt mr-2"></i>
+                                                        Proceder al pago
+                                                    </button>
                                                 </p>
                                             </div>
-                                            <!-- End -->
+                                            <p class="text-muted">
+                                                Nota: Después de hacer clic en el botón, se lo dirigirá a una puerta
+                                                de
+                                                enlace
+                                                segura para el pago. Después de completar el proceso de pago, será
+                                                redirigido de
+                                                nuevo al sitio web para ver los detalles de su pedido.
+                                            </p>
                                         </div>
                                         <!-- End -->
                                     </div>
+                                    <!-- End -->
                                 </div>
                             </div>
-                            <div class="tab">
-                                <h3>Compra finalizada</h3>
-                                <div class="text-center"><img class="compra_fin_imagen" src="image/check.png"></div>
-                            </div>
                         </div>
-                        <div class="botonN">
-                            <div class="text-center">
-                                <button type="button" class="btn btn-secondary" id="prevBtn"
-                                    onclick="nextPrev(-1)">Previous</button>
-                                <button type="button" class="btn btn-success" id="nextBtn"
-                                    onclick="nextPrev(1)">Next</button>
-                            </div>
-                            <div>
-                                <span class="step"></span>
-                                <span class="step"></span>
-                                <span class="step"></span>
-                                <span class="step"></span>
-                            </div>
+                        <div class="tab">
+                            <h3>Compra finalizada</h3>
+                            <div class="text-center"><img class="compra_fin_imagen" src="image/check.png"></div>
+                        </div>
+                    </div>
+                    <div class="botonN">
+                        <div class="text-center">
+                            <button type="button" class="btn btn-secondary" id="prevBtn"
+                                onclick="nextPrev(-1)">Previous</button>
+                            <button type="button" class="btn btn-success" id="nextBtn"
+                                onclick="nextPrev(1)">Next</button>
+                        </div>
+                        <div>
+                            <span class="step"></span>
+                            <span class="step"></span>
+                            <span class="step"></span>
+                            <span class="step"></span>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- end Contenido-->
         </div>
+        <!-- end Contenido-->
+    </div>
 
-        <!-- Importaciones -->
-        <!--script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    <!-- Importaciones -->
+    <!--script src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script-->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-            crossorigin="anonymous"></script>
-        <!--------->
-        <script type='text/javascript' src="js/barraProgreso.js"></script>
-        <script src="js/pago.js"></script>
-        <script src="../usuario/js/auth.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--------->
+    <script type='text/javascript' src="js/barraProgreso.js"></script>
+    <!-- FIREBASE -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src=" https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js "></script>
+    <script src=" https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js "></script>
+    <!-- <script src="js/logout.js"></script> -->
+    <script src="../usuario/js/auth.js"></script>
+    <script src="js/pago.js"></script>
 
 
-        <script src="../usuario/js/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-        <script src="../usuario/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
-        <!--sxripts locales para los Datatables de Jquery -->
-        <script type="text/javascript" src="../usuario/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="../usuario/js/dataTables.bootstrap4.min.js"
-            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-        <script type="text/javascript" src="../usuario/js/controlador/Utilities.js"></script>
+
+    <script src="../usuario/js/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="../usuario/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    <!--sxripts locales para los Datatables de Jquery -->
+    <script type="text/javascript" src="../usuario/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="../usuario/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="../usuario/js/controlador/Utilities.js"></script>
 
 
 </body>
