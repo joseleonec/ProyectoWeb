@@ -1,16 +1,17 @@
+import { linkEmpleadoAgencia } from './modules/links.js';
+
 const form = document.getElementById('form-button');
-const URL = 'http://localhost:8080/admin/agencias?email=' 
 
 form.addEventListener('click', () => {
 	var email = document.getElementById("inputEmail");
+	var password = document.getElementById('inputPassword');
 
-	var api = URL+email.value
+	var api = linkEmpleadoAgencia+email.value+"/password="+password.value;
 
 	$.ajax({
 		url: api,success: function(response){
 			
-			localStorage.setItem('user',response.nombre)
-			localStorage.setItem('id',response.id)
+			localStorage.setItem('agencia',JSON.stringify(response.agencia))
 			window.location.replace('../index.html')
 
 		},

@@ -1,14 +1,15 @@
 function setName() {
 	var agencia =  document.getElementById("agencia");
-	agencia.innerHTML = localStorage.getItem('user'); 
+	var localAgencia =  JSON.parse(localStorage.getItem('agencia'))
+	agencia.innerHTML = localAgencia.nombre; 
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    /*
-    if(!localStorage.getItem('user')){
+    
+    if(!localStorage.getItem('agencia')){
     	window.location.replace('../index.html')
     } else {
     	setName()
     }
-    */
+    
 });

@@ -1,14 +1,13 @@
 //date picker
 $(function () {
     $('#datetimepicker4').datetimepicker({
-        format: 'L'
+        format: 'YYYY-MM-DD'
     });
 });
 
 //date picker
 $(function () {
     var child = $('#layoutSidenav_nav').lastElementChild;
-    console.log(child);
 });
 
 class DatePicker extends HTMLElement {
@@ -18,7 +17,7 @@ class DatePicker extends HTMLElement {
 		    <div class="input-group-prepend">
 						<span class="input-group-text">Fecha</span>
 			</div>
-			<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4"/>
+			<input type="text" id="datep" class="form-control datetimepicker-input" data-target="#datetimepicker4"/>
 			<div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
     			<div class="input-group-text">
     				<i class="fa fa-calendar"></i>

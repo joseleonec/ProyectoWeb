@@ -41,30 +41,14 @@
 	  	<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 	   
 		    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item ">
-		        	<div class="input-group mb-3">
-						<div class="input-group-prepend">
-						    <span class="input-group-text" id="basic-addon1">Conductor</span>
-						  </div>
-						  <input type="text" class="form-control" placeholder="Juan Perez" aria-label="Username" aria-describedby="basic-addon1">
-					</div>      
-		      	</li>
-		      	<li class="nav-item">
-					<div class="input-group mb-3">
-					  	<div class="input-group-prepend">
-					    	<span class="input-group-text" id="basic-addon1">Autobus</span>
-					  	</div>
-					  	<input type="text" class="form-control" placeholder="AAB - 1450" aria-label="Username" aria-describedby="basic-addon1">
-					</div>
-		      	</li>
 		      	<li class="nav-item">
 					<main-date></main-date>
 		      	</li>
+		      	<li class="nav-item ml-2">
+					<button class="btn btn-outline-success" type="submit">Consultar</button>
+		      	</li>
 		    </ul>
-		    <form class="form-inline my-2 my-lg-0">
-		      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-		    </form>
+		    
 	  	</div>
 	</nav>
 	<div class="container-fluid card-deck mb-3">
@@ -72,7 +56,7 @@
 			<div class="col-sm-6">
 				<div class="card">
 				  	<div class="card-header">
-				    	Resultados
+				    	<input id="insearch" class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Search">	
 				  	</div>
 				  	<div class="card-body">
 				    	<!--Tabla de rutas-->

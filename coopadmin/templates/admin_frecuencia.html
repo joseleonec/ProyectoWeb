@@ -57,9 +57,6 @@
 					      		<a class="nav-link" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="Cliente">Crear frecuencia</a>
 					      	</li>
 					    </ul>
-						<div class="my-2 my-lg-0">
-							<main-date></main-date>
-						</div>
 					 </div>
 				</nav>
 	    		<!--Contenedor -->
@@ -67,55 +64,12 @@
 		        	
 		        	<div class="card mb-4">
 		          		<div class="card-header">
-		          			<div class="row">
-		          				<div class="col-sm-8">
-		          					<h3 class="my-0 font-weight-normal">Administrar frecuencias</h3>
-		          				</div>
-		          				<div class="col-sm-4">
-		          					<button class="btn btn-primary btn-block" type="submit">Guardar y publicar</button>
-		          				</div>
-		          			</div>
+					      	<div class="float-right">
+					      		<input id="insearch" class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Search">	
+					      	</div>
 		          		</div>
-		          		<div class="card-body">
-		          			<!--Tabla de rutas-->
-							<div class="table-responsive">
-								
-					            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+		          		<div class="card-body" id="cardtable">
 
-					              	<thead class="thead-dark">
-						                <tr>
-						                	<th>Hora</th>
-						                	<th>Origen</th>
-						                	<th>Destino</th>
-						                	<th>Placa</th>
-						                	<th>Disco</th>
-						                	<th>Conductor</th>
-						                	<th>Ruta</th>
-						                </tr>
-					              	</thead>
-						            <tbody>
-						                <tr>
-						                  <td>11:45</td>
-						                  <td>Cuenca</td>
-						                  <td>Machala</td>
-						                  <td>AAV - 1578</td>
-						                  <td>48</td>
-						                  <td>Juan Perez</td>
-						                  <td>CM365</td>
-						                </tr>
-						                <tr>
-						                  <td>12:25</td>
-						                  <td>Cuenca</td>
-						                  <td>Machala</td>
-						                  <td>AAV - 0078</td>
-						                  <td>40</td>
-						                  <td>Luis Perez</td>
-						                  <td>CM355</td>
-						                </tr>
-					              	</tbody>
-					            </table>
-					        </div>
-		          			<!--Fin tabla de rutas-->
 		          		</div>
 			      	</div>
 		      	</div>
@@ -128,71 +82,68 @@
     	<div class="modal-content">
       		<div class="modal-header">
         		<h5 class="modal-title" id="exampleModalLabel">Nueva frecuencia</h5>
-        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        		<button type="button" id="botonclose" class="close" data-dismiss="modal" aria-label="Close">
          			 <span aria-hidden="true">&times;</span>
        			</button>
      		 </div>
 			<div class="modal-body">
-		        <form action="/action_page.php" class="was-validated">
-				    <div class="form-group">
-				      <label for="uname">Origen</label>
-				      <input type="text" class="form-control" id="origen" placeholder="Cuenca" name="uname" required>
-				    </div>
-				    <div class="form-group">
-				      <label for="uname">Destino</label>
-				      <input type="text" class="form-control" id="destino" placeholder="Cuenca" name="uname" required>
-				    </div>
-				    <div class="form-group">
-				      <label for="uname">Ruta</label>
-				      <input type="text" class="form-control" id="ruta" placeholder="CM365" name="uname" required>
-				    </div>
-				    <div class="form-group">
-				      <label for="uname">Hora</label>
-				      <input type="text" class="form-control" id="hora" placeholder="12:30" name="uname" required>
-				    </div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-					  <label class="form-check-label" for="inlineCheckbox1">Lunes</label>
+				<div class="form-group">
+				    <div class="input-group mb-3" id="g1">
+						<div class="input-group-prepend">
+					    	<label class="input-group-text" for="destino">Destino</label>
+					  	</div>
+						
 					</div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-					  <label class="form-check-label" for="inlineCheckbox2">Martes</label>
+					<div class="input-group mb-3" id="g2">
+						<div class="input-group-prepend">
+					    	<label class="input-group-text" for="chofer">Chofer</label>
+					  	</div>
+						
 					</div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-					  <label class="form-check-label" for="inlineCheckbox2">Miercoles</label>
-					</div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-					  <label class="form-check-label" for="inlineCheckbox2">Jueves</label>
-					</div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-					  <label class="form-check-label" for="inlineCheckbox2">Viernes</label>
-					</div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-					  <label class="form-check-label" for="inlineCheckbox2">Sabado</label>
-					</div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-					  <label class="form-check-label" for="inlineCheckbox2">Domingo</label>
-					</div>	    
+					<div class="input-group mb-3" id="g3">
+						<div class="input-group-prepend">
+					    	<label class="input-group-text" for="Bus">Autobus</label>
+					  	</div>
+						
+					</div>						
+					<div class="form-row">
+						<div class="col-md-4 input-group mb-3">
+						  <div class="input-group-prepend">
+						    <span class="input-group-text" id="inputGroup-sizing-default">Hora</span>
+						  </div>
+						  <input type="text" id="inputHora" placeholder="15:45" class="form-control" aria-label="Hora" aria-describedby="inputGroup-sizing-default" required>
+						</div>
+						<div class="col-md-4 input-group mb-3">
+						  <div class="input-group-prepend">
+						    <span class="input-group-text" id="inputGroup-sizing-default">Precio</span>
+						  </div>
+						  <input type="text" id="inputPrecio" placeholder="10" class="form-control" aria-label="Precio" aria-describedby="inputGroup-sizing-default" required>
+						</div>
+						<div class="col-md-4 input-group mb-3">
+						  <div class="input-group-prepend">
+						    <span class="input-group-text" id="inputGroup-sizing-default">Asientos</span>
+						  </div>
+						  <input type="text" id="inputAsientos" placeholder="40" class="form-control" aria-label="Asientos" aria-describedby="inputGroup-sizing-default" required>
+						</div>	
+					</div>				
+				    <main-date></main-date>    
 			   		<div class="modal-footer">
-			        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			        	<button type="submit" class="btn btn-primary">Submit</button>
+			        	<button id="modalboton" type="submit" class="btn btn-primary">Submit</button>
 			      	</div>
-	  			</form>
+				</div>
 	      	</div>
 	    </div>
   	</div>
 </div>
 
-  <!-- Menu Toggle Script -->
-  
-  	<script type="text/javascript" src="../js/utils.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.1"></script>
+	
+	<script type="text/javascript" src="../js/local.js"></script>
 	<script type="text/javascript" src="../js/components/header.js"></script>
 	<script type="text/javascript" src="../js/components/sidebar.js"></script>
 	<script type="text/javascript" src="../js/components/datepicker.js"></script>
+	<script type="module" src="../js/components/table.js"></script>
+	<script type="module" src="../js/components/modalfreq.js"></script>
 </body>
 </html>

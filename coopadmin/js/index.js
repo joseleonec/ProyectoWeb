@@ -3,14 +3,14 @@ function pageRedirect(direccion) {
 }  
 
 document.addEventListener("DOMContentLoaded", () => {
-    setTimeout(pageRedirect("./templates/admin_frecuencia.html"), 3000);
-    /*
-    if(localStorage.getItem('user')){
+    //setTimeout(pageRedirect("./templates/admin_frecuencia.html"), 3000);
+    
+    if(localStorage.getItem('agencia')){
     	setTimeout(pageRedirect("./templates/admin_frecuencia.html"), 3000);
     
     } else {
     	setTimeout(pageRedirect("./templates/login.html"), 3000);
     
     }
-    */
+    
 });

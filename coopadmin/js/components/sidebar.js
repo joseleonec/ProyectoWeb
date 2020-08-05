@@ -1,6 +1,5 @@
 const referencia = {"Frecuencias":"admin_frecuencia.html", "Boletos":"venta_boletos.html",
-					"Ventas":"admin_ventas.html", "Conductores":"admin_conductor.html",
-					"Autobuses":"admin_autobus.html"
+					 "Conductores":"admin_conductor.html", "Autobuses":"admin_autobus.html"
 				};
 
 class SideBarMenu extends HTMLElement {

@@ -1,12 +1,6 @@
 const logOut = () => {
-    console.log("saliendo")
-    /*
-    console.log(localStorage)
     localStorage.clear()
-    console.log(localStorage)
     window.location.replace('../index.html')
-    console.log(localStorage)
-    */
 }
 
 const changeWindow = () => {
