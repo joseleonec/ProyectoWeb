@@ -1,0 +1,6 @@
+ARREGLAR ENLACE A CARRITO DESDE LA PAGINA DE buscar-viaje
+No me deja enviar un comentario de primera, hay que intentar dos veces
+subir una imagen de perfil y guardarla en el navegador
+
+en la pagina http://terminalcuenca.herokuapp.com/admin/templates/empleados.php
+cambiar el Opciones > Acerca de

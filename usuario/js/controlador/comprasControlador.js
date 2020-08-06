@@ -130,10 +130,6 @@ $(document).ready(function () {
         var title = document.querySelector("#exampleModalLabel");
         title.name = idCarrito;
         title.innerText += " " + title.name;
-        if (estado === "CADUCADO" || estado === "FINALIZADO") {
-            document.querySelector("#finalizar").disabled = true;
-            document.querySelector("#agregar-boletos").disabled = true;
-        }
         var total = 0;
         var subtotal = 0;
         fetch(urlBoletos + "idcarrito=" + idCarrito).then(function (response) {
@@ -160,7 +156,7 @@ $(document).ready(function () {
             document.querySelector('#pago-total').innerText = total;
         });
     });
-    // DELETE
+    // DESCARGA DE DOCUMENTOS
     datatable.on('click', 'tbody tr', function (e) {
         const botonname = e.target.name;
         const columns = e.target.parentElement.parentElement.getElementsByTagName('td');
@@ -192,10 +188,6 @@ $(document).ready(function () {
                 });
             console.log(this);
             // console.log(datos[1]);
-            document.getElementById("labelid").readOnly = true;
-            document.getElementById("labelid").value = columns[0].innerText;
-            document.getElementById("labelnombreParroquia").value = columns[1].innerText;
-            // Eliminamos el registro que indica que la tabla esta vacia
         }
     });
     var botonGetPDF = document.querySelector('#getPDF');
