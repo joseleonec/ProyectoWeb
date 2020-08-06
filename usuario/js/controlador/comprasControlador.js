@@ -118,6 +118,10 @@ $(document).ready(function () {
     $('#exampleModal').on('hidden.bs.modal', function () {
         //  $(this).find('form')[0].reset();
         datatableBoletos.clear().draw();
+
+        document.querySelector('#nombre-cliente').innerHTML = `<span>CLIENTE: </span>`;
+        document.querySelector('#email-cliente').innerHTML = `<span>EMAIL: </span>`;
+        document.querySelector('#fecha-factura').innerHTML = `<span>DATE: </span> `;
     });
 
     //modal show
@@ -125,7 +129,7 @@ $(document).ready(function () {
         const datos = event.relatedTarget.parentElement.parentElement.getElementsByTagName('td');
         // console.log(datos[0]);
         const idCarrito = datos[2].innerText;
-        const estado = datos[2].innerText;
+        const fechaCompraa = datos[1].innerText;
         var modal = $(this)
         modal.find('.modal-title').text('Carrito');
         var title = document.querySelector("#exampleModalLabel");
@@ -154,7 +158,14 @@ $(document).ready(function () {
             });
             total = subtotal * 1.12;
             total = parseInt(total * 100) / 100;
-            var date = (new Date()).toString().split(" ");
+            // var date = (new Date()).toString().split(" ");
+            var date = datos[1].innerText.split(" ");
+            // var fecha = new Date();
+            // var options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+            // console.log(
+            //     fecha.toLocaleDateString("es-ES", options)
+            // );
             document.querySelector('#nombre-cliente').innerText += "\t" + USUARIO.nombre + " " + USUARIO.apellido;
             document.querySelector('#email-cliente').innerText += "\t" + USUARIO.email;
             document.querySelector('#fecha-factura').innerText += "\t" + date[0] + " " + date[1] + " " + date[2] + " " + date[3];
@@ -186,7 +197,7 @@ $(document).ready(function () {
 
         } else if (botonname === 'qr') {
             let urlQr = "https://prebaflaskqr589.herokuapp.com/boleto/";
-            fetch(urlQr + "1" + ".png")
+            fetch(urlQr + ID + ".png")
                 .then(res => res.blob())
                 .then(blob => {
                     var file = window.URL.createObjectURL(blob);
