@@ -8,6 +8,19 @@ var idCarrito;
 var email;
 var usuario;
 var factura;
+
+// var doc = new jsPDF({
+//     orientation: 'landscape',
+//     unit: 'in',
+//     format: [4, 2]
+//   })
+  
+//   doc.text('Hello world!', 1, 1)
+//   doc.save('two-by-four.pdf')
+// var printDoc = new jsPDF();
+// printDoc.fromHTML($('#resumen').get(0), 10, 10, {'width': 180});
+// printDoc.autoPrint();
+// printDoc.output("dataurlnewwindow");
 emailAuth.onAuthStateChanged(user => {
     // USUARIO_AUTH = user;
     // console.log("Verificando sesion");
@@ -56,6 +69,7 @@ var tablaDetalleHTMNL;
 $(document).ready(function () {
     datatableDetalle = $('#tabla-detalle').DataTable({
         "sDom": 'lrtip',
+        "bSort": false,
         "searching": false,
         "paging": false,
         "info": false
@@ -131,7 +145,7 @@ function cargarDetalle(datatableDetalle) {
                 console.log("Error al hallar boleto");
             });
         } else {
-            window.location.href = "login.html";
+            window.location.href = "../usuario/login.html";
             console.log("compras no hay usuario");
         }
     });
