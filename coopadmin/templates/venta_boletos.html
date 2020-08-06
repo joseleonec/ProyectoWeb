@@ -71,106 +71,62 @@
 				      		
 				      	</div>
 		        	</div>
-		        	<div class="card mb-4">
-		          		<div class="card-header">
-		            		<h5 class="my-0 font-weight-sm">Descripción</h5>
-		          		</div>
-		          		<div class="card-body">
-			        		<div >
-						      	<ul class="list-group mb-3">
-						            <li class="list-group-item d-flex justify-content-between lh-condensed">
-						              <div>
-						                <h6 class="my-0">Origen</h6>
-						              </div>
-						              <span class="text-muted">Cuenca</span>
-						            </li>
-						            <li class="list-group-item d-flex justify-content-between lh-condensed">
-						              <div>
-						                <h6 class="my-0">Destino</h6>
-						              </div>
-						              <span class="text-muted">Quito</span>
-						            </li>
-						            <li class="list-group-item d-flex justify-content-between lh-condensed">
-						              <div>
-						                <h6 class="my-0">Asientos</h6>
-						              </div>
-						              <span class="text-muted">12,13,14,15</span>
-						            </li>
-						             <li class="list-group-item d-flex justify-content-between lh-condensed">
-						              <div>
-						                <h6 class="my-0">Hora</h6>
-						              </div>
-						              <span class="text-muted">15:45</span>
-						            </li>
-						             <li class="list-group-item d-flex justify-content-between lh-condensed">
-						              <div>
-						                <h6 class="my-0">Iva</h6>
-						              </div>
-						              <span class="text-muted">$6.30</span>
-						            </li>
-						             <li class="list-group-item d-flex justify-content-between lh-condensed">
-						              <div>
-						                <h6 class="my-0">Sub total</h6>
-						              </div>
-						              <span class="text-muted">$18.70</span>
-						            </li>
-						            <li class="list-group-item d-flex justify-content-between bg-light">
-						              <div class="text-success">
-						                <h6 class="my-0">Total (USD)</h6>
-						              </div>
-						              <span class="text-success"><strong>$20</strong></span>
-						            </li>
-						        </ul>
-			              	</div>
-			  				<div >
-					          	<form class="needs-validation" novalidate>
-					          		
-								  	<div class="input-group mb-3">
-												  <div class="input-group-prepend">
-												    <span class="input-group-text" id="basic-addon1">Cantidad de Asientos</span>
-												  </div>
-									   <select class="form-control" id="exampleFormControlSelect1">
-									      <option>1</option>
-									      <option>2</option>
-									      <option>3</option>
-									      <option>4</option>
-									      <option>5</option>
+		        		<div class="card mb-4">
+			          		<div class="card-header">
+			            		<h5 class="my-0 font-weight-sm">Descripción</h5>
+			          		</div>
+		          			<div class="card-body">
+			          			<div class="row">						    
+									<div class="col input-group mb-3" id="g1">
+										<div class="input-group-prepend">
+									    	<label class="input-group-text" for="destino">Destino</label>
+									  	</div>
+										<input type="text" id="inputdestino" class="form-control text-dark" placeholder="Quito" aria-describedby="basic-addon1" >
+									</div>								
+									<div class="col input-group mb-3">
+										<div class="input-group-prepend">
+									    	<label class="input-group-text" for="destino">Fecha</label>
+									  	</div>
+										<input type="text" id="inputFecha" class="form-control text-dark" placeholder="2020-08-10" aria-describedby="basic-addon1" >
+									</div>
+			          			</div>
+			          			<div class="row">
+									<div class="col-md-4 input-group mb-3">
+									  <div class="input-group-prepend">
+									    <span class="input-group-text" id="inputGroup-sizing-default">Hora</span>
+									  </div>
+									  <input type="text" id="inputHora" placeholder="15:45" class="form-control" aria-label="Hora" aria-describedby="inputGroup-sizing-default" required>
+									</div>
+									<div class="col-md-4 input-group mb-3">
+									  <div class="input-group-prepend">
+									    <span class="input-group-text" id="inputGroup-sizing-default">Precio</span>
+									  </div>
+									  <input type="text" id="inputPrecio" placeholder="10" class="form-control" aria-label="Precio" aria-describedby="inputGroup-sizing-default" required>
+									</div>
+								  	<div id="selectasiento" class=" col-md-4 input-group mb-3">
+									  <div class="input-group-prepend">
+									    <span class="input-group-text" id="basic-addon1">Asientos</span>
+									  </div>
+									   <select class="form-control" id="selectexample">
 									    </select>
 									</div>
-					          		<hr class="mb-4">
-					          		<div class="input-group mb-3">
-									  <div class="input-group-prepend">
-									    <span class="input-group-text" id="basic-addon1">Cedula</span>
-									  </div>
-									  <input type="text" class="form-control" placeholder="0123456789" aria-label="Username" aria-describedby="basic-addon1">
-									</div>
-									<div class="input-group mb-3">
-									  <div class="input-group-prepend">
-									    <span class="input-group-text" id="basic-addon1">Nombre</span>
-									  </div>
-									  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-									</div>
-									<div class="input-group mb-3">
-									  <div class="input-group-prepend">
-									    <span class="input-group-text" id="basic-addon1">Correo electronico</span>
-									  </div>
-									<input type="email" class="form-control" id="email" placeholder="you@example.com">
-										<div class="invalid-feedback">
-											Please enter a valid email address for shipping updates.
-										</div>
-									</div>		                  
-						            <hr class="mb-4">
-						            <button class="btn btn-outline-success btn-lg btn-block" type="submit">Vender</button>
-			          			</form>
+
+			          			</div>
+								<button id="crearboleto" class="btn btn-warning btn-block" type="submit">Crear boleto</button>
+								
+								<hr class="solid">
+								
+								<h4 id="htotal">Total $0</h4>
+								
+								<button id="botonvender" class="btn btn-outline-success btn-block" type="submit" disabled="">Vender</button>
+
+								<button id="botoncancelar" class="btn btn-sm btn-outline-danger btn-block" type="submit" disabled="">Cancelar</button>
 			        		</div>
 		          		</div>
 			      	</div>
 			    </div>
 	    	</main>
-			
-		      
-	      <!--Ingreso de datos-->
-		      
+					      
 	    </div>
 
 	</div>
