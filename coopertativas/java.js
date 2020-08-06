@@ -8,8 +8,13 @@ emailAuth.onAuthStateChanged(user => {
     if (user) {
         idUser = "si";
         email = user.email;
-        console.log("Si esta logueado Estado: " + idUser);
-        document.getElementById("cuenta").innerHTML = `<img src="../icons/person.svg">&nbsp;&nbsp;${user.displayName}`;
+        console.log("Si esta logueado " + idUser);
+        cargarId();
+        let name = user.displayName;
+        if (user.displayName == null) {
+            name = email;
+        }
+        document.getElementById("cuenta").innerHTML = `<img src="../icons/person.svg">&nbsp;&nbsp;${name}`;
     } else {
         console.log("No existe una sesion ..");
     }
@@ -17,10 +22,9 @@ emailAuth.onAuthStateChanged(user => {
 
 $(document).ready(function () {
     console.log("ready!");
-    pedirDatos();
-    //idUser = dataUser(); //pedir al php
-    //idUser = 1; //logueado
-    //idUser = "";  //No logueado
+    setTimeout(function () {
+        pedirDatos();
+    }, 2000);
 });
 
 function volver_a_inicio() {
@@ -237,7 +241,7 @@ function handleClick(myRadio) {
 }
 
 /* $(document).on('click', '.task-delete', actionFunction);
-
+ 
 function actionFunction() {
 } */
 
@@ -251,16 +255,15 @@ $(document).on('click', '.guardar_comentario', function (e) {
         }
     });
 
-    if (bandera == false) {
-        console.log("Obteniendo user...");
-        cargarId();
-        console.log("Fin obtencion");
-    }
-
     if (email != "") {
         if (userCliente != "" && agenciaLocal != "") {
-            swal("Comentario enviado", "Gracias por tu contribución", "success");
-            /* let data = { agencia: agenciaLocal, calificacion: currentValue, comentario: comentario, usuario: userCliente };
+            let data = { 
+                "agencia": agenciaLocal,
+                 "calificacion": currentValue, 
+                 "comentario": comentario, 
+                 "usuario": userCliente 
+            };
+            console.log(data);
             let url = url_back + "comentario";
             fetch(url, {
                 method: 'POST', // or 'PUT'
@@ -269,13 +272,15 @@ $(document).on('click', '.guardar_comentario', function (e) {
                     'Content-Type': 'application/json'
                 }
             }).then(function (data_res) {
-                //console.log("Respuesta: " + data_res);
+                console.log("Respuesta: " + data_res);
                 pedirDatos();
+                console.log("Comentario enviado");
                 swal("Comentario enviado", "Gracias por tu contribución", "success");
             }).catch(function (error) {
+                console.log("Error al comentar");
                 swal("Fallo", "No se pudo enviar", "error");
                 //console.log('Error post: ' + error);
-            }); */
+            });
         } else {
             swal("Fallo", "--", "warning");
         }
@@ -342,7 +347,7 @@ function mostrar_mensaje(mensaje, elemento, tipo_alerta) {
 
 //------Obtencion user-------
 var userCliente = "";
-var bandera = false;
+
 function cargarId() {
     let url = url_back + "usuario/email=" + email;
     fetch(url).then(function (response) {
@@ -350,9 +355,8 @@ function cargarId() {
     }).then(function (response) {
         let id = response.idUsuario;
         if (id != "") {
-            bandera = true;
             userCliente = response;
-            console.log("Listo");
+            console.log("User cargado");
         }
     }).catch(function () {
         console.log("Error al encontrar usuario");
