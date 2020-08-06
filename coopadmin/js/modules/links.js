@@ -1,6 +1,6 @@
-const campos = ["admin_autobus.html","admin_conductor.html","admin_frecuencia.html","venta_boletos.html"];
+const campos = ["admin_autobus.html","admin_conductor.html","admin_frecuencia.html","venta_boletos.html","buscar_freq.html"];
 
-const buscarPor = {"admin_autobus.html":["placa", "marca"],"admin_conductor.html": ["nombre","cedula"],"admin_frecuencia.html":["Hora","Destino"],"venta_boletos.html":["Destino","Hora"]}
+const buscarPor = {"admin_autobus.html":["placa", "marca"],"admin_conductor.html": ["nombre","cedula"],"admin_frecuencia.html":["Hora","Destino"],"venta_boletos.html":["Destino","Hora"],"buscar_freq.html":["Destino","Fecha","Placa","Chofer"]}
 
 export const currentDate = () =>{
   var today = new Date();
@@ -19,7 +19,8 @@ var links = {
 				"admin_autobus.html":"https://terminal25backend.herokuapp.com/bus/idagencia=",
                 "admin_conductor.html":"https://terminal25backend.herokuapp.com/chofer/idagencia=",
                 "admin_frecuencia.html":linkCurrentDay,
-                "venta_boletos.html":linkCurrentDay
+                "venta_boletos.html":linkCurrentDay,                
+                "buscar_freq.html":linkCurrentDay,
               }
 
 export const linkEmpleadoAgencia = "https://terminal25backend.herokuapp.com/empleado/email=";
