@@ -137,6 +137,8 @@ function graficarMapa(latitudeOrigen, longitudeOrigen, latitudeDestino, longitud
                 // routesLayer.clearLayers();
                 // routesLayer.addLayer(rlayer);
                 control.getPlan().setWaypoints([]);
+                control.hide();
+
             }
             control = L.Routing.control({
                 waypoints: [
@@ -146,11 +148,12 @@ function graficarMapa(latitudeOrigen, longitudeOrigen, latitudeDestino, longitud
                 language: 'es'
             }).addTo(mymap);
             counter += 1;
-            // mymap.removeControl(control);
-            control.hide();
+
+            // control.removeControl(mymap);
+            // control.hide();
 
 
-            // control.show();
+            //  control.show();
         });
     }
 }
