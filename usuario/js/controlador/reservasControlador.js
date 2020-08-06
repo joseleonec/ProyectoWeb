@@ -19,7 +19,36 @@ function llenarTabla(datatable) {
         console.log("Error al Llenar la tabla");
     });
 }
-
+function llenarTablaBoletos(datatableBoletos, idCarrito) {
+    fetch(urlBoletos + "idcarrito=" + idCarrito).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        console.log(data.status);
+        var total = 0;
+        var subtotal = 0;
+        data.forEach(boleto => {
+            console.log(boleto);
+            datatableBoletos.row.add(
+                [
+                    boleto.idBoleto,
+                    boleto.itinerario.idItinerario,
+                    boleto.itinerario.viaje.origen,
+                    boleto.itinerario.viaje.destino.nombre,
+                    boleto.itinerario.agencia.nombre,
+                    boleto.itinerario.viaje.nombreRuta,
+                    boleto.cantidadDeAsientos,
+                    boleto.costo
+                ]
+            ).draw();
+            subtotal += boleto.costo;
+            subtotal = parseInt(subtotal * 100) / 100;
+        });
+        total = subtotal * 1.12;
+        total = parseInt(total * 100) / 100;
+        document.querySelector('#pago-subtotal').innerText = subtotal;
+        document.querySelector('#pago-total').innerText = total;
+    });
+}
 $(document).ready(function () {
 
     var datatableGeneral = $('#tablaReservas').DataTable({
@@ -59,11 +88,21 @@ $(document).ready(function () {
         if (botonname === 'delete') {
             const columns = e.target.parentElement.parentElement.getElementsByTagName('td');
             const idBoleto = columns[0].innerText;
-            datatableBoletos.row(this).remove().draw();
+            console.log(urlBoletos + idBoleto);
+            const costoBoletoEliminado = columns[7].innerText;
+            var subtotal = parseFloat(document.querySelector('#pago-subtotal').innerText);
+            subtotal -= costoBoletoEliminado;
+            var total = subtotal * 1.12;
+            total = parseInt(total * 100) / 100;
+            subtotal = parseInt(subtotal * 100) / 100;
             DELETE(urlBoletos, idBoleto);
+            datatableBoletos.row(this).remove().draw();
+            document.querySelector('#pago-subtotal').innerText = subtotal;
+            document.querySelector('#pago-total').innerText = total;
         }
     });
 
+    // CARGAR DATOS DE USUARIO LOGEADO
     emailAuth.onAuthStateChanged(user => {
         // USUARIO_AUTH = user;
         if (user) {
@@ -87,50 +126,6 @@ $(document).ready(function () {
         }
     });
 
-    // POST
-    // $("#btn-guardar-sustitucion").click(function () {
-    //     // console.log("Evento capturado");
-    //     const id = document.getElementById("labelid").value.toUpperCase();
-    //     const idSolicitud = document.getElementById("labelidSolicitud").value.toUpperCase();
-    //     const idProductoSustituto = document.getElementById("labelidProductoSustituto").value.toUpperCase();
-    //     const monto = document.getElementById("labelmonto").value.toUpperCase();
-
-    //     var solicitudDevolucion;
-    //     fetch('https://springtest999.herokuapp.com/api/solicituddevolucion/' + idSolicitud).then(function (response) {
-    //         return response.json();
-    //     }).then(function (data) {
-    //         solicitudDevolucion = data;
-    //     }).catch(function () {
-    //         console.log("Error al recuperar registro compuesto");
-    //     });
-
-    //     // Eliminamos el registro que indica que la tabla esta vacia
-    //     // Input User Validation
-    //     if (id === '' || idSolicitud === '' || idProductoSustituto === '' || monto === '' || solicitudDevolucion == null) {
-
-    //         mostrarMensaje('Please Insert data in all fields', 'danger');
-    //     } else {
-    //         const data = {
-    //             "idSustitucion": id,
-    //             "solicitudDevolucion": solicitudDevolucion,
-    //             "monto": monto,
-    //             "autorizacionSRI": idProductoSustituto
-    //         };
-    //         if (document.getElementById("labelid").readOnly) {
-
-    //             PUT(urlCarritos, data);
-    //             vaciarTabla(datatableGeneral);
-    //             llenarTabla(datatableGeneral);
-
-    //         } else {
-
-    //             POST(urlCarritos, data);
-    //             addRow(datatableGeneral, data);
-    //         }
-    //         $('#exampleModal').modal('hide');
-    //         mostrarMensaje('Elemento regisrado con exito', 'success');
-    //     }
-    // });
     // Reset modal form after close
     $('#exampleModal').on('hidden.bs.modal', function () {
         //  $(this).find('form')[0].reset();
@@ -148,41 +143,14 @@ $(document).ready(function () {
         var title = document.querySelector("#exampleModalLabel");
         title.name = idCarrito;
         title.innerText += " " + title.name;
-        if (estado === "CADUCADO" || estado === "FINALIZADO") {
+        if (estado != "PENDIENTE") {
             document.querySelector("#finalizar").disabled = true;
             document.querySelector("#agregar-boletos").disabled = true;
         }
-        var total = 0;
-        var subtotal = 0;
-        fetch(urlBoletos + "idcarrito=" + idCarrito).then(function (response) {
-            return response.json();
-        }).then(function (data) {
-            console.log(data.status);
-            data.forEach(boleto => {
-                console.log(boleto);
-                datatableBoletos.row.add(
-                    [
-                        boleto.idBoleto,
-                        boleto.itinerario.idItinerario,
-                        boleto.itinerario.viaje.origen,
-                        boleto.itinerario.viaje.destino.nombre,
-                        boleto.itinerario.agencia.nombre,
-                        boleto.itinerario.viaje.nombreRuta,
-                        boleto.cantidadDeAsientos,
-                        boleto.costo
-                    ]
-                ).draw();
-                subtotal += boleto.costo;
-                subtotal = parseInt(subtotal * 100) / 100;
-            });
-            total = subtotal * 1.12;
-            total = parseInt(total * 100) / 100;
-            document.querySelector('#pago-subtotal').innerText = subtotal;
-            document.querySelector('#pago-total').innerText = total;
-        });
+        llenarTablaBoletos(datatableBoletos, idCarrito);
     });
 
-    // DELETE
+    // DELETE CARRITO
     datatableGeneral.on('click', 'tbody tr', function (e) {
         const botonname = e.target.name;
         const columns = e.target.parentElement.parentElement.getElementsByTagName('td');
@@ -194,15 +162,16 @@ $(document).ready(function () {
             mostrarMensaje('Elemento eliminado ', 'info');
         }
     });
-
+    // FINALIZAR CARRITO
     var botonfinalizar = document.querySelector('#finalizar');
     botonfinalizar.addEventListener('click', () => {
         window.location.href = "../pago/index.html";
     });
 
+    // SEGUIR COMPRANDO
     var botonfinalizar = document.querySelector('#agregar-boletos');
     botonfinalizar.addEventListener('click', () => {
-        window.location.href = "../pago/index.html";
+        window.location.href = "../buscar-viaje/index.html";
     });
 });
 

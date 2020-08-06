@@ -98,11 +98,8 @@ $(document).ready(function () {
             // Input User Validation
             if (id === '' || nombre === '' || apellido === '' || cedula === '' || email === '' || nickname === '') {
                 // mostrarMensaje('Please Insert data in all fields', 'danger');
-                alert('Please Insert data in all fields');
-            } /* else if (password != passwordConfirm) {
-                alert('Las contraseñas no coinciden');
-                // mostrarMensaje('Las contraseñas no coinciden', 'danger');
-            } */ else {
+                swal("Error", "Asegurese de llenar todos los campos", "error");
+            } else {
                 fetch(url + id).then(function (response) {
                     return response.json();
                 }).then(function (obj) {
@@ -126,7 +123,8 @@ $(document).ready(function () {
                     // document.getElementById("passwordusuario").value = ""
                     // document.getElementById("confirmpasswordusuario").value = "";
                     cargarCampos(id);
-                    alert("Cambios registrados")
+                    swal("Cambios registrados", "Ha modificado con exito sus datos", "success");
+                    location.reload();
                     mostrarMensaje('Cambios regisrados con exito', 'success');
 
                 }).catch(function () {
