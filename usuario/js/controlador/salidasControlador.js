@@ -12,8 +12,8 @@ function llenarTabla(datatable) {
     // 2020-07-30
     // var fecha = new Date(2020, 06, 30).toJSON().slice(0, 10);
     var fecha = new Date().toJSON().slice(0, 10);
-    console.log(fecha)
-    const token = "fecha=" + fecha.toString();;
+    console.log(fecha);
+    const token = "fecha=" + fecha.toString();
     console.log(token);
     fetch(url + token).then(function (response) {
         return response.json();

@@ -85,35 +85,6 @@ $(document).ready(function () {
         }
     });
 
-    // POST
-    $("#btn-guardar-parroquia").click(function () {
-        ``
-        // console.log("Evento capturado");
-        const id = document.getElementById("labelid").value.toUpperCase();
-        const nombreParroquia = document.getElementById("labelnombreParroquia").value.toUpperCase();
-        // Eliminamos el registro que indica que la tabla esta vacia
-        // Input User Validation
-        if (id === '' || nombreParroquia === '') {
-            mostrarMensaje('Asegurese de llenar todos los campos', 'danger');
-        } else {
-            const data = {
-                "idEmpresa": id,
-                "nombreParroquia": nombreParroquia
-            }
-            if (document.getElementById("labelid").readOnly) {
-                PUT(url, data);
-                vaciarTabla(datatable);
-                llenarTabla(datatable);
-            } else {
-                POST(url, data);
-                vaciarTabla(datatable)
-                llenarTabla(datatable);
-                addRow(datatable, data);
-            }
-            $('#exampleModal').modal('hide');
-            mostrarMensaje('Elemento regisrado con exito', 'success');
-        }
-    });
     // Reset modal form after close
     $('#exampleModal').on('hidden.bs.modal', function () {
         //  $(this).find('form')[0].reset();
@@ -180,7 +151,7 @@ $(document).ready(function () {
     datatable.on('click', 'tbody tr', function (e) {
         const botonname = e.target.name;
         const columns = e.target.parentElement.parentElement.getElementsByTagName('td');
-        const ID = columns[0].innerText;
+        const ID = columns[2].innerText;
         if (botonname === 'pdf') {
             console.log(this);
             // mostrarMensaje('Elemento eliminado ', 'info');

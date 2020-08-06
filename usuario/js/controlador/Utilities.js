@@ -21,8 +21,8 @@ function POST(url, data) {
             'Content-Type': 'application/json'
         }
     }).then(res => res.json())
-        .catch(error => console.error('POST Error:', error))
-        .then(response => console.log('POST Success:', response));
+        .catch(error => console.error('POST Error:', error + url))
+        .then(response => console.log('POST Success:', response + url));
 }
 
 function PUT(url, data) {

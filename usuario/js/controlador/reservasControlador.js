@@ -95,7 +95,8 @@ $(document).ready(function () {
             var total = subtotal * 1.12;
             total = parseInt(total * 100) / 100;
             subtotal = parseInt(subtotal * 100) / 100;
-            DELETE(urlBoletos, idBoleto);
+            console.log(urlBoletos + idBoleto);
+            // DELETE(urlBoletos, idBoleto);
             datatableBoletos.row(this).remove().draw();
             document.querySelector('#pago-subtotal').innerText = subtotal;
             document.querySelector('#pago-total').innerText = total;
