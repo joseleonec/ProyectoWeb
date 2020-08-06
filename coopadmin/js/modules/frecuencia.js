@@ -33,6 +33,14 @@ export const listForCard = (e) =>{
         } )
         objetos = frecuencias;
     }
+
+    if(ref.includes('buscar_freq.html')){
+        var frecuencias = []
+        Object.values(e).forEach(function(item){
+            frecuencias.push(crearFrecuencia(item).forSearch)
+        } )
+        objetos = frecuencias;
+    }
     return objetos;
 } 
 
@@ -71,5 +79,16 @@ class Frecuencia {
                 "Precio":this.precioAsiento,
                 "Hora":this.horaSalida
             };
+    }
+
+    get forSearch(){
+        return {
+                "idItinerario":this.idItinerario,
+                "Destino":this.viaje.destino.nombre,
+                "Placa":this.bus.placa,
+                "Fecha":this.fechaSalida,
+                "Hora":this.horaSalida,
+                "Chofer":this.chofer.nombre
+                }
     }
 }
