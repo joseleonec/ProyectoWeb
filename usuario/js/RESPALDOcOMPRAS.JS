@@ -4,7 +4,7 @@ const urlCarritos = 'https://terminal25backend.herokuapp.com/carrito/idusuario='
 const urlBoletos = 'https://terminal25backend.herokuapp.com/boleto/';
 const urlItinerario = 'https://terminal25backend.herokuapp.com/itinerario/';
 var idUsuario;
-var USUARIO;
+
 function addRow(datatable, factura) {
     var fecha = factura.fecha.slice(0, 16).replace(/T/g, ' ');
     fecha = new Date(fecha).toString().split("G")[0];
@@ -70,7 +70,6 @@ $(document).ready(function () {
                 return response.json();
             }).then(function (data) {
                 idUsuario = data.idUsuario;
-                USUARIO = data;
                 console.log("compras usuario: " + idUsuario);
                 llenarTabla(datatable);
                 document.getElementById("logedas").innerText = data.nickname;
@@ -144,7 +143,6 @@ $(document).ready(function () {
                         boleto.idBoleto,
                         boleto.itinerario.viaje.origen,
                         boleto.itinerario.viaje.destino.nombre,
-                        parseInt((boleto.costo / boleto.cantidadDeAsientos) * 100) / 100,
                         boleto.cantidadDeAsientos,
                         boleto.costo
                     ]
@@ -154,15 +152,8 @@ $(document).ready(function () {
             });
             total = subtotal * 1.12;
             total = parseInt(total * 100) / 100;
-            var date = (new Date()).toString().split(" ");
-            document.querySelector('#nombre-cliente').innerText += "\t" + USUARIO.nombre + " " + USUARIO.apellido;
-            document.querySelector('#email-cliente').innerText += "\t" + USUARIO.email;
-            document.querySelector('#fecha-factura').innerText += "\t" + date[0] + " " + date[1] + " " + date[2] + " " + date[3];
-
             document.querySelector('#pago-subtotal').innerText = subtotal;
-            document.querySelector('#iva').innerText = parseInt((subtotal * 0.12) * 100) / 100;
             document.querySelector('#pago-total').innerText = total;
-
         });
     });
     // DESCARGA DE DOCUMENTOS
@@ -205,9 +196,9 @@ $(document).ready(function () {
         const element = document.getElementById("detalleFactura");
         // Choose the element and save the PDF for our user.
         html2pdf()
-            .set({ html2canvas: { scale: 4 } })
-            .from(element)
-            .save();
+        .set({ html2canvas: { scale: 4 } })
+        .from(element)
+        .save();
 
         console.log(this);
         console.log(this);

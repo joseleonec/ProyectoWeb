@@ -8,9 +8,6 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Mis Compras</title>
-    <!-- <link rel="stylesheet" href="css/factura.css"> -->
-    <link rel="stylesheet" href="css/factura.css">
-
     <link href="css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
@@ -29,7 +26,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid ">
-                    <h1 class=" encabezado mt-4"> Compras realizadas</h1>
+                    <h1 class="mt-4"> Compras realizadas</h1>
                     <ul id="grupobotones" class="breadcrumb mb-4 ">
                         <!-- Button trigger modal -->
                         <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -50,97 +47,39 @@
                                     </div>
                                     <div></div>
                                     <div id="detalleFactura" class="modal-body">
-                                        <div class="clearfix">
-                                            <div id="logo">
-                                                <img class="image-fluid" src="images/Logo.png">
-                                            </div>
-                                            <h1 class="encabezado">Terminal Terrestre de Cuenca</h1>
-                                            <div id="company" class="clearfix">
-                                                <div>Transport</div>
-                                                <div>Dirección: Av. Gil Ramírez <br>Dávalos y España, Calle
-                                                    Chapetones<br> y Calle Del Chorro</div>
-                                                <div> (07) 2 844 688</div>
-                                                <div>info@emov.gob.ec</div>
-                                            </div>
-                                            <div id="project">
-                                                <div id="nombre-cliente"><span>CLIENTE: </span></div>
-                                                <div id="email-cliente"><span>EMAIL: </span></div>
-                                                <div id="fecha-factura"><span>DATE: </span> </div>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <h4> Resumen</h4>
-                                            <br>
-                                            <br>
-                                            <div class="table-responsive">
-                                                <table id="tablaBoletos" class="table table-striped">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>N° Boleto</th>
-                                                            <th>Origen</th>
-                                                            <th>Destino</th>
-                                                            <th>Precio Unitario</th>
-                                                            <th>Cantidad</th>
-                                                            <th>Costo</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td>SUBTOTAL</td>
-                                                            <td id="pago-subtotal"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td>IVA 12%</td>
-                                                            <td id="iva"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td>TOTAL</td>
-                                                            <td id="pago-total"></td>
-                                                        </tr>
-                                                    </tfoot>
-                                                    <!-- <tfoot>
-                                                        <tr>
-                                                            <td>Subtotal $</td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-    
-                                                            <td id="pago-subtotal"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>Total $</strong></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td><strong id="pago-total"></strong>
-                                                            </td>
-                                                        </tr>
-                                                    </tfoot> -->
-                                                </table>
-                                            </div>
-                                            <div id="notices">
-                                                <div>NOTA:</div>
-                                                <div class="notice">Necesitas presentar el codigo QR al momento de subir
-                                                    al bus.</div>
-                                                <br>
-                                            </div>
-                                        </div>
+                                        <div class="table-responsive">
+                                            <table id="tablaBoletos" class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#Boleto</th>
+                                                        <th>Origen</th>
+                                                        <th>Destino</th>
+                                                        <th>Cantidad</th>
+                                                        <th>Precio</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td>Subtotal $</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
 
-
+                                                        <td id="pago-subtotal"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Total $</strong></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td><strong id="pago-total"></strong>
+                                                        </td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
                                     </div>
                                     <div class="modal-footer ">
                                         <div class="col mb-2">
