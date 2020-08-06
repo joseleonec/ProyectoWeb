@@ -115,10 +115,6 @@ function cargarDetalle(datatableDetalle) {
                             console.log(factura);
 
                             facturaString += `
-                            </tbody>
-                        </table>`;
-                            facturaString += `
-                        <div>
                             <tr>
                                 <td>Subtotal $</td>
                                 <td>${subtotal}</td>
@@ -128,14 +124,17 @@ function cargarDetalle(datatableDetalle) {
                                 <td><strong>Total $</strong></td>
                                 <td><strong>${total}</strong></td>
                             </tr>
-                        </div>`;
+                            </tbody>
+                        </table>`;
 
-                            console.log(facturaString);
+                            //console.log(facturaString);
                             // total = total.toString(); //If it's not already a String
                             // total = total.slice(0, (total.indexOf(".")) + 3); //With 3 exposing the hundredths place
                             // Number(total); //If you need it back as a Number
-                            document.querySelector('#pago-subtotal').innerText = subtotal;
-                            document.querySelector('#pago-total').innerText = total;
+                            document.getElementById('pagoSubtotal').innerText = subtotal;
+                            document.getElementById('pagoTotal').innerText = total;
+                            //document.querySelector('#pago-subtotal').innerText = subtotal;
+                            //document.querySelector('#pago-total').innerText = total;
                             var fecha = new Date().toJSON();
                             factura = {
                                 // "idFactura": 1,
@@ -145,20 +144,6 @@ function cargarDetalle(datatableDetalle) {
                                 "carrito": cart[0]
                             }
                             // POST(urlFactura, factura);
-                            fetch(url, {
-                                method: 'POST', // or 'PUT'
-                                body: JSON.stringify(factura), // data can be `string` or {object}!
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                }
-                            }).then(function (response) {
-                                return response.json();
-                            }).then(function (respuesta) {
-                                if (respuesta.carrito) {
-                                    generarCodigo(facturaString, respuesta.carrito.idCarrito);
-                                }
-                            }).catch(error => console.error('POST Error:', error))
-                                .then(response => console.log('POST Success:', response));
                             tablaDetalleHTMNL = $('#resumen');
                             console.log(tablaDetalleHTMNL);
                             console.log(factura);
@@ -221,14 +206,13 @@ function showTab(n) {
     if (n == (x.length - 1)) { //llega al final de los tabs
         document.getElementById("nextBtn").style.display = "none";
         document.getElementById("prevBtn").style.display = "none";
-        generarCodigo(1);
+        PostFactura();
+        //generarCodigo(facturaString, 1); //esto no va aqui
+        console.log(facturaString);
         document.getElementById("descripcion1").style.display = "inline";
         document.getElementById("descripcion2").style.display = "inline";
         document.getElementById("descripcion3").style.display = "inline";
         console.log("Fin tabs");
-        //console.log(factura);
-        //POST(urlFactura, factura);
-
     } else {
         document.getElementById("nextBtn").innerHTML = "Next";
     }
@@ -242,6 +226,25 @@ function setProgreso(actual) {
         vectorCirculos[i].classList.add("active");
     }
     vectorCirculos[actual].classList.add("actual");
+}
+
+function PostFactura() {
+    if (factura.carrito) {
+        fetch(urlFactura, {
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(factura), // data can be `string` or {object}!
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response) {
+            return response.json();
+        }).then(function (respuesta) {
+            if (respuesta.carrito) {
+                generarCodigo(facturaString, respuesta.carrito.idCarrito);
+            }
+        }).catch(error => console.error('POST Error:', error))
+            .then(response => console.log('POST Success:', response));
+    }
 }
 
 function generarCodigo(facturaString, idCarrito) {
@@ -279,33 +282,29 @@ function generarCodigo(facturaString, idCarrito) {
             //container.innerHTML = imgElem; //container.appendChild(imgElem);
             //---------------------------------------------------------------
             //Se agrega el link a la tabla que se enviara al correo.
-            var link = document.getElementById("urlBoletoQR");
-            link.setAttribute('href', `${urlBoleto}`);
             //link.innerHTML = `Descargue el codigo QR desde aqui: ${urlBoleto}`;
             //Contenedor que se enviara al correo
-            var Cont = document.getElementById("resumenM"); //esta se va al correo
-            var Conti = document.getElementById("resumen");
-            console.log(Conti, innerWidth);
             //var element = document.getElementById("description");
             //element.setAttribute('value', Cont.innerText);
             //element.innerHTML = `${Cont.innerHTML}`;
-
-            document.getElementById("inputEmail").setAttribute('value', email);
-            document.getElementById("inputHtml").innerHTML = `${Cont.innerHTML}`;
-
-            var variable = `<strong> TERMINAL TERRESTRE DE CUENCA</strong>`;
+            var variable = `<strong><img src="image/Logo.png" width="100" height="100"> TERMINAL TERRESTRE DE CUENCA</strong>`;
+            variable += facturaString;
+            variable += `<h4>Nota: Debe presentar el codigo QR al momento de abordar al bus.</h4>`;
+            variable += `<h4>Descargar codigo: <a href="${urlBoleto}"> Click </a></h4>`;
+            console.log("Esta es la factura:");
+            console.log(variable);
             //setAttribute('value', `${Cont.innerHTML}`);
             var parametros = {
                 "btnEnviar": "envia",
                 "EmailDestino": email,
-                "html": `${Cont.innerHTML}`
+                "html": variable
             };
             console.log("Aqui se envia");
             //console.log(`${Cont.innerHTML}`);
-            /*$.ajax({
+            $.ajax({
                 data: parametros,
                 //url: 'correo/correo.php',
-                url: 'index.php',
+                url: 'correo/correo.php',
                 type: 'post',
                 beforeSend: function () {
                     console.log("Enviando correo ...");
@@ -313,8 +312,7 @@ function generarCodigo(facturaString, idCarrito) {
                     console.log("Correo enviado");
                     swal("Gracias por tu compra", "La factura y el codigo QR se lo enviamos al correo", "success");
                 }
-            }); 
-            */
+            });
             //------------------
         }).catch(err => {
             console.log("Error al obtener el codigo");
