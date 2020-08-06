@@ -6,7 +6,8 @@ jQuery(document).ready(function () {
     fecha_salida.innerHTML = `<strong>Salida: </strong>` + f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
     var fecha = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate();
     //fecha = "2020-07-30"; //comentar esta linea
-    cargarSalidas(fecha);
+    var fecha = new Date().toJSON().slice(0, 10);
+    cargarSalidas(fecha.toString());
     cargarCategoria();
     // Dentro y fuera de esta función, el simbolo $() NO es un alias de jQuery()
     // y está disponible para otras bibliotecas
