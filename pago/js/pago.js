@@ -13,32 +13,7 @@ document.getElementById("descripcion1").style.display = "none";
 document.getElementById("descripcion2").style.display = "none";
 document.getElementById("descripcion3").style.display = "none";
 
-emailAuth.onAuthStateChanged(user => {
-    // USUARIO_AUTH = user;
-    // console.log("Verificando sesion");
-    //if (user) {
-    //     var userURL = 'https://terminal25backend.herokuapp.com/usuario/email=';
-    //     email = user.email;
-    //     console.log(email.toString());
-    //     fetch(userURL + user.email.toString()).then(function (response) {
-    //         return response.json();
-    //     }).then(function (x) {
-    //         usuario = x;
-    //     }).catch(function () {
-    //         console.log("Error al hallar el usuario");
-    //     });
-    //     fetch('https://terminal25backend.herokuapp.com/carrito/idusuario=' + usuario.idUsuario + '/estado=PENDIENTE').then(function (response) {
-    //         return response.json();
-    //     }).then(function (cart) {
-    //         idCarrito = cart.idCarrito;
-    //     }).catch(function () {
-    //         console.log("Error al hallar el ID de usuario");
-    //     });
-    /*     } else {
-            console.log("compras no hay usuario");
-            window.location.href = "login.html";
-        } */
-});
+var facturaString = "";
 
 function addRow(datatable, carrito) {
     datatable.row.add([carrito.idCarrito, carrito.fechaCreacion, carrito.estado]).draw();
@@ -93,45 +68,101 @@ function cargarDetalle(datatableDetalle) {
                 }).then(function (cart) {
                     idCarrito = cart[0].idCarrito;
                     console.log(cart);
-                    fetch(urlBoletos + "idcarrito=" + idCarrito).then(function (response) {
-                        return response.json();
-                    }).then(function (data) {
-                        console.log(data);
-                        data.forEach(boleto => {
-                            console.log(boleto);
-                            idCarrito = boleto.carrito.idCarrito;
-                            datatableDetalle.row.add(
-                                [
-                                    boleto.itinerario.viaje.origen,
-                                    boleto.itinerario.viaje.destino.nombre,
-                                    boleto.cantidadDeAsientos,
-                                    boleto.costo
-                                ]
-                            ).draw();
-                            subtotal += boleto.costo;
-                            subtotal = parseInt(subtotal * 100) / 100;
+                    fetch(urlBoletos + "idcarrito=" + idCarrito)
+                        .then(function (response) {
+                            return response.json();
+                        }).then(function (data) {
+                            console.log(data);
+
+                            facturaString += `
+                        <table>
+                            <thead> 
+                                <tr> 
+                                    <th>Origen</th> 
+                                    <th>Destino</th> 
+                                    <th>Cantidad</th> 
+                                    <th>Costo</th> 
+                                </tr> 
+                            </thead>`;
+
+                            data.forEach(boleto => {
+                                console.log(boleto);
+                                idCarrito = boleto.carrito.idCarrito;
+
+                                facturaString += `
+                            <tbody> 
+                                <tr> 
+                                    <td> ${boleto.itinerario.viaje.origen}</td>
+                                    <td> ${boleto.itinerario.viaje.destino.nombre}</td> 
+                                    <td> ${boleto.cantidadDeAsientos}</td> 
+                                    <td> ${boleto.costo}</td> 
+                                </tr>` + "\n";
+                                datatableDetalle.row.add(
+                                    [
+                                        boleto.itinerario.viaje.origen,
+                                        boleto.itinerario.viaje.destino.nombre,
+                                        boleto.cantidadDeAsientos,
+                                        boleto.costo
+                                    ]
+                                ).draw();
+                                subtotal += boleto.costo;
+                                subtotal = parseInt(subtotal * 100) / 100;
+                            });
+
+                            tablaDetalleHTMNL = $('#resumen');
+                            total = subtotal * 1.12;
+                            total = parseInt(total * 100) / 100;
+                            console.log(factura);
+
+                            facturaString += `
+                            </tbody>
+                        </table>`;
+                            facturaString += `
+                        <div>
+                            <tr>
+                                <td>Subtotal $</td>
+                                <td>${subtotal}</td>
+                            </tr>
+                            <br>
+                            <tr>
+                                <td><strong>Total $</strong></td>
+                                <td><strong>${total}</strong></td>
+                            </tr>
+                        </div>`;
+
+                            console.log(facturaString);
+                            // total = total.toString(); //If it's not already a String
+                            // total = total.slice(0, (total.indexOf(".")) + 3); //With 3 exposing the hundredths place
+                            // Number(total); //If you need it back as a Number
+                            document.querySelector('#pago-subtotal').innerText = subtotal;
+                            document.querySelector('#pago-total').innerText = total;
+                            var fecha = new Date().toJSON();
+                            factura = {
+                                // "idFactura": 1,
+                                "fecha": fecha,
+                                "total": total,
+                                "usuario": usuario,
+                                "carrito": cart[0]
+                            }
+                            // POST(urlFactura, factura);
+                            fetch(url, {
+                                method: 'POST', // or 'PUT'
+                                body: JSON.stringify(factura), // data can be `string` or {object}!
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            }).then(function (response) {
+                                return response.json();
+                            }).then(function (respuesta) {
+                                if (respuesta.carrito) {
+                                    generarCodigo(facturaString, respuesta.carrito.idCarrito);
+                                }
+                            }).catch(error => console.error('POST Error:', error))
+                                .then(response => console.log('POST Success:', response));
+                            tablaDetalleHTMNL = $('#resumen');
+                            console.log(tablaDetalleHTMNL);
+                            console.log(factura);
                         });
-                        tablaDetalleHTMNL = $('#resumen');
-                        total = subtotal * 1.12;
-                        total = parseInt(total * 100) / 100;
-                        // total = total.toString(); //If it's not already a String
-                        // total = total.slice(0, (total.indexOf(".")) + 3); //With 3 exposing the hundredths place
-                        // Number(total); //If you need it back as a Number
-                        document.querySelector('#pago-subtotal').innerText = subtotal;
-                        document.querySelector('#pago-total').innerText = total;
-                        var fecha = new Date().toJSON();
-                        factura = {
-                            // "idFactura": 1,
-                            "fecha": fecha,
-                            "total": total,
-                            "usuario": usuario,
-                            "carrito": cart[0]
-                        }
-                        POST(urlFactura, factura);
-                        tablaDetalleHTMNL = $('#resumen');
-                        console.log(tablaDetalleHTMNL);
-                        console.log(factura);
-                    });
                 }).catch(function () {
                     console.log("Error al hallar el CARRITO");
                 });
@@ -213,9 +244,9 @@ function setProgreso(actual) {
     vectorCirculos[actual].classList.add("actual");
 }
 
-function generarCodigo(idFactura) {
+function generarCodigo(facturaString, idCarrito) {
     ///metodo POST
-    let url = "https://prebaflaskqr589.herokuapp.com/" + idFactura;
+    let url = "https://prebaflaskqr589.herokuapp.com/" + idCarrito;
     fetch(url, {
         method: 'POST',
         redirect: 'follow'
@@ -254,7 +285,7 @@ function generarCodigo(idFactura) {
             //Contenedor que se enviara al correo
             var Cont = document.getElementById("resumenM"); //esta se va al correo
             var Conti = document.getElementById("resumen");
-            console.log(Conti,innerWidth);
+            console.log(Conti, innerWidth);
             //var element = document.getElementById("description");
             //element.setAttribute('value', Cont.innerText);
             //element.innerHTML = `${Cont.innerHTML}`;
@@ -262,6 +293,7 @@ function generarCodigo(idFactura) {
             document.getElementById("inputEmail").setAttribute('value', email);
             document.getElementById("inputHtml").innerHTML = `${Cont.innerHTML}`;
 
+            var variable = `<strong> TERMINAL TERRESTRE DE CUENCA</strong>`;
             //setAttribute('value', `${Cont.innerHTML}`);
             var parametros = {
                 "btnEnviar": "envia",
