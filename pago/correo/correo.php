@@ -10,38 +10,136 @@
 	if( isset($_POST["btnEnviar"])){
 	
 		$mailto = $_POST['EmailDestino'];
-		$url = $_POST['url'];
+		$codigoHtml = $_POST['html'];
 		$mailfrom = "novel12da@gmail.com";
 		$mailsubject = "Factura Terminal";
 
 		$content = '';
 		$content .= '
 		<style>
-		table {
-		border-collapse: collapse;
-		}
-		table{
-		width:100%;
-		margin:0 auto;
-		}
-		td{
-		border: 1px solid #e2e2e2;
-		padding: 10px; 
-		max-width:520px;
-		word-wrap: break-word;
-		}
+		  .clearfix:after {
+			content: "";
+			display: table;
+			clear: both;
+		  }
+		  
+		  a {
+			color: #5D6975;
+			text-decoration: underline;
+		  }
+		  
+		  body {
+			position: relative;
+			width: 21cm;
+			height: 29.7cm;
+			margin: 0 auto;
+			color: #001028;
+			background: #FFFFFF;
+			font-family: Arial, sans-serif;
+			font-size: 12px;
+			font-family: Arial;
+		  }
+		  
+		  header {
+			padding: 10px 0;
+			margin-bottom: 30px;
+		  }
+		  
+		  #logo {
+			text-align: center;
+			margin-bottom: 10px;
+		  }
+		  
+		  #logo img {
+			width: 90px;
+		  }
+		  
+		  h1 {
+			border-top: 1px solid #5D6975;
+			border-bottom: 1px solid #5D6975;
+			color: #5D6975;
+			font-size: 2.4em;
+			line-height: 1.4em;
+			font-weight: normal;
+			text-align: center;
+			margin: 0 0 20px 0;
+		  }
+		  
+		  #project {
+			float: left;
+		  }
+		  
+		  #project span {
+			color: #5D6975;
+			text-align: right;
+			width: 52px;
+			margin-right: 10px;
+			display: inline-block;
+			font-size: 0.8em;
+		  }
+		  
+		  #company {
+			float: right;
+			text-align: right;
+		  }
+		  
+		  #project div, #company div {
+			white-space: nowrap;
+		  }
+		  
+		  table {
+			width: 100%;
+			border-collapse: collapse;
+			border-spacing: 0;
+			margin-bottom: 20px;
+		  }
+		  
+		  table tr:nth-child(2n-1) td {
+			background: #F5F5F5;
+		  }
+		  
+		  table th, table td {
+			text-align: center;
+		  }
+		  
+		  table th {
+			padding: 5px 20px;
+			color: #5D6975;
+			border-bottom: 1px solid #C1CED9;
+			white-space: nowrap;
+			font-weight: normal;
+		  }
+		  
+		  table .service, table .desc {
+			text-align: left;
+		  }
+		  
+		  table td {
+			padding: 20px;
+			text-align: right;
+		  }
+		  
+		  table td.service, table td.desc {
+			vertical-align: top;
+		  }
+		  
+		  table td.unit, table td.qty, table td.total {
+			font-size: 1.2em;
+		  }
+		  
+		  table td.grand {
+			border-top: 1px solid #5D6975;
+		  }
+		  
+		  #notices .notice {
+			color: #5D6975;
+			font-size: 1.2em;
+		  }
 		</style>';
-		
-		$content .= '<table id="das">';
-		$content .= '<tr><td>Codigo QR</td> <td><img src="Logo.png" width="120" height="120"></td></tr>';
-		$content .= '<tr><td>Email A</td> <td>' . $mailto . '</td> </tr>';
-		$content .= '<tr><td>Mail De</td>   <td>' . $mailfrom . '</td> </tr>';
-		$content .= '<tr><td id="ds">Asunto Email</td>   <td>' . $mailsubject . '</td> </tr>';
-		$content .= '<tr><td>Nombres</td>   <td>' . $firstname . '</td> </tr>';
-		$content .= '<tr><td>Apellidos</td>   <td>' . $lastname . '</td> </tr>';
-		$content .= '<tr><td>Descripcion</td>   <td>' . $url . '</td> </tr>';
 	
-		$content .= '</table>';
+		/* Tu css */
+
+		$content .= $codigoHtml;
 
 		require 'PHPMailer/src/PHPMailer.php';
 		require 'PHPMailer/src/SMTP.php';
