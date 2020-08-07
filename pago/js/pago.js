@@ -135,10 +135,20 @@ function cargarDetalle(datatableDetalle) {
                             document.getElementById('pagoTotal').innerText = total;
                             //document.querySelector('#pago-subtotal').innerText = subtotal;
                             //document.querySelector('#pago-total').innerText = total;
-                            var fecha = new Date().toJSON();
+                            var today = new Date();
+                            var dd = today.getDate();
+                            var mm = today.getMonth() + 1; //January is 0!
+                            var yyyy = today.getFullYear();
+                            if (dd < 10) {
+                                dd = '0' + dd;
+                            }
+                            if (mm < 10) {
+                                mm = '0' + mm;
+                            }
+                            today = yyyy + '-' + mm + '-' + dd;
                             factura = {
                                 // "idFactura": 1,
-                                "fecha": fecha,
+                                "fecha": today,
                                 "total": total,
                                 "usuario": usuario,
                                 "carrito": cart[0]
