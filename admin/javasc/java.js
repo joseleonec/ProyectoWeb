@@ -139,7 +139,7 @@ function nuevoEmpleado(id_empresa, nickname, contra, nombre, apellido, cedula, c
                 'Content-Type': 'application/json'
             }
         }).then(function (data_res) {
-            //console.log("Respuesta: " + data_res);
+            console.log("Respuesta: " + data_res);
             cambiar_texto(false, btn_guardar_employ);
             limpiar("entrada_empleado");
             mostrar_mensaje('Exito', alerta_employ, 'success');

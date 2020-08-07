@@ -214,15 +214,16 @@
             <div class="modal-body">
               <div class="logo"></div>
               <div></div>
-              <p class="centrado">SUPER V UDEC</p>
-              <p class="centrado"><strong>Subsistema de Gestion de Clientes</strong></p>
+              <p class="centrado">Terminal Terrestre</p>
+              <p class="centrado"><strong>Administración</strong></p>
               <strong>Integrantes:</strong>
               <p>Juan Dumaguala</p>
               <p>Henry Quinde</p>
+              <p>José León</p>
               <strong>Docente:</strong>
-              <p>ING.CARLOS VILLIE MOROCHO ZURITA</p>
+              <p>ING.PRISCILA CEDILLO</p>
               <div></div>
-              <p> "Este módulo fue desarrollado como parte de la materia Base de Datos II , periodo marzo-julio 2020".
+              <p> "Este página fue desarrollado como parte de la materia Programacion Web, periodo marzo-julio 2020".
               </p>
             </div>
             <div class="modal-footer">
