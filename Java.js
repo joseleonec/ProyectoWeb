@@ -5,9 +5,21 @@ jQuery(document).ready(function () {
     var fecha_salida = document.getElementById("fecha_salida");
     fecha_salida.innerHTML = `<strong>Salida: </strong>` + f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
     var fecha = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate();
-    //fecha = "2020-07-30"; //comentar esta linea
-    var fecha = new Date().toJSON().slice(0, 10);
-    cargarSalidas(fecha.toString());
+    //var fecha = new Date().toJSON().slice(0, 10);
+    //console.log(fecha.toString());
+    //cargarSalidas(fecha.toString());
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    today = yyyy + '-' + mm + '-' + dd;
+    cargarSalidas(today);
     cargarCategoria();
     // Dentro y fuera de esta función, el simbolo $() NO es un alias de jQuery()
     // y está disponible para otras bibliotecas
