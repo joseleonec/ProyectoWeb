@@ -11,9 +11,20 @@ function llenarTabla(datatable) {
     // OBTENER FECHA ACTUAL
     // 2020-07-30
     // var fecha = new Date(2020, 06, 30).toJSON().slice(0, 10);
-    var fecha = new Date().toJSON().slice(0, 10);
-    console.log(fecha);
-    const token = "fecha=" + fecha.toString();
+    // var fecha = new Date().toJSON().slice(0, 10);
+    // console.log(fecha);
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    today = yyyy + '-' + mm + '-' + dd;
+    const token = "fecha=" + today.toString();
     console.log(token);
     fetch(url + token).then(function (response) {
         return response.json();
