@@ -16,6 +16,7 @@ let car;
 let itiner;
 let lista;
 let results;
+let qr;
 
 var options = {
   // isCaseSensitive: false,
@@ -41,6 +42,19 @@ const habilitarBoton = (bool)=>{
   $('#botonvender').attr('disabled', bool);
   $('#botoncancelar').attr('disabled', bool);
 
+}
+
+async function generarQR(){
+  var flask = 'https://prebaflaskqr589.herokuapp.com/';
+  var urlQR = flask+car.idCarrito 
+  let resultado = await fetch(urlQR,
+    {
+      method:'POST'
+    }).then(function(response){
+      return response;
+    })
+   
+  document.getElementById('descargar').href = flask+'boleto/'+car.idCarrito+'.png'; 
 }
 
 async function eliminarDatos(i){
@@ -285,6 +299,7 @@ $("#crearboleto").click(function (e) {
 $("#botonvender").click(function (e) {
     e.preventDefault();
     crearFactura();
+    generarQR();
     habilitarBoton(true)    
 });
 
