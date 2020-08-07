@@ -3,7 +3,7 @@ const referencia = {
     "Proximas Salidas": "salidas.html",
     "Carritos": "reservas.html",
     "Historial de compras": "compras.html",
-    "Mis Rutas": "rutas.html",
+/*     "Mis Rutas": "rutas.html", */
     "Historial de Viajes": "viajes.html"
 };
 
