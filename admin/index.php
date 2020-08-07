@@ -48,13 +48,13 @@
                         </span>
                         <!--input id="user-inicio" type="text" class="form-control" placeholder="username"-->
                         <input id="user-inicio" name="user-login" type="email" class="form-control" placeholder="Correo"
-                            value="juanduma001">
+                            value="">
                     </div>
                     <div class="input-group form-group">
                         <span class="input-group-text login-color">
                             <img src="../icons/lock.svg">
                         </span>
-                        <input id="pass-inicio" type="password" class="form-control" placeholder="password" value="asdiop">
+                        <input id="pass-inicio" type="password" class="form-control" placeholder="password" value="">
                     </div>
                     <div class="d-flex justify-content-center pt-2">
                         <!--a id="iniciar" href="./inicio.html" class="btn login_btn login-color" role="button">Iniciar</a-->

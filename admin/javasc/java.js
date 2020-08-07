@@ -125,32 +125,51 @@ $(document).on('click', '.task-ver', (e) => {
 
 //metodo POST
 function nuevoEmpleado(id_empresa, nickname, contra, nombre, apellido, cedula, correo) {
-    getAgencia(id_empresa);
-    if (agencia != "") {
-        let data = {
-            agencia: agencia, apellido: apellido, cedula: cedula, email: correo,
-            nickname: nickname, nombre: nombre, password: contra
-        };
-        let url = url_back + "empleado";
-        fetch(url, {
-            method: 'POST', // or 'PUT'
-            body: JSON.stringify(data), // data can be `string` or {object}!
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(function (data_res) {
+    let url = url_back + "agencia/" + id_empresa;
+    fetch(url).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        let id = data.idAgencia
+        if (id != null) {
+            postEmpleado(data, nickname, contra, nombre, apellido, cedula, correo);
+        }
+    }).catch(err => {
+        console.log("Error al cargar coop");
+    });
+}
+
+function postEmpleado(agencia, nickname, contra, nombre, apellido, cedula, correo) {
+    let data = {
+        "agencia": agencia,
+        "apellido": apellido,
+        "cedula": cedula,
+        "email": correo,
+        "nickname": nickname,
+        "nombre": nombre,
+        "password": contra
+    };
+    let url = url_back + "empleado";
+    fetch(url, {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(function (data_res) {
+        let la = data_res.apellido;
+        if (la != null) {
             console.log("Respuesta: " + data_res);
             cambiar_texto(false, btn_guardar_employ);
             limpiar("entrada_empleado");
             mostrar_mensaje('Exito', alerta_employ, 'success');
             cargarEmpleado();
-        }).catch(function (error) {
-            //console.log('Error post: ' + error);
-            mostrar_mensaje('No se pudo agregar', alerta_employ, 'danger');
-        });
-        agencia = "";
-    }
-
+        } else {
+            console.log("postgre");
+        }
+    }).catch(function (error) {
+        //console.log('Error post: ' + error);
+        mostrar_mensaje('No se pudo agregar', alerta_employ, 'danger');
+    });
 }
 
 //metodo PUT
@@ -158,8 +177,14 @@ function editarEmpleado(id_empresa, nickname, contra, nombre, apellido, cedula, 
     getAgencia(id_empresa);
     if (agencia != "") {
         let data = {
-            agencia: agencia, apellido: apellido, cedula: cedula, email: correo, idEmpleado: ID_empleado_editando,
-            nickname: nickname, nombre: nombre, password: contra
+            "agencia": agencia,
+            "apellido": apellido,
+            "cedula": cedula,
+            "email": correo,
+            "idEmpleado": ID_empleado_editando,
+            "nickname": nickname,
+            "nombre": nombre,
+            "password": contra
         };
         let url = url_back + "empleado";
         fetch(url, {
@@ -425,7 +450,7 @@ function cargarCooperativa() {
 
 //metodo POST
 function nuevoCooperativa(name_coop, email_coop, ruc_coop) {
-    let data = { email: email_coop, nombre: name_coop, ruc: ruc_coop };
+    let data = { "email": email_coop, "nombre": name_coop, "ruc": ruc_coop };
     let url = url_back + "agencia";
     fetch(url, {
         method: 'POST', // or 'PUT'
@@ -447,7 +472,7 @@ function nuevoCooperativa(name_coop, email_coop, ruc_coop) {
 
 //metodo PUT
 function editarCooperativa(name_coop, email_coop, ruc_coop) {
-    let data = { email: email_coop, idAgencia: ID_coop_editando, nombre: name_coop, ruc: ruc_coop };
+    let data = { "email": email_coop, "idAgencia": ID_coop_editando, "nombre": name_coop, "ruc": ruc_coop };
     let url = url_back + "agencia";
     fetch(url, {
         method: 'PUT', // or 'PUT'
@@ -546,7 +571,7 @@ $(document).on('click', '.ruta-editar', function (e) {
     //const element = $(this)[0].activeElement.parentElement.parentElement;
     const datos = e.target.parentElement.parentElement.getElementsByTagName('td');
     ID_ruta_editando = datos[0].innerText;
-    $('#origen').val(datos[2].innerText);
+    $('#origen').val("CUENCA");
     $('#ruta_a').val(datos[3].innerText);
     editando_ruta = true;
     cambiar_texto(true, btn_guardar_ruta);
@@ -590,56 +615,85 @@ function cargarRuta() {
 
 //metodo POST
 function nuevoRuta(origen, id_destino, ruta) {
-    getDestino(id_destino);
-    if (destino != "") {
-        let data = { destino: destino, nombreRuta: ruta, origen: "Cuenca" };
-        let url = url_back + "viaje";
-        fetch(url, {
-            method: 'POST', // or 'PUT'
-            body: JSON.stringify(data), // data can be `string` or {object}!
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(function (data_res) {
+    let url = url_back + "ubicacion/" + id_destino;
+    fetch(url).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        if (data.idUbicacion != null) {
+            postRuta(origen, data, ruta);
+        }
+    }).catch(err => {
+        console.log("Error en la ubicacion get");
+    });
+}
+
+function postRuta(origen, destino, ruta) {
+    let da = {
+        "latitud": destino.latitud,
+        "longitud": destino.longitud,
+        "nombre": destino.nombre
+    };
+    let data = { "destino": destino, "nombreRuta": ruta, "origen": "CUENCA" };
+    let url = url_back + "viaje";
+    console.log(data);
+    fetch(url, {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(function (data_res) {
+        let la = data_res.nombreRuta;
+        if (la != null) {
             //console.log("Respuesta: " + data_res);
             cambiar_texto(false, btn_guardar_ruta);
             limpiar("entrada_ruta");
             mostrar_mensaje('Exito', alerta_ruta, 'success');
             cargarRuta();
-        }).catch(function (error) {
-            //console.log('Error post: ' + error);
-            mostrar_mensaje('No se pudo agregar', alerta_ruta, 'danger');
-        });
-        destino = "";
-    }
-
+        } else {
+            console,log("postgre");
+        }
+    }).catch(function (error) {
+        //console.log('Error post: ' + error);
+        mostrar_mensaje('No se pudo agregar', alerta_ruta, 'danger');
+    });
 }
 
 //metodo PUT
 function editarRuta(origen, id_destino, ruta) {
-    getDestino(id_destino);
-    if (destino != "") {
-        let data = { destino: destino, idViaje: ID_ruta_editando, nombreRuta: ruta, origen: "Cuenca" };
-        let url = url_back + "viaje";
-        fetch(url, {
-            method: 'PUT', // or 'PUT'
-            body: JSON.stringify(data), // data can be `string` or {object}!
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(function (data_res) {
-            //console.log("Respuesta: " + data_res);
-            cambiar_texto(false, btn_guardar_ruta);
-            limpiar("entrada_ruta");
-            editando_ruta = false;
-            mostrar_mensaje('Se ha modificado', alerta_ruta, 'success');
-            cargarRuta();
-        }).catch(function (error) {
-            //console.log('Error Id carrito: ' + error);
-            mostrar_mensaje('No se pudo editar', alerta_ruta, 'danger');
-        });
-        destino = "";
-    }
+    let url = url_back + "ubicacion/" + id_destino;
+    fetch(url).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        if (data.idUbicacion != null) {
+            putRuta(origen, data, ruta);
+        }
+    }).catch(err => {
+        //console.log(err);
+    });
+
+}
+
+function putRuta(origen, destino, ruta) {
+    let data = { "destino": destino, "idViaje": ID_ruta_editando, "nombreRuta": ruta, "origen": "CUENCA" };
+    let url = url_back + "viaje";
+    fetch(url, {
+        method: 'PUT', // or 'PUT'
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(function (data_res) {
+        //console.log("Respuesta: " + data_res);
+        cambiar_texto(false, btn_guardar_ruta);
+        limpiar("entrada_ruta");
+        editando_ruta = false;
+        mostrar_mensaje('Se ha modificado', alerta_ruta, 'success');
+        cargarRuta();
+    }).catch(function (error) {
+        //console.log('Error Id carrito: ' + error);
+        mostrar_mensaje('No se pudo editar', alerta_ruta, 'danger');
+    });
 }
 
 //metodo DELETE
@@ -673,18 +727,6 @@ function eliminarRuta() {
         } /*else {
           swal("Your imaginary file is safe!");
         }*/
-    });
-}
-
-var destino = "";
-function getDestino(idDestino) {
-    let url = url_back + "ubicacion/" + idDestino;
-    fetch(url).then(function (response) {
-        return response.json();
-    }).then(function (data) {
-        destino = data;
-    }).catch(err => {
-        //console.log(err);
     });
 }
 
@@ -756,8 +798,9 @@ function cargarDestino() {
 //metodo POST
 function nuevoDestino(nombre, latitud, longitud) {
     let data = {
-        latitud: latitud, longitud: longitud,
-        nombre: nombre
+        "latitud": latitud,
+        "longitud": longitud,
+        "nombre": nombre
     };
     let url = url_back + "ubicacion";
     fetch(url, {
@@ -767,11 +810,16 @@ function nuevoDestino(nombre, latitud, longitud) {
             'Content-Type': 'application/json'
         }
     }).then(function (data_res) {
-        //console.log("Respuesta: " + data_res);
-        cambiar_texto(false, btn_guardar_destino);
-        limpiar("entrada_destino");
-        mostrar_mensaje('Exito', alerta_destino, 'success');
-        cargarDestino();
+        let la = data_res.latitud;
+        if (la != null) {
+            //console.log("Respuesta: " + data_res);
+            cambiar_texto(false, btn_guardar_destino);
+            limpiar("entrada_destino");
+            mostrar_mensaje('Exito', alerta_destino, 'success');
+            cargarDestino();
+        } else {
+            console.log("postgre");
+        }
     }).catch(function (error) {
         //console.log('Error post: ' + error);
         mostrar_mensaje('No se pudo agregar', alerta_destino, 'danger');
@@ -781,8 +829,8 @@ function nuevoDestino(nombre, latitud, longitud) {
 //metodo PUT
 function editarDestino(nombre, latitud, longitud) {
     let data = {
-        idUbicacion: ID_destino_editando, latitud: latitud, longitud: longitud,
-        nombre: nombre
+        "idUbicacion": ID_destino_editando, "latitud": latitud, "longitud": longitud,
+        "nombre": nombre
     };
     let url = url_back + "ubicacion";
     fetch(url, {
@@ -901,8 +949,8 @@ function cargarCategoria(idServicio) {
 //metodo PUT
 function guardarAnuncio(id, categoria, nombreSitio, descripcion, link) {
     let data = {
-        idServicio: id, nombreSitio: nombreSitio, descripcion: descripcion, url: link
-        , categoria: { idCategoria: id, nombre: categoria }
+        "idServicio": id, "nombreSitio": nombreSitio, "descripcion": descripcion, "url": link
+        , "categoria": { idCategoria: id, nombre: categoria }
     };
     let url = url_back + "servicio";
     fetch(url, {
